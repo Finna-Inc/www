@@ -1,0 +1,179 @@
+/* ══ THE SITE'S NAVIGATION ══════════════════════════════════════════════════════════
+   Lifted 1:1 from the 2026-09 site (now _archive/landing-2026-09-11/site.css): the frosted
+   bar, the centred menu, the promises dropdown with its rows and its rule, the burger
+   sheet. Nothing about its geometry or motion is re-decided here.
+
+   TWO THINGS CHANGED on the way over, both of them icons:
+     · the dropdown rows carry the RATIFIED icons (brand/build/plates.json), not the old
+       illustrated sprite the archived page drew them with;
+     · the key is the estate's .key, so the bar's button is the same object as every other
+       button on the site.
+   ═══════════════════════════════════════════════════════════════════════════════════ */
+
+.dark-grad a:focus-visible,.dark-grad button:focus-visible,
+.nav a:focus-visible,.nav button:focus-visible,
+.foot a:focus-visible,.card-dark a:focus-visible{outline-color:var(--white)}
+/* the bar's key runs smaller, so its arrow does too */
+.nav .btn .ic{width:16px;height:16px}
+/* ---------- nav ---------- */
+.nav-outer{position:fixed;top:18px;left:0;right:0;z-index:60;padding:0 32px;pointer-events:none}
+.nav{
+  max-width:var(--maxw);margin:0 auto;pointer-events:auto;position:relative;
+  display:flex;align-items:center;gap:28px;
+  padding:12px 12px 12px 22px;border-radius:20px;
+  /* THE BAR KEEPS ITS HEIGHT (Rose, 12 Sep 2026). It measured 72px because a size-M key
+     plus its padding came to exactly that; the key is size S now, so the height is stated
+     rather than left to add up. */
+  min-height:72px;
+  /* 70% black over a lighter frost (Rose, 3 Sep): the blur came down from 18px to 10px and
+     the saturation boost from 140% to 120%, so what is behind the bar stays legible as the
+     page scrolls under it instead of turning to milk. */
+  background:rgba(0,0,0,.70);
+  backdrop-filter:blur(10px) saturate(120%);-webkit-backdrop-filter:blur(10px) saturate(120%);
+  border:0;
+}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--white)}
+.mark{width:34px;height:34px;display:block;flex:0 0 auto}
+/* the lockup: Lexend 600, word 0.50 × mark beside the name, gap 0.26 ×, tracking -0.025em */
+.brand b{font:var(--weight-heading) 22px/1 'Lexend Variable',Arial,sans-serif;letter-spacing:-.025em}
+/* the NAVBAR lockup runs a little larger than the footer's, and sits 2px further left
+   (Rose, 3 Sep). The site's proportions are kept: word 0.636 × mark, gap 0.318 × mark. */
+/* the mark moves 2px right and the key 5px in from the end (Rose, 12 Sep 2026) */
+.nav .brand{gap:13px;margin-left:-6px}
+/* NUDGED 4px RIGHT AND 3px UP (Rose, 13 Sep 2026). The key was sitting low and shy of
+   the bar's right edge. translate, not margin: the key's pressed state already moves it
+   down by --ko, and a margin would have changed the bar's own metrics instead of just
+   where the key sits in it. */
+.nav > .key{margin-right:5px;translate:4px -3px}
+.nav .mark{width:40px;height:40px}
+/* the wordmark is NOT on the type ladder: its size is a proportion of the mark
+   (word 0.636 x mark), not a rung. */
+.nav .brand b{font-size:25px}
+/* the menu is centred in the BAR, not in the space left over between the lockup and the
+   button — so it sits on the bar's midline whatever those two measure (Rose, 3 Sep). */
+/* THE MENU SITS BESIDE THE NAME (Rose, 12 Sep 2026). It used to be centred on the bar's
+   midline, which left a long gap between the mark and the first item; it now follows the
+   name at arm's length and no further: the bar's own 28px flex gap plus 6px, so the first
+   item reads as part of the same group as the mark and the name rather than a second one. */
+/* THE ITEMS SIT ON THE BAR'S MIDLINE (Rose, 13 Sep 2026: "nudge menu items to middle
+   align with navbar"). They had been pushed down 4px since 12 Sep to share the name's
+   baseline — which put the row 4px below the bar's centre and read as sitting low. The
+   bar's centre wins: the row is now on it, measured, and the name and the key keep their
+   own alignment. */
+.nav-links{display:flex;gap:30px;align-items:center;margin-left:6px;margin-right:auto}
+.nav-links a{font-size:var(--text-reading);text-decoration:none;color:rgba(255,255,255,.90)}
+.nav-links a:hover{color:var(--white)}
+/* ---------- the promises menu (from the Claude Design nav file, Rose 3 Sep) ---------- */
+.nav-has-dd{position:relative;display:inline-flex;align-items:center}
+.nav-dd-t{display:inline-flex;align-items:center;gap:7px}
+.nav-chev{opacity:.62;transition:transform 220ms var(--ease,cubic-bezier(.22,1,.36,1))}
+.nav-has-dd.open .nav-chev{transform:rotate(180deg)}
+/* mounted, not removed, so it eases out as well as in */
+.nav-ddw{position:absolute;top:100%;left:0;padding-top:14px;transform-origin:top left;
+  opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-8px) scale(.986);
+  transition:opacity 420ms cubic-bezier(.22,1,.36,1),transform 420ms cubic-bezier(.22,1,.36,1),
+             visibility 0s linear 420ms}
+.nav-has-dd.open .nav-ddw{opacity:1;visibility:visible;pointer-events:auto;transform:none;
+  transition:opacity 220ms cubic-bezier(.22,1,.36,1),transform 260ms cubic-bezier(.22,1,.36,1),visibility 0s}
+/* the panel is DARK GREEN (Rose, 3 Sep) — it joins the bar it drops out of instead of
+   punching a white hole in the header. White rows on --bg-dark measure 15.1:1. */
+.nav-dd{width:296px;background:var(--bg-dark);border:1px solid rgba(255,255,255,.12);
+  border-radius:14px;box-shadow:0 18px 44px rgba(8,27,23,.34);padding:8px;
+  /* its own layer: the shadow is rasterised once instead of being re-blurred against
+     the bar's backdrop-filter on every frame of the fade */
+  transform:translateZ(0)}
+/* promoted only while it is opening or open — a permanent will-change holds memory
+   for a panel that is shut most of the time */
+.nav-has-dd:hover .nav-ddw,.nav-has-dd.open .nav-ddw{will-change:opacity,transform}
+.nav-links .nav-ddl{display:flex;align-items:center;gap:11px;min-height:48px;padding:9px 10px;border-radius:10px;
+  font-family:var(--font-sans);font-size:var(--text-label);font-weight:var(--weight-label);line-height:1.3;
+  color:var(--white);text-decoration:none;opacity:0;transform:translateY(-4px);
+  transition:background 170ms,color 170ms,opacity 260ms cubic-bezier(.22,1,.36,1),
+             transform 260ms cubic-bezier(.22,1,.36,1)}
+.nav-links .nav-has-dd.open .nav-ddl{opacity:1;transform:none}
+.nav-links .nav-has-dd.open .nav-ddl:nth-child(1){transition-delay:0ms,0ms,40ms,40ms}
+.nav-links .nav-has-dd.open .nav-ddl:nth-child(2){transition-delay:0ms,0ms,80ms,80ms}
+.nav-links .nav-has-dd.open .nav-ddl:nth-child(3){transition-delay:0ms,0ms,120ms,120ms}
+.nav-links .nav-has-dd.open .nav-ddl:nth-child(4){transition-delay:0ms,0ms,160ms,160ms}
+.nav-links .nav-has-dd.open .nav-ddl:nth-child(6){transition-delay:0ms,0ms,210ms,210ms}
+.nav-links .nav-ddl:hover{background:rgba(255,255,255,.10);color:var(--white)}
+.nav-links .nav-ddl.is-sub{color:rgba(255,255,255,.66);font-size:var(--text-label)}
+.nav-ddi{flex:none;display:block;transition:transform 460ms cubic-bezier(.22,1,.36,1)}
+.nav-ddl:hover .nav-ddi{transform:translateY(-2px) scale(1.07)}
+.nav-dd-rule{display:block;height:1px;background:rgba(255,255,255,.14);margin:6px 4px}
+@media (prefers-reduced-motion:reduce){
+.nav-ddw,.nav-ddl,.nav-ddi,.nav-chev{transition-duration:1ms!important;transition-delay:0ms!important}
+}
+/* THE BAR'S KEY IS A RUNG TALLER (Rose, 12 Sep 2026). It sat on size S, 36px, which read
+   short against a 72px bar; it steps back up to size M, 48px — the estate's touch floor and
+   the next value on the ladder, so nothing off-system is introduced. The markup still says
+   key-s; the rung is set here so the bar's button cannot drift across ten hand-written pages.
+   (The rule that used to live here named `.nav .btn`, an element this build does not have.) */
+.nav > .key{--kh:var(--key-height-m);--kr:var(--key-radius-m);--ko:var(--key-offset-m);
+  --klabel:var(--key-label-m);--kicon:var(--key-icon-m)}
+/* the bar's CTA is the same hard key as everywhere else (Rose, 3 Sep — "use those on the
+   landing"). It used to be a glass panel with its own tint and blur; that made it the one
+   button on the page with a different language. The bar is dark, so the key's own offset in
+   the pressed green reads against it without any extra help. */
+.nav-toggle{display:none}
+.nav-cta-m{display:none}
+@media (max-width:900px){
+.nav-links{display:none}
+.nav-links.open{display:flex;position:absolute;top:76px;left:0;right:0;transform:none;z-index:70;
+    flex-direction:column;gap:0;background:var(--bg-dark);border-radius:20px;padding:12px 0;border:0;
+    /* THE SHEET IS THE BAR'S WIDTH (12 Sep 2026). The row's own margins are what the menu
+       needs when it sits beside the name; in the sheet they pushed it 6px off the bar's
+       left edge, and `align-items:center` shrank the two plain items to their text and
+       centred them while the dropdown rows ran full width. */
+    margin:0;align-items:stretch}
+.nav-links.open a{padding:14px 22px}
+/* in the sheet the menu is not a panel — its rows sit under their parent, indented */
+  .nav-has-dd{display:block;width:100%}
+.nav-chev{display:none}
+.nav-ddw{position:static;padding:0 0 8px;opacity:1;visibility:visible;pointer-events:auto;
+    transform:none;transition:none}
+.nav-dd{width:auto;background:transparent;border:0;box-shadow:none;padding:0 0 0 22px}
+.nav-links .nav-ddl{opacity:1;transform:none;color:rgba(255,255,255,.78);padding:11px 22px}
+.nav-links .nav-ddl:hover{background:rgba(255,255,255,.08);color:var(--white)}
+.nav-links .nav-ddl.is-sub{color:rgba(255,255,255,.6)}
+.nav-ddi{width:26px;height:26px}
+.nav-dd-rule{background:rgba(255,255,255,.16);margin:6px 22px}
+.nav-links.open .nav-cta-m{display:inline-flex;margin:10px 22px 4px;justify-content:center;
+    /* the phone's keys are width:100%; in the sheet that width plus the row's own 22px
+       margins ran the key past the sheet's edge. It stretches to the row instead. */
+    width:auto;align-self:stretch}
+.nav{position:relative}
+.nav-toggle{display:grid;place-items:center;width:44px;height:44px;border-radius:10px;
+    background:transparent;border:1px solid rgba(255,255,255,.28);cursor:pointer;color:var(--white)}
+.nav-toggle .ic{display:block}
+/* THE BURGER AND THE KEY SIT AT THE END (12 Sep 2026). The menu row is gone at this
+   width, and it was the thing holding `margin-right:auto`, so both controls fell in
+   beside the name. */
+.nav-toggle{margin-left:auto}
+}
+/* UNDER 640 THE BAR DROPS ITS KEY (12 Sep 2026). It wrapped to three lines on a phone;
+   the same action is offered full size in the burger sheet and in the hero. The old rule
+   here named `.nav .btn`, an element this build does not have, so it never fired. */
+@media (max-width:640px){
+.nav > .key{display:none}
+}
+.nav-links [data-soon]{opacity:.55}
+.nav-links [data-soon]::after{content:'soon';margin-left:auto;font-family:var(--font-mono);
+  font-size:var(--text-label);letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+
+/* ── THE MARK DRAWS ITSELF ── the estate's gesture (chrome/nav.css), IN WHITE ONLY
+   (Rose, 12 Sep 2026). One direction, never reversing: the tail leaves the start point and
+   runs round until the ring is empty, then the head draws it back in behind it. The centre
+   leaves first and returns last, because the shape cannot exist before the circles that cut
+   it. The colour never changes — no Fiery on the cycle, no green on hover.
+
+   THE MOTION IS DRIVEN FROM nav-site.js, not from here (Rose, 12 Sep 2026). A CSS hover
+   animation is dropped the instant the pointer leaves, which snapped the stroke back to
+   wherever the slow cycle happened to be — the blink. The script instead lets the stroke
+   finish the pass it is in, travelling the same way to the next complete ring, and only
+   then hands back to the ten-second cycle. CSS keeps the dash pattern and the rest state.  */
+.nav .brand svg circle{stroke-dasharray:104 104;stroke-dashoffset:0}
+
+@media (prefers-reduced-motion:reduce){
+  .nav .brand svg circle,.nav .brand svg path{animation:none !important}
+}

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" role="img" aria-label="Finna">
+  <!-- The core — the shape all four rings of the mark share, with a counter struck from the
+       same four circles at a smaller radius. The smallest step of the mark's detail ladder,
+       which is what a 16px tile asks for. The public site is black (Rose, 13 Sep 2026).
+
+       SQUARE, NOT ROUNDED (Rose, 13 Sep 2026: "fav icon has white corners"). The corners
+       were never white — the tile had rx="7" and the browser's own light tab strip showed
+       through them. A favicon is composited onto whatever chrome the browser has, so a
+       rounded tile borrows its colour at the corners. Square fills the space and borrows
+       nothing. iOS rounds the home-screen icon itself, so that one is square too. -->
+  <rect width="32" height="32" fill="#000000"/>
+  <path d="M16 5.9 A30.48 30.48 0 0 1 26.1 16 A30.48 30.48 0 0 1 16 26.1 A30.48 30.48 0 0 1 5.9 16 A30.48 30.48 0 0 1 16 5.9 Z M16 10.445 A26.708 26.708 0 0 1 21.555 16 A26.708 26.708 0 0 1 16 21.555 A26.708 26.708 0 0 1 10.445 16 A26.708 26.708 0 0 1 16 10.445 Z" fill="#FFFFFF" fill-rule="evenodd"/>
+</svg>

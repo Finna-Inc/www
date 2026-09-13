@@ -1,0 +1,731 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Finna — Your own family office. More than investing.</title>
+<meta name="description" content="Wealthy families have two things you don't: a team running everything they own, and access to investments you are never shown. Finna gives you both.">
+<!-- THE PUBLIC SITE, rebuilt 12 Sep 2026 on the ratified brand system (REV 31). The words
+     are the ones the 2026-09 site shipped with, kept in landing2026/copy.md; everything
+     visual is taken from brand/tokens.css. The previous build is in
+     _archive/landing-2026-09-11/ and is not referenced from here. -->
+<link rel="canonical" href="https://finnafamilyoffice.com/">
+
+<!-- HOW THE SITE LOOKS WHEN SOMEONE PASTES THE LINK (13 Sep 2026). Every value here is the
+     page's own title and description, so there is one place to change the words. The card is
+     landing2026/media/finna-share.jpg, 1200x630, built from the mark and the hero wash by
+     build/share-card.py. The absolute URLs only resolve once the site is on the domain.
+     The robots tag above keeps this SOURCE copy out of search — the design repo is itself
+     published at finna-inc.github.io/design/ — and build/site.py strips it from the copy
+     that goes on the domain, which is fully indexable. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Finna">
+<meta property="og:locale" content="en">
+<meta property="og:url" content="https://finnafamilyoffice.com/">
+<meta property="og:title" content="Finna — Your own family office. More than investing.">
+<meta property="og:description" content="Wealthy families have two things you don't: a team running everything they own, and access to investments you are never shown. Finna gives you both.">
+<meta property="og:image" content="https://finnafamilyoffice.com/media/finna-share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Finna — your own family office">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Finna — Your own family office. More than investing.">
+<meta name="twitter:description" content="Wealthy families have two things you don't: a team running everything they own, and access to investments you are never shown. Finna gives you both.">
+<meta name="twitter:image" content="https://finnafamilyoffice.com/media/finna-share.jpg">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#0D231B">
+<link rel="stylesheet" href="chrome/fonts.css">
+<link rel="stylesheet" href="brand/tokens.css">
+<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="nav-site.css">
+<link rel="stylesheet" href="vendor/lenis.css">
+<link rel="stylesheet" href="hero-home.css">
+<!-- A DIFFERENT HERO EACH VISIT (Rose, 13 Sep 2026). In the <head> on purpose: it sets
+     the custom property before the hero has painted, so there is no flash of one picture
+     being replaced by another, and only the chosen file is ever fetched. N is the count
+     in media/hero/ — add hero-09.webp and change 8 to 9.
+     ONE WAS REMOVED (Rose, 13 Sep 2026): the wide fjord with the boat had no dark left
+     side, so the headline had nothing to sit on. A hero has to carry white text on its
+     left third — that is the test for any picture added here. -->
+<script>(function(){var N=8,i=1+Math.floor(Math.random()*N);document.documentElement.style
+.setProperty('--hero-img',"url('media/hero/hero-"+(i<10?"0":"")+i+".webp')");})();</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- THE SITE'S NAVIGATION, 1:1 from the 2026-09 build. The promises menu opens on hover
+     with a pointer and on click or Enter without one; the rows carry the ratified icons. -->
+<div class="nav-outer">
+  <nav class="nav">
+    <a class="brand" href="index.html" aria-label="Finna — home">
+      <svg class="mark" viewBox="38.75 38.75 50.5 50.5" fill="none" aria-hidden="true"><circle cx="57" cy="57" r="16.5" stroke="currentColor" stroke-width="1.5"/><circle cx="71" cy="57" r="16.5" stroke="currentColor" stroke-width="1.5"/><circle cx="71" cy="71" r="16.5" stroke="currentColor" stroke-width="1.5"/><circle cx="57" cy="71" r="16.5" stroke="currentColor" stroke-width="1.5"/><path d="M64 56.06 A16.5 16.5 0 0 1 71.94 64 A16.5 16.5 0 0 1 64 71.94 A16.5 16.5 0 0 1 56.06 64 A16.5 16.5 0 0 1 64 56.06 Z" fill="currentColor"/></svg>
+      <b>Finna</b>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <div class="nav-has-dd" data-dd>
+        <a href="your-family-office.html" class="nav-dd-t" aria-expanded="false" aria-haspopup="true">Your family office<svg width="9" height="6" viewBox="0 0 9 6" fill="none" aria-hidden="true" class="nav-chev"><path d="M1 1.2 4.5 4.8 8 1.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="nav-ddw">
+          <div class="nav-dd">
+            <a class="nav-ddl" href="bring-it-all-together.html"><svg class="nav-ddi" aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.6" cy="12.4" r="2.3"/> <circle cx="16.4" cy="12.4" r="2.3"/> <path d="M3.9 20v-.5a3.7 3.7 0 0 1 7.4 0V20"/> <path d="M12.7 20v-.5a3.7 3.7 0 0 1 7.4 0V20"/> <path d="M12 3.1A5.734 5.734 0 0 1 13.9 5A5.734 5.734 0 0 1 12 6.9A5.734 5.734 0 0 1 10.1 5A5.734 5.734 0 0 1 12 3.1Z" fill="currentColor" stroke="none"/></svg>Bring it all together</a>
+            <!-- grow-it was never written: the row points at the hub and says so -->
+            <a class="nav-ddl" href="grow-it.html"><svg class="nav-ddi" aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3.6" y="13.6" width="3.8" height="6.8" rx="1.9"/> <rect x="9.1" y="10.4" width="3.8" height="10" rx="1.9"/> <rect x="14.6" y="7" width="3.8" height="13.4" rx="1.9"/> <path d="M16.5 1.6A5.734 5.734 0 0 1 18.4 3.5A5.734 5.734 0 0 1 16.5 5.4A5.734 5.734 0 0 1 14.6 3.5A5.734 5.734 0 0 1 16.5 1.6Z" fill="currentColor" stroke="none"/></svg>Grow it</a>
+            <a class="nav-ddl" href="protect-it.html"><svg class="nav-ddi" aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2 4.8 6v5.6c0 4.4 3 7.1 7.2 8.6 4.2-1.5 7.2-4.2 7.2-8.6V6Z"/> <path d="M12 9.1A6.941 6.941 0 0 1 14.3 11.4A6.941 6.941 0 0 1 12 13.7A6.941 6.941 0 0 1 9.7 11.4A6.941 6.941 0 0 1 12 9.1Z" fill="currentColor" stroke="none"/></svg>Protect it</a>
+            <a class="nav-ddl" href="carry-it-forward.html"><svg class="nav-ddi" aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13.6 12h5.8"/> <path d="M16.7 9.3 19.4 12 16.7 14.7"/> <path d="M8 9A9.054 9.054 0 0 1 11 12A9.054 9.054 0 0 1 8 15A9.054 9.054 0 0 1 5 12A9.054 9.054 0 0 1 8 9Z" fill="currentColor" stroke="none"/></svg>Carry it forward</a>
+            <span class="nav-dd-rule"></span>
+            <a class="nav-ddl is-sub" href="what-is-a-family-office.html"><svg class="nav-ddi" aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2.8"/> <circle cx="12" cy="4.6" r="1.9"/> <circle cx="4.8" cy="17.4" r="1.9"/> <circle cx="19.2" cy="17.4" r="1.9"/> <path d="M12 9.2V6.5"/> <path d="M9.8 13.8 6.4 16.2"/> <path d="M14.2 13.8 17.6 16.2"/> <path d="M12 10.5A4.527 4.527 0 0 1 13.5 12A4.527 4.527 0 0 1 12 13.5A4.527 4.527 0 0 1 10.5 12A4.527 4.527 0 0 1 12 10.5Z" fill="currentColor" stroke="none"/></svg>What is a family office?</a>
+          </div>
+        </div>
+      </div>
+      <a href="how-it-works.html">How it works</a>
+      <a href="service-levels.html">Service levels</a>
+      <a class="key key-s nav-cta-m" href="https://app.finnafamilyoffice.com">Explore your family office<svg width="18" height="18" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false"><svg width="22" height="22" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg></button>
+    <a class="key key-s" href="https://app.finnafamilyoffice.com">Explore your family office<svg width="18" height="18" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+  </nav>
+</div>
+
+<header class="dark-grad hero-home" id="top">
+  <!-- the wave, from the Claude Design file (Rose, 3 Sep). Its colour was #B9DFCB, a
+       hand-picked mint 21 away from --primary-24 and in no palette; it takes the token now
+       (13 Sep 2026). Forty noise-displaced lines
+       drawn on the GPU by vendor/finna-threads.js, faded out at both edges by a mask so
+       it never meets the page border. Purely decorative: aria-hidden, behind the words,
+       and it stops moving for anyone who asks for less motion. -->
+  <div class="hero-wave" aria-hidden="true">
+    <finna-threads amplitude="0.62" distance="0.46" count="40" linewidth="6.0"
+                   lineblur="11.0" speed="0.26" color="#CADBD6"
+                   max-dim="1500" fps="30"></finna-threads>
+  </div>
+  <div class="wrap">
+    <h1>Your own family office.<span class="quiet">More than investing.</span></h1>
+    <p>Wealthy families have two things you don't. A team running everything they own, and access to investments you are never shown. Finna gives you both.</p>
+    <div class="cta">
+      <a class="key key-l btn-paper btn-nudge" href="https://app.finnafamilyoffice.com">Explore your family office<!--icon:arrow 18--><svg width="18" height="18" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-icon="arrow"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg><!--/icon--></a>
+      <a class="key key-l btn-ghost-light" href="how-it-works.html">See how it works</a>
+    </div>
+    <!-- THE ANIMATED FIGURE IS GONE (Rose, 12 Sep 2026). The hero is the words, the wave
+         and the two keys; the beams drawing and its five nodes were removed here and their
+         CSS with them. It is in the history if it is ever wanted back. -->
+
+
+  </div>
+</header>
+
+<main id="main">
+  <!-- ══ 01 · WHITE ═══ the problem, and the three piles it is in ══════════════
+       TAKEN BACK FROM THE 2026-09 SITE (Rose, 12 Sep 2026): the icon beside the heading,
+       the two paragraphs at full measure, and the three dark spotlight cards. The drawn
+       Fig. 1 that stood here in the rebuild is gone. One substitution, stated: the old
+       illustrated plate was retired from the estate on 6 Sep, so the heading carries the
+       ratified line icon instead. -->
+  <section class="centred">
+    <div class="wrap">
+      <div class="ico-row">
+        <svg class="plate" aria-hidden="true" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.6" cy="12.4" r="2.3"/> <circle cx="16.4" cy="12.4" r="2.3"/> <path d="M3.9 20v-.5a3.7 3.7 0 0 1 7.4 0V20"/> <path d="M12.7 20v-.5a3.7 3.7 0 0 1 7.4 0V20"/> <path d="M12 3.1A5.734 5.734 0 0 1 13.9 5A5.734 5.734 0 0 1 12 6.9A5.734 5.734 0 0 1 10.1 5A5.734 5.734 0 0 1 12 3.1Z" fill="currentColor" stroke="none"/></svg>
+        <h2>Nobody has the whole picture.</h2>
+      </div>
+      <div class="stack" style="max-width:66ch;margin-inline:auto">
+        <p class="lede">Your investments, pensions, property, insurance, debt and family plans sit
+          in different places. Each provider understands its part. Nobody is responsible for the
+          whole.</p>
+        <p class="lede">A family office works differently. Different specialists may handle
+          different matters, but everything is understood as one financial life.</p>
+      </div>
+
+      <div class="cards3">
+        <article class="card-dark">
+          <svg class="card-ico" aria-hidden="true" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4.2" y="4.4" width="13.2" height="4.8" rx="2.4"/> <rect x="4.2" y="14.8" width="8.6" height="4.8" rx="2.4"/> <path d="M3 12h18"/> <path d="M19.2 10.3A5.131 5.131 0 0 1 20.9 12A5.131 5.131 0 0 1 19.2 13.7A5.131 5.131 0 0 1 17.5 12A5.131 5.131 0 0 1 19.2 10.3Z" fill="currentColor" stroke="none"/></svg>
+          <h3>What you&rsquo;ve invested</h3>
+          <hr>
+          <ul><li>Brokerage</li><li>Pension</li><li>Private funds</li><li>Cash</li></ul>
+        </article>
+        <article class="card-dark">
+          <svg class="card-ico" aria-hidden="true" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="5" rx="2"/> <rect x="3" y="16" width="6" height="5" rx="2"/> <rect x="15" y="16" width="6" height="5" rx="2"/> <path d="M12 8v4"/> <path d="M6 16v-4h12v4"/> <path d="M12 4.15A4.074 4.074 0 0 1 13.35 5.5A4.074 4.074 0 0 1 12 6.85A4.074 4.074 0 0 1 10.65 5.5A4.074 4.074 0 0 1 12 4.15Z" fill="currentColor" stroke="none"/></svg>
+          <h3>What you own and owe</h3>
+          <hr>
+          <ul><li>Property</li><li>Business</li><li>Mortgage</li><li>Insurance</li><li>Liabilities</li></ul>
+        </article>
+        <article class="card-dark">
+          <svg class="card-ico" aria-hidden="true" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18"/> <circle cx="5.2" cy="12" r="2.1"/> <path d="M9.6 9.4v5.2"/> <path d="M14.1 9.4v5.2"/> <path d="M18.6 9.4v5.2"/> <path d="M5.2 10.85A3.471 3.471 0 0 1 6.35 12A3.471 3.471 0 0 1 5.2 13.15A3.471 3.471 0 0 1 4.05 12A3.471 3.471 0 0 1 5.2 10.85Z" fill="currentColor" stroke="none"/></svg>
+          <h3>What happens next</h3>
+          <hr>
+          <ul><li>Wills</li><li>Children</li><li>Succession</li><li>Family agreements</li></ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 02 · MINT, full bleed ═══ what a family office actually is ═══════════ -->
+  <!-- PORTED FROM THE 2026-09 SITE (Rose, 12 Sep 2026), REORDERED 13 Sep.
+       THE HIERARCHY RAN 42 -> 21 -> 32: the heading, then the explanation small, then the
+       pull quote jumping back up. The eye went down and back. It descends now — heading,
+       the line that lands the point, then the explanation underneath it — which is also
+       the better argument: say the thing, then explain it.
+       Freya sits beside it, very large and in Fiery, the one accent that is not the green.
+       The ground is the dark surface (Rose, 13 Sep 2026: "you forgot to make the bg dark
+       green"). It was Midnight Violet for a day. .band-violet keeps its name so nothing
+       that refers to it has to be renamed; site.css is where the ground is set. -->
+  <section class="band band-violet">
+    <div class="wrap idea-row">
+      <div>
+        <h2>Not a fund. A team.</h2>
+        <p class="pull">You&rsquo;ve been sold the investing desk.<br>You&rsquo;ve never been
+          offered the office.</p>
+        <hr class="rule">
+        <p class="lede">A family office is the small staff a wealthy family employs to run
+          everything their money touches &mdash; what they own, what they owe, what&rsquo;s
+          insured, what&rsquo;s inherited, and what&rsquo;s coming next. Investing is one desk
+          in that office.</p>
+      </div>
+
+      <!-- Freya at plate scale: the four rings with the shape they share left open, and a
+           light riding each one. SETTLED ON BENCH 15 (Rose, 13 Sep 2026) — the values below
+           are the ones he dialled in there, and the bench prints the CSS so they were lifted
+           rather than retyped.
+
+           Two light layers, not three: the bloom came back at opacity 0, so it is not drawn
+           at all rather than drawn invisibly. Each layer is the same arc five times over at
+           decreasing lengths, centred inside one another, so the light tapers off BOTH ends
+           and reads as a shine travelling an edge rather than a dash with cut ends. -->
+      <div class="idea-mark" aria-hidden="true">
+        <svg viewBox="39 39 50 50" fill="none">
+          <g class="fm-base"><circle cx="57" cy="57" r="16.5"/><circle cx="71" cy="57" r="16.5"/><circle cx="71" cy="71" r="16.5"/><circle cx="57" cy="71" r="16.5"/></g>
+          <g class="fm-l fm-core">
+            <g class="fm-f" style="--f:0.2"><circle cx="57" cy="57" r="16.5"/><circle cx="71" cy="57" r="16.5"/><circle cx="71" cy="71" r="16.5"/><circle cx="57" cy="71" r="16.5"/></g>
+            <g class="fm-f" style="--f:0.4"><circle cx="57" cy="57" r="16.5"/><circle cx="71" cy="57" r="16.5"/><circle cx="71" cy="71" r="16.5"/><circle cx="57" cy="71" r="16.5"/></g>
+            <g class="fm-f" style="--f:0.6"><circle cx="57" cy="57" r="16.5"/><circle cx="71" cy="57" r="16.5"/><circle cx="71" cy="71" r="16.5"/><circle cx="57" cy="71" r="16.5"/></g>
+            <g class="fm-f" style="--f:0.8"><circle cx="57" cy="57" r="16.5"/><circle cx="71" cy="57" r="16.5"/><circle cx="71" cy="71" r="16.5"/><circle cx="57" cy="71" r="16.5"/></g>
+            <g class="fm-f" style="--f:1.0"><circle cx="57" cy="57" r="16.5"/><circle cx="71" cy="57" r="16.5"/><circle cx="71" cy="71" r="16.5"/><circle cx="57" cy="71" r="16.5"/></g>
+          </g>
+          <g class="fm-l fm-halo">
+            <g class="fm-f" style="--f:0.2"><circle cx="57" cy="57" r="16.5"/><circle cx="71" cy="57" r="16.5"/><circle cx="71" cy="71" r="16.5"/><circle cx="57" cy="71" r="16.5"/></g>
+            <g class="fm-f" style="--f:0.4"><circle cx="57" cy="57" r="16.5"/><circle cx="71" cy="57" r="16.5"/><circle cx="71" cy="71" r="16.5"/><circle cx="57" cy="71" r="16.5"/></g>
+            <g class="fm-f" style="--f:0.6"><circle cx="57" cy="57" r="16.5"/><circle cx="71" cy="57" r="16.5"/><circle cx="71" cy="71" r="16.5"/><circle cx="57" cy="71" r="16.5"/></g>
+            <g class="fm-f" style="--f:0.8"><circle cx="57" cy="57" r="16.5"/><circle cx="71" cy="57" r="16.5"/><circle cx="71" cy="71" r="16.5"/><circle cx="57" cy="71" r="16.5"/></g>
+            <g class="fm-f" style="--f:1.0"><circle cx="57" cy="57" r="16.5"/><circle cx="71" cy="57" r="16.5"/><circle cx="71" cy="71" r="16.5"/><circle cx="57" cy="71" r="16.5"/></g>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 03 · WHITE ═══ the four promises, on the ratified plates ═════════════ -->
+  <section>
+    <!-- THE FOUR PROMISES ARE THE 2026-09 ONES (Rose, 12 Sep 2026), brought back whole:
+         the household ledger card, the allocation panel, the protection review and the
+         succession record, each alternating side with its words. The four summary cards the
+         rebuild carried are gone. Two substitutions, stated: the four illustrated plates were
+         retired from the estate on 6 Sep, so each promise carries its ratified line icon; and
+         the closing key is this site's .key. Each block is a DIV, not a section, so the whole
+         promise stays one numbered block in the review chips. -->
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Four promises, kept in one place.</h2>
+      </div>
+    </div>
+
+    <!-- a · Bring it all together -->
+    <div class="promise">
+      <div class="wrap two top">
+        <div>
+          <h3><svg class="plate" aria-hidden="true" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.6" cy="12.4" r="2.3"/> <circle cx="16.4" cy="12.4" r="2.3"/> <path d="M3.9 20v-.5a3.7 3.7 0 0 1 7.4 0V20"/> <path d="M12.7 20v-.5a3.7 3.7 0 0 1 7.4 0V20"/> <path d="M12 3.1A5.734 5.734 0 0 1 13.9 5A5.734 5.734 0 0 1 12 6.9A5.734 5.734 0 0 1 10.1 5A5.734 5.734 0 0 1 12 3.1Z" fill="currentColor" stroke="none"/></svg>Bring it all together</h3>
+          <p class="lede">Every account, property, policy, document and adviser &mdash; one
+            complete view of your family&rsquo;s financial life, organised around the household
+            rather than the provider.</p>
+        </div>
+        <!-- the household ledger: one element. vendor/finna-ledger.js draws the card, the
+             By category / By entity switch and the treemap in its own shadow root. -->
+        <finna-ledger></finna-ledger>
+      </div>
+    </div>
+
+    <!-- b · Grow it -->
+    <div class="promise">
+      <div class="wrap two top">
+        <div class="panel">
+          <h4>Allocation against policy</h4>
+          <p class="panel-note">The household policy sets a range for each holding. Finna shows
+            where you actually sit against it.</p>
+
+          <div class="alloc-row">
+            <div class="alloc-lab">Primary residence<small>Policy 25&ndash;35%</small></div>
+            <div class="alloc-track">
+              <span class="alloc-band" style="left:62.5%;width:25%"></span>
+              <span class="alloc-mark" style="left:93.25%;background:var(--l-property)"></span>
+            </div>
+            <div class="alloc-val num">37.3%</div>
+            <span class="chip chip-att">Above range</span>
+          </div>
+
+          <div class="alloc-row">
+            <div class="alloc-lab">Operating business<small>Policy 20&ndash;30%</small></div>
+            <div class="alloc-track">
+              <span class="alloc-band" style="left:50%;width:25%"></span>
+              <span class="alloc-mark" style="left:72%;background:var(--d-private)"></span>
+            </div>
+            <div class="alloc-val num">28.8%</div>
+            <span class="chip chip-ok">Within policy</span>
+          </div>
+
+          <div class="alloc-row">
+            <div class="alloc-lab">Global equities<small>Policy 20&ndash;35%</small></div>
+            <div class="alloc-track">
+              <span class="alloc-band" style="left:50%;width:37.5%"></span>
+              <span class="alloc-mark" style="left:53%;background:var(--d-equities)"></span>
+            </div>
+            <div class="alloc-val num">21.2%</div>
+            <span class="chip chip-ok">Within policy</span>
+          </div>
+
+          <div class="alloc-row">
+            <div class="alloc-lab">Bonds &amp; pension<small>Policy 10&ndash;20%</small></div>
+            <div class="alloc-track">
+              <span class="alloc-band" style="left:25%;width:25%"></span>
+              <span class="alloc-mark" style="left:31.75%;background:var(--d-fixed)"></span>
+            </div>
+            <div class="alloc-val num">12.7%</div>
+            <span class="chip chip-ok">Within policy</span>
+          </div>
+
+          <div class="alloc-scale">
+            <div class="ticks"><span>0%</span><span>10%</span><span>20%</span><span>30%</span><span>40%</span></div>
+          </div>
+
+          <div class="note-strip">
+            <svg width="24" height="24" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></svg>
+            <span><b>One range, one decision.</b> Nothing rebalances on its own &mdash; your
+              adviser of record signs the change before it happens.</span>
+          </div>
+        </div>
+
+        <div>
+          <h3><svg class="plate" aria-hidden="true" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3.6" y="13.6" width="3.8" height="6.8" rx="1.9"/> <rect x="9.1" y="10.4" width="3.8" height="10" rx="1.9"/> <rect x="14.6" y="7" width="3.8" height="13.4" rx="1.9"/> <path d="M16.5 1.6A5.734 5.734 0 0 1 18.4 3.5A5.734 5.734 0 0 1 16.5 5.4A5.734 5.734 0 0 1 14.6 3.5A5.734 5.734 0 0 1 16.5 1.6Z" fill="currentColor" stroke="none"/></svg>Grow it</h3>
+          <p class="lede">Invest against a clear household policy &mdash; across public and private
+            markets, with allocation, limits and decisions visible in one place.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- c · Protect it -->
+    <div class="promise">
+      <div class="wrap two top">
+        <div>
+          <h3><svg class="plate" aria-hidden="true" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2 4.8 6v5.6c0 4.4 3 7.1 7.2 8.6 4.2-1.5 7.2-4.2 7.2-8.6V6Z"/> <path d="M12 9.1A6.941 6.941 0 0 1 14.3 11.4A6.941 6.941 0 0 1 12 13.7A6.941 6.941 0 0 1 9.7 11.4A6.941 6.941 0 0 1 12 9.1Z" fill="currentColor" stroke="none"/></svg>Protect it</h3>
+          <p class="lede">See what is covered, what is missing and what needs attention &mdash;
+            before it becomes a problem.</p>
+        </div>
+
+        <div class="card-white">
+          <h4>Protection review</h4>
+          <div class="rev">
+            <div class="rl">Life cover, both principals<small>In force</small></div>
+            <span class="chip chip-ok">Covered</span>
+          </div>
+          <div class="rev">
+            <div class="rl">Property &amp; contents<small>Both homes</small></div>
+            <span class="chip chip-ok">Covered</span>
+          </div>
+          <div class="rev">
+            <div class="rl">Disability, second principal<small>No policy on file</small></div>
+            <span class="chip chip-miss">Missing</span>
+          </div>
+          <div class="rev" style="border-bottom:0">
+            <div class="rl">Umbrella liability<small>Limit below household exposure</small></div>
+            <span class="chip chip-att">Attention</span>
+          </div>
+          <div class="note-strip">
+            <svg width="24" height="24" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+            <span><b>One gap, one action.</b> The review is drafted; your adviser of record signs
+              it before anything changes.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- d · Carry it forward -->
+    <div class="promise">
+      <div class="wrap two top">
+        <div class="card-white">
+          <h4>The succession record</h4>
+          <div class="rec"><span>Wills and directives</span><span class="rv">Held</span></div>
+          <div class="rec"><span>Successor trustees</span><span class="rv">Named</span></div>
+          <div class="rec"><span>The next generation</span><span class="rv">Two children</span></div>
+          <div class="rec" style="border-bottom:0"><span>Family agreements</span><span class="rv">One on file</span></div>
+          <div class="note-strip">
+            <svg width="24" height="24" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
+            <span>None of this appears on a statement.</span>
+          </div>
+        </div>
+
+        <div>
+          <h3><svg class="plate" aria-hidden="true" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13.6 12h5.8"/> <path d="M16.7 9.3 19.4 12 16.7 14.7"/> <path d="M8 9A9.054 9.054 0 0 1 11 12A9.054 9.054 0 0 1 8 15A9.054 9.054 0 0 1 5 12A9.054 9.054 0 0 1 8 9Z" fill="currentColor" stroke="none"/></svg>Carry it forward</h3>
+          <p class="lede">Prepare the people, decisions and structures that come next &mdash; so
+            wealth does not move to the next generation without the understanding to carry it.</p>
+        </div>
+      </div>
+      <div class="wrap center-cta">
+        <a class="key" href="https://app.finnafamilyoffice.com">See all four inside your own office</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 04 · DARK, full bleed ═══ Freya. The site raises its voice here ══════ -->
+  <section class="band">
+    <div class="wrap two">
+      <div>
+        <h2>Your family office doesn&rsquo;t keep office hours.</h2>
+        <h3 style="margin-top:26px;color:rgba(255,255,255,.94)">Open at eleven on a<br>Sunday night.</h3>
+        <div class="stack" style="margin-top:30px">
+          <p class="lede">Meet Freya, your chief of staff. She reads everything, does the
+            arithmetic, and puts the work on your desk before you ask for it.</p>
+          <p class="lede">She brings in the specialist when a question needs one &mdash; investment,
+            protection, legal, tax &mdash; and keeps the record of what was decided.</p>
+        </div>
+        <div class="cta-row">
+          <a class="key key-white" href="https://app.finnafamilyoffice.com">Explore your family office</a>
+          <a class="link" href="how-it-works.html">See how the office works <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+        </div>
+        <p style="margin-top:var(--space-5)">
+          <span class="freya" tabindex="0" role="note" aria-label="Freya — coming soon">
+            <svg class="ring" viewBox="39 39 50 50" fill="none" aria-hidden="true">
+              <circle cx="57" cy="57" r="16.5" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="71" cy="57" r="16.5" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="71" cy="71" r="16.5" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="57" cy="71" r="16.5" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+            <span style="color:rgba(255,255,255,.7);font-size:var(--text-label)">Freya is not switched on yet</span>
+            <span class="note">Coming soon</span>
+          </span>
+        </p>
+      </div>
+
+      <!-- the briefing, drawn as a note rather than screenshotted from an app -->
+      <div class="col">
+        <div class="note-card">
+          <p class="head">Freya &middot; Household briefing &middot; Sunday, 23:14</p>
+          <p class="q">&ldquo;Can we cover the tax bill in April without selling the fund?&rdquo;</p>
+          <ol>
+            <li>Yes &mdash; cash and the money-market holding cover it with room to spare.</li>
+            <li>Selling the fund now would realise a gain you do not need to take this year.</li>
+            <li>The insurance renewal lands the same week; I have moved it forward a month.</li>
+            <li>I have asked your tax adviser to confirm the final figure by the 6th.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 05 · WHITE ═══ the household, drawn ══════════════════════════════════ -->
+  <section>
+    <div class="wrap two top wide-fig">
+      <div>
+        <h2>Wealth becomes family before it becomes legacy.</h2>
+        <div class="stack" style="margin-top:30px">
+          <p class="lede">Your partner may see money differently. Your children will inherit more
+            than assets. The decisions you make today can shape your family for decades.</p>
+          <p class="lede">Finna holds both views, and the household&rsquo;s.</p>
+        </div>
+        <p style="margin-top:34px"><a class="link" href="how-it-works.html">See how learning opens
+          access <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></p>
+      </div>
+
+      <!-- FIG 2 · who holds what, and who benefits. One household, drawn as one object. -->
+      <figure class="fig">
+        <div class="fig-scroll"><svg viewBox="0 0 520 320" role="img"
+             aria-label="The household structure: a trust, a holding company and personal accounts above two principals and the children">
+          <!-- the household is the one element in the green: it is the thing being explained -->
+          <rect class="lead" x="186" y="14" width="148" height="40" rx="10"/>
+          <text class="t-lead" x="260" y="39" text-anchor="middle">THE HOUSEHOLD</text>
+
+          <path class="stroke" d="M260 54 V76 M110 76 H410 M110 76 V100 M260 76 V100 M410 76 V100"/>
+          <g class="stroke">
+            <rect x="40" y="100" width="140" height="42" rx="10"/>
+            <rect x="190" y="100" width="140" height="42" rx="10"/>
+            <rect x="340" y="100" width="140" height="42" rx="10"/>
+          </g>
+          <g class="t">
+            <text x="110" y="126" text-anchor="middle">Family trust</text>
+            <text x="260" y="126" text-anchor="middle">Holding company</text>
+            <text x="410" y="126" text-anchor="middle">Personal accounts</text>
+          </g>
+
+          <path class="stroke" d="M110 142 V170 M260 142 V170 M410 142 V170 M110 170 H410
+                                  M185 170 V198 M335 170 V198"/>
+          <g class="stroke">
+            <rect x="115" y="198" width="140" height="42" rx="10"/>
+            <rect x="265" y="198" width="140" height="42" rx="10"/>
+          </g>
+          <g class="t">
+            <text x="185" y="224" text-anchor="middle">Two principals</text>
+            <text x="335" y="224" text-anchor="middle">Children</text>
+          </g>
+
+          <path class="stroke" d="M185 240 V266 M335 240 V266 M185 266 H335 M260 266 V284"/>
+          <text class="t" x="260" y="302" text-anchor="middle">Who benefits, and when</text>
+        </svg></div>
+        <figcaption><span class="fig-n">Fig. 2</span>Who holds what, and who benefits &mdash; the
+          trust, the holding company, the principals and the children, drawn as one household.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ══ 06 · MINT, full bleed ═══ access, and the lesson that opens it ═══════ -->
+  <section class="band-mint">
+    <div class="wrap">
+      <div>
+        <h2>Invest like a<br>family office.</h2>
+        <p class="lede" style="margin-top:30px">Large family wealth doesn&rsquo;t compound
+          differently because someone is picking better shares. It compounds differently because of
+          what it is allowed to own &mdash; private markets, real assets, positions held for decades
+          rather than quarters.</p>
+        <p class="pull" style="margin-top:34px">That access has never been rationed by whether you
+          understand it. It&rsquo;s been rationed by whether you&rsquo;re already rich.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 06 · MINT ═══ so you learn your way in ═══════════════════════════════════
+       REBUILT (Rose, 13 Sep 2026). This was a tight centred band, and the one real
+       lesson question sat two sections up beside the access copy, where it was the
+       second thing in a column and easy to scroll past. They belong together: the
+       claim is that the learning is serious, and the question is the evidence for it.
+       R3 — evidence sits beside the claim. Now a full section, two up, claim left and
+       proof right. ══════════════════════════════════════════════════════════════ -->
+  <section class="band-mint">
+    <div class="wrap two top wide-fig">
+      <div>
+        <h2>So you learn your way in.</h2>
+        <p class="lede" style="margin-top:30px">Short lessons, plain language, built around your
+          own numbers. Finish one and it opens the part of the platform it belongs to.</p>
+        <p class="lede" style="margin-top:var(--space-5);color:var(--text)">Access depends on
+          demonstrated understanding, not net worth alone.</p>
+        <div class="cta-row">
+          <a class="key" href="https://app.finnafamilyoffice.com">Explore your family office</a>
+          <a class="link" href="service-levels.html">See how access is earned</a>
+        </div>
+      </div>
+
+      <!-- one real lesson question, shown in full — the only place a reader can judge
+           whether the learning is serious. -->
+      <figure class="fig">
+        <p class="small" style="margin-bottom:var(--space-4)"><b>Lesson 3 &middot; Private markets
+          &middot; Question 2</b></p>
+        <h3 style="margin-bottom:var(--space-5)">A fund reports a 12% gain. You cannot sell for
+          seven years. What have you actually been told?</h3>
+        <ul class="rows" style="margin-bottom:var(--space-5)">
+          <li>A price someone would pay today</li>
+          <li>An estimate of what the holdings are worth</li>
+          <li>The cash you would receive if you asked</li>
+        </ul>
+        <p class="small" style="margin:0"><b>An estimate.</b> A private fund is valued, not
+          traded. The number is a considered opinion, produced on a schedule, and it is the right
+          number to plan with &mdash; as long as you never mistake it for cash.</p>
+        <figcaption style="margin-top:var(--space-5)"><span class="fig-n">Fig. 3</span>A question
+          from the second lesson, with the explanation that follows it.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+    <!-- ══ 08 · TINT ═══ service levels ════════════════════════════════════════ -->
+  <section class="band-tint">
+    <div class="wrap">
+      <!-- THE HEADER IS THE 2026-09 ONE (Rose, 12 Sep 2026). Split across two columns the
+           heading sat low-left and the words high-right, reading as two loose pieces; they
+           are one stacked block again, on the page's left edge. -->
+      <div class="price-head">
+        <h2>Start where you are.</h2>
+      </div>
+      <!-- THE PRICING CARDS ARE THE 2026-09 ONES (Rose, 12 Sep 2026), brought back whole:
+           the billing switch, the badge and emblem row, the spec table, the price, and the
+           featured middle card in the primary gradient. Only the buttons changed on the way
+           over — they are this site's .key, so the cards carry the same object as the rest
+           of the page. -->
+      <div class="toggle-row">
+        <div class="toggle" role="group" aria-label="Billing period">
+          <button type="button" data-bill="monthly" aria-pressed="true">Monthly</button>
+          <button type="button" data-bill="annual" aria-pressed="false">Annual</button>
+        </div>
+        <span class="cancel">Cancel any time.</span>
+      </div>
+
+      <div class="tiers">
+        <article class="tier">
+          <div class="tier-top">
+            <span class="badge badge-found">Foundation</span>
+          </div>
+          <h4>Build the foundation.</h4>
+          <div class="spec"><span class="k">For</span><span class="v">Getting organised</span></div>
+          <div class="spec"><span class="k">Entry portfolio</span><span class="v num">$10k+</span></div>
+          <div class="spec"><span class="k">Rhythm</span><span class="v">Self-directed</span></div>
+          <div class="spec"><span class="k">Adviser model</span><span class="v">No named adviser</span></div>
+          <div class="spec"><span class="k">Your own advisor</span><span class="v">Not included</span></div>
+          <div class="price"><span class="num" data-price="12" data-annual="10">$12</span><small>/ month</small></div>
+          <div class="billed" data-billed>Billed monthly</div>
+          <a class="key" href="https://app.finnafamilyoffice.com">Start with Foundation</a>
+        </article>
+
+        <article class="tier feature">
+          <div class="tier-top">
+            <span class="badge badge-fo">Family Office</span>
+          </div>
+          <h4>Your complete family office.</h4>
+          <div class="spec"><span class="k">For</span><span class="v">The whole household</span></div>
+          <div class="spec"><span class="k">Entry portfolio</span><span class="v num">$100k+</span></div>
+          <div class="spec"><span class="k">Rhythm</span><span class="v">Quarterly review</span></div>
+          <div class="spec"><span class="k">Adviser model</span><span class="v">Named adviser</span></div>
+          <div class="spec"><span class="k">Your own advisor</span><span class="v">Not included</span></div>
+          <div class="price"><span class="num" data-price="29" data-annual="24">$29</span><small>/ month</small></div>
+          <div class="billed" data-billed>Billed monthly</div>
+          <a class="key key-white" href="https://app.finnafamilyoffice.com">Choose Family Office</a>
+        </article>
+
+        <article class="tier">
+          <div class="tier-top">
+            <span class="badge badge-pro">Family Office Pro</span>
+          </div>
+          <h4>For more complex wealth.</h4>
+          <div class="spec"><span class="k">For</span><span class="v">More complex wealth</span></div>
+          <div class="spec"><span class="k">Entry portfolio</span><span class="v num">$500k+</span></div>
+          <div class="spec"><span class="k">Rhythm</span><span class="v">Monthly touchpoints</span></div>
+          <div class="spec"><span class="k">Adviser model</span><span class="v">Named adviser</span></div>
+          <div class="spec"><span class="k">Your own advisor</span><span class="v">Welcomed in</span></div>
+          <div class="price"><span class="num" data-price="59" data-annual="49">$59</span><small>/ month</small></div>
+          <div class="billed" data-billed>Billed monthly</div>
+          <a class="key key-gold" href="https://app.finnafamilyoffice.com">Choose Family Office Pro</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 09 · DARK ═══ the closing. The last key on the page ══════════════════ -->
+  <section class="band final">
+    <div class="wrap">
+      <h2>Open your family office.</h2>
+      <p>Everything you own in one place, a chief of staff who has already done the reading, and a
+        door that opens on what you understand.</p>
+      <a class="key key-l key-white" href="https://app.finnafamilyoffice.com">Explore your family office</a>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a class="mark" href="index.html" aria-label="Finna — home"
+           style="display:inline-flex;align-items:center;gap:12px;color:#fff;text-decoration:none">
+          <svg viewBox="38.75 38.75 50.5 50.5" fill="none" aria-hidden="true" style="width:40px;height:40px">
+            <circle cx="57" cy="57" r="16.5" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="71" cy="57" r="16.5" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="71" cy="71" r="16.5" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="57" cy="71" r="16.5" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M64 56.06 A16.5 16.5 0 0 1 71.94 64 A16.5 16.5 0 0 1 64 71.94
+                     A16.5 16.5 0 0 1 56.06 64 A16.5 16.5 0 0 1 64 56.06 Z" fill="currentColor"/>
+          </svg>
+          <b style="font:var(--weight-heading) 21px/1 var(--font-sans)">Finna</b>
+        </a>
+        <p class="small" style="color:rgba(255,255,255,.7);margin-top:var(--space-5);max-width:34ch">
+          Your own family office. Everything you own in one place, and a door that opens on
+          what you understand.</p>
+        <!-- FREYA IS NAMED BEFORE SHE EXISTS. The note says so on hover rather than a link
+             that goes nowhere (Rose, 11 Sep 2026). -->
+        <span class="freya" tabindex="0" role="note" aria-label="Freya — coming soon">
+          <svg class="ring" viewBox="39 39 50 50" fill="none" aria-hidden="true">
+            <circle cx="57" cy="57" r="16.5" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="71" cy="57" r="16.5" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="71" cy="71" r="16.5" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="57" cy="71" r="16.5" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+          <span style="color:rgba(255,255,255,.78);font-size:var(--text-label)">Freya, your chief of staff</span>
+          <span class="note">Coming soon</span>
+        </span>
+      </div>
+
+      <div>
+        <h3>The office</h3>
+        <ul>
+          <li><a href="what-is-a-family-office.html">What is a family office?</a></li>
+          <li><a href="your-family-office.html">Your family office</a></li>
+          <li><a href="how-it-works.html">How it works</a></li>
+          <li><a href="service-levels.html">Service levels</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>The four promises</h3>
+        <ul>
+          <li><a href="bring-it-all-together.html">Bring it all together</a></li>
+          <li><a href="grow-it.html">Grow it</a></li>
+          <li><a href="protect-it.html">Protect it</a></li>
+          <li><a href="carry-it-forward.html">Carry it forward</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Finna</h3>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a class="soon" href="contact.html">Contact</a></li>
+          <li><a class="soon" href="privacy.html">Privacy</a></li>
+          <li><a class="soon" href="terms.html">Terms</a></li>
+          <li><a class="soon" href="disclosures.html">Disclosures</a></li>
+          <li><a class="soon" href="form-adv.html">Form ADV</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- THE LEGAL LINES ARE QUOTED, NOT EDITED. They are the words the site shipped with. -->
+    <div class="legal">
+      <p>Finna Family Office Inc. operates the Finna family office platform.</p>
+      <p><b>United States.</b> Investment advice to US clients is provided by Finna US Advisers LLC,
+        a Delaware limited liability company registered with the US Securities and Exchange
+        Commission as an investment adviser. Registration does not imply a certain level of skill
+        or training. Securities are offered through Finna US Securities LLC, member FINRA/SIPC,
+        which acts as placement agent for the Finna feeder funds.</p>
+      <p><b>Europe.</b> Finna&rsquo;s investment funds are established as compartments under an
+        alternative investment fund manager authorized in Estonia under Directive 2011/61/EU
+        (AIFMD) and supervised by the Estonian Financial Supervision Authority
+        (Finantsinspektsioon).</p>
+
+      <!-- IMPORTANT INFORMATION · back from the 2026-09 site (Rose, 13 Sep 2026). The rebuilt
+           footer carried the two regulatory paragraphs but not the risk disclaimer or the
+           copyright line, and this site is about to sit on the company's own domain. Restored
+           verbatim — this is compliance copy, not prose to improve. -->
+      <p class="legal-h">Important information</p>
+      <p>Nothing on this site is investment, tax or legal advice, or an offer or solicitation to
+        buy any security or fund interest. Capital is at risk and you may get back less than you
+        invest. Past performance is not a guide to future performance. Private-market and
+        semi-liquid funds carry additional risks including illiquidity, long holding periods and
+        limited or periodic redemption. Funds are offered only where lawfully permitted and only
+        to investors who meet the applicable eligibility requirements; availability differs by
+        jurisdiction. All fees are disclosed in full and signed off by your adviser of record
+        before you invest. Subscription fees are separate from investment fees.</p>
+
+      <p class="legal-c">&copy; 2026 Finna Family Office Inc. &middot; United States &middot; USD
+        &middot; All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* the bar takes its surface after the page has moved a little — one class, no reflow */
+</script>
+<script src="vendor/finna-threads.js"></script>
+<script src="vendor/text-roll.js"></script>
+<script src="pricing.js"></script>
+<script src="spotlight.js"></script>
+<!-- BACK TO TOP, back from the 2026-09 site (Rose, 12 Sep 2026). The hard key as a
+     circle; it appears once the header is behind you and is a plain anchor, so it
+     works with the script off. -->
+<a class="to-top" href="#top" aria-label="Back to top"><svg width="22" height="22" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg></a>
+
+<script src="vendor/finna-ledger.js"></script>
+<script src="vendor/lenis.min.js"></script>
+<script src="vendor/smooth-scroll.js" defer></script>
+<script src="nav-site.js"></script>
+</body>
+</html>

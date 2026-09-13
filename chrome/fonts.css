@@ -1,0 +1,42 @@
+/* ══ FINNA · THE FACES ══════════════════════════════════════════════════════════════
+   One face. Lexend draws every letter and every digit.
+
+   INTER IS OUT (Rose, 13 Sep 2026: "delete all Inter fonts — we don't want that"). A
+   ten-glyph Inter subset drew the numerals from 12 Sep so a column of money would line
+   up. Lexend has no tabular figures, so that alignment is gone again — known, and the
+   trade Rose chose. The file and its licence went with it.
+
+   Self-hosted rather than fetched from a CDN, for three reasons: the pages open with no
+   network, nothing about who is reading leaves the machine, and the repo is the single
+   source of truth for its own typography.
+
+   CLEARED OUT 12 Sep 2026. Source Serif 4, Schibsted Grotesk and Spline Sans Mono were
+   withdrawn with REV 31 on 6 Sep and their @font-face blocks were kept "so nothing 404s
+   if an old page is opened". Nothing opens them: not the estate, not the archived 2026-09
+   site, which is Lexend-only too. Inter 600 went the same way when the wordmark moved to
+   Lexend. Ten files and about 660KB left with them; git has them if they are ever wanted.
+   ═══════════════════════════════════════════════════════════════════════════════════ */
+
+/* ── Lexend · every letter on the estate ────────────────────────────────────────
+   The name, the headings, the reading text, the interface and the small print (REV 31,
+   6 Sep 2026). Variable on weight 100–900, so --weight-reading/-label/-heading are all
+   one file; brand/build/wordmark.py carries the same letters as outlines for artwork.
+   Two subsets: latin, and latin-ext for Danish æ ø å and Central Europe.
+   SIL Open Font License 1.1 · fonts/LEXEND-LICENSE.txt */
+@font-face {
+  font-family: 'Lexend Variable';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('../fonts/lexend-latin-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: 'Lexend Variable';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('../fonts/lexend-latin-ext-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+

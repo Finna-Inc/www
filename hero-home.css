@@ -1,0 +1,130 @@
+/* ══ THE HOME HERO ══════════════════════════════════════════════════════════════════
+   Lifted 1:1 from the 2026-09 site: the gradient ground, the wave (forty noise-displaced
+   lines drawn on the GPU by vendor/finna-threads.js), the headline with its second line in
+   the gold, the two keys, and the beams figure — the scattered things a household owns,
+   each on its own line, all arriving at one place (vendor/finna-beams.js).
+
+   Two changes on the way over: the class is .hero-home so the subpages keep the plain hero
+   this site already had, and the nodes carry the RATIFIED icons from brand/build/plates.json
+   rather than the retired illustrated sprite.
+   ═══════════════════════════════════════════════════════════════════════════════════ */
+
+.dark-grad a:focus-visible,.dark-grad button:focus-visible,
+.nav a:focus-visible,.nav button:focus-visible,
+.foot a:focus-visible,.card-dark a:focus-visible{outline-color:var(--white)}
+.dark-grad{
+  /* The dark bands are flat --bg-dark — the one dark background the system has. The HEADER
+     is the exception (Rose, 3 Sep): it wears the gradient wash again, see .dark-grad.hero-home. */
+  background:var(--bg-dark);
+  color:var(--white);position:relative;overflow:hidden;
+}
+/* ---------- the header's gradient (Rose, 3 Sep) ----------
+   The wash is back, but built out of file values instead of the three off-file greens it
+   used to carry: every stop is --bg-dark with a stated percentage of --primary mixed in
+   (§21 — a stated mix of two file values is a file value), so it moves if the green moves.
+   The radial fades to `transparent`, which browsers interpolate premultiplied, so there is
+   no grey halo. Measured after the change: every text node in the header still passes AA. */
+/* ── THE PHOTOGRAPH ───────────────────────────────────────────────────
+   The hero is the picture, with nothing laid over it (Rose, 13 Sep 2026). The images
+   are prepared on Finna's side; this file places them and gets out of the way.
+
+   EIGHT PICTURES, ONE PER VISIT (Rose, 13 Sep 2026). They live in media/hero/, numbered
+   hero-01 to hero-08. A ninth was removed the same day — no dark left side, so the
+   headline had nothing to sit on, which is the test any picture added here has to pass. and a four-line script in the page's <head> writes --hero-img
+   before anything paints — so there is no flash and no second request. The url() below
+   is the fallback: with the script off, or a number that does not resolve, the page still
+   has a hero. ADDING ONE: drop hero-09.webp in the folder and change N in that script.
+
+   WEBP, no fallback — about 95KB each against 165 for the same frame as JPEG, and every
+   browser in use reads it. Only one of the eight is ever fetched.
+
+   ONE FRAME AT EVERY WIDTH. The separate portrait crop is gone: nine hand-made crops is
+   nine grading decisions, and those are Finna's to make, not this file's. Narrow screens
+   take the same picture with the crop weighted right, where the light is in all nine.
+   ────────────────────────────────────────────────────────────────── */
+.dark-grad.hero-home{
+  background-image:var(--hero-img,url('media/hero/hero-01.webp'));
+  background-size:cover;
+  /* left, not centre: the headline is left-aligned, so the crop comes off the right */
+  background-position:left center;
+  background-repeat:no-repeat;
+}
+@media (max-width:900px){
+  /* the tall crop keeps the lit side rather than the dark half the headline sits on */
+  .dark-grad.hero-home{background-position:68% center}
+}
+
+/* THE WAVE STEPS BACK. Forty animated lines over a forest at dawn is two pictures at once;
+   at .22 it reads as light moving through the trees instead of a graphic on top of them. */
+/* the wave sits between the wash and the words: full-bleed, masked to nothing at the
+   left and right edges, and it never takes a click. */
+.hero-wave{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.22;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 18%,#000 82%,transparent 100%);
+          mask-image:linear-gradient(90deg,transparent 0%,#000 18%,#000 82%,transparent 100%)}
+.hero-wave finna-threads{position:absolute;inset:0}
+.dark-grad.hero-home .wrap{position:relative;z-index:1}
+@media (prefers-reduced-motion:reduce){
+.hero-wave{opacity:.14}
+}
+/* HEADINGS ON A LIGHT GROUND ARE BLACK (Rose, 13 Sep 2026 — they had been --bg-dark, the
+   dark green, and read as green). site.css sets it on h1-h4; this rule is the exception for
+   anything on a DARK surface, which keeps inheriting that surface's white. */
+:is(.dark-grad,.card-dark,.foot,.note-strip,.pending,.tier-emblem,.badge,.tier.feature) :is(h1,h2,h3,h4),
+:is(.dark-grad,.card-dark,.foot,.note-strip,.pending,.tier-emblem,.badge):is(h1,h2,h3,h4){color:inherit}
+.dark-grad .lede{color:rgba(255,255,255,.78)}
+.dark-grad .rule{background:rgba(255,255,255,.16)}
+/* the white key lives on the dark bands, so its offset is the pressed green — a shelf in
+   the brand's own colour rather than a grey. */
+.btn-paper{color:var(--text);background-color:var(--white);
+  box-shadow:0 4px 0 var(--primary-pressed)}
+.btn-paper:hover{background-color:var(--bg-sunken);box-shadow:0 6px 0 var(--primary-pressed)}
+.btn-paper:active{background-color:var(--border);box-shadow:0 0 0 var(--primary-pressed)}
+/* the outlined one has no face to light, so it gets the offset alone */
+.btn-ghost-light{background-color:transparent;background-image:none;color:var(--white);
+  box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.55), 0 4px 0 rgba(255,255,255,.22)}
+.btn-ghost-light:hover{background-color:rgba(255,255,255,.08);
+  box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.55), 0 6px 0 rgba(255,255,255,.28)}
+.btn-ghost-light:active{background-color:rgba(255,255,255,.12);
+  box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.55), 0 0 0 rgba(255,255,255,.22)}
+.btn-nudge:hover .ic{transform:translateX(4px)}
+.btn-nudge:active .ic{transform:translateX(7px)}
+/* ---------- hero ---------- */
+/* full bleed (Rose, 3 Sep): the header fills the first screen, so the wash and the wave
+   are the whole of what you land on and no white edge shows under them. svh, not vh, so a
+   phone's collapsing address bar does not leave a gap. The words stay put by sitting in a
+   centred column rather than being pushed down by padding. */
+.hero-home{min-height:100svh;display:flex;align-items:center;padding:150px 0 110px}
+/* the flex row made .wrap shrink to its content and its `margin:0 auto` then centred
+   it, which pushed the headline into the middle of the screen. The wrap keeps the
+   page's measure and its own left edge. */
+/* the hero's block starts where the BAR starts, not 32px inside it (Rose, 3 Sep). The
+   bar and the wrap share a measure and a side inset, so dropping the wrap's own left
+   padding lines the headline up with the bar's left edge at every width. */
+.hero-home > .wrap{width:100%;padding-left:clamp(0px,(1344px - 100%)/2,32px)}
+/* on a phone the bar is a floating pill with its own inset — the hero lines up with the
+   page's measure instead, so the headline and the sections share one left edge. */
+@media (max-width:900px){.hero-home > .wrap{padding-left:var(--gutter)}}
+/* The animated beams figure that sat in the hero's right half was REMOVED (Rose,
+   12 Sep 2026), and its CSS with it. The hero is the words, the wave and the two keys. */
+@supports not (height:100svh){.hero-home{min-height:100vh}}
+/* the second line is GOLD (Rose, 3 Sep) — --gold-light, the only gold that reads on the
+   dark header: 6.6:1 at the lightest point of the wash. The dark gold is 2.2:1 there. */
+/* the hero headline sits between the two (Rose, 3 Sep): 600 read as heavy at 66px and
+   300 as too light, so it takes the serif's regular and the other headings keep 600. */
+.hero-home h1{font-weight:var(--weight-reading);letter-spacing:var(--track-display)}
+.hero-home h1 .quiet{color:var(--gold-light);display:block}
+/* THE HERO TYPE STEPS DOWN (Rose, 12 Sep 2026) — 76px read as massive with the figure
+   gone and the words across the full measure. The headline tops out at 58px and the
+   paragraph at 19px; both still scale with the window. */
+/* THE HEADLINE DOES NOT BREAK (Rose, 12 Sep 2026). The 17ch cap folded "Your own family
+   office." onto two lines; the line breaks are the two spans, and nothing else. The width
+   is left to the page's measure, and the line only wraps when the window is too narrow to
+   hold it — where it has to. */
+.hero-home h1{font-size:var(--text-display);max-width:none;text-wrap:balance}
+@media (min-width:760px){.hero-home h1{white-space:nowrap}}
+.hero-home p{margin-top:30px;font-size:var(--text-reading);line-height:1.6;
+  color:rgba(255,255,255,.86);max-width:56ch}
+.hero-home .cta{display:flex;gap:14px;margin-top:44px;flex-wrap:wrap}
+@media (max-width:900px){
+.hero-home{padding:130px 0 90px}
+}

@@ -1,0 +1,829 @@
+/* ══ FINNA · THE PUBLIC SITE ═══════════════════════════════════════════════════════
+   One stylesheet for landing2026. It owns no colour, no face and no size of its own:
+   every value comes from brand/tokens.css, and anything missing here is a gap in the
+   system rather than a licence to invent. Rev 31 · the Lexend-only estate.
+
+   The page is the white ground. The hero and the footer are the one dark surface, and
+   the wash at the top of the page is --wash-hero, which appears there and nowhere else.
+   ═════════════════════════════════════════════════════════════════════════════════ */
+
+/* ── the measure ── the same 1280 + clamp(20,5vw,64) the estate uses, so the public
+   site and the internal pages line up when you flick between them. */
+:root{
+  --maxw:1280px;
+  --gutter:clamp(20px,5vw,64px);
+  --measure:66ch;                 /* reading width — nothing runs wider */
+  --ease:cubic-bezier(.2,.8,.2,1);
+}
+
+*{box-sizing:border-box}
+/* SCROLLING BELONGS TO LENIS (12 Sep 2026, vendor/lenis.min.js + vendor/smooth-scroll.js).
+   Native `scroll-behavior:smooth` is left off deliberately: with Lenis running, the two
+   animate the same jump and fight each other. Lenis honours reduced motion itself, so
+   anyone who asked their machine for less motion gets plain, instant scrolling. */
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font:var(--weight-reading) 17px/1.6 var(--font-sans);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter)}
+.narrow{max-width:var(--measure)}
+
+/* ── type ─────────────────────────────────────────────────────────────────────
+   One face, weight and size doing the separating. The display sizes are fluid so
+   the hero holds its shape from the phone to a wide desktop without breakpoints. */
+/* HEADLINES DO NOT BREAK WHILE THERE IS ROOM (Rose, 13 Sep 2026: "globally do not break
+   headlines"). Nothing caps a heading's width — it runs to the page's measure and wraps
+   only where the window actually forces it. text-wrap:balance is for that moment: when a
+   line has to go, the browser evens the lines instead of leaving one word stranded. */
+h1,h2,h3,h4{margin:0;font-weight:var(--weight-heading);letter-spacing:var(--track-heading);
+  line-height:1.08;text-wrap:balance;color:var(--black)}
+/* ...and black is for the WHITE ground only. Every dark surface sets its own white on the
+   element, and headings inherited it until the line above gave them a colour of their own.
+   This hands it back. .band covers the violet and the closing, which both carry it; the
+   light grounds (.band-mint, .band-tint) are not here because their text is already dark. */
+:is(.hero,.band,.footer,.card-dark,.note-strip,.tier.feature,.dark-grad) :is(h1,h2,h3,h4),
+:is(.hero,.band,.footer,.card-dark,.note-strip,.dark-grad):is(h1,h2,h3,h4){color:inherit}
+/* the browser's own bold is 700, which is off the ladder — b and strong come onto it */
+b,strong{font-weight:var(--weight-heading)}
+h1{font-size:var(--text-display);letter-spacing:var(--track-display)}
+h2{font-size:var(--text-heading)}
+h3{font-size:var(--text-subhead);line-height:1.25;letter-spacing:-.01em}
+h4{font-size:var(--text-reading);line-height:1.35}
+p{margin:0 0 var(--space-5);max-width:var(--measure)}
+a{color:inherit}
+
+.lede{font-size:var(--text-subhead);line-height:1.55;color:var(--text-secondary)}
+.small{font-size:var(--text-label);line-height:1.6;color:var(--text-secondary)}
+
+/* ── sections ── one rhythm: --space-8 between sections, --space-7 between blocks */
+section{padding:var(--space-8) 0}
+.section-head{margin-bottom:var(--space-7)}
+.divider{height:var(--line-hairline);background:var(--border);border:0;margin:0}
+
+/* ── the hard key ─────────────────────────────────────────────────────────────
+   The estate's one button. A fixed sheen on a solid offset thrown straight down;
+   hover deepens the offset and lightens the face; press sets the key down onto it
+   so the object's total height never changes. Sizes step one rung up under 768px. */
+.key{
+  --kh:var(--key-height-m);--kr:var(--key-radius-m);--ko:var(--key-offset-m);
+  --klabel:var(--key-label-m);--kicon:var(--key-icon-m);
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  height:var(--kh);min-width:calc(var(--kh) * 2.25);padding:0 calc(var(--kh) / 2);
+  border:0;border-radius:var(--kr);cursor:pointer;text-decoration:none;
+  font:var(--weight-heading) var(--klabel)/1 var(--font-sans);letter-spacing:.01em;
+  background-color:var(--primary);color:var(--white);
+  background-image:var(--key-sheen,linear-gradient(180deg,rgba(255,255,255,.16) 0%,rgba(255,255,255,0) 56%,rgba(0,0,0,.12) 100%));
+  box-shadow:0 var(--ko) 0 var(--primary-pressed), inset 0 1px 0 rgba(255,255,255,.14);
+  transition:background-color var(--t-move) var(--ease),box-shadow var(--t-move) var(--ease),
+             transform var(--t-state) var(--ease);
+}
+.key:hover{background-color:var(--primary-hover);
+  box-shadow:0 calc(var(--ko) + 2px) 0 var(--primary-pressed), inset 0 1px 0 rgba(255,255,255,.18)}
+.key:active{transform:translateY(var(--ko));background-color:var(--primary-pressed);
+  box-shadow:0 0 0 var(--primary-pressed), inset 0 1px 0 rgba(255,255,255,.10)}
+.key:focus-visible{outline:2px solid var(--primary);outline-offset:3px}
+.key svg{width:var(--kicon);height:var(--kicon);flex:none}
+
+.key-s{--kh:var(--key-height-s);--kr:var(--key-radius-s);--ko:var(--key-offset-s);
+       --klabel:var(--key-label-s);--kicon:var(--key-icon-s)}
+.key-l{--kh:var(--key-height-l);--kr:var(--key-radius-l);--ko:var(--key-offset-l);
+       --klabel:var(--key-label-l);--kicon:var(--key-icon-l)}
+.key-xl{--kh:var(--key-height-xl);--kr:var(--key-radius-xl);--ko:var(--key-offset-xl);
+        --klabel:var(--key-label-xl);--kicon:var(--key-icon-xl)}
+
+/* WHITE — the same key on the dark ground, where green on green would vanish */
+.key-white{background-color:var(--white);color:var(--text);
+  box-shadow:0 var(--ko) 0 var(--primary-pressed), inset 0 1px 0 rgba(255,255,255,.6)}
+.key-white:hover{background-color:var(--bg-sunken);
+  box-shadow:0 calc(var(--ko) + 2px) 0 var(--primary-pressed), inset 0 1px 0 rgba(255,255,255,.6)}
+.key-white:active{background-color:var(--bg-sunken);box-shadow:0 0 0 var(--primary-pressed)}
+
+/* GOLD — the Pro key only (Rose, 13 Sep 2026: "use golden cta color in premium").
+   Gold is the earned colour, about 2% of a surface, and Pro is where the page earns it.
+   The label is the dark text, not white: white on gold is 2.78:1, which is the same
+   reason .badge-pro already reads dark. The pressed face and the hover are stated as
+   mixes of the gold rather than two new tokens — the rule the tinted grounds follow. */
+.key-gold{background-color:var(--gold);color:var(--text);
+  box-shadow:0 var(--ko) 0 color-mix(in srgb,var(--gold) 62%,var(--black)), inset 0 1px 0 rgba(255,255,255,.28)}
+.key-gold:hover{background-color:color-mix(in srgb,var(--gold) 88%,var(--white));
+  box-shadow:0 calc(var(--ko) + 2px) 0 color-mix(in srgb,var(--gold) 62%,var(--black)), inset 0 1px 0 rgba(255,255,255,.30)}
+.key-gold:active{background-color:color-mix(in srgb,var(--gold) 86%,var(--black));
+  box-shadow:0 0 0 color-mix(in srgb,var(--gold) 62%,var(--black))}
+.key-gold:focus-visible{outline-color:var(--gold)}
+
+/* SECONDARY — outlined, the offset alone and no face */
+.key-2{background:transparent;background-image:none;color:var(--primary);
+  box-shadow:inset 0 0 0 var(--line-object) var(--primary), 0 var(--ko) 0 var(--primary-24)}
+.key-2:hover{background:var(--primary-6);
+  box-shadow:inset 0 0 0 var(--line-object) var(--primary), 0 calc(var(--ko) + 2px) 0 var(--primary-24)}
+.on-dark .key-2{color:var(--white);
+  box-shadow:inset 0 0 0 var(--line-object) rgba(255,255,255,.55), 0 var(--ko) 0 rgba(255,255,255,.22)}
+.on-dark .key-2:hover{background:rgba(255,255,255,.06)}
+
+/* QUIET — text with a tint on hover, no offset */
+.key-3{background:transparent;background-image:none;box-shadow:none;color:var(--primary);
+  min-width:0;padding:0 14px}
+.key-3:hover{background:var(--primary-12)}
+.on-dark .key-3{color:var(--white)}
+.on-dark .key-3:hover{background:rgba(255,255,255,.08)}
+
+@media (max-width:767px){
+  .key{--kh:var(--key-height-m);--klabel:var(--key-label-m)}
+  .key-l{--kh:var(--key-height-xl)}
+  .key-xl{--kh:72px;--klabel:18px}
+  .key:not(.key-3){width:100%}   /* full width is the phone's variant — not the text link */
+  .key-3{min-height:44px}        /* the quiet link still takes a thumb */
+}
+
+/* ── the bar ── the site's own navigation lives in nav-site.css, lifted 1:1 from the
+   2026-09 build. Only the hero's clearance belongs here. */
+
+/* ── the hero ─────────────────────────────────────────────────────────────────
+   --wash-hero is the header wash and appears at the top of a page and nowhere else. */
+.hero{position:relative;background:var(--bg-dark);color:var(--white);overflow:clip}
+.hero::before{content:"";position:absolute;inset:0;background:var(--wash-hero);pointer-events:none}
+.hero > *{position:relative}
+/* PADDING-BLOCK, NOT THE SHORTHAND (12 Sep 2026). The shorthand overwrote the gutter
+   .wrap sets on the same element, so the hero's words started at the window edge while
+   every other block on the page started at the measure. */
+.hero .inner{padding-block:clamp(148px,15vw,210px) clamp(64px,8vw,112px)}
+/* THE SUBPAGE HEROES MATCH THE HOME PAGE (Rose, 12 Sep 2026). They were taking the page's
+   own h1 size, which tops out at 76px; the home hero stepped down to 58px and they follow,
+   so every hero on the site opens at the same size. */
+/* the display rung is weight 400 on every hero, the home page's and the nine subpages' —
+   at this size 600 reads as heavy (the ladder says so, so the pages follow). */
+/* THE 16ch CAP IS GONE (Rose, 13 Sep 2026). "One picture. Clear direction. Real action."
+   is 42 characters and was folding onto three lines with half the hero empty beside it.
+   The measure is the page's, as everywhere else. */
+.hero h1{font-size:var(--text-display);font-weight:var(--weight-reading);
+  letter-spacing:var(--track-display)}
+.hero .lede{color:rgba(255,255,255,.82);max-width:52ch;margin-top:var(--space-6)}
+
+/* a dark band anywhere further down the page — the same surface, without the wash */
+.band{background:var(--bg-dark);color:var(--white)}
+.band p{color:rgba(255,255,255,.82)}
+
+/* ── the icon beside a heading, and a stack of paragraphs ── from the 2026-09 site ── */
+/* ── a centred section (Rose, 13 Sep 2026: "center all in this section") ──────────
+   Opt-in, on the section itself, so nothing else on the page is touched. The icon row
+   centres with the heading, the measure recentres, and the cards were already centred
+   inside themselves. */
+.centred{text-align:center}
+.centred .ico-row{justify-content:center}
+/* text-wrap:balance on the centred paragraphs (Rose, 13 Sep 2026: "sentence breaks
+   unintentional and no need to break leaving just one word singled out on a line").
+   Centred ragged text shows a lonely last word far more than left-aligned text does.
+   balance evens the lines instead of filling each one and dumping the remainder — no
+   orphan, and the breaks stop landing mid-thought. Scoped to .centred, so the rest of
+   the page is untouched. */
+.centred p{margin-inline:auto;text-wrap:balance}
+
+.ico-row{display:flex;align-items:baseline;gap:18px;margin-bottom:26px}
+.ico-row h2{margin:0}
+/* THE ICON RIDES THE HEADING (Rose, 13 Sep 2026: "icon too small"). A fixed 48px next
+   to a heading that clamps from 28 to 42 is small at the top of the range and heavy at
+   the bottom; sized off --text-heading it keeps one ratio at every width. The stroke is
+   non-scaling, so it stays on the 2px rung however large the box gets. */
+.ico-row .plate{width:calc(var(--text-heading) * 1.55);height:auto;aspect-ratio:1;
+  margin-bottom:0;flex:none;
+  /* THE DRAWING SITS ON THE TEXT BASELINE (Rose, 13 Sep 2026: "icons baseline must flush
+     text baseline"). Centring put the figures' feet 2.7px below it. An SVG has no baseline
+     of its own, so a flex row baseline-aligns it on its BOX bottom — and the ratified
+     icons are drawn to y=20 of a 24 grid, leaving 4 units of air under the drawing. Push
+     it back down by exactly that: 4/24 of the icon's own height. Geometry, not a nudge,
+     so it holds at every width and for any icon drawn on the same grid. */
+  translate:0 16.667%}
+.stack > * + *{margin-top:20px}
+
+/* ── THE SPOTLIGHT CARD (back from the 2026-09 site, Rose 12 Sep 2026) ─────────────
+   Two parts: a 135° green ramp for the face, and a soft light that FOLLOWS THE POINTER,
+   faded in on hover and out again on the same curve (spotlight.js writes --mx/--my).
+   The ramp's three stops are stated mixes of --primary and --bg-dark, so the card moves
+   with the brand green; the light is --primary-24 at 22%. */
+/* the three are held to 900px and centred, so they stop growing with the window — the same
+   move the pricing cards make at 1000 (Rose, 12 Sep 2026: "not so wide"). */
+.cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px;
+  max-width:900px;margin-inline:auto}
+@media (max-width:900px){.cards3{grid-template-columns:1fr;gap:18px;margin-top:40px}}
+@media (max-width:600px){.card-dark{padding:24px 20px 26px}}
+/* SMALLER, CENTRED, EACH WITH ITS OWN ICON (Rose, 12 Sep 2026) */
+.card-dark{position:relative;overflow:hidden;isolation:isolate;text-align:center;
+  border-radius:14px;padding:26px 22px 28px;color:var(--white);
+  border:1px solid rgba(255,255,255,.09);
+  background:linear-gradient(135deg,
+    color-mix(in srgb,var(--primary) 12%,var(--bg-dark)) 0%,
+    color-mix(in srgb,var(--primary) 77%,var(--bg-dark)) 58%,
+    color-mix(in srgb,var(--primary) 29%,var(--bg-dark)) 100%);
+  --spot:0}
+.card-dark::before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;
+  border-radius:inherit;
+  background:radial-gradient(560px circle at var(--mx,50%) var(--my,0%),
+    color-mix(in srgb,var(--primary-24) 22%,transparent),transparent 42%);
+  opacity:var(--spot);transition:opacity 480ms cubic-bezier(.16,1,.3,1)}
+.card-dark:hover{--spot:1}
+@media (prefers-reduced-motion:reduce){.card-dark::before{transition:none}}
+@media (hover:none){.card-dark::before{display:none}}   /* a finger has no pointer to follow */
+/* BIGGER AND FINER (Rose, 13 Sep 2026: "icons look thick and too small"). 48 -> 64, and
+   the stroke down to 0.9. The drawing's own 1.4 was set for a 32px box; at 48 it rendered
+   2.8 device pixels and at 64 it would be 3.7, which is why it read as heavy. 0.9 at 64 is
+   2.4 — visibly finer than before while the icon is a third larger. Set here rather than on
+   each drawing, so the three stay identical. (The ratified 1.75 line-icon stroke is for
+   icons you operate at interface sizes; these are decorative at plate scale.) */
+.card-ico{display:block;width:64px;height:64px;margin:0 auto 18px;
+  color:rgba(255,255,255,.92)}
+/* THE CARD HEADING IS GOLD AND A RUNG SMALLER (Rose, 13 Sep 2026). --gold-light, not the
+   bullion: bullion on this card's lightest gradient stop is 2.97:1 and fails, the light
+   gold is 5.11:1. It is the same gold the hero's second line already uses on dark.
+   GETTING PAST THE :is() RULE. hero-home.css has
+     :is(.dark-grad,.card-dark,...,.tier.feature) :is(h1,h2,h3,h4){color:inherit}
+   and :is() takes the specificity of its MOST specific argument — .tier.feature, two
+   classes — so that selector scores (0,2,1) and beat both .card-dark h3 and
+   article.card-dark h3. Two classes and two elements clears it. Six other dark surfaces
+   depend on that rule, so it is left alone. */
+.cards3 article.card-dark h3{font-size:var(--text-reading);line-height:1.3;margin:0;
+  letter-spacing:-.01em;color:var(--gold-light)}
+.card-dark hr{border:0;height:1px;background:rgba(255,255,255,.22);margin:16px 0 14px}
+.card-dark ul{list-style:none;margin:0;padding:0;font-size:var(--text-reading);line-height:1.95;
+  color:rgba(255,255,255,.92)}
+
+/* ── cards and lists ── one border, one radius, no shadow ── */
+.grid{display:grid;gap:var(--space-5)}
+.g-2{grid-template-columns:repeat(2,1fr)}
+.g-3{grid-template-columns:repeat(3,1fr)}
+.g-4{grid-template-columns:repeat(4,1fr)}
+@media (max-width:900px){.g-3,.g-4{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:600px){.g-2,.g-3,.g-4{grid-template-columns:1fr}}
+
+.card{border:var(--line-object) solid var(--border-strong);border-radius:var(--r-card);
+      padding:var(--space-5);background:var(--bg)}
+.card h3{margin-bottom:var(--space-2)}
+.card p{margin:0;color:var(--text-secondary);font-size:var(--text-reading)}
+.band .card{background:transparent;border-color:rgba(255,255,255,.18)}
+
+.rows{list-style:none;margin:0;padding:0}
+.rows li{padding:14px 0;border-top:var(--line-hairline) solid var(--border);font-size:var(--text-reading)}
+.band .rows li{border-color:rgba(255,255,255,.14)}
+/* a row that carries an aside — "Balanced — the family-office default". The aside drops to
+   the label rung and the quieter colour, so the row still reads as one line of the list. */
+.rows-note{font-size:var(--text-label);color:var(--text-tertiary)}
+
+/* a row that is a link — the 404's three columns of where-you-might-have-meant. Not the
+   green .link with its arrow and rule: these are a list, and a list of twelve underlined
+   green links would be louder than the apology above it. The whole row is the target. */
+.rows a{display:block;color:var(--text);text-decoration:none;
+  transition:color var(--t-state) var(--ease)}
+.rows a:hover{color:var(--primary)}
+
+/* ── the team ── (Rose, 13 Sep 2026: "make the teams images smaller and put the
+   portraits in circles - this looks like shit")
+   All three source files are SQUARE — 800, 800 and 560 — and were being forced into a
+   4:5 box with object-fit:cover, so each one was cropped differently and the row read as
+   three unrelated photographs in three different zooms. A circle takes a square source
+   whole: no crop, no distortion, and the three sit at one size whatever their pixels.
+   It also happens to be the mark's own shape.
+   The card is the site's .card unchanged; only the portrait and the centring are new. */
+.people .card{text-align:center}
+.portrait{width:clamp(116px,11vw,148px);height:auto;aspect-ratio:1;border-radius:50%;object-fit:cover;
+  /* height:auto is not decoration — the width/height ATTRIBUTES are there so the browser
+     reserves the space before the file arrives, and without this the attribute's 800 wins
+     over aspect-ratio and the circle comes out 148 x 800. */
+  display:block;margin:0 auto var(--space-5);
+  /* a hairline rather than a shadow — R4, depth comes from borders */
+  box-shadow:0 0 0 1px var(--border-strong)}
+.people .card p{margin-inline:auto;max-width:34ch}
+
+/* the five opening questions on how-it-works. A real <ol>, so it is a list to a screen reader,
+   with the marker drawn in the margin at the label rung rather than left to the browser. The
+   figures are tabular site-wide, so the counters hold their column. */
+.asks{list-style:none;margin:var(--space-6) 0;padding:0;counter-reset:ask;max-width:var(--measure)}
+.asks li{counter-increment:ask;display:flex;gap:18px;align-items:baseline;
+  padding:16px 0;border-bottom:var(--line-hairline) solid var(--border);font-size:var(--text-reading)}
+.asks li::before{content:counter(ask,decimal-leading-zero);flex:none;
+  font-size:var(--text-label);color:var(--text-tertiary)}
+
+
+/* ── links that do not lead anywhere yet ──
+   The page is reviewed as it will ship, so the link stays and says so rather than
+   being quietly removed or left to 404. */
+/* THE CHIP IS A LINK (Rose, 13 Sep 2026). It was a dead <span>; each of the five now
+   has a page that says it is coming. The chip stays — it is the honest part — and
+   the element around it became an <a>, so cursor and hover have to follow. */
+.soon{color:var(--text-tertiary);text-decoration:none;cursor:default}
+a.soon{cursor:pointer}
+a.soon:hover{color:var(--text-secondary)}
+.footer a.soon:hover,.band a.soon:hover{color:rgba(255,255,255,.85)}
+a.soon.is-here{cursor:default}
+.soon::after{content:"soon";margin-left:8px;padding:3px 8px;border-radius:var(--r-chip);
+  background:var(--bg-sunken);color:var(--text-tertiary);
+  font:var(--weight-heading) 10px/1 var(--font-sans);letter-spacing:.1em;text-transform:uppercase;
+  vertical-align:2px}
+.band .soon,.footer .soon{color:rgba(255,255,255,.55)}
+.band .soon::after,.footer .soon::after{background:rgba(255,255,255,.10);color:rgba(255,255,255,.7)}
+
+/* ── the footer ── the one dark surface again, no wash ── */
+.footer{background:var(--bg-dark);color:var(--white);padding:var(--space-8) 0 var(--space-7)}
+.footer a{color:rgba(255,255,255,.78);text-decoration:none;
+          transition:color var(--t-state) var(--ease)}
+.footer a:hover{color:var(--white)}
+.footer .cols{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:var(--space-6)}
+@media (max-width:900px){.footer .cols{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.footer .cols{grid-template-columns:1fr}}
+.footer h3{font-size:var(--text-label);letter-spacing:.14em;text-transform:uppercase;
+           color:rgba(255,255,255,.55);margin-bottom:var(--space-4)}
+/* A FOOTER LINK IS A TARGET, NOT JUST TEXT (measured 13 Sep 2026). These were 21px tall —
+   the line box and nothing else — against a 24px floor for anything a thumb has to hit.
+   The link itself becomes the block and takes the padding, so the whole row is tappable
+   rather than just the glyphs; the gap comes down by the same amount the padding adds, so
+   the column looks exactly as it did. */
+.footer ul{list-style:none;margin:0;padding:0;display:grid;gap:2px;font-size:var(--text-reading)}
+.footer li > a,.footer li > span{display:block;padding-block:6px;min-height:24px}
+.legal{margin-top:var(--space-7);padding-top:var(--space-5);
+       border-top:1px solid rgba(255,255,255,.14);
+       color:rgba(255,255,255,.55);font-size:var(--text-label);line-height:1.65}
+.legal p{max-width:none;margin:0 0 12px}
+/* the two labels inside the legal block: "Important information" sets the disclaimer apart
+   from the regulatory paragraphs, and the copyright closes the page. Both stay at the label
+   rung — they are the quietest text on the site and should read that way. */
+.legal-h{margin-top:var(--space-5);font-weight:var(--weight-label);color:rgba(255,255,255,.72)}
+.legal-c{margin-top:var(--space-5);padding-top:var(--space-4);
+         border-top:1px solid rgba(255,255,255,.14)}
+
+/* ── Freya, not built yet ──
+   She is named on the site before she exists, so the mark carries the state in a
+   note on hover rather than a link that goes nowhere. */
+.freya{display:inline-flex;align-items:center;gap:10px;position:relative;cursor:default}
+/* square now — Freya is the four-ring mark with its centre open (13 Sep 2026) */
+.freya .ring{width:26px;height:26px;flex:none;color:var(--primary)}
+.band .freya .ring{color:var(--primary-48)}
+.freya .note{position:absolute;left:0;bottom:calc(100% + 10px);white-space:nowrap;
+  padding:7px 11px;border-radius:var(--r-chip);background:var(--text);color:var(--bg);
+  font:var(--weight-heading) var(--text-label)/1 var(--font-sans);letter-spacing:.04em;
+  opacity:0;transform:translateY(4px);pointer-events:none;
+  transition:opacity var(--t-state) var(--ease),transform var(--t-state) var(--ease)}
+.freya:hover .note,.freya:focus-visible .note{opacity:1;transform:translateY(0)}
+
+/* ── figures ── lines only, 1.5px, round caps, one green part ── */
+figure{margin:0}
+figure svg{display:block;width:100%;height:auto}
+figcaption{margin-top:var(--space-4);color:var(--text-tertiary);font-size:var(--text-label)}
+.fig-n{font-weight:var(--weight-heading);letter-spacing:.1em;text-transform:uppercase;margin-right:8px}
+
+/* ── skip link ── */
+.skip{position:absolute;left:-9999px;top:0;z-index:100}
+.skip:focus{left:var(--gutter);top:12px;padding:10px 16px;background:var(--white);color:var(--text);
+  border-radius:var(--r-chip)}
+
+/* ══ SECTION GROUNDS ═══════════════════════════════════════════════════════════════
+   The page alternates. White is the default and carries the reading; a full-bleed
+   ground marks a change of subject, and the dark one is reserved for the two moments
+   the site raises its voice — Freya, and the closing. Three grounds, no fourth.  */
+.band-mint{background:var(--gold-dark);color:var(--text)}      /* Mint Cream — the quiet ground */
+/* THIS SECTION IS THE DARK SURFACE (Rose, 13 Sep 2026: "you forgot to make the bg dark
+   green"). It was Midnight Violet from 12 Sep. The class keeps its name so nothing that
+   refers to it has to be renamed, but the ground is --bg-dark — which also means the site
+   is back to THREE grounds, not four: white, Mint Cream and the one dark surface. */
+.band-violet{background:var(--bg-dark)}
+/* the rule the 2026-09 section set under its paragraph */
+.rule{border:0;height:1px;background:var(--border-strong);max-width:500px;margin:52px 0}
+.band .rule{background:rgba(255,255,255,.16)}
+.band .lede{color:rgba(255,255,255,.82)}
+/* the pull quote sets its own two lines with <br>; the 24ch measure that suits it inside a
+   column would break them again, so on this ground it runs to its own width. */
+.band-violet .lede{max-width:64ch;margin-top:28px}
+/* the heading and the line under it are two beats, not one paragraph — at 42 and 32 with
+   the same weight they run together without this. */
+.band-violet .pull{max-width:none;margin-top:var(--space-6)}
+.band-violet .rule{margin:var(--space-7) 0}
+
+/* ── home-01 · the idea ── the words on the left, Freya large on the right ──────
+   Two columns that become one below 900, where the mark drops under the words at a size
+   that still reads as a mark rather than an icon. The mark is FIERY — the brand's one
+   flag colour, used here as identity rather than as a warning, which is the only place
+   on the site it does that. */
+.idea-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:var(--space-8);
+  align-items:center}
+/* ── FREYA'S LIGHT ── settled on Lab bench 15 (Rose, 13 Sep 2026) ────────────────
+   The values are the ones he dialled in there; the bench prints its own CSS, so they were
+   lifted rather than retyped. Bench 15 stays, and is where any change to this belongs.
+
+   MOVING AN EFFECT OFF A BENCH IS NOT COPYING ITS DECLARATIONS. Rose, 13 Sep 2026, twice
+   in an hour: "don't see why i have to correct you on this level". A blend mode, a filter
+   and an opacity are all relations to what is BEHIND them, so the surrounding context is
+   part of the value and does not travel in the copied block. Both misses were the same
+   miss — the ground, then the isolation. The rule: render the bench and the page and
+   compare them before calling it done. Never ship a ported effect on the declarations alone.
+
+   TWO LAYERS, NOT THREE. The bloom came back at opacity 0, so it is not drawn. A layer at
+   zero still costs a blur on every frame for nothing anyone can see.
+
+   THE TAIL. Each layer is the same arc drawn five times at decreasing lengths, each rotated
+   to sit centred inside the last. With the blend summing them the light is five deep in the
+   middle and one at the tips, so it tapers off BOTH ends — a shine travelling along an edge
+   rather than a dash with cut ends. The rotation that centres each step is half the length
+   it gives up, in percent of the circumference, and one percent of a circle is 3.6 degrees.
+   transform-box:fill-box so each ring turns about its own centre.
+
+   NO isolation:isolate HERE, and that is the whole point (Rose, 13 Sep 2026: "you forgot
+   blending mode it does not look like in lab"). A blend mode blends the element with what
+   is painted BEHIND it. The bench isolates because it paints its own ground inside that
+   box; the mark has no ground of its own, so isolating it gave the blend a transparent
+   backdrop — `overlay` against nothing is a no-op, and the light came out raw instead of
+   sitting in the surface. Un-isolated, the backdrop is the section's dark surface, which
+   is exactly what the bench was showing. (A blend does not tint the backdrop; it only
+   decides how this element lands on it.) */
+.idea-mark{color:var(--primary-24);line-height:0}
+.idea-mark svg{width:clamp(180px,24vw,360px);height:auto;display:block;overflow:visible}
+.idea-mark circle{fill:none}
+
+.idea-mark .fm-base circle{stroke:currentColor;stroke-width:1.25px;opacity:.5;
+  vector-effect:non-scaling-stroke}
+
+.idea-mark .fm-l{mix-blend-mode:overlay}
+.idea-mark .fm-f circle{
+  stroke-linecap:round;
+  /* 38% of the ring lit. The circumference is 103.67 user units, so a percent is 1.0367. */
+  stroke-dasharray:calc(38 * var(--f) * 1.0367) calc((100 - 38 * var(--f)) * 1.0367);
+  transform-box:fill-box;transform-origin:center;
+  transform:rotate(calc(38 * (1 - var(--f)) * 1.8deg));
+  opacity:calc(1 - (1 - var(--f)) * .15);
+  animation:fm-ride 48s linear infinite;
+}
+.idea-mark .fm-core circle{stroke:var(--white);stroke-width:.7px;filter:blur(.7px)}
+.idea-mark .fm-halo circle{stroke:var(--primary-24);stroke-width:.75px;filter:blur(2px)}
+
+/* the four rings run at four speeds sharing no common factor, each entered part-way through
+   by a negative delay, so they drift apart and back instead of marching together */
+.idea-mark .fm-f circle:nth-child(1){animation-duration:42.2s;animation-delay:-3.2s}
+.idea-mark .fm-f circle:nth-child(2){animation-duration:57.1s;animation-delay:-18.7s}
+.idea-mark .fm-f circle:nth-child(3){animation-duration:35.0s;animation-delay:-8.9s}
+.idea-mark .fm-f circle:nth-child(4){animation-duration:68.2s;animation-delay:-25.3s}
+@keyframes fm-ride{from{stroke-dashoffset:0}to{stroke-dashoffset:-103.67}}
+
+@media (prefers-reduced-motion:reduce){
+  .idea-mark .fm-f circle{animation:none}
+}
+
+@media (max-width:900px){
+  .idea-row{grid-template-columns:1fr;gap:var(--space-7);justify-items:start}
+  .idea-mark svg{width:clamp(140px,34vw,220px)}
+}
+.band-tint{background:var(--primary-6);color:var(--text)}      /* the faintest green tint */
+.band-mint .card,.band-tint .card{background:var(--bg)}
+
+/* ── a section that is text beside a picture ──
+   The text column holds the reading measure; the figure takes the rest and never
+   dictates the type's width. Under 900px the figure goes below, always. */
+.split{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,5vw,72px);align-items:center}
+.split.wide-fig{grid-template-columns:.9fr 1.1fr}
+.split .col p:last-child{margin-bottom:0}
+@media (max-width:900px){.split,.split.wide-fig{grid-template-columns:1fr;gap:var(--space-7)}}
+
+/* ── the pull line ── one sentence, set large, no quotation marks ── */
+.pull{font-size:var(--text-title);line-height:1.25;font-weight:var(--weight-heading);letter-spacing:var(--track-heading);
+      max-width:24ch;margin:0}
+
+/* ── icons ── the ratified set only (brand/build/plates.json): line icons at 1.4,
+   one colour, drawn in currentColor so they take the surface's own text colour. */
+/* THE SECTION ICONS ARE BLACK (Rose, 13 Sep 2026). They were --primary, and the brand says
+   what primary is for: "Primary means action: buttons, links, the active state." A drawing
+   beside a heading is not an action, so the green was decoration doing no work and pulling
+   the eye off the words it sits next to. --black, the same as the heading it belongs to. */
+.plate{width:48px;height:48px;display:block;margin-bottom:var(--space-4);color:var(--black)}
+/* THE ICON STROKE LADDER (brand system, 13 Sep 2026). The drawings carry 1.4 on a 24 box,
+   which scales — 2.8px at 48 and 3.7 at 64. non-scaling-stroke takes the value as a device
+   width instead, so the token is what lands on screen at any size. */
+.plate *{vector-effect:non-scaling-stroke;stroke-width:var(--line-icon-l)}
+.card-ico *{vector-effect:non-scaling-stroke;stroke-width:var(--line-icon-l)}
+.ic *{vector-effect:non-scaling-stroke;stroke-width:var(--line-icon-s)}
+
+/* ── figures ── lines only, 1.5px, round caps, exactly one element in the green ── */
+.fig{border:var(--line-object) solid var(--border-strong);border-radius:var(--r-card);
+     padding:clamp(20px,3vw,32px);background:var(--bg)}
+.band .fig{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.18)}
+.fig svg{width:100%;height:auto;display:block}
+/* THE DRAWN FIGURES ON A PHONE (12 Sep 2026). Both are 520 wide; inside a card on a
+   390px screen that scaled their 11px labels down to about 6px. The drawing keeps its
+   shape and scrolls sideways instead, at a size where the labels can be read. The
+   caption sits outside the scroller, so it still wraps to the card. */
+@media (max-width:700px){
+  /* a grid item is min-width:auto by default, so the 480px scroller pushed its column —
+     and the page — wider than the screen. The column may shrink; the scroller scrolls. */
+  .split > *,.fig{min-width:0}
+  .fig-scroll{overflow-x:auto;overscroll-behavior-x:contain;
+    -webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 24px),transparent);
+            mask-image:linear-gradient(90deg,#000 calc(100% - 24px),transparent)}
+  .fig-scroll svg{min-width:480px}
+  .fig .t,.fig .t-lead{font-size:14px}   /* 480 of a 520 viewBox — renders at 13 */
+}
+.fig .stroke{fill:none;stroke:var(--text-tertiary);stroke-width:1.5;
+             stroke-linecap:round;stroke-linejoin:round}
+.fig .lead{fill:none;stroke:var(--primary);stroke-width:1.5;
+           stroke-linecap:round;stroke-linejoin:round}   /* the one working part */
+.fig .node{fill:none;stroke:var(--border-strong);stroke-width:1.5;rx:10}
+/* the figures' labels take the ladder's floor too — they are page text, drawn in SVG.
+   Declared 13, and the phone rule below lifts them so the SCALED size still lands on it. */
+.fig .t{fill:var(--text-secondary);font:var(--weight-label) 13px/1 var(--font-sans);letter-spacing:.02em}
+.fig .t-lead{fill:var(--primary);font:var(--weight-heading) 13px/1 var(--font-sans)}
+.band .fig .stroke{stroke:rgba(255,255,255,.45)}
+.band .fig .node{stroke:rgba(255,255,255,.28)}
+.band .fig .t{fill:rgba(255,255,255,.72)}
+.band .fig .lead,.band .fig .t-lead{stroke:var(--primary-48);fill:var(--primary-48)}
+
+/* ── Freya's briefing note ── a picture of a note, not a screenshot of an app ── */
+.note-card{border:var(--line-object) solid rgba(255,255,255,.22);border-radius:var(--r-card);
+           background:rgba(255,255,255,.05);padding:var(--space-5);max-width:520px}
+.note-card .head{display:flex;gap:10px;align-items:center;
+  font:var(--weight-heading) var(--text-label)/1 var(--font-sans);letter-spacing:.12em;text-transform:uppercase;
+  color:var(--primary-48);margin-bottom:var(--space-5)}
+.note-card .q{color:var(--white);font-weight:var(--weight-heading);margin:0 0 var(--space-4)}
+.note-card ol{margin:0;padding-left:20px;display:grid;gap:10px;
+              color:rgba(255,255,255,.82);font-size:var(--text-reading)}
+
+/* ── fact rows ── plain, bordered, no cards: a statement of fact. The FAQ on
+   service-levels uses these. ── */
+.facts{display:grid;gap:0;border-top:var(--line-hairline) solid var(--border)}
+.facts > div{display:grid;grid-template-columns:minmax(180px,.9fr) 2fr;gap:var(--space-6);
+  padding:var(--space-5) 0;border-bottom:var(--line-hairline) solid var(--border)}
+.facts h3{font-size:var(--text-reading);font-weight:var(--weight-heading)}
+.facts p{margin:0;color:var(--text-secondary);font-size:var(--text-reading)}
+@media (max-width:700px){.facts > div{grid-template-columns:1fr;gap:var(--space-3)}}
+
+/* ══ THE FOUR PROMISES ══ back from the 2026-09 site (Rose, 12 Sep 2026) ═══════════
+   Each promise is a row of two: the words on one side, the thing itself on the other,
+   alternating. Ported as it stood; the only substitution is --warning-bg, which is not a
+   token in this system — it is a stated mix of --warning and white (§21). */
+.promise{padding:74px 0}
+/* THE HEADING MATCHES ITS ICON (Rose, 13 Sep 2026: "the headers are way too small in
+   reference to the icons"). It was h3 — the subhead rung, 19-21px — next to a 48px plate,
+   better than 2:1 in the icon's favour, so the drawing read as the subject and the words as
+   a caption. --text-title puts it at 24-32 and the ratio at about 1.5:1. Still a rung below
+   the section's own h2, which is what it is. */
+.promise h3{display:flex;align-items:center;gap:16px;margin:0;
+  font-size:var(--text-title);line-height:1.2}
+.promise h3 .plate{margin-bottom:0}
+.promise .lede{margin-top:22px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+/* the ledger card draws its treemap only above 520px of its OWN width, and an even split
+   of the measure leaves it 518. The row it sits in gives it the extra: the words are
+   comfortable narrower, the card is not. */
+.two:has(finna-ledger){grid-template-columns:.86fr 1.14fr}
+.two finna-ledger{display:block;width:100%}
+.two.top{align-items:start}
+/* THE FIGURES ARE RIGHT-ALIGNED, NOT TABULAR (Rose, 13 Sep 2026: "delete all Inter fonts").
+   Lexend's digits are proportional and its file carries no tabular-figures feature, so a
+   column of money does not line up on the decimal — it lines up on its right edge, which
+   is what these rules do. The ten-glyph Inter subset that gave it the other kind of
+   alignment for one day is gone. */
+.num,.alloc-val,.spec .v,.price,.rec .rv{text-align:right}
+
+/* the allocation panel */
+.panel{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:30px 30px 26px}
+.panel h4{font-size:var(--text-title);margin:0 0 20px}
+.panel-note{font-size:var(--text-reading);line-height:1.5;color:var(--text-tertiary);margin:-8px 0 22px;max-width:46ch}
+.alloc-row{display:grid;grid-template-columns:1fr auto auto;gap:10px 16px;align-items:center;
+  padding:18px 0;border-bottom:1px solid var(--border)}
+.alloc-lab{grid-column:1;grid-row:1;font-size:var(--text-reading);line-height:1.3}
+.alloc-val{grid-column:2;grid-row:1;font-size:var(--text-subhead);text-align:right}
+.alloc-row .chip{grid-column:3;grid-row:1;justify-self:end}
+.alloc-track{grid-column:1 / -1;grid-row:2;margin-top:6px;
+  position:relative;height:10px;background:var(--bg-sunken);border-radius:999px;overflow:visible}
+.alloc-row:last-of-type{border-bottom:0}
+.alloc-lab small{display:block;font-family:var(--font-mono);font-size:var(--text-label);
+  color:var(--text-tertiary);margin-top:5px}
+.alloc-band{position:absolute;top:0;height:100%;background:var(--primary-24);border-radius:999px}
+.alloc-mark{position:absolute;top:-5px;width:3px;height:20px;border-radius:2px;transform:translateX(-50%)}
+.alloc-scale{margin-top:10px}
+/* a scale is information — the small-label floor, not the disabled colour */
+.alloc-scale .ticks{display:flex;justify-content:space-between;
+  font-family:var(--font-mono);font-size:var(--text-label);color:var(--text-tertiary)}
+
+/* the review and record cards */
+.card-white{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:30px}
+.card-white h4{font-size:var(--text-title);margin:0;padding-bottom:20px;border-bottom:1px solid var(--border-strong)}
+.rev{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:20px 0;
+  border-bottom:1px solid var(--border)}
+.rev .rl{font-size:var(--text-reading);font-weight:var(--weight-heading)}
+.rev .rl small{display:block;font-weight:var(--weight-reading);font-size:var(--text-reading);color:var(--text-tertiary);margin-top:3px}
+.rec{display:flex;justify-content:space-between;gap:20px;padding:22px 0;
+  border-bottom:1px solid var(--border);font-size:var(--text-reading)}
+.rec .rv{color:var(--text-secondary)}
+.chip{font-family:var(--font-sans);font-size:var(--text-label);font-weight:var(--weight-heading);padding:7px 14px;
+  border-radius:999px;white-space:nowrap}
+.chip-ok{background:var(--primary-12);color:var(--primary-pressed)}
+.chip-miss{background:color-mix(in srgb,var(--warning) 12%,var(--white));color:var(--warning-dark)}
+/* GOLD CANNOT CARRY TEXT (measured 13 Sep 2026). The outline was already right — gold on
+   its own tint is 4.1:1 — but the LABEL was gold too, and gold on white is 2.78:1 against
+   a 4.5 floor at this size. The ring stays gold, because that is the signal; the words take
+   the text colour, which is 14:1. Same for the Pro badge, where white on gold was also
+   2.78:1 and is now the text colour on gold at 5.03:1. The brand's rule, applied to the
+   words as well as the fill. */
+.chip-att{background:transparent;color:var(--text);box-shadow:inset 0 0 0 1.5px var(--gold)}
+.note-strip{display:flex;gap:16px;align-items:flex-start;background:var(--primary-pressed);
+  color:var(--white);border-radius:12px;padding:22px 24px;margin-top:26px;font-size:var(--text-reading);line-height:1.5}
+.note-strip b{font-weight:var(--weight-heading)}
+.note-strip .ic{flex:0 0 auto;margin-top:1px}
+.center-cta{display:flex;justify-content:center;margin-top:64px}
+
+@media (max-width:1080px){.two{gap:56px}}
+@media (max-width:900px){
+  .promise{padding:48px 0}
+  .two,.two:has(finna-ledger){grid-template-columns:1fr;gap:36px}
+  /* stacked, the words come first in every promise, whatever the desktop order */
+  .two.top > .panel,.two.top > .card-white,.two.top > finna-ledger{order:2}
+  .panel,.card-white{padding:24px}
+  .panel h4,.card-white h4{font-size:var(--text-subhead)}
+}
+@media (max-width:560px){
+  .alloc-row{grid-template-columns:1fr auto}
+  .alloc-row .chip{grid-column:1;grid-row:3;justify-self:start;margin-top:4px}
+  .alloc-track{grid-row:2}
+}
+
+/* ── service levels ── THE 2026-09 PRICING CARDS (Rose, 12 Sep 2026) ──────────────
+   Brought back whole from _archive/landing-2026-09-11/site.css: the billing switch, the
+   badge-and-emblem row, the spec table, the price, and the featured middle card in the
+   primary gradient. Three substitutions on the way over, all of them file values:
+   --d-move/--d-state are --t-move/--t-state here, and the card's button is .key.
+   ──────────────────────────────────────────────────────────────────────────────── */
+
+/* the section's header is now ONE LINE, centred over the cards (Rose, 13 Sep 2026).
+   The paragraph went first, then the subheading — "it's nonsense". The three cards
+   are the argument; everything above them was delaying it. */
+.price-head{max-width:62ch;margin-inline:auto;text-align:center}
+.price-head h2{margin:0}
+
+/* the billing switch. The white pill is ONE element that slides, not a background that
+   jumps from button to button — the movement is what tells you the two options are the
+   same control. Its position is read straight off aria-pressed with :has(), so the markup
+   stays a pair of honest buttons and the script only flips that attribute. */
+.toggle-row{display:flex;flex-direction:column;align-items:center;gap:9px;margin:40px 0 30px}
+.toggle{position:relative;display:inline-flex;background:var(--bg-dark);border-radius:999px;
+  padding:3px;gap:0;box-shadow:inset 0 1px 2px rgba(0,0,0,.35),0 0 0 1px rgba(255,255,255,.06)}
+.toggle::before{content:'';position:absolute;top:3px;bottom:3px;left:3px;width:calc(50% - 3px);
+  background:var(--white);border-radius:999px;box-shadow:0 1px 2px rgba(0,0,0,.25);
+  transition:transform var(--t-move) var(--ease)}
+.toggle:has(button[data-bill="annual"][aria-pressed="true"])::before{transform:translateX(100%)}
+.toggle button{position:relative;z-index:1;flex:1 1 50%;min-width:92px;height:28px;text-align:center;
+  font-family:var(--font-sans);font-size:var(--text-label);font-weight:var(--weight-heading);letter-spacing:.08em;text-transform:uppercase;
+  color:rgba(255,255,255,.7);background:transparent;border:0;border-radius:999px;padding:0 16px;
+  cursor:pointer;transition:color var(--t-state) var(--ease)}
+.toggle button:hover{color:rgba(255,255,255,.95)}
+.toggle button[aria-pressed="true"],.toggle button[aria-pressed="true"]:hover{color:var(--text)}
+.toggle button:focus-visible{outline:0}
+.toggle:has(button:focus-visible){box-shadow:inset 0 1px 2px rgba(0,0,0,.35),0 0 0 2px var(--white)}
+@media (prefers-reduced-motion:reduce){.toggle::before{transition:none}}
+.toggle-row .cancel{font-size:var(--text-label);letter-spacing:.01em;color:var(--text-secondary)}
+
+/* the three cards are held to 1000px and centred, so they stop growing with the window —
+   a tier card that runs 400px wide reads as a page, not a card. */
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:start;
+  max-width:1000px;margin:0 auto}
+/* cards LIFT: a wide soft pool that reads as distance, and a close one that keeps the edge
+   from dissolving. Not a contradiction of the no-blur law — that law is about KEYS, which
+   are pressed and must sit on something solid. A card is a surface, and a surface may float. */
+.tier{background:var(--white);border:var(--line-hairline,1px) solid var(--border);border-radius:16px;
+  padding:20px 20px 22px;
+  box-shadow:0 26px 60px -18px rgba(26,48,42,.20), 0 4px 12px -6px rgba(26,48,42,.10)}
+/* the featured card wears the brand's primary gradient and sits proud of its siblings by
+   16px top and bottom, taking that back as padding so every row still lines up. */
+.tier.feature{background-color:var(--primary);
+  background-image:
+    radial-gradient(120% 140% at 15% 0%, rgba(255,255,255,.14) 0%, rgba(255,255,255,0) 45%),
+    linear-gradient(135deg, var(--primary-hover) 0%, var(--primary) 55%, var(--primary-pressed) 100%);
+  color:var(--white);border-color:transparent;margin:-16px 0;padding:36px 20px 38px;
+  box-shadow:0 34px 80px -20px rgba(13,35,27,.55), 0 6px 16px -8px rgba(13,35,27,.35)}
+/* the emblem in the corner is deleted (Rose, 13 Sep 2026) — the badge names the tier
+   and the icon said it a second time. With the corner empty the badge is CENTRED, not
+   left — a lone object pinned to one edge of a card reads as a leftover. The row keeps
+   its flex so the badge stays shrink-wrapped rather than stretching to the card. */
+.tier-top{display:flex;justify-content:center;align-items:center;margin-bottom:14px}
+.badge{font-family:var(--font-sans);font-size:var(--text-label);font-weight:var(--weight-heading);letter-spacing:.09em;
+  text-transform:uppercase;padding:8px 14px;border-radius:6px}
+.badge-found{background:var(--primary);color:var(--white)}
+.badge-fo{background:var(--white);color:var(--text)}
+.badge-pro{background:var(--gold);color:var(--text)}   /* white on gold was 2.78:1 — see .chip-att */
+.tier h4{font-size:var(--text-subhead);line-height:1.16;margin:0;padding-bottom:12px;
+  border-bottom:1px solid var(--border-strong);white-space:nowrap}
+.tier.feature h4{border-color:rgba(255,255,255,.30)}
+.spec{display:flex;justify-content:space-between;gap:14px;padding:7px 0;font-size:var(--text-label);
+  border-bottom:1px solid var(--border)}
+.tier.feature .spec{border-color:rgba(255,255,255,.20)}
+.spec .k{color:var(--text-secondary)}
+.tier.feature .spec .k{color:rgba(255,255,255,.90)}
+.spec .v{text-align:right}
+/* THE PRICE IS THE LOUDEST THING ON THE CARD (Rose, 13 Sep 2026). It was inheriting the
+   page's 400; on a pricing card the figure is the thing being bought and it should read
+   that way. Weight 600 — the estate's bold, the top of the ladder — and the tracking
+   pulled in one step further, because a big number at 600 sets loose. */
+.price{margin:18px 0 2px;font-family:var(--font-sans);font-size:var(--text-title);
+  font-weight:var(--weight-heading);letter-spacing:var(--track-display);
+  display:flex;align-items:baseline;gap:8px}
+.price small{font-size:var(--text-reading);color:var(--text-tertiary);font-weight:var(--weight-reading)}
+.tier.feature .price small{color:rgba(255,255,255,.90)}
+.billed{font-size:var(--text-label);font-weight:var(--weight-heading);color:var(--text-secondary);margin-bottom:14px}
+.tier.feature .billed{color:rgba(255,255,255,.90)}
+/* the card's button is this site's key, full width across the card */
+.tier .key{margin-top:4px;width:100%}
+@media (max-width:1200px){.tier h4{white-space:normal}}
+
+/* ── the text roll (vendor/text-roll.js) ── the pricing figures turn to their new value.
+   A character is one 3D cell with two backface-hidden faces: the one leaving turns about a
+   line a quarter down its box, the one arriving turns about its baseline. An invisible copy
+   holds the width open. The cells are written at RUNTIME — nothing in this file carries
+   these classes, and without them the roll renders as loose duplicated characters. */
+.tr{display:inline-block}
+.tr-cell{position:relative;display:inline-block;width:auto;line-height:1;
+  perspective:10000px;transform-style:preserve-3d}
+.tr-out,.tr-in{position:absolute;display:inline-block;line-height:1;
+  backface-visibility:hidden;white-space:pre}
+.tr-out{transform-origin:50% 25%;transform:rotateX(0deg);opacity:1}
+.tr-in{transform-origin:50% 100%;transform:rotateX(92deg);opacity:0}
+.tr-pad{visibility:hidden;white-space:pre;display:inline-block;line-height:1}
+.tr-still .tr-out,.tr-still .tr-in{transition:none!important}
+.tr-sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0 0 0 0);white-space:nowrap;border:0}
+@media (prefers-reduced-motion:reduce){.tr-out,.tr-in{transition:none!important}}
+@media (max-width:900px){
+  .tiers{grid-template-columns:1fr;max-width:520px}
+  /* stacked, the middle card has no siblings to sit proud of */
+  .tier.feature{margin:0;padding:20px 20px 22px}
+}
+
+/* ── BACK TO TOP ── from the 2026-09 site (Rose, 12 Sep 2026). The hard key as a circle:
+   the same face, sheen and solid offset every other key wears, so it presses the same way.
+   It appears once the header is behind you and is a plain anchor to #top, so it still works
+   with the script off. --d-move/--d-state there are --t-move/--t-state here. */
+.to-top{position:fixed;right:48px;bottom:48px;z-index:61;
+  width:56px;height:56px;border-radius:50%;display:grid;place-items:center;
+  color:var(--white);text-decoration:none;
+  background-color:var(--primary);
+  background-image:linear-gradient(180deg,
+    rgba(255,255,255,.16) 0%, rgba(255,255,255,0) 56%, rgba(0,0,0,.12) 100%);
+  box-shadow:0 4px 0 var(--primary-pressed), inset 0 1px 0 rgba(255,255,255,.14);
+  opacity:0;visibility:hidden;transform:translateY(10px);
+  transition:opacity var(--t-move) ease, transform var(--t-move) ease,
+             visibility var(--t-move) ease, box-shadow var(--t-state) ease,
+             background var(--t-state) ease}
+.to-top.on{opacity:1;visibility:visible;transform:none}
+.to-top:hover{background-color:var(--primary-hover);
+  box-shadow:0 6px 0 var(--primary-pressed), inset 0 1px 0 rgba(255,255,255,.18)}
+.to-top:active{transform:translateY(4px);background-color:var(--primary-pressed);
+  box-shadow:0 0 0 var(--primary-pressed), inset 0 1px 0 rgba(255,255,255,.10)}
+.to-top:focus-visible{outline:2px solid var(--primary);outline-offset:3px}
+.to-top .ic{width:22px;height:22px;display:block}
+@media (max-width:900px){.to-top{right:20px;bottom:20px;width:52px;height:52px}}
+@media (prefers-reduced-motion:reduce){.to-top{transition:none}}
+
+/* ══ PORTED FROM THE 2026-09 SITE (Rose, 12 Sep 2026) ══════════════════════════════
+   The pieces the ported sections need: the two-up row, the text link, the centred learn
+   section and the closing. Ported as they stood; --d-state is --t-state here. (The trust
+   band was ported with them and deleted on 13 Sep at Rose's word; its CSS went with it.) */
+
+/* a text link that is not a button: weight, an underline it owns, and the arrow */
+.link{display:inline-flex;align-items:center;gap:9px;font-weight:var(--weight-heading);font-size:var(--text-reading);
+  color:var(--primary);text-decoration:none;border-bottom:1.5px solid currentColor;
+  padding-bottom:3px;transition:opacity var(--t-state) var(--ease)}
+.link:hover{opacity:.75}
+.link .ic{width:16px;height:16px;flex:none}
+.band .link,.final .link{color:var(--white)}
+/* a link whose page is not yet written: visibly present, honestly inert */
+.link[data-soon]{border-bottom-style:dotted;cursor:default}
+.link[data-soon]:hover{opacity:1}
+
+/* the key and the link stand side by side under a block of words */
+.cta-row{display:flex;gap:26px;align-items:center;margin-top:38px;flex-wrap:wrap}
+
+
+
+/* ── the closing ── one ending for the site (Rose, 13 Sep 2026).
+   The home page ended with this and the nine subpages with a centred .closing, so the
+   site had two endings depending which page you were on. They all take this one now:
+   left on the measure, like everything else on the page, rather than centring only at
+   the very bottom. The .closing rules went out with the last markup that used them. */
+/* #485955, AND CENTRED (Rose, 13 Sep 2026). The closing is the one place the page stops
+   arguing and asks, so it leaves the dark surface. It was --purple-bg for an hour.
+   NOTE 1: .final is the site's ONE closing — all 17 pages take this, which is the point
+   of there being one.
+   NOTE 2: it is --bg-closing, a ground of its own in brand/source.py. It ran as a bare
+   hex for an hour; a colour on all 17 pages is a named ground, not a number. */
+.final{padding:150px 0 160px;background:var(--bg-closing);text-align:center}
+/* the closing carries a heading, not a second display — the hero already used that rung */
+.final h2{font-size:var(--text-heading)}
+.final p{margin-top:26px;font-size:var(--text-subhead);line-height:1.6;
+  color:rgba(255,255,255,.84);max-width:56ch;margin-inline:auto}
+.final .key{margin-top:40px}
+@media (max-width:900px){.final{padding:100px 0}}
+
+
+/* CONTRAST ON THE TINTED GROUNDS (measured, 12 Sep 2026). The tertiary text colour is
+   4.3:1 on white but only 3.9:1 on Mint Cream and 4.4:1 on the green tint. On those two
+   grounds the small type takes the secondary colour instead — 6.5:1 and 7.0:1. */
+.band-mint figcaption,.band-tint figcaption,
+.band-mint .small,.band-tint .small{color:var(--text-secondary)}
+
