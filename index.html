@@ -191,21 +191,37 @@
            decreasing lengths, centred inside one another, so the light tapers off BOTH ends
            and reads as a shine travelling an edge rather than a dash with cut ends. -->
       <div class="idea-mark" aria-hidden="true">
+        <!-- THE BLUR IS AN SVG FILTER, NOT A CSS ONE (Rose, 14 Sep 2026: "it's as the
+             blending mode did not come through" — on iOS). Safari does not reliably apply
+             CSS filter:blur() to elements INSIDE an svg: the arcs drew, their blur did
+             not, so the light came out as bare bright segments on the rings. feGaussianBlur
+             is the same effect done the way every engine supports, and stdDeviation is in
+             user units, so it scales with the mark exactly as the stroke widths do.
+             The region is opened to 300% because a blur clipped to the shape's own box
+             is a blur with square corners. -->
         <svg viewBox="39 39 50 50" fill="none">
+          <defs>
+            <filter id="fm-blur-core" x="-100%" y="-100%" width="300%" height="300%">
+              <feGaussianBlur stdDeviation=".7"/>
+            </filter>
+            <filter id="fm-blur-halo" x="-100%" y="-100%" width="300%" height="300%">
+              <feGaussianBlur stdDeviation="2"/>
+            </filter>
+          </defs>
           <g class="fm-base"><circle cx="57" cy="57" r="16.5"/><circle cx="71" cy="57" r="16.5"/><circle cx="71" cy="71" r="16.5"/><circle cx="57" cy="71" r="16.5"/></g>
           <g class="fm-l fm-core">
-            <g class="fm-f" style="--f:0.2"><circle cx="57" cy="57" r="16.5"/><circle cx="71" cy="57" r="16.5"/><circle cx="71" cy="71" r="16.5"/><circle cx="57" cy="71" r="16.5"/></g>
-            <g class="fm-f" style="--f:0.4"><circle cx="57" cy="57" r="16.5"/><circle cx="71" cy="57" r="16.5"/><circle cx="71" cy="71" r="16.5"/><circle cx="57" cy="71" r="16.5"/></g>
-            <g class="fm-f" style="--f:0.6"><circle cx="57" cy="57" r="16.5"/><circle cx="71" cy="57" r="16.5"/><circle cx="71" cy="71" r="16.5"/><circle cx="57" cy="71" r="16.5"/></g>
-            <g class="fm-f" style="--f:0.8"><circle cx="57" cy="57" r="16.5"/><circle cx="71" cy="57" r="16.5"/><circle cx="71" cy="71" r="16.5"/><circle cx="57" cy="71" r="16.5"/></g>
-            <g class="fm-f" style="--f:1.0"><circle cx="57" cy="57" r="16.5"/><circle cx="71" cy="57" r="16.5"/><circle cx="71" cy="71" r="16.5"/><circle cx="57" cy="71" r="16.5"/></g>
+            <g class="fm-f" filter="url(#fm-blur-core)" style="--f:0.2"><circle cx="57" cy="57" r="16.5"/><circle cx="71" cy="57" r="16.5"/><circle cx="71" cy="71" r="16.5"/><circle cx="57" cy="71" r="16.5"/></g>
+            <g class="fm-f" filter="url(#fm-blur-core)" style="--f:0.4"><circle cx="57" cy="57" r="16.5"/><circle cx="71" cy="57" r="16.5"/><circle cx="71" cy="71" r="16.5"/><circle cx="57" cy="71" r="16.5"/></g>
+            <g class="fm-f" filter="url(#fm-blur-core)" style="--f:0.6"><circle cx="57" cy="57" r="16.5"/><circle cx="71" cy="57" r="16.5"/><circle cx="71" cy="71" r="16.5"/><circle cx="57" cy="71" r="16.5"/></g>
+            <g class="fm-f" filter="url(#fm-blur-core)" style="--f:0.8"><circle cx="57" cy="57" r="16.5"/><circle cx="71" cy="57" r="16.5"/><circle cx="71" cy="71" r="16.5"/><circle cx="57" cy="71" r="16.5"/></g>
+            <g class="fm-f" filter="url(#fm-blur-core)" style="--f:1.0"><circle cx="57" cy="57" r="16.5"/><circle cx="71" cy="57" r="16.5"/><circle cx="71" cy="71" r="16.5"/><circle cx="57" cy="71" r="16.5"/></g>
           </g>
           <g class="fm-l fm-halo">
-            <g class="fm-f" style="--f:0.2"><circle cx="57" cy="57" r="16.5"/><circle cx="71" cy="57" r="16.5"/><circle cx="71" cy="71" r="16.5"/><circle cx="57" cy="71" r="16.5"/></g>
-            <g class="fm-f" style="--f:0.4"><circle cx="57" cy="57" r="16.5"/><circle cx="71" cy="57" r="16.5"/><circle cx="71" cy="71" r="16.5"/><circle cx="57" cy="71" r="16.5"/></g>
-            <g class="fm-f" style="--f:0.6"><circle cx="57" cy="57" r="16.5"/><circle cx="71" cy="57" r="16.5"/><circle cx="71" cy="71" r="16.5"/><circle cx="57" cy="71" r="16.5"/></g>
-            <g class="fm-f" style="--f:0.8"><circle cx="57" cy="57" r="16.5"/><circle cx="71" cy="57" r="16.5"/><circle cx="71" cy="71" r="16.5"/><circle cx="57" cy="71" r="16.5"/></g>
-            <g class="fm-f" style="--f:1.0"><circle cx="57" cy="57" r="16.5"/><circle cx="71" cy="57" r="16.5"/><circle cx="71" cy="71" r="16.5"/><circle cx="57" cy="71" r="16.5"/></g>
+            <g class="fm-f" filter="url(#fm-blur-halo)" style="--f:0.2"><circle cx="57" cy="57" r="16.5"/><circle cx="71" cy="57" r="16.5"/><circle cx="71" cy="71" r="16.5"/><circle cx="57" cy="71" r="16.5"/></g>
+            <g class="fm-f" filter="url(#fm-blur-halo)" style="--f:0.4"><circle cx="57" cy="57" r="16.5"/><circle cx="71" cy="57" r="16.5"/><circle cx="71" cy="71" r="16.5"/><circle cx="57" cy="71" r="16.5"/></g>
+            <g class="fm-f" filter="url(#fm-blur-halo)" style="--f:0.6"><circle cx="57" cy="57" r="16.5"/><circle cx="71" cy="57" r="16.5"/><circle cx="71" cy="71" r="16.5"/><circle cx="57" cy="71" r="16.5"/></g>
+            <g class="fm-f" filter="url(#fm-blur-halo)" style="--f:0.8"><circle cx="57" cy="57" r="16.5"/><circle cx="71" cy="57" r="16.5"/><circle cx="71" cy="71" r="16.5"/><circle cx="57" cy="71" r="16.5"/></g>
+            <g class="fm-f" filter="url(#fm-blur-halo)" style="--f:1.0"><circle cx="57" cy="57" r="16.5"/><circle cx="71" cy="57" r="16.5"/><circle cx="71" cy="71" r="16.5"/><circle cx="57" cy="71" r="16.5"/></g>
           </g>
         </svg>
       </div>

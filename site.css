@@ -441,8 +441,16 @@ figcaption{margin-top:var(--space-4);color:var(--text-tertiary);font-size:var(--
 .idea-mark svg{width:clamp(180px,24vw,360px);height:auto;display:block;overflow:visible}
 .idea-mark circle{fill:none}
 
-.idea-mark .fm-base circle{stroke:currentColor;stroke-width:1.25px;opacity:.5;
-  vector-effect:non-scaling-stroke}
+/* THE RING SCALES WITH THE MARK (Rose, 14 Sep 2026: "the mobile version has not the cool
+   glow"). It was non-scaling-stroke — locked at 1.25 device px whatever the mark measured
+   — while the light is in USER units and shrinks with it. So the glow ran 3.87x the ring's
+   weight at 1440 and only 1.57x at 390: on a phone the light was barely thicker than the
+   plain ring and stopped reading as light at all.
+   0.18 user units is the same 1.25 device px it drew at the desktop size (50-unit box,
+   346px wide), so the desktop is unchanged and every width now keeps that one ratio.
+   The light itself still must NOT be non-scaling: that would fix the dash too, and a
+   non-scaling dash breaks the arc into specks. */
+.idea-mark .fm-base circle{stroke:currentColor;stroke-width:.18px;opacity:.5}
 
 .idea-mark .fm-l{mix-blend-mode:overlay}
 .idea-mark .fm-f circle{
@@ -454,8 +462,8 @@ figcaption{margin-top:var(--space-4);color:var(--text-tertiary);font-size:var(--
   opacity:calc(1 - (1 - var(--f)) * .15);
   animation:fm-ride 48s linear infinite;
 }
-.idea-mark .fm-core circle{stroke:var(--white);stroke-width:.7px;filter:blur(.7px)}
-.idea-mark .fm-halo circle{stroke:var(--primary-24);stroke-width:.75px;filter:blur(2px)}
+.idea-mark .fm-core circle{stroke:var(--white);stroke-width:.7px}   /* blur: #fm-blur-core */
+.idea-mark .fm-halo circle{stroke:var(--primary-24);stroke-width:.75px} /* blur: #fm-blur-halo */
 
 /* the four rings run at four speeds sharing no common factor, each entered part-way through
    by a negative delay, so they drift apart and back instead of marching together */
@@ -827,3 +835,64 @@ figcaption{margin-top:var(--space-4);color:var(--text-tertiary);font-size:var(--
 .band-mint figcaption,.band-tint figcaption,
 .band-mint .small,.band-tint .small{color:var(--text-secondary)}
 
+/* ══ THE PHONE ═════════════════════════════════════════════════════════════════════
+   Rose, 14 Sep 2026: "a lot of the design is a little off in sizes and whitespace".
+   Measured before touching anything: the home page ran 16,784px on a 390px screen
+   against 10,973px at 1440 — HALF AGAIN AS LONG on the smaller screen. The layout was
+   stacking to one column but never tightening, so every desktop measurement came along
+   for the ride: 88px of air above and below ten sections, cards padded for a 380px
+   column sitting in a 350px one, and one heading size for everything.
+
+   These rules only ever REMOVE size. Nothing here introduces a colour, a face or a
+   value that is not already in the system — they step down the existing rungs.
+   ═══════════════════════════════════════════════════════════════════════════════════ */
+@media (max-width:700px){
+
+  /* 1 · RHYTHM. --space-8 (88) between sections is a desktop measure; on a phone it
+     reads as a gap rather than a breath, and ten of them is 1,760px of nothing. The
+     next rung down is --space-7 (56), which is the same ladder, not a new number. */
+  section{padding:var(--space-7) 0}
+  .final{padding:var(--space-7) 0 calc(var(--space-7) + 8px)}
+  .footer{padding:var(--space-7) 0 var(--space-6)}
+
+  /* 2 · THE DARK CARDS. Three of them stacked, each padded for a wide column and each
+     holding four short words. The padding comes in and the rows tighten. */
+  .card-dark{padding:22px 18px 24px}
+  .cards3{gap:14px;margin-top:var(--space-6)}
+
+  /* 4 · TYPE. Every heading landed on the clamp floor — 28px — so a section heading
+     and a card heading were the same size and the page lost its hierarchy. The rungs
+     stay; the phone just gets a different step on each. */
+  h2{font-size:26px}
+  .centred h2,.ico-row h2{font-size:28px}
+  h3{font-size:20px}
+  .pull{font-size:21px}
+  .lede{font-size:17px}
+
+  /* 5 · MEASURE. The narrowest body text was running 29 characters a line — not the
+     screen's fault but the padding inside the things sitting on it. With 2 and 3 above
+     the cards give their text back about four characters a line. */
+  .wrap{padding-inline:18px}
+
+  /* 6 · THE MARK. 140px was a correct-but-quiet scale-down; at 185 the light separates
+     from the rings and reads as it does on the desktop. */
+  .idea-mark svg{width:clamp(170px,48vw,205px)}
+}
+
+/* ══ TOUCH ═════════════════════════════════════════════════════════════════════════
+   44px is the floor every platform agrees on for something you tap. The billing switch
+   was 28, the menu rows 39, the inline links 31.
+
+   KEYED ON THE POINTER, NOT THE WIDTH (14 Sep 2026). These were written under
+   max-width:700px at first, which left a tablet — a touch device with a wide screen —
+   with 16 to 21 targets under the floor on every page. A finger is the same size at
+   768px as it is at 390. pointer:coarse asks the right question.
+   ═══════════════════════════════════════════════════════════════════════════════════ */
+@media (pointer:coarse){
+  .toggle button{height:44px}
+  .toggle::before{top:4px;bottom:4px}
+  .link{padding-top:9px;padding-bottom:9px}
+  .footer ul a,.rows a,.nav-links a{display:inline-block;padding:7px 0}
+  .nav-toggle{min-width:44px;min-height:44px}
+  .footer .mark{padding:5px 0}                 /* the lockup is a link home, 34px on its own */
+}
