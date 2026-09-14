@@ -209,6 +209,12 @@ const MC_DC = 'us16';
 const MC_U  = 'e91f6d86d0a31eefcfb224590';
 const MC_ID = 'eb09d5e362';
 const MC_F  = '0028afe1f0';   /* the audience's form id — Mailchimp's own action carries it */
+/* THE TAG EVERY SIGNUP FROM THIS PAGE CARRIES (Rose, 14 Sep 2026: "yes tag it waitlist").
+   Without it site signups land unlabelled while the contacts already in the audience carry
+   Waitlist, so a segment built on that tag would miss every new one. 186773 is the tag's own
+   id, the number Mailchimp puts in the address bar when you open the tag in Audience > Tags.
+   To use a different tag, open it there and read the id= off the URL. */
+const MC_TAG = '186773';
 
 (function(){
   var f   = document.getElementById('wlForm'),
@@ -224,7 +230,7 @@ const MC_F  = '0028afe1f0';   /* the audience's form id — Mailchimp's own acti
       base  = 'https://' + MC_DC + '.list-manage.com/subscribe/post';
 
   if (ready) {
-    f.action = base + '?u=' + MC_U + '&id=' + MC_ID + '&f_id=' + MC_F;  /* the no-script fallback */
+    f.action = base + '?u=' + MC_U + '&id=' + MC_ID + '&f_id=' + MC_F + '&tags=' + MC_TAG;  /* no-script fallback */
     bot.name = 'b_' + MC_U + '_' + MC_ID;              /* Mailchimp's trap, must stay empty */
   }
 
@@ -266,7 +272,8 @@ const MC_F  = '0028afe1f0';   /* the audience's form id — Mailchimp's own acti
     s.src = base + '-json?u=' + MC_U + '&id=' + MC_ID +
             '&EMAIL=' + encodeURIComponent(i.value) +
             '&FNAME=' + encodeURIComponent(fn.value.trim()) +
-            '&LNAME=' + encodeURIComponent(ln.value.trim()) + '&c=' + name;
+            '&LNAME=' + encodeURIComponent(ln.value.trim()) +
+            '&tags=' + MC_TAG + '&c=' + name;
     document.body.appendChild(s);
   });
 })();
