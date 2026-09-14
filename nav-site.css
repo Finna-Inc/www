@@ -17,12 +17,19 @@
 .nav .btn .ic{width:16px;height:16px}
 /* ---------- nav ---------- */
 .nav-outer{position:fixed;top:18px;left:0;right:0;z-index:60;padding:0 32px;pointer-events:none}
-/* ONE PAGE EDGE ON A PHONE (Rose, 14 Sep 2026: "what about the margins on mobile").
-   The bar was hard-coded to 32px while the page's --gutter resolves to 20 at this
-   width, so the floating bar sat 12px further in than every line of text beneath it
-   and the page read as having two different left edges. It takes the page's gutter
-   here. Above 700 the 32px inset is right — the bar is meant to float. */
-@media (max-width:700px){.nav-outer{padding:0 var(--gutter)}}
+/* THE BAR RUNS WIDER THAN THE TEXT (Rose, 14 Sep 2026: "I don't like the navbar in
+   mobile view flushing with the contents margins — make it a little wider").
+   It was 32px here, 12 further in than the page's 20px gutter, which read as two
+   different left edges. Matching the gutter exactly fixed that but made the bar look
+   like another column of content. 12px is the answer to both: the bar clearly sits
+   OUTSIDE the text's measure, as a floating object should, and it is one deliberate
+   step rather than an accident. Above 700 the 32px inset stands. */
+@media (max-width:700px){.nav-outer{top:12px;padding:0 12px}}
+/* ...and the same 12 above it (Rose, 14 Sep 2026: "make the top margin the same as the
+   new left and right margins"). It was 18px, set when the sides were 32 — a smaller
+   top than sides, which is right for a bar inset from the edges. With the sides at 12
+   that reversed: more air above than beside. Equal on three sides now, so the bar
+   floats in a frame of one thickness. */
 .nav{
   max-width:var(--maxw);margin:0 auto;pointer-events:auto;position:relative;
   display:flex;align-items:center;gap:28px;
@@ -83,7 +90,14 @@
   transition:opacity 220ms cubic-bezier(.22,1,.36,1),transform 260ms cubic-bezier(.22,1,.36,1),visibility 0s}
 /* the panel is DARK GREEN (Rose, 3 Sep) — it joins the bar it drops out of instead of
    punching a white hole in the header. White rows on --bg-dark measure 15.1:1. */
-.nav-dd{width:296px;background:var(--bg-dark);border:1px solid rgba(255,255,255,.12);
+/* THE SAME BLACK AS THE SHEET (Rose, 14 Sep 2026: "align the dropdown colour with the
+   desktop version — black both places"). This panel was --bg-dark, the dark green the
+   hero and half the sections already use, so the same menu read green on a wide screen
+   and black on a phone. One menu, one colour: the sheet's rgba(0,0,0,.94) over the
+   bar's blur. */
+.nav-dd{width:296px;background:rgba(0,0,0,.94);
+  backdrop-filter:blur(10px) saturate(120%);-webkit-backdrop-filter:blur(10px) saturate(120%);
+  border:1px solid rgba(255,255,255,.12);
   border-radius:14px;box-shadow:0 18px 44px rgba(8,27,23,.34);padding:8px;
   /* its own layer: the shadow is rasterised once instead of being re-blurred against
      the bar's backdrop-filter on every frame of the fade */
@@ -126,7 +140,7 @@
 @media (max-width:900px){
 .nav-links{display:none}
 .nav-links.open{display:flex;position:absolute;top:76px;left:0;right:0;transform:none;z-index:70;
-    flex-direction:column;gap:0;border-radius:20px;padding:12px 0;
+    flex-direction:column;gap:0;border-radius:20px;padding:8px 0;
     /* THE SAME GLASS AS THE BAR (Rose, 14 Sep 2026: "same frosted glass as navbar").
        It was --bg-dark first — the same surface the hero and half the sections already
        sit on — so opening the menu over a dark band gave a panel with no edge. Then it
@@ -150,11 +164,15 @@
        left edge, and `align-items:center` shrank the two plain items to their text and
        centred them while the dropdown rows ran full width. */
     margin:0;align-items:stretch}
-.nav-links.open a{padding:14px 22px}
+/* TIGHTER ROWS (Rose, 14 Sep 2026: "pull the menu items together a little bit — dropdown
+   menu is a little too tall on mobile"). The padding here was set when the rows were 13
+   and 17px; at 17 and 19 it stacked on top of type that had already grown. Every row
+   still clears the 44px touch floor — that is the number this cannot go under. */
+.nav-links.open a{padding:9px 22px}
 /* in the sheet the menu is not a panel — its rows sit under their parent, indented */
   .nav-has-dd{display:block;width:100%}
 .nav-chev{display:none}
-.nav-ddw{position:static;padding:0 0 8px;opacity:1;visibility:visible;pointer-events:auto;
+.nav-ddw{position:static;padding:0 0 4px;opacity:1;visibility:visible;pointer-events:auto;
     transform:none;transition:none}
 /* NO SECOND INDENT IN THE SHEET (Rose, 14 Sep 2026: "move the menu items to the left,
    why the margin"). The panel carried a 22px inset and every row inside it carries the
@@ -169,13 +187,13 @@
    the pointing. They take the reading rung like every other row, and the icons come up
    with them. The top-level rows step up a rung in turn, so the sheet still has an order
    rather than nine identical lines. */
-.nav-links .nav-ddl{opacity:1;transform:none;color:rgba(255,255,255,.78);padding:13px 22px;
-    font-size:var(--text-reading);gap:14px}
+.nav-links .nav-ddl{opacity:1;transform:none;color:rgba(255,255,255,.78);padding:7px 22px;
+    min-height:46px;font-size:var(--text-reading);gap:14px}
 .nav-links.open > a,.nav-links.open .nav-dd-t{font-size:var(--text-subhead);font-weight:var(--weight-label)}
 .nav-links .nav-ddl:hover{background:rgba(255,255,255,.08);color:var(--white)}
 .nav-links .nav-ddl.is-sub{color:rgba(255,255,255,.6)}
 .nav-ddi{width:30px;height:30px}
-.nav-dd-rule{background:rgba(255,255,255,.16);margin:6px 22px}   /* the rule keeps the sheet's edge */
+.nav-dd-rule{background:rgba(255,255,255,.16);margin:4px 22px}   /* the rule keeps the sheet's edge */
 /* THE SHEET'S KEY HOLDS ITS LABEL ON ONE LINE (Rose, 14 Sep 2026: "the cta button in
    this menu view is too big for the text"). It was inset 22px inside a sheet that is
    itself inset, and carrying the full-size key's 22px side padding on top — which left

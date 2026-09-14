@@ -460,17 +460,22 @@ figcaption{margin-top:var(--space-4);color:var(--text-tertiary);font-size:var(--
   transform-box:fill-box;transform-origin:center;
   transform:rotate(calc(38 * (1 - var(--f)) * 1.8deg));
   opacity:calc(1 - (1 - var(--f)) * .15);
-  animation:fm-ride 48s linear infinite;
+  animation:fm-ride 30s linear infinite;
 }
 .idea-mark .fm-core circle{stroke:var(--white);stroke-width:.7px}   /* blur: #fm-blur-core */
 .idea-mark .fm-halo circle{stroke:var(--primary-24);stroke-width:.75px} /* blur: #fm-blur-halo */
 
 /* the four rings run at four speeds sharing no common factor, each entered part-way through
    by a negative delay, so they drift apart and back instead of marching together */
-.idea-mark .fm-f circle:nth-child(1){animation-duration:42.2s;animation-delay:-3.2s}
-.idea-mark .fm-f circle:nth-child(2){animation-duration:57.1s;animation-delay:-18.7s}
-.idea-mark .fm-f circle:nth-child(3){animation-duration:35.0s;animation-delay:-8.9s}
-.idea-mark .fm-f circle:nth-child(4){animation-duration:68.2s;animation-delay:-25.3s}
+/* FASTER (Rose, 14 Sep 2026: "speed up the glow along the rings"). Every duration and
+   every delay is scaled by the SAME 0.625, so the four rings keep the relationship that
+   makes them drift apart and back — the speeds still share no common factor, and each
+   still enters its lap at the same point it did. A full lap was 48s; it is 30s now.
+   To change it again, scale all eight numbers by one factor. */
+.idea-mark .fm-f circle:nth-child(1){animation-duration:26.4s;animation-delay:-2.0s}
+.idea-mark .fm-f circle:nth-child(2){animation-duration:35.7s;animation-delay:-11.7s}
+.idea-mark .fm-f circle:nth-child(3){animation-duration:21.9s;animation-delay:-5.6s}
+.idea-mark .fm-f circle:nth-child(4){animation-duration:42.6s;animation-delay:-15.8s}
 @keyframes fm-ride{from{stroke-dashoffset:0}to{stroke-dashoffset:-103.67}}
 
 @media (prefers-reduced-motion:reduce){
