@@ -22,6 +22,14 @@
    animate the same jump and fight each other. Lenis honours reduced motion itself, so
    anyone who asked their machine for less motion gets plain, instant scrolling. */
 
+/* NO PULL-TO-REFRESH, NO BOUNCE AT THE ENDS (Rose, 14 Sep 2026: "when i pull down to
+   refresh the page the navbar flies up and down and is very janky"). The bar is fixed and
+   frosted; during a rubber-band the page slides under it and the browser has to re-blur
+   what is behind it on every frame of the bounce, which is the stutter. Nothing on a
+   static site needs refreshing by hand, so the gesture goes. Vertical only — the one
+   sideways scroller on the site keeps its own containment. */
+html{overscroll-behavior-y:none}
+
 body{
   margin:0;
   background:var(--bg);
@@ -29,6 +37,7 @@ body{
   font:var(--weight-reading) 17px/1.6 var(--font-sans);
   -webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;
+  overscroll-behavior-y:none;
 }
 
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter)}
