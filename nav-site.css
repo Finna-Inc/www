@@ -117,7 +117,13 @@
 .nav-links .nav-has-dd.open .nav-ddl:nth-child(4){transition-delay:0ms,0ms,160ms,160ms}
 .nav-links .nav-has-dd.open .nav-ddl:nth-child(6){transition-delay:0ms,0ms,210ms,210ms}
 .nav-links .nav-ddl:hover{background:rgba(255,255,255,.10);color:var(--white)}
-.nav-links .nav-ddl.is-sub{color:rgba(255,255,255,.66);font-size:var(--text-label)}
+/* THE SUB ROW IS GOLD, NOT DIMMED (Rose, 14 Sep 2026: "what is a family office stands
+   out a bit too much in a negative way — make it our golden colour, as the headline in
+   the hero, and the same size as the other menu items"). It was white at 66% and a rung
+   smaller, which reads as disabled rather than as a different KIND of link. It is the
+   hero's own --gold-light and the same size as its neighbours; gold is what the estate
+   already uses for the earned thing, and it separates this row without demoting it. */
+.nav-links .nav-ddl.is-sub{color:var(--gold-light)}
 .nav-ddi{flex:none;display:block;transition:transform 460ms cubic-bezier(.22,1,.36,1)}
 .nav-ddl:hover .nav-ddi{transform:translateY(-2px) scale(1.07)}
 .nav-dd-rule{display:block;height:1px;background:rgba(255,255,255,.14);margin:6px 4px}
@@ -191,7 +197,7 @@
     min-height:46px;font-size:var(--text-reading);gap:14px}
 .nav-links.open > a,.nav-links.open .nav-dd-t{font-size:var(--text-subhead);font-weight:var(--weight-label)}
 .nav-links .nav-ddl:hover{background:rgba(255,255,255,.08);color:var(--white)}
-.nav-links .nav-ddl.is-sub{color:rgba(255,255,255,.6)}
+.nav-links .nav-ddl.is-sub{color:var(--gold-light)}   /* the sheet matches the panel */
 .nav-ddi{width:30px;height:30px}
 .nav-dd-rule{background:rgba(255,255,255,.16);margin:4px 22px}   /* the rule keeps the sheet's edge */
 /* THE SHEET'S KEY HOLDS ITS LABEL ON ONE LINE (Rose, 14 Sep 2026: "the cta button in
