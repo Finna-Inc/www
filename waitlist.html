@@ -20,11 +20,11 @@
 <link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#0D231B">
-<link rel="stylesheet" href="chrome/fonts.css">
-<link rel="stylesheet" href="brand/tokens.css">
-<link rel="stylesheet" href="site.css">
-<link rel="stylesheet" href="nav-site.css">
-<link rel="stylesheet" href="vendor/lenis.css">
+<link rel="stylesheet" href="chrome/fonts.css?v=0c6cbb49">
+<link rel="stylesheet" href="brand/tokens.css?v=3adcfe7e">
+<link rel="stylesheet" href="site.css?v=fa78a1f5">
+<link rel="stylesheet" href="nav-site.css?v=01658971">
+<link rel="stylesheet" href="vendor/lenis.css?v=599bcc02">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -63,27 +63,55 @@
 
 <div class="hero" id="top">
   <div class="wrap inner">
-    <h1>The door opens soon.</h1>
-    <p class="lede">Finna is opening to a first group of families. Leave your name and
-      email and we will write to you when the office is ready.</p>
 
-    <form class="wl-form" id="wlForm" method="post" target="_blank" novalidate>
-      <input class="wl-input" id="wlFirst" type="text" name="FNAME" required
-             autocomplete="given-name" aria-label="First name" placeholder="First name">
-      <input class="wl-input" id="wlLast" type="text" name="LNAME" required
-             autocomplete="family-name" aria-label="Last name" placeholder="Last name">
-      <input class="wl-input wl-wide" id="wlEmail" type="email" name="EMAIL" required
-             autocomplete="email" spellcheck="false" aria-label="Email address"
-             placeholder="Email address">
-      <div class="wl-bot" aria-hidden="true">
-        <input type="text" id="wlBot" tabindex="-1" value="" autocomplete="off">
-      </div>
-      <button class="key key-l key-white wl-wide" type="submit">Join the waitlist</button>
-    </form>
+    <div id="wlAsk">
+      <h1>The door opens soon.</h1>
+      <p class="lede">Finna is opening to a first group of families. Leave your name and
+        email and we will write to you when the office is ready.</p>
 
-    <p class="wl-msg" id="wlMsg" role="status" aria-live="polite"></p>
-    <p class="wl-note" id="wlNote">One message when the door opens. Your address is not
-      shared, and you can leave the list at any time.</p>
+      <form class="wl-form" id="wlForm" method="post" target="_blank" novalidate>
+        <input class="wl-input" id="wlFirst" type="text" name="FNAME" required
+               autocomplete="given-name" aria-label="First name" placeholder="First name">
+        <input class="wl-input" id="wlLast" type="text" name="LNAME" required
+               autocomplete="family-name" aria-label="Last name" placeholder="Last name">
+        <input class="wl-input wl-wide" id="wlEmail" type="email" name="EMAIL" required
+               autocomplete="email" spellcheck="false" aria-label="Email address"
+               placeholder="Email address">
+        <div class="wl-bot" aria-hidden="true">
+          <input type="text" id="wlBot" tabindex="-1" value="" autocomplete="off">
+        </div>
+        <button class="key key-l key-white wl-wide" type="submit">Join the waitlist</button>
+      </form>
+
+      <p class="wl-msg" id="wlMsg" role="status" aria-live="polite"></p>
+      <p class="wl-note" id="wlNote">One message when the door opens. Your address is not
+        shared, and you can leave the list at any time.</p>
+    </div>
+
+    <!-- THE ANSWER TAKES THE WHOLE SCREEN (Rose, 14 Sep 2026). A line under a form the
+         reader has finished with is a weak ending; the form goes, and what replaces it is
+         the mark, a name and one sentence. The heading takes focus so a screen reader lands
+         on it, and aria-live announces it either way. -->
+    <div id="wlDone" class="wl-done" role="status" aria-live="polite" hidden>
+      <!-- WIDTH AND HEIGHT ARE ON THE TAG, NOT ONLY IN THE STYLESHEET. An SVG with a
+           viewBox and no stated size fills whatever holds it, so the one moment the CSS
+           is late or stale the mark becomes the whole screen. The attributes are the
+           floor; site.css scales it up from there. -->
+      <svg class="wl-done-mark" width="104" height="104"
+           viewBox="38.75 38.75 50.5 50.5" fill="none" aria-hidden="true">
+        <circle cx="57" cy="57" r="16.5" stroke="currentColor" stroke-width="1.5"/>
+        <circle cx="71" cy="57" r="16.5" stroke="currentColor" stroke-width="1.5"/>
+        <circle cx="71" cy="71" r="16.5" stroke="currentColor" stroke-width="1.5"/>
+        <circle cx="57" cy="71" r="16.5" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M64 56.06 A16.5 16.5 0 0 1 71.94 64 A16.5 16.5 0 0 1 64 71.94
+                 A16.5 16.5 0 0 1 56.06 64 A16.5 16.5 0 0 1 64 56.06 Z" fill="currentColor"/>
+      </svg>
+      <h1 id="wlDoneH" tabindex="-1">Welcome, <span id="wlDoneName">friend</span>.</h1>
+      <p class="lede">You are on the list. We will write to you once — when the office is
+        ready for you, and not before.</p>
+      <a class="key key-l key-white" href="index.html">Back to Finna</a>
+    </div>
+
   </div>
 </div>
 
@@ -221,8 +249,11 @@ const MC_F  = '0028afe1f0';   /* the audience's form id — Mailchimp's own acti
       i   = document.getElementById('wlEmail'),
       bot = document.getElementById('wlBot'),
       msg = document.getElementById('wlMsg'),
-      note= document.getElementById('wlNote'),
-      btn = f.querySelector('button');
+      btn = f.querySelector('button'),
+      ask = document.getElementById('wlAsk'),
+      panel = document.getElementById('wlDone'),
+      head = document.getElementById('wlDoneH'),
+      nameOut = document.getElementById('wlDoneName');
 
   var ready = !!(MC_DC && MC_U && MC_ID),
       base  = 'https://' + MC_DC + '.list-manage.com/subscribe/post';
@@ -252,13 +283,12 @@ const MC_F  = '0028afe1f0';   /* the audience's form id — Mailchimp's own acti
     var name = 'mc' + Date.now(),
         s    = document.createElement('script');
 
-    function done(){ btn.disabled = false; delete window[name]; s.remove(); }
+    function clear(){ btn.disabled = false; delete window[name]; s.remove(); }
 
     window[name] = function(res){
-      done();
+      clear();
       if (res && res.result === 'success') {
-        f.hidden = true; note.hidden = true;
-        say('You are on the list. We will write when the door opens.');
+        done(fn.value.trim());
       } else {
         /* Mailchimp prefixes with a field number and can send markup back */
         var t = (res && res.msg) || 'Something went wrong. Try again in a moment.';
@@ -266,7 +296,7 @@ const MC_F  = '0028afe1f0';   /* the audience's form id — Mailchimp's own acti
       }
     };
 
-    s.onerror = function(){ done(); say('Could not reach the list. Try again in a moment.', true); };
+    s.onerror = function(){ clear(); say('Could not reach the list. Try again in a moment.', true); };
     s.src = base + '-json?u=' + MC_U + '&id=' + MC_ID +
             '&EMAIL=' + encodeURIComponent(i.value) +
             '&FNAME=' + encodeURIComponent(fn.value.trim()) +
@@ -274,6 +304,96 @@ const MC_F  = '0028afe1f0';   /* the audience's form id — Mailchimp's own acti
             '&c=' + name;
     document.body.appendChild(s);
   });
+
+  /* ── THE ANSWER ────────────────────────────────────────────────────────────────────
+     The form leaves and the confirmation arrives in its place, greeting them by the name
+     they just gave. */
+  function done(first){
+    if (first) nameOut.textContent = first;
+    ask.hidden = true;
+    panel.hidden = false;
+    head.focus({preventScroll:true});
+    burst();
+  }
+
+  /* ── CONFETTI ──────────────────────────────────────────────────────────────────────
+     Written here rather than pulled from a library: it is forty lines, the site ships
+     self-contained, and a library would decide the colours. These are the estate's —
+     white, the two golds and the pale primary — on the dark ground.
+
+     One burst from behind the mark, thrown up and out, then gravity. Each piece is a
+     rectangle spinning about its own centre, so it flickers edge-on the way paper does.
+     The canvas takes itself off the page when the last piece has fallen, and there is no
+     burst at all for a reader who has asked for less motion. */
+  function burst(){
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    /* THE CANVAS CARRIES ITS OWN POSITION (14 Sep 2026). It used to take it from a rule in
+       site.css, which meant a stale stylesheet left it a static block at the foot of the
+       page — the burst ran, off-screen, and looked like nothing happened. The script makes
+       this element, so the script states what it is. Nothing here is a design decision. */
+    var cv = document.createElement('canvas');
+    cv.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;' +
+                       'z-index:55;pointer-events:none';
+    document.body.appendChild(cv);
+    var ctx = cv.getContext('2d'), dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    function size(){
+      cv.width = innerWidth * dpr; cv.height = innerHeight * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    size();
+
+    var COLOURS = ['#FFFFFF', '#E3C98C', '#BC9635', '#CADBD6'],
+        m  = head.getBoundingClientRect(),
+        ox = m.left + m.width / 2,
+        oy = m.top,
+        bits = [], N = 140;
+
+    for (var k = 0; k < N; k++) {
+      var a = (-Math.PI / 2) + (Math.random() - 0.5) * 2.1,
+          v = 7 + Math.random() * 11;
+      bits.push({
+        x: ox + (Math.random() - 0.5) * 60,
+        y: oy + (Math.random() - 0.5) * 30,
+        vx: Math.cos(a) * v,
+        vy: Math.sin(a) * v,
+        w: 5 + Math.random() * 5,
+        h: 8 + Math.random() * 6,
+        rot: Math.random() * Math.PI,
+        spin: (Math.random() - 0.5) * 0.3,
+        c: COLOURS[(Math.random() * COLOURS.length) | 0],
+        life: 0
+      });
+    }
+
+    var MAX = 230;
+    (function frame(){
+      ctx.clearRect(0, 0, innerWidth, innerHeight);   /* the context is in CSS pixels */
+      var alive = 0;
+      for (var k = 0; k < bits.length; k++) {
+        var b = bits[k];
+        if (b.life > MAX) continue;
+        alive++;
+        b.life++;
+        b.vy += 0.28;            /* gravity */
+        b.vx *= 0.99;            /* air */
+        b.x += b.vx; b.y += b.vy; b.rot += b.spin;
+        ctx.save();
+        ctx.globalAlpha = Math.max(0, 1 - b.life / MAX);
+        ctx.translate(b.x, b.y);
+        ctx.rotate(b.rot);
+        ctx.fillStyle = b.c;
+        /* the width breathes as it turns, which is what reads as a flip */
+        ctx.fillRect(-b.w / 2, -b.h / 2, b.w * Math.abs(Math.cos(b.rot * 1.7)), b.h);
+        ctx.restore();
+      }
+      if (alive) requestAnimationFrame(frame);
+      else cv.remove();
+    })();
+
+    addEventListener('resize', size, {passive:true});
+  }
 })();
 </script>
 <!-- BACK TO TOP, back from the 2026-09 site (Rose, 12 Sep 2026). The hard key as a
@@ -281,8 +401,8 @@ const MC_F  = '0028afe1f0';   /* the audience's form id — Mailchimp's own acti
      works with the script off. -->
 <a class="to-top" href="#top" aria-label="Back to top"><svg width="22" height="22" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg></a>
 
-<script src="vendor/lenis.min.js"></script>
-<script src="vendor/smooth-scroll.js" defer></script>
-<script src="nav-site.js"></script>
+<script src="vendor/lenis.min.js?v=daec1872"></script>
+<script src="vendor/smooth-scroll.js?v=cb7b0132" defer></script>
+<script src="nav-site.js?v=1bbd8290"></script>
 </body>
 </html>

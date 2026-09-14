@@ -1025,3 +1025,31 @@ body:has(.nav-links.open) .to-top{opacity:0;pointer-events:none}
   .wl-input{height:var(--key-height-xl)}
   .wl-form .key{justify-self:stretch}
 }
+
+/* ── THE WAITLIST'S ANSWER ── (Rose, 14 Sep 2026: "confetti and a clean screen when you
+   subscribe with a simple thank you") ───────────────────────────────────────────────
+   The form does not shrink to a line of text under itself; it leaves, and the mark, the
+   name and one sentence take the screen. Centred, because there is nothing left to scan
+   down the left edge — the same move the centred sections on the phone make. */
+.wl-done{text-align:center;max-width:44rem;margin-inline:auto}
+.wl-done .lede{margin-inline:auto;max-width:40ch}
+.wl-done h1{margin-top:var(--space-6)}
+.wl-done .key{margin-top:var(--space-7)}
+.wl-done-mark{width:clamp(72px,9vw,104px);height:auto;display:block;
+  max-width:100%;margin-inline:auto;color:var(--white)}
+/* the mark draws itself in, then the words follow it */
+.wl-done-mark{animation:wl-in-mark 720ms var(--ease) both}
+.wl-done h1{animation:wl-in 560ms var(--ease) 140ms both}
+.wl-done .lede{animation:wl-in 560ms var(--ease) 240ms both}
+.wl-done .key{animation:wl-in 560ms var(--ease) 340ms both}
+@keyframes wl-in-mark{
+  from{opacity:0;transform:scale(.82)}
+  to{opacity:1;transform:none}}
+@keyframes wl-in{
+  from{opacity:0;transform:translateY(10px)}
+  to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){
+  .wl-done-mark,.wl-done h1,.wl-done .lede,.wl-done .key{animation:none}
+}
+/* the key does not need a whole rung of air below one sentence on a phone */
+@media (max-width:700px){.wl-done .key{margin-top:var(--space-6)}}
