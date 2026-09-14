@@ -102,8 +102,12 @@
    padding lines the headline up with the bar's left edge at every width. */
 .hero-home > .wrap{width:100%;padding-left:clamp(0px,(1344px - 100%)/2,32px)}
 /* on a phone the bar is a floating pill with its own inset — the hero lines up with the
-   page's measure instead, so the headline and the sections share one left edge. */
-@media (max-width:900px){.hero-home > .wrap{padding-left:var(--gutter)}}
+   page's measure instead, so the headline and the sections share one left edge.
+   THIS BREAKPOINT IS THE BAR'S, NOT A ROUND NUMBER (14 Sep 2026). It read 900px while the
+   bar becomes a floating pill at 700, so between 701 and 900 the hero took the growing
+   gutter (35→45px) while the bar stayed at its 32px inset — the headline sat up to 13px
+   right of the bar and snapped back into line at 901. One breakpoint, one behaviour. */
+@media (max-width:700px){.hero-home > .wrap{padding-left:var(--gutter)}}
 /* The animated beams figure that sat in the hero's right half was REMOVED (Rose,
    12 Sep 2026), and its CSS with it. The hero is the words, the wave and the two keys. */
 @supports not (height:100svh){.hero-home{min-height:100vh}}
