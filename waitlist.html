@@ -312,8 +312,23 @@ const MC_F  = '0028afe1f0';   /* the audience's form id — Mailchimp's own acti
     if (first) nameOut.textContent = first;
     ask.hidden = true;
     panel.hidden = false;
+
+    /* BACK TO THE TOP FIRST (Rose, 14 Sep 2026). On a phone the key sits well down the
+       page, so after the swap the reader was left looking at the footer with the whole
+       confirmation above them — and the burst, which starts from the heading, went off
+       with nobody watching. The jump is instant on purpose: this is a new screen, not a
+       journey through the old one, and the confetti needs the heading to be where it will
+       stay before it measures it. Lenis owns the scroll on this site, so it is asked
+       first; window.scrollTo is the answer when the script did not load. */
+    if (window.lenis && typeof window.lenis.scrollTo === 'function') {
+      window.lenis.scrollTo(0, {immediate: true});
+    } else {
+      window.scrollTo(0, 0);
+    }
+
     head.focus({preventScroll:true});
-    burst();
+    /* two frames: one for the panel to lay out, one for the scroll to have landed */
+    requestAnimationFrame(function(){ requestAnimationFrame(burst); });
   }
 
   /* ── CONFETTI ──────────────────────────────────────────────────────────────────────
