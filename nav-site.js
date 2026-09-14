@@ -8,12 +8,41 @@
 (function () {
   var t = document.getElementById('navToggle'), l = document.getElementById('navLinks');
   if (!t) return;
+
+  function shut() {
+    if (!l.classList.contains('open')) return;
+    l.classList.remove('open');
+    t.setAttribute('aria-expanded', 'false');
+  }
+
   t.addEventListener('click', function () {
     var open = l.classList.toggle('open');
     t.setAttribute('aria-expanded', open ? 'true' : 'false');
   });
   l.addEventListener('click', function (e) {
-    if (e.target.tagName === 'A') { l.classList.remove('open'); t.setAttribute('aria-expanded','false'); }
+    if (e.target.tagName === 'A') shut();
+  });
+
+  /* A TAP ANYWHERE ELSE PUTS THE SHEET AWAY (Rose, 14 Sep 2026: "a tap on the page should
+     do it also"). The burger was the only way out, which is a trap on a phone — the sheet
+     covers the page and the way back is a small square in the corner.
+
+     pointerdown, not click: on iOS a click on something that is not itself clickable does
+     not reliably reach the document, and pointerdown also closes on the press rather than
+     the release, which is what a dismissal should feel like. Taps on the burger and inside
+     the sheet are left alone — the burger has its own handler and the sheet is what the
+     reader is using. */
+  document.addEventListener('pointerdown', function (e) {
+    if (!l.classList.contains('open')) return;
+    if (t.contains(e.target) || l.contains(e.target)) return;
+    shut();
+  });
+
+  /* and the keyboard's way out, which the sheet did not have either */
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape' || !l.classList.contains('open')) return;
+    shut();
+    t.focus();
   });
 })();
 
