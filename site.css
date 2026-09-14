@@ -954,10 +954,31 @@ figcaption{margin-top:var(--space-4);color:var(--text-tertiary);font-size:var(--
   .link{padding-top:9px;padding-bottom:9px}
   .footer ul a,.rows a,.nav-links a{display:inline-block;padding:7px 0}
   .nav-toggle{min-width:44px;min-height:44px}
-  .footer .mark{padding:5px 0}                 /* the lockup is a link home, 34px on its own */
+  .footer .foot-lockup{padding:5px 0}          /* the lockup is a link home */
 }
 
 /* AND IT GETS OUT OF THE WAY ENTIRELY WHILE THE MENU IS OPEN. Correct stacking stops it
    covering the sheet; it would still sit there as a second floating object competing with
    the one the reader just opened. */
 body:has(.nav-links.open) .to-top{opacity:0;pointer-events:none}
+
+/* THE FOOTER'S MARK (Rose, 14 Sep 2026: "insert same logo as in navbar but larger here in
+   the footer"). It was already there and measuring 0x40 — an inline width on an SVG does
+   not stop a flex row shrinking it, and in the footer's narrow first column it had been
+   squeezed to nothing, so the footer showed the word with no mark beside it. flex:none is
+   what holds it. Same drawing as the bar, larger: 56 against the bar's 40.
+
+   THE PROPORTIONS ARE THE LOCKUP'S, NOT THREE LOOSE NUMBERS. The bar states them - word
+   0.636 x mark, gap 0.318 x mark - and the footer was running 0.375 and 0.214 because the
+   mark grew and two hard-coded pixel values did not. Everything below is calculated from
+   --mk, so the lockup cannot drift again: change --mk and the word and the gap follow.
+   Two traps found here: the anchor also carried .mark, which nav-site.css (loaded after
+   this file) pins to 34px; and the font shorthand with calc()+var() computed to initial,
+   so the word stayed 16px. Longhands, and no .mark on the footer anchor. */
+.foot-lockup{--mk:56px;
+  display:inline-flex;align-items:center;gap:calc(var(--mk) * .318);
+  color:var(--white);text-decoration:none}
+.foot-lockup .foot-mark{flex:none;width:var(--mk);height:var(--mk);display:block}
+.foot-lockup b{font-family:var(--font-sans);font-weight:var(--weight-heading);
+  font-size:calc(var(--mk) * .636);line-height:1;letter-spacing:-.01em}
+@media (max-width:700px){.foot-lockup{--mk:48px}}
