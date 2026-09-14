@@ -982,3 +982,46 @@ body:has(.nav-links.open) .to-top{opacity:0;pointer-events:none}
 .foot-lockup b{font-family:var(--font-sans);font-weight:var(--weight-heading);
   font-size:calc(var(--mk) * .636);line-height:1;letter-spacing:-.01em}
 @media (max-width:700px){.foot-lockup{--mk:48px}}
+
+/* ── THE WAITLIST FIELD ── (Rose, 14 Sep 2026) ──────────────────────────────────────
+   The first text input on the site, so it is stated once here rather than invented on
+   the page. It stands beside a white key on the dark ground, so it is drawn the way the
+   key is drawn: the same height rung, the same radius, the same label size, and it takes
+   the key's phone rung at the same 767px the keys use. A hairline over a barely-there
+   fill rather than a solid white box — a filled white box next to a white key reads as
+   two keys, and the field is the quiet half of the pair. */
+.wl-form{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);
+  margin-top:var(--space-6);max-width:34rem}
+.wl-form .wl-wide{grid-column:1 / -1}          /* email and the key take the full measure */
+.wl-form .key{justify-self:start;margin-top:var(--space-2)}
+.wl-input{min-width:0;
+  height:var(--key-height-l);padding:0 20px;
+  border:1px solid rgba(255,255,255,.28);border-radius:var(--key-radius-l);
+  background:rgba(255,255,255,.06);color:var(--white);
+  font:var(--weight-reading) var(--key-label-l)/1 var(--font-sans);
+  transition:border-color var(--t-move) var(--ease),
+             background-color var(--t-move) var(--ease)}
+.wl-input::placeholder{color:rgba(255,255,255,.45)}
+.wl-input:hover{border-color:rgba(255,255,255,.44)}
+.wl-input:focus{outline:0;border-color:var(--white);background:rgba(255,255,255,.10)}
+.wl-input:focus-visible{outline:2px solid var(--white);outline-offset:3px}
+/* Mailchimp's bot trap. It must be in the form, must stay empty, and must never be seen
+   or reachable by a keyboard — the same off-screen move .skip uses. */
+.wl-bot{position:absolute;left:-9999px}
+/* THE ANSWER. Gold is the site's earned colour and a name on the list is where this page
+   earns it; the failure is white, because --warning is 4.22:1 on this ground and body
+   text needs 4.5. The wording carries the failure, not the colour. */
+.wl-msg{margin-top:var(--space-4);min-height:1.35em;color:var(--gold-light)}
+.wl-msg.is-bad{color:var(--white)}
+/* the answer keeps its line whether or not there is one, so the page does not jump when
+   it arrives; the note sits close under it so the three read as one block */
+.wl-note{margin-top:var(--space-3);color:rgba(255,255,255,.6);
+  font-size:var(--text-label);max-width:44ch}
+/* the keys go full width at 767 and take the xl rung; the field follows them */
+/* one column on a phone: first name and last name stop sharing a row, and the key goes
+   full width, which is what every key on the site does at this width */
+@media (max-width:767px){
+  .wl-form{grid-template-columns:1fr}
+  .wl-input{height:var(--key-height-xl)}
+  .wl-form .key{justify-self:stretch}
+}

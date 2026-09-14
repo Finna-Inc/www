@@ -3,19 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Privacy — Finna</title>
-<meta name="description" content="Privacy — coming soon.">
-<!-- A PAGE THAT SAYS IT IS NOT WRITTEN YET (Rose, 13 Sep 2026: "time to make these
-     'coming soon' pages"). Five footer items were dead <span>s with a soon chip; a chip
-     that cannot be clicked tells a visitor nothing about WHEN or WHAT. Each is a real
-     page now, and the footer chip is the link to it.
+<title>Join the waitlist — Finna</title>
+<meta name="description" content="Finna is opening to a first group of families. Leave your email and we will write when the office is ready for you.">
+<!-- THE WAITLIST (Rose, 14 Sep 2026). Every CTA on the site used to point at
+     app.finnafamilyoffice.com, which is not open yet — 43 links across 17 pages, all of
+     them a door with nothing behind it. They point here instead.
 
-     NOTHING IS DRAFTED HERE. Privacy, Terms, Disclosures and Form ADV are legal
-     instruments, not copy to fill in — these pages say plainly that they are coming and
-     nothing more. The chrome is 404.html's, so a visitor who lands here can still get
-     anywhere. -->
-<!-- source · the words are the ones the site shipped with (source/copy.md);
-     every value is taken from brand/tokens.css through site.css. -->
+     The field posts to Mailchimp and the answer comes back on this page, so nobody is
+     handed off to a Mailchimp-styled page at the moment they decide. Two values wire it
+     up; they are at the bottom of this file and nothing else needs touching.
+
+     COPY IS NOT FINAL. The words here are a working draft — Christian's pass covers
+     them, along with what the 39 "Explore your family office" buttons should say now
+     that they lead to a waitlist rather than an app. -->
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -54,29 +54,40 @@
       </div>
       <a href="how-it-works.html">How it works</a>
       <a href="service-levels.html">Service levels</a>
-      <a class="key key-s nav-cta-m" href="waitlist.html">Explore your family office<svg width="18" height="18" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a class="key key-s nav-cta-m" href="#top">Explore your family office<svg width="18" height="18" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
     </div>
     <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false"><svg width="22" height="22" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg></button>
-    <a class="key key-s" href="waitlist.html">Explore your family office<svg width="18" height="18" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    <a class="key key-s" href="#top">Explore your family office<svg width="18" height="18" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
   </nav>
 </div>
 
 <div class="hero" id="top">
   <div class="wrap inner">
-    <h1>What we hold, and why.</h1>
-    <p class="lede">Our privacy notice is being prepared with counsel and will be published here before this site reaches the company domain.</p>
+    <h1>The door opens soon.</h1>
+    <p class="lede">Finna is opening to a first group of families. Leave your name and
+      email and we will write to you when the office is ready.</p>
+
+    <form class="wl-form" id="wlForm" method="post" target="_blank" novalidate>
+      <input class="wl-input" id="wlFirst" type="text" name="FNAME" required
+             autocomplete="given-name" aria-label="First name" placeholder="First name">
+      <input class="wl-input" id="wlLast" type="text" name="LNAME" required
+             autocomplete="family-name" aria-label="Last name" placeholder="Last name">
+      <input class="wl-input wl-wide" id="wlEmail" type="email" name="EMAIL" required
+             autocomplete="email" spellcheck="false" aria-label="Email address"
+             placeholder="Email address">
+      <div class="wl-bot" aria-hidden="true">
+        <input type="text" id="wlBot" tabindex="-1" value="" autocomplete="off">
+      </div>
+      <button class="key key-l key-white wl-wide" type="submit">Join the waitlist</button>
+    </form>
+
+    <p class="wl-msg" id="wlMsg" role="status" aria-live="polite"></p>
+    <p class="wl-note" id="wlNote">One message when the door opens. Your address is not
+      shared, and you can leave the list at any time.</p>
   </div>
 </div>
 
-<main id="main">
-  <section class="band final">
-    <div class="wrap">
-      <h2>The office is open in the meantime.</h2>
-      <p>Everything you own in one place, and a door that opens on what you understand.</p>
-      <a class="key key-l key-white" href="index.html">Go to the home page</a>
-    </div>
-  </section>
-</main>
+<main id="main"></main>
 
 <footer class="footer">
   <div class="wrap">
@@ -136,7 +147,7 @@
           <li><a href="about.html">About</a></li>
           <li><a href="team.html">Team</a></li>
           <li><a class="soon" href="contact.html">Contact</a></li>
-          <li><a class="soon is-here" aria-current="page" href="#top">Privacy</a></li>
+          <li><a class="soon" href="privacy.html">Privacy</a></li>
           <li><a class="soon" href="terms.html">Terms</a></li>
           <li><a class="soon" href="disclosures.html">Disclosures</a></li>
           <li><a class="soon" href="form-adv.html">Form ADV</a></li>
@@ -177,6 +188,88 @@
   </div>
 </footer>
 <script>
+/* ── WIRING THE FIELD TO MAILCHIMP ──────────────────────────────────────────────────
+   PASTE THE THREE VALUES BELOW AND NOTHING ELSE ON THE PAGE CHANGES.
+
+   Mailchimp → Audience → Signup forms → Embedded forms. The code it shows you contains
+   a form action that looks like this:
+
+       https://finnaam.us21.list-manage.com/subscribe/post?u=a1b2c3d4e5f6a7b8c9&id=1a2b3c4d5e
+
+   MC_DC is the "us21" part, MC_U is the u= value, MC_ID is the id= value.
+   Until they are filled in the page says so plainly instead of failing in silence.
+
+   HOW IT ANSWERS WITHOUT LEAVING. Mailchimp's own script-callback endpoint replies with
+   {result, msg}, which is the only way a site with no server of its own can show the
+   answer in place. It carries the address in the request line rather than the body — if
+   that is ever not wanted, delete the submit handler below and the form falls back to a
+   plain post, which is what it already does with scripting off (it opens Mailchimp's own
+   page in a new tab and leaves this one standing). */
+const MC_DC = 'us16';
+const MC_U  = 'e91f6d86d0a31eefcfb224590';
+const MC_ID = 'eb09d5e362';
+const MC_F  = '0028afe1f0';   /* the audience's form id — Mailchimp's own action carries it */
+
+(function(){
+  var f   = document.getElementById('wlForm'),
+      fn  = document.getElementById('wlFirst'),
+      ln  = document.getElementById('wlLast'),
+      i   = document.getElementById('wlEmail'),
+      bot = document.getElementById('wlBot'),
+      msg = document.getElementById('wlMsg'),
+      note= document.getElementById('wlNote'),
+      btn = f.querySelector('button');
+
+  var ready = !!(MC_DC && MC_U && MC_ID),
+      base  = 'https://' + MC_DC + '.list-manage.com/subscribe/post';
+
+  if (ready) {
+    f.action = base + '?u=' + MC_U + '&id=' + MC_ID + '&f_id=' + MC_F;  /* the no-script fallback */
+    bot.name = 'b_' + MC_U + '_' + MC_ID;              /* Mailchimp's trap, must stay empty */
+  }
+
+  function say(text, bad){
+    msg.textContent = text;
+    msg.classList.toggle('is-bad', !!bad);
+  }
+
+  f.addEventListener('submit', function(e){
+    e.preventDefault();
+
+    if (!ready)      return say('The waitlist is not connected yet.', true);
+    if (!fn.value.trim()) { fn.focus(); return say('We need your first name.', true); }
+    if (!ln.value.trim()) { ln.focus(); return say('We need your last name.', true); }
+    if (!i.checkValidity()) { i.focus(); return say('That does not look like an email address.', true); }
+    if (bot.value)   return;                           /* a bot filled the trap */
+
+    btn.disabled = true;
+    say('One moment\u2026');
+
+    var name = 'mc' + Date.now(),
+        s    = document.createElement('script');
+
+    function done(){ btn.disabled = false; delete window[name]; s.remove(); }
+
+    window[name] = function(res){
+      done();
+      if (res && res.result === 'success') {
+        f.hidden = true; note.hidden = true;
+        say('You are on the list. We will write when the door opens.');
+      } else {
+        /* Mailchimp prefixes with a field number and can send markup back */
+        var t = (res && res.msg) || 'Something went wrong. Try again in a moment.';
+        say(t.replace(/^\d+\s*-\s*/, '').replace(/<[^>]*>/g, ''), true);
+      }
+    };
+
+    s.onerror = function(){ done(); say('Could not reach the list. Try again in a moment.', true); };
+    s.src = base + '-json?u=' + MC_U + '&id=' + MC_ID +
+            '&EMAIL=' + encodeURIComponent(i.value) +
+            '&FNAME=' + encodeURIComponent(fn.value.trim()) +
+            '&LNAME=' + encodeURIComponent(ln.value.trim()) + '&c=' + name;
+    document.body.appendChild(s);
+  });
+})();
 </script>
 <!-- BACK TO TOP, back from the 2026-09 site (Rose, 12 Sep 2026). The hard key as a
      circle; it appears once the header is behind you and is a plain anchor, so it
