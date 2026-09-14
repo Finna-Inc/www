@@ -350,9 +350,13 @@ const MC_F  = '0028afe1f0';   /* the audience's form id — Mailchimp's own acti
         oy = m.top,
         bits = [], N = 140;
 
+    /* SLOWER THAN A PARTY POPPER (Rose, 14 Sep 2026: "too aggressive"). Less than half the
+       gravity and half the spin, so the pieces rise, hang and come down rather than being
+       fired. The throw itself stayed wide: cut too far and the cloud never clears the mark,
+       which is worse than fast — it just sits on the logo. */
     for (var k = 0; k < N; k++) {
       var a = (-Math.PI / 2) + (Math.random() - 0.5) * 2.1,
-          v = 7 + Math.random() * 11;
+          v = 5.2 + Math.random() * 7.4;
       bits.push({
         x: ox + (Math.random() - 0.5) * 60,
         y: oy + (Math.random() - 0.5) * 30,
@@ -361,13 +365,13 @@ const MC_F  = '0028afe1f0';   /* the audience's form id — Mailchimp's own acti
         w: 5 + Math.random() * 5,
         h: 8 + Math.random() * 6,
         rot: Math.random() * Math.PI,
-        spin: (Math.random() - 0.5) * 0.3,
+        spin: (Math.random() - 0.5) * 0.13,
         c: COLOURS[(Math.random() * COLOURS.length) | 0],
         life: 0
       });
     }
 
-    var MAX = 230;
+    var MAX = 300;
     (function frame(){
       ctx.clearRect(0, 0, innerWidth, innerHeight);   /* the context is in CSS pixels */
       var alive = 0;
@@ -376,11 +380,12 @@ const MC_F  = '0028afe1f0';   /* the audience's form id — Mailchimp's own acti
         if (b.life > MAX) continue;
         alive++;
         b.life++;
-        b.vy += 0.28;            /* gravity */
-        b.vx *= 0.99;            /* air */
+        b.vy += 0.115;           /* gravity */
+        b.vx *= 0.986;           /* air */
+        b.vy *= 0.995;           /* and it slows the fall too, so nothing drops like a stone */
         b.x += b.vx; b.y += b.vy; b.rot += b.spin;
         ctx.save();
-        ctx.globalAlpha = Math.max(0, 1 - b.life / MAX);
+        ctx.globalAlpha = Math.max(0, Math.min(1, (1 - b.life / MAX) * 2.2));
         ctx.translate(b.x, b.y);
         ctx.rotate(b.rot);
         ctx.fillStyle = b.c;
