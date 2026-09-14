@@ -17,6 +17,12 @@
 .nav .btn .ic{width:16px;height:16px}
 /* ---------- nav ---------- */
 .nav-outer{position:fixed;top:18px;left:0;right:0;z-index:60;padding:0 32px;pointer-events:none}
+/* ONE PAGE EDGE ON A PHONE (Rose, 14 Sep 2026: "what about the margins on mobile").
+   The bar was hard-coded to 32px while the page's --gutter resolves to 20 at this
+   width, so the floating bar sat 12px further in than every line of text beneath it
+   and the page read as having two different left edges. It takes the page's gutter
+   here. Above 700 the 32px inset is right — the bar is meant to float. */
+@media (max-width:700px){.nav-outer{padding:0 var(--gutter)}}
 .nav{
   max-width:var(--maxw);margin:0 auto;pointer-events:auto;position:relative;
   display:flex;align-items:center;gap:28px;
@@ -120,7 +126,25 @@
 @media (max-width:900px){
 .nav-links{display:none}
 .nav-links.open{display:flex;position:absolute;top:76px;left:0;right:0;transform:none;z-index:70;
-    flex-direction:column;gap:0;background:var(--bg-dark);border-radius:20px;padding:12px 0;border:0;
+    flex-direction:column;gap:0;border-radius:20px;padding:12px 0;
+    /* THE SAME GLASS AS THE BAR (Rose, 14 Sep 2026: "same frosted glass as navbar").
+       It was --bg-dark first — the same surface the hero and half the sections already
+       sit on — so opening the menu over a dark band gave a panel with no edge. Then it
+       was a darker black than the bar, which fixed the edge but made two objects out of
+       what should read as one. These are now the bar's OWN values, character for
+       character: rgba(0,0,0,.70) over blur(10px) saturate(120%). The bar and the sheet
+       are one piece of glass with the page behind it.
+
+       ONE VALUE DIFFERS, ON PURPOSE (Rose, 14 Sep 2026: "almost black with very little
+       alpha"). The sheet is .94 where the bar is .70. The bar is 72px of glass over
+       whatever happens to be behind it; the sheet is 550px of it carrying ten rows you
+       have to read, and anything that competes with those rows is noise. Same blur, same
+       saturation, same black — the page is a hint behind it rather than a picture.
+       The shadow is the sheet's alone — it hangs over the page, the bar does not. */
+    background:rgba(0,0,0,.94);
+    backdrop-filter:blur(10px) saturate(120%);-webkit-backdrop-filter:blur(10px) saturate(120%);
+    border:0;
+    box-shadow:0 24px 60px -12px rgba(0,0,0,.45);
     /* THE SHEET IS THE BAR'S WIDTH (12 Sep 2026). The row's own margins are what the menu
        needs when it sits beside the name; in the sheet they pushed it 6px off the bar's
        left edge, and `align-items:center` shrank the two plain items to their text and
@@ -132,13 +156,33 @@
 .nav-chev{display:none}
 .nav-ddw{position:static;padding:0 0 8px;opacity:1;visibility:visible;pointer-events:auto;
     transform:none;transition:none}
-.nav-dd{width:auto;background:transparent;border:0;box-shadow:none;padding:0 0 0 22px}
-.nav-links .nav-ddl{opacity:1;transform:none;color:rgba(255,255,255,.78);padding:11px 22px}
+/* NO SECOND INDENT IN THE SHEET (Rose, 14 Sep 2026: "move the menu items to the left,
+   why the margin"). The panel carried a 22px inset and every row inside it carries the
+   sheet's own 22px, so those four sat 44px in while every other row sat at 22 — two
+   left edges inside one menu. The icons already say these rows belong to the item
+   above them; the indent was saying it a second time and costing the alignment. */
+.nav-dd{width:auto;background:transparent;border:0;box-shadow:none;padding:0}
+/* THE SHEET IS NOT THE DESKTOP DROPDOWN (Rose, 14 Sep 2026: "make the icons and menu
+   items larger — they're so small"). On a wide screen these rows are a panel hanging off
+   a menu item, and --text-label is right for that. In the sheet they ARE the navigation:
+   four of the site's main pages, at 13px, on the one screen where a fingertip is doing
+   the pointing. They take the reading rung like every other row, and the icons come up
+   with them. The top-level rows step up a rung in turn, so the sheet still has an order
+   rather than nine identical lines. */
+.nav-links .nav-ddl{opacity:1;transform:none;color:rgba(255,255,255,.78);padding:13px 22px;
+    font-size:var(--text-reading);gap:14px}
+.nav-links.open > a,.nav-links.open .nav-dd-t{font-size:var(--text-subhead);font-weight:var(--weight-label)}
 .nav-links .nav-ddl:hover{background:rgba(255,255,255,.08);color:var(--white)}
 .nav-links .nav-ddl.is-sub{color:rgba(255,255,255,.6)}
-.nav-ddi{width:26px;height:26px}
-.nav-dd-rule{background:rgba(255,255,255,.16);margin:6px 22px}
-.nav-links.open .nav-cta-m{display:inline-flex;margin:10px 22px 4px;justify-content:center;
+.nav-ddi{width:30px;height:30px}
+.nav-dd-rule{background:rgba(255,255,255,.16);margin:6px 22px}   /* the rule keeps the sheet's edge */
+/* THE SHEET'S KEY HOLDS ITS LABEL ON ONE LINE (Rose, 14 Sep 2026: "the cta button in
+   this menu view is too big for the text"). It was inset 22px inside a sheet that is
+   itself inset, and carrying the full-size key's 22px side padding on top — which left
+   “Explore your family office” about 240px to sit in and it wrapped to two lines, so a
+   56px key drew 90px tall. 14px of inset and 16px of padding gives it ~266px, and the
+   label fits. */
+.nav-links.open .nav-cta-m{display:inline-flex;margin:10px 14px 4px;padding-inline:16px;white-space:nowrap;justify-content:center;
     /* the phone's keys are width:100%; in the sheet that width plus the row's own 22px
        margins ran the key past the sheet's edge. It stretches to the row instead. */
     width:auto;align-self:stretch}

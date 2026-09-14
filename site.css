@@ -767,7 +767,10 @@ figcaption{margin-top:var(--space-4);color:var(--text-tertiary);font-size:var(--
    the same face, sheen and solid offset every other key wears, so it presses the same way.
    It appears once the header is behind you and is a plain anchor to #top, so it still works
    with the script off. --d-move/--d-state there are --t-move/--t-state here. */
-.to-top{position:fixed;right:48px;bottom:48px;z-index:61;
+/* UNDER THE NAV, NOT OVER IT (Rose, 14 Sep 2026). This was z-index 61 against the bar's
+   60 — and the open menu lives INSIDE the bar's stacking context, so 61 beat the whole
+   sheet however high the sheet's own z-index was set. 50 puts it where it belongs. */
+.to-top{position:fixed;right:48px;bottom:48px;z-index:50;
   width:56px;height:56px;border-radius:50%;display:grid;place-items:center;
   color:var(--white);text-decoration:none;
   background-color:var(--primary);
@@ -869,14 +872,66 @@ figcaption{margin-top:var(--space-4);color:var(--text-tertiary);font-size:var(--
   .pull{font-size:21px}
   .lede{font-size:17px}
 
-  /* 5 · MEASURE. The narrowest body text was running 29 characters a line — not the
-     screen's fault but the padding inside the things sitting on it. With 2 and 3 above
-     the cards give their text back about four characters a line. */
-  .wrap{padding-inline:18px}
+  /* 5 · ONE GUTTER (Rose, 14 Sep 2026: "what about the margins on mobile"). The page's
+     --gutter is 20px here; the floating nav bar was hard-coded to 32. So the bar sat
+     12px further in than every line of text under it, and the eye reads that as two
+     different page edges. The bar takes the page's gutter now — one edge, not two.
+     (An earlier pass set .wrap to 18px to win back characters; that made the mismatch
+     worse and fought the token. Removed — the measure is fixed properly in 2 and 3.) */
+  /* the bar's own gutter is set in nav-site.css, which loads after this file */
 
-  /* 6 · THE MARK. 140px was a correct-but-quiet scale-down; at 185 the light separates
-     from the rings and reads as it does on the desktop. */
-  .idea-mark svg{width:clamp(170px,48vw,205px)}
+  /* 6 · THE MARK IS CENTRED, AND BIGGER (Rose: "strangely small and put to the side").
+     The ≤900 rule left it justify-items:start, so on a phone it sat hard against the
+     left edge with the rest of the column empty beside it — it read as a stray object
+     rather than the section's picture. Centred, and up to ~235px so the light has room
+     to travel. */
+  .idea-row{justify-items:center}
+  .idea-mark{width:100%;display:flex;justify-content:center}
+  .idea-mark svg{width:clamp(200px,60vw,260px)}
+
+  /* 7 · THE SPACE INSIDE A SECTION, not just between them (Rose, 14 Sep 2026 — second
+     pass: "I don't think this looks right"). The first pass tightened the gaps BETWEEN
+     sections and left every gap WITHIN them at its desktop measure, which is why a
+     heading could sit 105px clear of the thing it introduces and a rule 104px clear of
+     the paragraph under it. On a screen this size those read as the page having lost
+     its place, not as breathing room. Same ladder, one rung down. */
+  .section-head{margin-bottom:var(--space-6)}   /* 56 → 32 */
+  .promise{padding:36px 0}                      /* 48 → 36 */
+  /* .band-violet .rule is (0,2,0) and beat a bare .rule even inside this query, so the
+     divider in that section kept its desktop margin. Matched here rather than raised
+     with !important. */
+  .rule,.band-violet .rule{margin:30px 0}     /* 52 → 30 */
+  .band-violet .lede{margin-top:20px}
+  .center-cta{margin-top:36px}                  /* 64 → 36 */
+  .idea-row{gap:var(--space-6)}                 /* the mark no longer sits 56 clear */
+  .stack > * + *{margin-top:16px}
+
+  /* 8 · LOOSE TEXT IS CENTRED; TEXT IN A BOX IS NOT (Rose, 14 Sep 2026: "maybe we should
+     center all sections that are not in a visible box"). On one narrow column, a heading
+     and its opening line sitting straight on the page have no edge of their own, and
+     ranged left they read as the leftovers of a two-column layout. Centred, they read as
+     placed. Anything INSIDE a card keeps its left edge — the card is already giving it
+     one, and centring a table of figures or a list of rows would be wrong.
+     Only headings and the one opening paragraph: a long run of body text stays ranged
+     left, because centring several lines costs the reader the return edge. */
+  .promise > .wrap > div:not([class]),
+  .band-violet > .wrap > div,
+  .section-head{text-align:center}
+  /* THE ICON GOES ABOVE THE HEADING (Rose, 14 Sep 2026: "put the icons on top centered
+     as well"). Beside a heading it costs the heading about 80px of a 350px column and
+     pushes two-word titles onto two lines. Stacked it costs nothing, and it gives the
+     centred block a top to hang from. The baseline alignment that pairs them side by
+     side has no job once they are stacked. */
+  /* TWO STRUCTURES, ONE RESULT. home-00 puts the icon in an .ico-row beside the heading;
+     the four promise sections put it INSIDE the h3, which is its own flex row. Both stack
+     and centre here. The baseline nudge that pairs icon and heading side by side has no
+     job once they sit one above the other. */
+  .ico-row,.promise h3{flex-direction:column;align-items:center;gap:14px;text-align:center}
+  .ico-row .plate,.promise h3 .plate{translate:none}
+  .promise > .wrap > div:not([class]) > .lede,
+  .band-violet .pull,.band-violet .lede{margin-inline:auto}
+  .band-violet .rule{margin-inline:auto}
+  .link{margin-inline:auto}
 }
 
 /* ══ TOUCH ═════════════════════════════════════════════════════════════════════════
@@ -896,3 +951,8 @@ figcaption{margin-top:var(--space-4);color:var(--text-tertiary);font-size:var(--
   .nav-toggle{min-width:44px;min-height:44px}
   .footer .mark{padding:5px 0}                 /* the lockup is a link home, 34px on its own */
 }
+
+/* AND IT GETS OUT OF THE WAY ENTIRELY WHILE THE MENU IS OPEN. Correct stacking stops it
+   covering the sheet; it would still sit there as a second floating object competing with
+   the one the reader just opened. */
+body:has(.nav-links.open) .to-top{opacity:0;pointer-events:none}
