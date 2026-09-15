@@ -283,20 +283,48 @@
    Nothing here is in the markup. The script clones the bar's own mark and builds this
    element, so a phone without touch, a reader who asked for less motion, or scripting off
    all get the page with no trace of it. */
+/* ══ THE MARK IN THE PULL ═══════════════════════════════════════════════════════════
+   It hangs from the page's top edge: --mk is its size and --gap the air under it, so at
+   rest its bottom sits --gap above the edge and it is completely off screen. It enters the
+   band as the pull opens and is fully in view once the pull passes --mk + --gap — which is
+   where its arrival animation is made to START, so all of it is watched rather than half of
+   it happening above the screen.
+
+   THE DRAWING IS THE 3D ONE (Rose, 15 Sep 2026, chosen on Lab bench 16 against a flat drawn
+   version). The rig is Bench 14's, shrunk: one perspective context, one object that rotates,
+   and copies of the rings pushed apart in Z so the turn reads as a wall rather than a
+   redraw. Every depth is stated in --u, a unit taken from the mark's own size, so the same
+   numbers hold if --mk changes. The wall is the mark's own colour mixed toward the band, so
+   no colour is invented for it, and there is no shadow — the band is read off the
+   photograph, and a blurred dark disc under the mark only muddied it.
+   ═══════════════════════════════════════════════════════════════════════════════════ */
 .pull-mark{
-  position:absolute;top:-58px;left:50%;z-index:1;
-  width:34px;height:34px;
-  /* the dark colour, because it sits on Champagne now, not on the page's own ground */
-  color:var(--bg-dark);opacity:0;
+  --mk:52px;--gap:10px;--u:1.53px;      /* --u is --mk / 34, the size the rig was drawn at */
+  position:absolute;left:50%;top:calc(-1 * (var(--mk) + var(--gap)));z-index:1;
+  width:var(--mk);height:var(--mk);margin-left:calc(var(--mk) / -2);
+  /* whichever of white and the dark surface measured better on THIS hero's band —
+     build/hero-tones.py picks it by contrast and writes it into hero-tones.css. No hero
+     on the page means the band is Champagne, and the dark surface is the right answer. */
+  color:var(--pull-mark,var(--bg-dark));
   pointer-events:none;
-  transform:translateX(-50%);
-  transform-origin:50% 50%;
 }
-.pull-mark svg{display:block;width:100%;height:100%}
+.pull-mark .pm-scene{display:block;width:100%;height:100%;opacity:0;
+  perspective:calc(64 * var(--u))}
+.pull-mark .pm-obj{position:relative;width:100%;height:100%;transform-style:preserve-3d;
+  transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg))}
+.pull-mark .pm-l{position:absolute;inset:0;pointer-events:none;transform:translateZ(var(--z,0px))}
+.pull-mark .pm-l svg{display:block;width:100%;height:100%;overflow:visible}
+.pull-mark .pm-e1{--z:calc(-.9 * var(--u))}
+.pull-mark .pm-e2{--z:calc(-1.8 * var(--u))}
+.pull-mark .pm-e3{--z:calc(-2.7 * var(--u))}
+.pull-mark .pm-e4{--z:calc(-3.6 * var(--u))}
+.pull-mark .pm-e1 svg{color:color-mix(in srgb,currentColor 70%,var(--pull-bg,var(--gold-light)))}
+.pull-mark .pm-e2 svg{color:color-mix(in srgb,currentColor 52%,var(--pull-bg,var(--gold-light)))}
+.pull-mark .pm-e3 svg{color:color-mix(in srgb,currentColor 37%,var(--pull-bg,var(--gold-light)))}
+.pull-mark .pm-e4 svg{color:color-mix(in srgb,currentColor 25%,var(--pull-bg,var(--gold-light)))}
+.pull-mark .pm-core{--z:calc(3 * var(--u))}
 /* only while it is settling back — during the drag it must track the finger exactly */
-.pull-mark.snap{
-  transition:transform 480ms cubic-bezier(.22,1,.36,1),opacity 340ms ease-out;
-}
+.pull-mark.snap .pm-scene{transition:opacity 300ms ease-out,transform 300ms ease-out}
 
 /* THE BAR'S GLASS SLEEPS WHILE THE PAGE MOVES (Rose, 15 Sep 2026: the pull "stutters...
    it's not fluid"). backdrop-filter has to re-read and re-blur everything behind the bar

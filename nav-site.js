@@ -232,8 +232,8 @@
 
 /* ══ THE PULL ══════════════════════════════════════════════════════════════════════
    Pull down from the top of a phone page and the whole page comes with you — hero,
-   picture, bar, content — with Champagne showing above it and the mark turning in that
-   Champagne. Let go and it springs home.
+   picture, bar, content — with a band showing above it in the hero photograph's own colour,
+   and the mark turning in that band. Let go and it springs home.
 
    WHY THIS IS DONE BY HAND, HAVING SAID IT SHOULD NOT BE. iOS Safari does not rubber-band
    at the top of a page: at rest the downward gesture is its own pull-to-refresh, drawn by
@@ -272,25 +272,61 @@
       hero = document.querySelector('.hero-home');
   if (!src) return;
 
+  /* THE MARK IS BUILT FROM THE BAR'S OWN DRAWING — still no asset of its own. The nav mark
+     is one svg holding the four rings and the filled centre; the rig needs them apart, so
+     each copy is stripped down to whichever half it is playing. */
+  function ringsOnly() {
+    var n = src.cloneNode(true); n.removeAttribute('class');
+    var c = n.querySelector('path'); if (c) c.remove();
+    return n;
+  }
+  function coreOnly() {
+    var n = src.cloneNode(true); n.removeAttribute('class');
+    [].forEach.call(n.querySelectorAll('circle'), function (o) { o.remove(); });
+    return n;
+  }
+
   var el = document.createElement('div');
   el.className = 'pull-mark';
   el.setAttribute('aria-hidden', 'true');
-  var art = src.cloneNode(true);
-  art.removeAttribute('class');
-  el.appendChild(art);
-  page.appendChild(el);
+  var scene = document.createElement('div'); scene.className = 'pm-scene';
+  var obj = document.createElement('div'); obj.className = 'pm-obj';
+  ['pm-e4', 'pm-e3', 'pm-e2', 'pm-e1', 'pm-rings'].forEach(function (c) {
+    var l = document.createElement('div');
+    l.className = 'pm-l ' + c;
+    l.appendChild(ringsOnly());
+    obj.appendChild(l);
+  });
+  var core = document.createElement('div');
+  core.className = 'pm-l pm-core';
+  core.appendChild(coreOnly());
+  obj.appendChild(core);
+  scene.appendChild(obj); el.appendChild(scene); page.appendChild(el);
 
   var MAX  = 124,     /* how far the page can come down */
       DAMP = 210;     /* how quickly the resistance builds */
 
-  var from = null, pull = 0, frame = 0, idle = 0;
+  var from = null, pull = 0, frame = 0, idle = 0, fired = 0;
 
-  /* THE MARK GROWS AND GOES (Rose, 15 Sep 2026: "the logo is not animating when pulling
-     down"). It was turning up to 90 degrees — and the four rings are the same shape every
-     quarter turn, so the turn was invisible by construction. A neat idea that could not be
-     seen is not an effect. It scales up instead, and fades away as the pull completes:
-     brightest at just past half, gone at the end. Placeholder while he iterates. */
-  var PEAK = 0.55,
+  /* THE MARK ARRIVES, THEN GOES (Rose, 15 Sep 2026, settled on Lab bench 16 after four
+     passes: a draw-in, a bounce, a checkmark, and finally none of those).
+
+       IN     it is tilted back when it enters the band and turns square-on as the pull
+              deepens, complete exactly at THRESH. The arrival is timed to START at SEEN,
+              the pull at which the mark is fully in view — so every frame of it is watched
+              rather than half of it happening above the top of the screen.
+       GONE   the moment it is complete it scales up and vanishes, on its own clock, WHILE
+              THE FINGER IS STILL DOWN. Quick and with a temper: EXIT is 320ms, the scale
+              comes off a fifth-power curve so nearly all the growth is spent in the first
+              breath, and the opacity falls on a curve of its own. One burst, not a grow
+              followed by a fade.
+       HOME   letting go is only the page springing back. Let go short of THRESH and the
+              mark simply fades with it. */
+  var SEEN   = 62,      /* --mk + --gap in nav-site.css: where the mark is all there */
+      THRESH = 0.79,    /* of MAX — the pull that completes the mark and fires it */
+      TILT   = 72,      /* degrees it is turned through on the way in */
+      GROW   = 0.46,    /* how much bigger it gets on the way out */
+      EXIT   = 320,     /* ms */
       /* PARALLAX, after keyframer.dev's drag recipe. The page carries everything at 1.0;
          these are what each layer does AROUND that, and the order is the whole trick — the
          nearest layer must be the fastest, or the depth reads backwards.
@@ -304,10 +340,15 @@
       BACK = -0.55,     /* picture: 1.00 - 0.55 = 0.45 */
       FRONT = 0.30;     /* bar:     1.00 + 0.30 = 1.30 */
 
+  function clamp(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
+  /* 0 below a, 1 above b, eased between */
+  function seg(x, a, b) { var t = clamp((x - a) / (b - a)); return t * t * (3 - 2 * t); }
+
   function paint() {
     frame = 0;
     var t = pull / MAX,
-        fade = t < PEAK ? t / PEAK : 1 - (t - PEAK) / (1 - PEAK);
+        d = fired ? 1 : clamp((pull - SEEN) / Math.max(1, MAX * THRESH - SEEN)),
+        c = fired ? clamp((performance.now() - fired) / EXIT) : 0;
 
     page.style.transform = pull ? 'translate3d(0,' + pull.toFixed(1) + 'px,0)' : '';
 
@@ -319,9 +360,16 @@
     }
     if (bar) bar.style.transform = pull ? 'translate3d(0,' + (pull * FRONT).toFixed(1) + 'px,0)' : '';
 
-    el.style.opacity = Math.max(0, Math.min(1, fade)).toFixed(3);
-    el.style.transform =
-      'translateX(-50%) scale(' + (0.6 + t * 0.85).toFixed(3) + ')';
+    var turn = 1 - d;
+    obj.style.setProperty('--rx', (TILT * turn).toFixed(2) + 'deg');
+    obj.style.setProperty('--ry', (-TILT * 0.55 * turn).toFixed(2) + 'deg');
+    core.style.opacity = seg(d, 0.45, 1).toFixed(3);
+    scene.style.transform = 'scale(' + (1 + GROW * (1 - Math.pow(1 - c, 5))).toFixed(4) + ')';
+    scene.style.opacity = (seg(d, 0, 0.34) * Math.pow(1 - c, 1.7)).toFixed(3);
+
+    /* the exit runs on a clock, not on the finger, so it needs its own frames while the
+       finger is holding still */
+    if (fired && c < 1) draw();
   }
   function draw() { if (!frame) frame = requestAnimationFrame(paint); }
 
@@ -333,6 +381,7 @@
     if (sheet && sheet.classList.contains('open')) return;   /* the menu owns the screen */
     if (!atTop()) return;
     from = e.touches[0].clientY;
+    fired = 0;                         /* a fresh gesture gets a fresh mark */
     page.classList.remove('pull-snap');
     el.classList.remove('snap');
     /* SMOOTHNESS (Rose: "the pull down makes the page scroll stutter"). Two costs, both
@@ -354,6 +403,7 @@
     e.preventDefault();                /* the gesture is ours from here */
     /* exponential resistance: the first pixels come readily, the last barely at all */
     pull = MAX * (1 - Math.exp(-d / DAMP));
+    if (!fired && pull >= MAX * THRESH) fired = performance.now();
     draw();
     watch();
   }, { passive: false });
@@ -384,6 +434,7 @@
     page.style.willChange = '';
     if (bar) bar.style.transform = '';
     if (hero) { hero.style.removeProperty('--par'); hero.style.removeProperty('--par-s'); }
+    fired = 0;
   });
 
   /* CAPTURE, AND ON THE DOCUMENT. The end of the gesture is the one event that must never
