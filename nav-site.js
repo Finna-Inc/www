@@ -231,27 +231,24 @@
 })();
 
 /* ══ THE PULL MARK ══════════════════════════════════════════════════════════════════
-   Pull down from the top of a phone page and the estate's mark comes out from behind the
-   bar, turns with the pull and settles under it; let go and it draws back.
+   Pull down from the top of a phone page and the PAGE comes with you — background, bar and
+   all — with Champagne showing in the gap and the estate's mark sitting in it, turning with
+   the pull. Let go and the page goes back.
 
-   WHAT IT DOES NOT DO. It never calls preventDefault. The browser keeps its own rubber
-   band and whatever it wants to do with the gesture, and this rides along on the same
-   finger — overriding the scroll to own the gesture is how these things end up fighting
-   the page on iOS. It reads touches and moves one element, nothing more.
+   THE BROWSER DOES THE MOVING. iOS rubber-bands the document natively; the bar is sticky
+   and the mark is absolutely positioned just above the page's top edge, so both are carried
+   by that one movement. This script never translates anything vertically and never calls
+   preventDefault — it reads how far the finger has travelled and turns the mark by it.
+   That is the whole job. An earlier version moved the mark itself, which is why it answered
+   while the page stood still.
 
-   WHY IT CANNOT DISTURB THE BAR. The bar is sticky and composited with the page; this is
-   a separate fixed element one layer below it, and nothing here touches the bar, the
-   document's scroll, or any shared style.
+   ANDROID. Chrome does not rubber-band; its gesture is a reload, and overscroll-behavior
+   contain turns that off rather than have the page reload mid-pull. So on Android the pull
+   does nothing at all, which is the honest native answer — nothing here fakes it.
 
-   PROGRESSIVE ENHANCEMENT. No markup, no asset of its own: the mark is CLONED from the
-   bar, so it is the project's own logo and follows it if it ever changes. Without touch,
-   without the script, or for a reader who asked for less motion, the element is never
-   built and the page is exactly as it was.
-
-   THE FEEL. Resistance is exponential — 1 - e^(-d/DAMP) — so the first few pixels move it
-   readily and the last ones barely at all, which is what makes a pull feel like it is
-   against something rather than on rails. The travel is measured from the real bar each
-   time, so it lands a thumb's width under it at every width.
+   PROGRESSIVE ENHANCEMENT. No markup, no asset of its own: the mark is CLONED from the bar,
+   so it is the project's own logo and follows it if it ever changes. Without touch, without
+   the script, or for a reader who asked for less motion, the element is never built.
    ═══════════════════════════════════════════════════════════════════════════════════ */
 (function () {
   'use strict';
@@ -260,9 +257,8 @@
   if (matchMedia('(prefers-reduced-motion:reduce)').matches) return;
 
   var src = document.querySelector('.nav .mark'),
-      bar = document.querySelector('.nav'),
       sheet = document.getElementById('navLinks');
-  if (!src || !bar) return;
+  if (!src) return;
 
   var el = document.createElement('div');
   el.className = 'pull-mark';
@@ -272,19 +268,16 @@
   el.appendChild(art);
   document.body.appendChild(el);
 
-  var PARK = 40,      /* how far above the top edge the mark rests, matching the CSS */
-      GAP  = 16,      /* where it lands below the bar */
-      DAMP = 150;     /* how quickly the resistance builds */
+  var DAMP = 150;     /* how quickly the resistance builds */
 
-  var from = null, pull = 0, max = 140, frame = 0, idle = 0;
+  var from = null, t = 0, frame = 0, idle = 0;
 
   function paint() {
     frame = 0;
-    var t = pull / max,
-        s = 0.78 + t * 0.22;
-    el.style.opacity = Math.min(1, t * 1.8);
+    var s = 0.84 + t * 0.16;
+    el.style.opacity = Math.min(1, t * 2.2);
     el.style.transform =
-      'translate(-50%,' + pull.toFixed(1) + 'px) ' +
+      'translateX(-50%) ' +
       'rotate(' + (t * 90).toFixed(2) + 'deg) ' +
       'scale(' + s.toFixed(3) + ') ' +
       /* the stretch: a few percent taller at the end of the pull, and no more */
@@ -300,7 +293,6 @@
     if (sheet && sheet.classList.contains('open')) return;   /* the menu owns the screen */
     if (!atTop()) return;
     from = e.touches[0].clientY;
-    max = Math.round(bar.getBoundingClientRect().bottom + GAP + PARK);
     el.classList.remove('snap');
   }, { passive: true });
 
@@ -308,39 +300,38 @@
     if (from === null || e.touches.length !== 1) return;
     var d = e.touches[0].clientY - from;
     if (d <= 0 || !atTop()) {          /* pushed back up, or the page took over */
-      if (pull) { pull = 0; draw(); }
+      if (t) { t = 0; draw(); }
       return;
     }
-    pull = max * (1 - Math.exp(-d / DAMP));
+    /* exponential resistance: the first pixels turn it readily, the last barely at all */
+    t = 1 - Math.exp(-d / DAMP);
     draw();
     watch();
   }, { passive: true });
 
-  /* THE RELEASE PAINTS AT ONCE, IT DOES NOT QUEUE (15 Sep 2026). Going through draw() left
-     a race: a frame queued by the last touchmove could run after this and repaint the old
-     pull, and the mark stayed out on screen. Cancel anything pending and paint here. */
+  /* THE RELEASE PAINTS AT ONCE, IT DOES NOT QUEUE. Going through draw() left a race: a
+     frame queued by the last touchmove could run after this and repaint the old pull, and
+     the mark stayed out. Cancel anything pending and paint here. */
   function release() {
     from = null;
     clearTimeout(idle);
-    if (!pull) return;
+    if (!t) return;
     el.classList.add('snap');
-    pull = 0;
+    t = 0;
     if (frame) { cancelAnimationFrame(frame); frame = 0; }
     paint();
   }
-  /* CAPTURE, AND ON THE DOCUMENT. The end of the gesture is the one event that must never
-     be missed — a missed one leaves the mark sitting on the page — so it is heard on the
-     way down, where nothing can stop it first.
 
-     NOT pointercancel. It looks like the right signal and is not: Chrome fires it the
-     moment it claims the gesture for scrolling, which is every single downward drag at the
-     top of the page — binding it here ended the pull before it had begun. */
+  /* CAPTURE, AND ON THE DOCUMENT. The end of the gesture is the one event that must never
+     be missed — a missed one leaves the mark turned — so it is heard on the way down, where
+     nothing can stop it first.
+
+     NOT pointercancel. It looks like the right signal and is not: Chrome fires it the moment
+     it claims the gesture for scrolling, which is every downward drag at the top of the
+     page — binding it here ended the pull before it had begun. */
   document.addEventListener('touchend', release, { passive: true, capture: true });
   document.addEventListener('touchcancel', release, { passive: true, capture: true });
 
-  /* AND A WATCHDOG BEHIND BOTH OF THEM. Under fast input the end of a gesture can still be
-     lost, and the cost of losing it is the mark stranded on screen. If the mark is out and
-     nothing has moved for a beat, it goes home by itself. A second and a bit is far longer
-     than any real pull holds still, so nobody meets this. */
+  /* and a watchdog behind both, because the cost of a lost touchend is a mark left turned */
   function watch() { clearTimeout(idle); idle = setTimeout(release, 1200); }
 })();

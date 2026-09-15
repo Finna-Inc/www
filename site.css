@@ -22,13 +22,23 @@
    animate the same jump and fight each other. Lenis honours reduced motion itself, so
    anyone who asked their machine for less motion gets plain, instant scrolling. */
 
-/* NO PULL-TO-REFRESH, NO BOUNCE AT THE ENDS (Rose, 14 Sep 2026: "when i pull down to
-   refresh the page the navbar flies up and down and is very janky"). The bar is fixed and
-   frosted; during a rubber-band the page slides under it and the browser has to re-blur
-   what is behind it on every frame of the bounce, which is the stutter. Nothing on a
-   static site needs refreshing by hand, so the gesture goes. Vertical only — the one
-   sideways scroller on the site keeps its own containment. */
-html{overscroll-behavior-y:none}
+/* THE PAGE IS ALLOWED TO BE PULLED (Rose, 15 Sep 2026: "the entire visible page/canvas
+   must move down together when I pull from the top").
+
+   This line read `none` for a day. That was the right answer to the OLD problem — a fixed
+   bar juddering against a moving page — and it is the wrong answer now: `none` works by
+   switching off the very movement the pull is made of, which is why the page froze and only
+   the mark answered the finger. The bar is sticky now, so it travels with the page and
+   there is nothing left to judder.
+
+   `contain`, not `auto`: it stops Android's pull-to-refresh, which would RELOAD the page
+   mid-gesture, while leaving iOS its rubber band. Android does not rubber-band at all, so
+   there the pull is simply a no-op — native behaviour on both, and nothing simulated.
+
+   WHAT SHOWS IN THE GAP. iOS paints the root element's background in the space the bounce
+   opens up, so Champagne is stated here and the page's own ground stays on the body. That
+   is the whole reveal: no extra element, no script. */
+html{overscroll-behavior-y:contain;background:var(--gold-light)}
 
 body{
   margin:0;
@@ -37,7 +47,7 @@ body{
   font:var(--weight-reading) 17px/1.6 var(--font-sans);
   -webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;
-  overscroll-behavior-y:none;
+  overscroll-behavior-y:contain;
 }
 
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter)}

@@ -267,11 +267,15 @@
 }
 
 /* ══ THE PULL MARK ══════════════════════════════════════════════════════════════════
-   A small branded thing at the top of a phone page (Rose, 15 Sep 2026). Pull down from
-   the very top and the estate's mark comes out from BEHIND the bar, turns with the pull
-   and settles just under it; let go and it draws back. z-index 59 puts it one below the
-   bar on purpose — emerging from behind the frosted glass is the whole trick, and it is
-   why the effect reads as part of the bar rather than a spinner stuck on top of it.
+   A small branded thing at the top of a phone page (Rose, 15 Sep 2026). Pull down from the
+   very top, the page comes with you the way a sheet of paper would, Champagne shows in the
+   gap that opens above it, and the estate's mark is sitting there — turning with how far
+   you have pulled. Let go and the page goes back.
+
+   ABSOLUTE, NOT FIXED. This is the whole idea. A fixed element is pinned to the screen and
+   would hang still while the page moved under it; absolute at a NEGATIVE offset puts the
+   mark just above the top edge of the page itself, so it travels with the page and the
+   bounce is what reveals it. The browser moves it, not a script — the script only turns it.
 
    The mark turns 90 degrees at most and no further, because the four rings are the same
    shape every quarter turn: at the end of the pull it has come exactly back to itself.
@@ -280,15 +284,16 @@
    element, so a phone without touch, a reader who asked for less motion, or scripting off
    all get the page with no trace of it. */
 .pull-mark{
-  position:fixed;top:-40px;left:50%;z-index:59;
+  position:absolute;top:-58px;left:50%;z-index:1;
   width:34px;height:34px;
-  color:var(--white);opacity:0;
+  /* the dark colour, because it sits on Champagne now, not on the page's own ground */
+  color:var(--bg-dark);opacity:0;
   pointer-events:none;
-  transform:translate(-50%,0);
+  transform:translateX(-50%);
   transform-origin:50% 50%;
 }
 .pull-mark svg{display:block;width:100%;height:100%}
-/* only while it is springing back — during the drag it must track the finger exactly */
+/* only while it is settling back — during the drag it must track the finger exactly */
 .pull-mark.snap{
   transition:transform 480ms cubic-bezier(.22,1,.36,1),opacity 340ms ease-out;
 }
