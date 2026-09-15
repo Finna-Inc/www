@@ -16,7 +16,27 @@
 /* the bar's key runs smaller, so its arrow does too */
 .nav .btn .ic{width:16px;height:16px}
 /* ---------- nav ---------- */
-.nav-outer{position:fixed;top:18px;left:0;right:0;z-index:60;padding:0 32px;pointer-events:none}
+/* STICKY, NOT FIXED (Rose, 15 Sep 2026: on a phone the bar "moves or jumps vertically"
+   when the page is pulled down).
+
+   THE CAUSE. A fixed element is positioned against the LAYOUT viewport, which does not
+   move during a pull-to-refresh or a rubber-band — the VISUAL viewport does. So the page
+   slides and the bar does not, and the browser has to re-read and re-blur everything
+   behind it on every frame of the pull, then re-sync the two viewports when the bounce
+   ends. That re-sync is the jump. iOS does it whatever overscroll-behavior says.
+
+   THE FIX. A sticky element is laid out in the page and composited with it, so during the
+   pull the bar and the ground behind it travel together: nothing new to blur, and nothing
+   to snap back at the end. It holds the same 18px from the top at every scroll position,
+   so the bar looks and behaves exactly as before.
+
+   HEIGHT 0 IS WHAT KEEPS THE DESIGN. Sticky sits in the flow, and a bar with real height
+   would push the hero down; at zero height it takes no space and the hero still starts at
+   the top of the page, with the bar floating over it as it always did. The rule below is
+   the whole change — spacing, insets, z-index, the pointer-events pair and every
+   breakpoint are untouched. */
+.nav-outer{position:sticky;top:18px;left:0;right:0;z-index:60;height:0;padding:0 32px;
+  pointer-events:none}
 /* THE BAR RUNS WIDER THAN THE TEXT (Rose, 14 Sep 2026: "I don't like the navbar in
    mobile view flushing with the contents margins — make it a little wider").
    It was 32px here, 12 further in than the page's 20px gutter, which read as two
@@ -244,4 +264,31 @@
 
 @media (prefers-reduced-motion:reduce){
   .nav .brand svg circle,.nav .brand svg path{animation:none !important}
+}
+
+/* ══ THE PULL MARK ══════════════════════════════════════════════════════════════════
+   A small branded thing at the top of a phone page (Rose, 15 Sep 2026). Pull down from
+   the very top and the estate's mark comes out from BEHIND the bar, turns with the pull
+   and settles just under it; let go and it draws back. z-index 59 puts it one below the
+   bar on purpose — emerging from behind the frosted glass is the whole trick, and it is
+   why the effect reads as part of the bar rather than a spinner stuck on top of it.
+
+   The mark turns 90 degrees at most and no further, because the four rings are the same
+   shape every quarter turn: at the end of the pull it has come exactly back to itself.
+
+   Nothing here is in the markup. The script clones the bar's own mark and builds this
+   element, so a phone without touch, a reader who asked for less motion, or scripting off
+   all get the page with no trace of it. */
+.pull-mark{
+  position:fixed;top:-40px;left:50%;z-index:59;
+  width:34px;height:34px;
+  color:var(--white);opacity:0;
+  pointer-events:none;
+  transform:translate(-50%,0);
+  transform-origin:50% 50%;
+}
+.pull-mark svg{display:block;width:100%;height:100%}
+/* only while it is springing back — during the drag it must track the finger exactly */
+.pull-mark.snap{
+  transition:transform 480ms cubic-bezier(.22,1,.36,1),opacity 340ms ease-out;
 }
