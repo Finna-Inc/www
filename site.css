@@ -22,25 +22,27 @@
    animate the same jump and fight each other. Lenis honours reduced motion itself, so
    anyone who asked their machine for less motion gets plain, instant scrolling. */
 
-/* THE PAGE IS ALLOWED TO BE PULLED (Rose, 15 Sep 2026: "the entire visible page/canvas
-   must move down together when I pull from the top").
+/* THE PULL IS OURS, NOT THE BROWSER'S (Rose, 15 Sep 2026).
 
-   This line read `none` for a day. That was the right answer to the OLD problem — a fixed
-   bar juddering against a moving page — and it is the wrong answer now: `none` works by
-   switching off the very movement the pull is made of, which is why the page froze and only
-   the mark answered the finger. The bar is sticky now, so it travels with the page and
-   there is nothing left to judder.
+   WHAT THE INVESTIGATION FOUND. iOS Safari does not rubber-band at the top of a page — at
+   rest the downward gesture is its own pull-to-refresh, and Safari draws that itself, in
+   system white, above the page. The page is not overscrolling, so nothing of ours is on
+   screen: not the root background, not a band, not the mark. There is no setting that
+   gives a page-painted gap. `contain`/`none` suppress the gesture and the page sits still;
+   `auto` hands it to the browser and you get white and a spinner. Those are the only two
+   native answers, and neither is the one that was asked for.
 
-   `contain`, not `auto`: it stops Android's pull-to-refresh, which would RELOAD the page
-   mid-gesture, while leaving iOS its rubber band. Android does not rubber-band at all, so
-   there the pull is simply a no-op — native behaviour on both, and nothing simulated.
+   SO THE GESTURE IS TAKEN. contain stops the browser's version, and the script translates
+   the page by the finger. Everything that should travel — the hero, its picture, the bar,
+   the content — is inside the page, so one transform moves all of it and nothing can drift
+   out of step. Champagne is a band sitting one screen above the page's top edge, revealed
+   by that same movement, with the mark in front of it. */
+html{overscroll-behavior-y:contain}
 
-   WHAT SHOWS IN THE GAP. iOS paints the root element's background in the space the bounce
-   opens up, so Champagne is stated here and the page's own ground stays on the body. That
-   is the whole reveal: no extra element, no script. */
-html{overscroll-behavior-y:contain;background:var(--gold-light)}
-
+/* position:relative so the band and the mark hang off the page itself rather than the
+   viewport — they must travel with the transform, not stay behind with the window */
 body{
+  position:relative;
   margin:0;
   background:var(--bg);
   color:var(--text);
@@ -49,6 +51,21 @@ body{
   text-rendering:optimizeLegibility;
   overscroll-behavior-y:contain;
 }
+
+/* THE CHAMPAGNE, ON THE PAGE. One screen of it sitting directly above the page's top edge,
+   so the pull slides it into view exactly as it slides the hero out. It hangs off body,
+   which is the thing being moved — on html it would stay behind with the window. Nothing
+   above the top edge is scrollable, so it adds no height to the page. */
+body::before{
+  content:'';position:absolute;top:-100vh;left:0;right:0;height:100vh;
+  background:var(--gold-light);z-index:0;pointer-events:none;
+}
+
+/* AND THE WAY BACK. Only while it is springing home — during the drag the page must track
+   the finger exactly, with no transition in the way. The script takes this class off again
+   once the transition has finished, so transform is gone entirely at rest and position:
+   fixed goes on behaving normally for everything else on the page. */
+body.pull-snap{transition:transform 520ms cubic-bezier(.22,1,.36,1)}
 
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter)}
 .narrow{max-width:var(--measure)}

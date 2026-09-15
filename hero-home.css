@@ -132,3 +132,27 @@
 @media (max-width:900px){
 .hero-home{padding:130px 0 90px}
 }
+
+/* ══ THE PICTURE AS ITS OWN LAYER, FOR THE PULL ═════════════════════════════════════
+   (Rose, 15 Sep 2026, after keyframer.dev's parallax-drag recipe.) During the pull the
+   page moves as one; parallax is each layer moving a DIFFERENT amount around that. The
+   recipe's rule is the important part: the fastest layer must be the nearest one, or the
+   depth reads backwards. Here that is picture 0.45, content 1.0, bar 1.3 — the picture
+   hangs back, the bar runs ahead, and the words travel with the page.
+
+   The picture has to leave the header to be moved on its own, so on the phone it becomes
+   this layer and the header's own background-image is switched off. DESKTOP IS UNTOUCHED:
+   there is no pull there, so there is no reason to re-cut the hero for it.
+
+   72px of overhang top and bottom, because the layer travels up to ~56px and a moved
+   picture must never show its edge. .dark-grad already clips. */
+@media (max-width:900px){
+  .dark-grad.hero-home{background-image:none}
+  .dark-grad.hero-home::before{
+    content:'';position:absolute;left:0;right:0;top:-72px;bottom:-72px;z-index:0;
+    background-image:var(--hero-img,url('media/hero/hero-01.webp'));
+    background-size:cover;background-position:68% center;background-repeat:no-repeat;
+    transform:translate3d(0,var(--par,0px),0) scale(var(--par-s,1));
+    transform-origin:50% 50%;
+  }
+}

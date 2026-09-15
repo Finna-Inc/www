@@ -297,3 +297,21 @@
 .pull-mark.snap{
   transition:transform 480ms cubic-bezier(.22,1,.36,1),opacity 340ms ease-out;
 }
+
+/* THE BAR'S GLASS SLEEPS WHILE THE PAGE MOVES (Rose, 15 Sep 2026: the pull "stutters...
+   it's not fluid"). backdrop-filter has to re-read and re-blur everything behind the bar
+   on every single frame, and during the pull everything behind it is moving. The blur goes
+   for the length of the gesture only; the bar keeps its dark translucent ground, so at a
+   finger's speed there is nothing to see — and the movement gets its frames back. */
+body.pulling .nav{backdrop-filter:none;-webkit-backdrop-filter:none}
+
+/* THE BAR IS THE NEAREST LAYER, so it runs fastest during the pull (Rose, 15 Sep 2026).
+   The offset is written as an inline style by the script and taken off again at the end,
+   so at rest the bar carries no transform at all and stays a plain sticky element. */
+
+/* THE WAY HOME. A little overshoot, which is what a spring does and what the recipe uses;
+   all three layers share the one curve and duration so they land together. */
+body.pull-snap .nav-outer,
+body.pull-snap .dark-grad.hero-home::before{
+  transition:transform 520ms cubic-bezier(.18,.89,.32,1.28);
+}
