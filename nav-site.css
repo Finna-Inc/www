@@ -286,9 +286,14 @@
 /* ══ THE MARK IN THE PULL ═══════════════════════════════════════════════════════════
    It hangs from the page's top edge: --mk is its size and --gap the air under it, so at
    rest its bottom sits --gap above the edge and it is completely off screen. It enters the
-   band as the pull opens and is fully in view once the pull passes --mk + --gap — which is
-   where its arrival animation is made to START, so all of it is watched rather than half of
-   it happening above the screen.
+   band as the pull opens and is fully in view once the pull passes --mk + --gap.
+
+   --gap WENT FROM 10 TO 30 (Rose, 15 Sep 2026: "it's kissing the content border below").
+   The arrival animation did NOT move with it: it still starts at SEEN in nav-site.js, a
+   little before the mark is completely clear, because the band at the firing point is only
+   so tall and tying the start to the new gap would have left almost no pull to animate
+   across. The first frames are at near-zero opacity anyway, so nothing watchable happens
+   while the top of the mark is still clipped.
 
    THE DRAWING IS THE 3D ONE (Rose, 15 Sep 2026, chosen on Lab bench 16 against a flat drawn
    version). The rig is Bench 14's, shrunk: one perspective context, one object that rotates,
@@ -299,7 +304,7 @@
    photograph, and a blurred dark disc under the mark only muddied it.
    ═══════════════════════════════════════════════════════════════════════════════════ */
 .pull-mark{
-  --mk:52px;--gap:10px;--u:1.53px;      /* --u is --mk / 34, the size the rig was drawn at */
+  --mk:52px;--gap:22px;--u:1.53px;      /* --u is --mk / 34, the size the rig was drawn at */
   position:absolute;left:50%;top:calc(-1 * (var(--mk) + var(--gap)));z-index:1;
   width:var(--mk);height:var(--mk);margin-left:calc(var(--mk) / -2);
   /* whichever of white and the dark surface measured better on THIS hero's band —

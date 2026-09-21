@@ -320,13 +320,15 @@
               comes off a fifth-power curve so nearly all the growth is spent in the first
               breath, and the opacity falls on a curve of its own. One burst, not a grow
               followed by a fade.
-       HOME   letting go is only the page springing back. Let go short of THRESH and the
-              mark simply fades with it. */
-  var SEEN   = 62,      /* --mk + --gap in nav-site.css: where the mark is all there */
+       HOME   letting go springs the page back — and if the pull reached THRESH, the page
+              reloads once it has landed. Let go short of THRESH and the mark simply fades
+              with it and nothing is refreshed. */
+  var SEEN   = 70,      /* where the arrival starts: the mark is all but clear of the top */
       THRESH = 0.79,    /* of MAX — the pull that completes the mark and fires it */
       TILT   = 72,      /* degrees it is turned through on the way in */
       GROW   = 0.46,    /* how much bigger it gets on the way out */
       EXIT   = 320,     /* ms */
+      SNAP   = 520,     /* ms — matches body.pull-snap's transition in site.css */
       /* PARALLAX, after keyframer.dev's drag recipe. The page carries everything at 1.0;
          these are what each layer does AROUND that, and the order is the whole trick — the
          nearest layer must be the fastest, or the depth reads backwards.
@@ -403,7 +405,7 @@
     e.preventDefault();                /* the gesture is ours from here */
     /* exponential resistance: the first pixels come readily, the last barely at all */
     pull = MAX * (1 - Math.exp(-d / DAMP));
-    if (!fired && pull >= MAX * THRESH) fired = performance.now();
+    if (!fired && pull >= MAX * THRESH) { fired = performance.now(); }
     draw();
     watch();
   }, { passive: false });
@@ -420,6 +422,13 @@
     }
     page.classList.add('pull-snap');
     el.classList.add('snap');
+    /* AND IT ACTUALLY REFRESHES (Rose, 15 Sep 2026: "it's actually not refreshing the page").
+       Taking the gesture over suppressed the browser's own pull-to-refresh, so until now the
+       whole thing was theatre — the mark fired and nothing reloaded. It reloads only if the
+       pull reached the threshold, which is the entire point of having one: a short pull is a
+       change of mind and leaves the page alone. The reload waits for the spring home, so the
+       page is back where it started before it goes. */
+    if (fired) setTimeout(function () { location.reload(); }, SNAP + 20);
     pull = 0;
     if (frame) { cancelAnimationFrame(frame); frame = 0; }
     paint();

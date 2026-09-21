@@ -1,4 +1,4 @@
-/* Finna design tokens · rev 31 · 06 SEP 2026
+/* Finna design tokens · rev 40 · 21 SEP 2026
    GENERATED — do not edit. Built from source.py by generate.py.
    Every value carries its job. Ratios are measured, not estimated. */
 :root{
@@ -32,7 +32,7 @@
   --gold-dark:#E1EAE4;        /* Mint Cream — A pale, cool ground — quieter than white, warmer than the sunken grey. */
   --warning:#E54B28;          /* Fiery — One flag per screen. Something needs the client's attention. */
   --warning-dark:#661C28;     /* Night Bordeaux — Warning text on white, and the pressed face of a destructive key. */
-  --midnight-violet:#2B0515;  /* Midnight Violet — No job. Parked in Considering — see §12. */
+  --midnight-violet:#2B0515;  /* Midnight Violet — No job. Parked in Considering — the last colour section on this page. */
   --purple-dark:#5B3E9E;      /* Purple Crystal — The same job on white, where the bright purple dies. */
   --purple-bg:#1E1830;        /* Dark Purple — The surface behind a purple thing on the dark ground. */
   /* ---- Chart colours — chart marks only ---- */
@@ -85,7 +85,7 @@
   --r-card:14px;              /* Cards, fields, panes. */
   --r-key:12px;               /* Keys. */
   --r-tile:14px;              /* Icon tiles. */
-  --r-pill:999px;             /* The switch only. */
+  --r-pill:999px;             /* The switch, and the pill labels promoted from the site’s chip — the status label and the filter tag. Nothing else. */
   --line-hairline:1px;        /* Row dividers, table lines. Uses the border colour. */
   --line-object:1px;          /* Cards and figures. Uses the strong border. */
   --line-heavy:3px;           /* Openings, closings, totals. Uses the text colour. */
@@ -99,7 +99,7 @@
   /* ---- the hero wash ---- */
   --wash-hero:radial-gradient(95% 75% at 6% 4%,color-mix(in srgb,#fff 9%,color-mix(in srgb,var(--primary) 26%,var(--bg-dark))) 0%,transparent 60%),radial-gradient(105% 95% at 97% 104%,color-mix(in srgb,var(--primary) 60%,var(--bg-dark)) 0%,transparent 72%),radial-gradient(70% 62% at 82% 6%,color-mix(in srgb,var(--primary) 8%,var(--bg-dark)) 0%,transparent 70%),color-mix(in srgb,var(--primary) 21%,var(--bg-dark)); /* The header wash. The top of a page, and nothing else. */
   /* ---- the button: the hard key ---- */
-  --key-height:48px;          /* The touch floor. Every button is at least this tall. */
+  --key-height:48px;          /* The touch floor: on a touch screen every button is at least this tall — below 768px the mobile scale raises every size to clear it. On desktop, size S sits at 36px for dense rows; the floor is a touch rule, not a desktop one. */
   --key-radius:12px;          /* The key's corner. */
   --key-offset:4px;           /* The solid offset under a key at rest — thrown straight down. */
   --key-offset-hover:6px;     /* The offset on hover. The face lightens one step. */

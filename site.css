@@ -630,6 +630,35 @@ figcaption{margin-top:var(--space-4);color:var(--text-tertiary);font-size:var(--
 .two:has(finna-ledger){grid-template-columns:.86fr 1.14fr}
 .two finna-ledger{display:block;width:100%}
 .two.top{align-items:start}
+
+/* ── SECTION 04 REBUILT AROUND THE TALL FREYA CLIP (Rose, 17 Sep 2026, "do B") ──────────
+   The clip is 9:16, so handing it half the row would run it ~900px tall and tear the
+   section open. Instead the words keep the flexible column and the clip takes a fixed
+   phone-width one; both centred, so the tall clip stands in the section like a phone. */
+.two.clip{grid-template-columns:1fr clamp(320px,32vw,392px)}
+.freya-clip{width:100%;border-radius:var(--r-card);overflow:hidden;
+  background:var(--white);                                  /* the clip runs on white */
+  /* a deep, soft drop shadow so the clip lifts off the dark band (Rose, 17 Sep 2026):
+     a single black shadow disappears on the green, so it is layered — a wide ambient one
+     and a tighter contact one — with a hairline rim to catch the edge. */
+  box-shadow:0 48px 90px -24px rgba(0,0,0,.75),
+             0 16px 34px -14px rgba(0,0,0,.60),
+             inset 0 0 0 1px rgba(255,255,255,.14)}
+.freya-clip video{display:block;width:100%;height:auto}     /* 9:16 sets its own height */
+@media (max-width:900px){
+  /* stacked: the clip is centred and capped so a tall format never dominates a phone */
+  .two.clip{grid-template-columns:1fr;justify-items:center}
+  .freya-clip{max-width:340px}
+}
+/* ── the invest clip (home-06) ── a chart on a white ground, in a hairline card on the mint
+   band, the way the drawn figures sit in theirs. 4:3, so the words keep the narrower column
+   and the clip takes the wider one — the same split as .split.wide-fig. The clip carries its
+   own 40px margin inside the frame, so the card has no padding of its own. */
+.two.invest{grid-template-columns:.9fr 1.1fr}
+.invest-clip{width:100%;border:var(--line-object) solid var(--border-strong);border-radius:var(--r-card);
+  overflow:hidden;background:var(--white)}
+.invest-clip img,.invest-clip video{display:block;width:100%;height:auto}    /* 4:3 sets its own height */
+@media (max-width:900px){.two.invest{grid-template-columns:1fr}}
 /* THE FIGURES ARE RIGHT-ALIGNED, NOT TABULAR (Rose, 13 Sep 2026: "delete all Inter fonts").
    Lexend's digits are proportional and its file carries no tabular-figures feature, so a
    column of money does not line up on the decimal — it lines up on its right edge, which
@@ -1095,3 +1124,33 @@ body:has(.nav-links.open) .to-top{opacity:0;pointer-events:none}
 }
 /* the key does not need a whole rung of air below one sentence on a phone */
 @media (max-width:700px){.wl-done .key{margin-top:var(--space-6)}}
+
+/* ── SECTION CHIPS ── a review aid (review.js). Not part of the design: ?clean hides
+   them, build/site.py strips them from the published copy, and the file and its one
+   line come out of the pages before launch. Restored 16 Sep 2026. */
+.sec-chip{
+  position:absolute;top:10px;right:10px;z-index:20;
+  display:inline-flex;align-items:center;gap:8px;
+  height:24px;padding:0 10px;border-radius:var(--r-chip);cursor:pointer;
+  border:1px solid var(--border-strong);background:var(--bg);color:var(--text-tertiary);
+  font:var(--weight-heading) 11px/1 var(--font-sans);letter-spacing:.06em;
+  opacity:.55;transition:opacity var(--t-state) var(--ease),color var(--t-state) var(--ease),
+             border-color var(--t-state) var(--ease)}
+.sec-chip .n{color:var(--primary)}   /* no tnum in the face; see the note above */
+.sec-chip:hover{opacity:1;color:var(--text);border-color:var(--primary)}
+.sec-chip:focus-visible{outline:2px solid var(--primary);outline-offset:2px;opacity:1}
+.sec-chip[data-copied="true"]{opacity:1;color:var(--white);background:var(--primary);border-color:var(--primary)}
+.sec-chip[data-copied="true"] .n{color:var(--white)}
+.sec-chip[data-copied="true"]::after{content:"copied"}
+.hero .sec-chip,.hero-home .sec-chip,.band .sec-chip,.footer .sec-chip{
+  background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.28);color:rgba(255,255,255,.8)}
+.hero .sec-chip:hover,.hero-home .sec-chip:hover,.band .sec-chip:hover,
+.footer .sec-chip:hover{color:var(--white);border-color:var(--white)}
+.hero .sec-chip .n,.hero-home .sec-chip .n,.band .sec-chip .n,
+.footer .sec-chip .n{color:var(--primary-48)}
+@media print{.sec-chip{display:none}}
+/* The hero's own chip sits below the sticky bar, not behind it. The bar is 84-92px tall
+   from 390 to 1440 and the hero starts at the top of the viewport, so the chip cleared
+   nothing at top:10px — it was unreadable and unclickable on every page. 102px is the
+   tallest measured bar plus air. Delete this one rule for the original geometry. */
+.hero .sec-chip,.hero-home .sec-chip{top:102px}
