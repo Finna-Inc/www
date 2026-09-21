@@ -38,7 +38,7 @@
 <meta name="theme-color" content="#0D231B">
 <link rel="stylesheet" href="chrome/fonts.css?v=0c6cbb49">
 <link rel="stylesheet" href="brand/tokens.css?v=c8f8dc2c">
-<link rel="stylesheet" href="site.css?v=7c7f542c">
+<link rel="stylesheet" href="site.css?v=6c973bbc">
 <link rel="stylesheet" href="nav-site.css?v=7d94041d">
 <link rel="stylesheet" href="vendor/lenis.css?v=599bcc02">
 <link rel="stylesheet" href="hero-home.css?v=09d92864">
@@ -433,12 +433,13 @@ r.dataset.hero=i;})();</script>
       <!-- THE FREYA CLIP (Rose, 17 Sep 2026, "do B"). The 9:16 clip replaces the drawn
            briefing note; the section is rebuilt around it — the words keep the flexible
            column and the clip takes a fixed phone-width one, so a tall clip anchors the
-           section rather than stretching it.
-           21 Sep 2026, SIGNED OFF: the clip is the CODED SCENE itself —
+           section rather than stretching it. Silent, muted, looping, autoplaying; the
+           poster is the first frame so the slot is never empty.
+           21 Sep 2026: the compressed video is replaced by the CODED SCENE itself —
            <finna-chat-clip> (vendor/finna-chat-clip.js), packaged from lab/chat-clip.html,
            the scene of record: razor-sharp at any width, a few KB, tokens throughout, loops
-           at 23s, holds its poster under reduced motion. The retired mp4/webm/poster are
-           deleted from media/. -->
+           at 23s, holds its poster under reduced motion. IN REVIEW — the retired
+           mp4/webm/poster stay in media/ until Esben signs this off. -->
       <div class="freya-clip">
         <finna-chat-clip aria-label="Freya answering a household question, at eleven on a Sunday night"></finna-chat-clip>
       </div>
@@ -536,7 +537,7 @@ r.dataset.hero=i;})();</script>
        R3 — evidence sits beside the claim. Now a full section, two up, claim left and
        proof right. ══════════════════════════════════════════════════════════════ -->
   <section class="band-mint">
-    <div class="wrap two top wide-fig">
+    <div class="wrap two top clip">
       <div>
         <h2>So you learn your way in.</h2>
         <p class="lede" style="margin-top:30px">Short lessons, plain language, built around your
@@ -549,24 +550,15 @@ r.dataset.hero=i;})();</script>
         </div>
       </div>
 
-      <!-- one real lesson question, shown in full — the only place a reader can judge
-           whether the learning is serious. -->
-      <figure class="fig">
-        <p class="small" style="margin-bottom:var(--space-4)"><b>Lesson 3 &middot; Private markets
-          &middot; Question 2</b></p>
-        <h3 style="margin-bottom:var(--space-5)">A fund reports a 12% gain. You cannot sell for
-          seven years. What have you actually been told?</h3>
-        <ul class="rows" style="margin-bottom:var(--space-5)">
-          <li>A price someone would pay today</li>
-          <li>An estimate of what the holdings are worth</li>
-          <li>The cash you would receive if you asked</li>
-        </ul>
-        <p class="small" style="margin:0"><b>An estimate.</b> A private fund is valued, not
-          traded. The number is a considered opinion, produced on a schedule, and it is the right
-          number to plan with &mdash; as long as you never mistake it for cash.</p>
-        <figcaption style="margin-top:var(--space-5)"><span class="fig-n">Fig. 3</span>A question
-          from the second lesson, with the explanation that follows it.</figcaption>
-      </figure>
+      <!-- THE LEARN CLIP (21 Sep 2026) replaces Fig. 3 — the path, the first quest,
+           the path again, as a coded scene: <finna-learn-clip> (vendor/finna-learn-clip.js),
+           packaged from lab/learn-clip.html, the scene of record. Same delivery as the
+           Freya clip; loops at 13.55s; holds its poster under reduced motion. IN REVIEW —
+           lesson names, unlocking rules and the +20 xp are ILLUSTRATIVE until confirmed,
+           and the path/progress/feedback patterns are proposals, not shared components. -->
+      <div class="freya-clip">
+        <finna-learn-clip aria-label="The Learn path: one lesson opened, answered, and the next two unlocked"></finna-learn-clip>
+      </div>
     </div>
   </section>
 
@@ -752,6 +744,7 @@ r.dataset.hero=i;})();</script>
 </script>
 <script src="vendor/finna-threads.js?v=e1ca1632"></script>
 <script src="vendor/finna-chat-clip.js?v=41dec319"></script>
+<script src="vendor/finna-learn-clip.js?v=5230f6c9"></script>
 <script src="vendor/text-roll.js?v=a57ddd58"></script>
 <script src="pricing.js?v=9d27f49b"></script>
 <script src="spotlight.js?v=adbdd547"></script>

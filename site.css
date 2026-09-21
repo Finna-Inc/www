@@ -450,40 +450,6 @@ figcaption{margin-top:var(--space-4);color:var(--text-tertiary);font-size:var(--
    on the site it does that. */
 .idea-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:var(--space-8);
   align-items:center}
-/* ── THE SAME PARALLAX AS THE HERO, one ground lower (Esben, 21 Sep 2026) ────────
-   hero-parallax.js writes --my/--ms on the mark and --wy/--wo on the three word layers,
-   exactly as it writes --py/--ps/--wy/--wo on the hero. With the script off — or under
-   reduced motion — every value sits at its rest default and this is the still section. */
-.band-violet h2,.band-violet .pull,.band-violet .rule,.band-violet .lede{
-  transform:translate3d(0,var(--wy,0px),0);opacity:var(--wo,1);will-change:transform}
-/* THE MARK MOVES ON `top`, NOT ON A TRANSFORM — and this is not a preference.
-   Freya's light is `mix-blend-mode:overlay` (bench 15), and a blend mode is a relation to
-   what is BEHIND it. A transform — or `will-change:transform` — makes the mark its own
-   stacking context, the overlay then has only the mark's own box to blend with instead of
-   the dark ground, and the light goes flat and bright. Relative positioning with `z-index`
-   left alone makes no such context, so the ratified light is untouched. The same reason is
-   why the mark takes no zoom: any scale() would break the light again. */
-.idea-mark{position:relative;top:var(--my,0px);opacity:var(--mo,1);
-  /* THE MARK CARRIES ITS OWN GROUND. Fading it means an opacity below 1, and that makes the
-     same isolating layer a transform would — the overlay light would go flat again. Giving
-     the element the band's own colour puts the ground the light needs INSIDE that layer, so
-     it blends exactly as before; the rectangle is the colour it sits on, so it is invisible,
-     and it fades with the mark to the same colour. Only valid while the band is flat. */
-  background:var(--bg-dark);
-  /* and it carries that ground WIDER THAN ITSELF. The light is drawn well outside the
-     element's box (the svg is overflow:visible and the halo is a 2-unit blur), so a box-sized
-     ground leaves that outer fringe with nothing to blend against and a faint rectangle edge
-     appears the moment the mark fades. The padding grows the painted box past the fringe and
-     the negative margin gives the space back, so nothing moves. */
-  padding:64px;margin:-64px}
-/* the padded ground can reach past the wrap on a narrow screen; the band is full-bleed, so
-   trimming it sideways costs nothing and keeps the page free of a horizontal scrollbar. */
-.band-violet{overflow-x:clip}
-@media (prefers-reduced-motion:reduce){
-  .band-violet h2,.band-violet .pull,.band-violet .rule,.band-violet .lede{
-    transform:none!important;opacity:1!important}
-  .idea-mark{top:0!important;opacity:1!important}
-}
 /* ── FREYA'S LIGHT ── settled on Lab bench 15 (Rose, 13 Sep 2026) ────────────────
    The values are the ones he dialled in there; the bench prints its own CSS, so they were
    lifted rather than retyped. Bench 15 stays, and is where any change to this belongs.
@@ -678,7 +644,8 @@ figcaption{margin-top:var(--space-4);color:var(--text-tertiary);font-size:var(--
   box-shadow:0 48px 90px -24px rgba(0,0,0,.75),
              0 16px 34px -14px rgba(0,0,0,.60),
              inset 0 0 0 1px rgba(255,255,255,.14)}
-.freya-clip finna-chat-clip{width:100%}                                     /* the coded scene; its aspect-ratio sets the height */
+.freya-clip video,.freya-clip img{display:block;width:100%;height:auto}     /* 9:16 sets its own height */
+.freya-clip finna-chat-clip,.freya-clip finna-learn-clip{width:100%}       /* the coded scenes; their aspect-ratio sets the height */
 @media (max-width:900px){
   /* stacked: the clip is centred and capped so a tall format never dominates a phone */
   .two.clip{grid-template-columns:1fr;justify-items:center}
