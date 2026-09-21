@@ -644,7 +644,7 @@ figcaption{margin-top:var(--space-4);color:var(--text-tertiary);font-size:var(--
   box-shadow:0 48px 90px -24px rgba(0,0,0,.75),
              0 16px 34px -14px rgba(0,0,0,.60),
              inset 0 0 0 1px rgba(255,255,255,.14)}
-.freya-clip video{display:block;width:100%;height:auto}     /* 9:16 sets its own height */
+.freya-clip finna-chat-clip{width:100%}                                     /* the coded scene; its aspect-ratio sets the height */
 @media (max-width:900px){
   /* stacked: the clip is centred and capped so a tall format never dominates a phone */
   .two.clip{grid-template-columns:1fr;justify-items:center}
