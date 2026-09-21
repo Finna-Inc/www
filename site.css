@@ -402,7 +402,12 @@ a.soon.is-here{cursor:default}
 .freya{display:inline-flex;align-items:center;gap:10px;position:relative;cursor:default}
 /* square now — Freya is the four-ring mark with its centre open (13 Sep 2026) */
 .freya .ring{width:26px;height:26px;flex:none;color:var(--primary)}
-.band .freya .ring{color:var(--primary-48)}
+/* ON A DARK GROUND FREYA IS THE WHITE MARK (Esben, 21 Sep 2026). brand/logo carries her in
+   two colours, primary and white — the green at 48% on the dark surface was neither, and it
+   read as a smudge beside white text. In the footer she also carries the line she names, so
+   she takes the rung above: 26 -> 32. */
+.band .freya .ring,.footer .freya .ring{color:var(--white)}
+.footer .freya .ring{width:32px;height:32px}
 .freya .note{position:absolute;left:0;bottom:calc(100% + 10px);white-space:nowrap;
   padding:7px 11px;border-radius:var(--r-chip);background:var(--text);color:var(--bg);
   font:var(--weight-heading) var(--text-label)/1 var(--font-sans);letter-spacing:.04em;
@@ -1079,7 +1084,11 @@ body:has(.nav-links.open) .to-top{opacity:0;pointer-events:none}
    Two traps found here: the anchor also carried .mark, which nav-site.css (loaded after
    this file) pins to 34px; and the font shorthand with calc()+var() computed to initial,
    so the word stayed 16px. Longhands, and no .mark on the footer anchor. */
-.foot-lockup{--mk:56px;
+/* FULL WHITE, NOT THE FOOTER LINK COLOUR (Esben, 21 Sep 2026: "it looks strange"). The
+   lockup is an <a>, so `.footer a` was tinting the mark AND the word to 78% white — the mark
+   has two legal colours and a 78% wash is neither. The link rule is answered here, on the
+   lockup itself, so the mark is the mark. */
+.foot-lockup,.footer a.foot-lockup{--mk:56px;
   display:inline-flex;align-items:center;gap:calc(var(--mk) * .318);
   color:var(--white);text-decoration:none}
 .foot-lockup .foot-mark{flex:none;width:var(--mk);height:var(--mk);display:block}
