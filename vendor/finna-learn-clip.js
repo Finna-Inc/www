@@ -27,6 +27,8 @@
     return { RING:RING, FREYA:FREYA, icon:function(n){return ICONS[n]||"";} };
   })();
 
+  const RM = matchMedia('(prefers-reduced-motion:reduce)');
+
   class FinnaLearnClip extends HTMLElement {
     connectedCallback() {
       if (this.__on) return;
@@ -42,7 +44,10 @@
          (lab/learn-clip.html does the same), and nothing on the page calls it */
       this.seek = seek; this.duration = seek.DUR;
       seek(0);
-      if (matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+      /* REDUCED MOTION (22 Sep 2026) — the scene used to stop dead on frame 0. It is a
+         DEMONSTRATION, not decoration, so it now plays with the travel taken out: the
+         quest cross-fades over the path instead of sliding in from the side (see seek()).
+         What is left is opacity and the 3–4px control presses. */
       /* the clock stops whenever the clip is off screen — a looping scene in a section nobody
          is looking at is a frame budget spent on nothing */
       let raf = 0, t0 = performance.now(), paused = 0;
@@ -167,9 +172,15 @@
     /* quest in, out — the tree steps back a quarter */
     const qi = io(seg(t,T.questIn,T.questIn+.5)), qo = io(seg(t,T.questOut,T.questOut+.5));
     const q = qi*(1-qo);
-    els.quest.style.transform = `translateX(${(100-100*qi+110*qo).toFixed(2)}%)`;
+    if (RM.matches) {                                  /* no travel: the two screens cross-fade */
+      els.quest.style.transform = 'none';   els.quest.style.opacity = q.toFixed(2);
+      els.tree.style.transform  = 'none';   els.tree.style.opacity  = (1-q).toFixed(2);
+    } else {
+      els.quest.style.transform = `translateX(${(100-100*qi+110*qo).toFixed(2)}%)`;
+      els.tree.style.transform = `translateX(${(-25*q).toFixed(2)}%)`;
+      els.quest.style.opacity = ''; els.tree.style.opacity = '';
+    }
     els.quest.style.visibility = q>0||qi>0&&qo<1 ? 'visible':'hidden';
-    els.tree.style.transform = `translateX(${(-25*q).toFixed(2)}%)`;
 
     /* the answer: a momentary press — down its 4pt and back — then SELECTED (primary face) */
     const on = t>=T.touchA+.12;
