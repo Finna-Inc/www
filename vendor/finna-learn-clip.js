@@ -3,8 +3,8 @@
    for the site, the same way <finna-chat-clip> carries the Freya one: same markup, same rules,
    same seek(t). Shadow DOM keeps the site's own .key/.card rules out and the clip's rules in;
    the design tokens (custom properties on :root) pass through. Autoplays, loops at 17.4s, takes
-   no input, and holds the poster — the path, before anything is opened — under
-   prefers-reduced-motion. A DEMONSTRATION: the lessons, the question and the answers stand in
+   no input, and plays in full on every device — it does not read Reduce Motion.
+   A DEMONSTRATION: the lessons, the question and the answers stand in
    until the platform's own Learn map is ratified. ════════════════════════════════════════════ */
 (function () {
   'use strict';
@@ -27,8 +27,6 @@
     return { RING:RING, FREYA:FREYA, icon:function(n){return ICONS[n]||"";} };
   })();
 
-  const RM = matchMedia('(prefers-reduced-motion:reduce)');
-
   class FinnaLearnClip extends HTMLElement {
     connectedCallback() {
       if (this.__on) return;
@@ -44,10 +42,9 @@
          (lab/learn-clip.html does the same), and nothing on the page calls it */
       this.seek = seek; this.duration = seek.DUR;
       seek(0);
-      /* REDUCED MOTION (22 Sep 2026) — the scene used to stop dead on frame 0. It is a
-         DEMONSTRATION, not decoration, so it now plays with the travel taken out: the
-         quest cross-fades over the path instead of sliding in from the side (see seek()).
-         What is left is opacity and the 3–4px control presses. */
+      /* REDUCED MOTION (22 Sep 2026, Esben) — the scene DOES NOT read the setting. It used
+         to stop dead on frame 0 on any phone with Reduce Motion on. His call: it plays in
+         full everywhere, the same as the invest clip's SMIL in home-06. */
       /* the clock stops whenever the clip is off screen — a looping scene in a section nobody
          is looking at is a frame budget spent on nothing */
       let raf = 0, t0 = performance.now(), paused = 0;
@@ -172,15 +169,9 @@
     /* quest in, out — the tree steps back a quarter */
     const qi = io(seg(t,T.questIn,T.questIn+.5)), qo = io(seg(t,T.questOut,T.questOut+.5));
     const q = qi*(1-qo);
-    if (RM.matches) {                                  /* no travel: the two screens cross-fade */
-      els.quest.style.transform = 'none';   els.quest.style.opacity = q.toFixed(2);
-      els.tree.style.transform  = 'none';   els.tree.style.opacity  = (1-q).toFixed(2);
-    } else {
-      els.quest.style.transform = `translateX(${(100-100*qi+110*qo).toFixed(2)}%)`;
-      els.tree.style.transform = `translateX(${(-25*q).toFixed(2)}%)`;
-      els.quest.style.opacity = ''; els.tree.style.opacity = '';
-    }
+    els.quest.style.transform = `translateX(${(100-100*qi+110*qo).toFixed(2)}%)`;
     els.quest.style.visibility = q>0||qi>0&&qo<1 ? 'visible':'hidden';
+    els.tree.style.transform = `translateX(${(-25*q).toFixed(2)}%)`;
 
     /* the answer: a momentary press — down its 4pt and back — then SELECTED (primary face) */
     const on = t>=T.touchA+.12;
