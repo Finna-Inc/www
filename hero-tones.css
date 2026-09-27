@@ -2,7 +2,9 @@
    One colour per hero, read off the photograph itself: --pull-bg is the picture's own
    top row, so the seam where the band meets it is invisible, and --pull-mark is
    whichever of white and the dark surface measured better on it. No data-hero on
-   <html> means neither resolves and the band keeps its Champagne fallback. */
+   <html> means neither resolves and the band keeps its Champagne fallback.
+   The desk covers ride the same file: data-cover on <html> sets the page's picture
+   (--cover, placed by .hero-cover in site.css) and its band together. */
 html[data-hero="1"]{--pull-bg:#555750;--pull-mark:#FFFFFF}
 html[data-hero="2"]{--pull-bg:#364442;--pull-mark:#FFFFFF}
 html[data-hero="3"]{--pull-bg:#2C423F;--pull-mark:#FFFFFF}
@@ -12,3 +14,9 @@ html[data-hero="6"]{--pull-bg:#7D938D;--pull-mark:#0D231B}
 html[data-hero="7"]{--pull-bg:#48635C;--pull-mark:#FFFFFF}
 html[data-hero="8"]{--pull-bg:#34403C;--pull-mark:#FFFFFF}
 html[data-hero="9"]{--pull-bg:#030E22;--pull-mark:#FFFFFF}
+/* the desk covers: data-cover on <html> picks the picture and its band in one rule */
+html[data-cover="investment"]{--cover:url('media/desks/investment.webp');--pull-bg:#8A887D;--pull-mark:#0D231B}
+html[data-cover="policy"]{--cover:url('media/desks/policy.webp');--pull-bg:#888779;--pull-mark:#0D231B}
+html[data-cover="protection"]{--cover:url('media/desks/protection.webp');--pull-bg:#6F746F;--pull-mark:#FFFFFF}
+html[data-cover="records"]{--cover:url('media/desks/records.webp');--pull-bg:#A0978B;--pull-mark:#0D231B}
+html[data-cover="succession"]{--cover:url('media/desks/succession.webp');--pull-bg:#2C2D1B;--pull-mark:#FFFFFF}

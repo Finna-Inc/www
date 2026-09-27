@@ -1,5 +1,5 @@
 /* ══ THE SITE'S NAVIGATION ══════════════════════════════════════════════════════════
-   Lifted 1:1 from the 2026-09 build. Two behaviours: the burger sheet, and the promises
+   Lifted 1:1 from the 2026-09 build. Two behaviours: the burger sheet, and the desks
    menu — hover opens it where there is a pointer; click, Enter and Space open it
    everywhere else, which is what a finger and a keyboard need. Escape closes it and puts
    focus back on the parent; a click outside or a tab out of the group closes it too. On
@@ -51,7 +51,7 @@
   if (!group) return;
   var trigger = group.querySelector('.nav-dd-t');
   var hoverable = matchMedia('(hover:hover)').matches;
-  var inSheet = function () { return matchMedia('(max-width:900px)').matches; };
+  var inSheet = function () { return matchMedia('(max-width:1099px)').matches; };
   var t;
   function open(v) {
     if (inSheet()) return;

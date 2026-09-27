@@ -1,13 +1,13 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-cover="investment">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>About Finna · Finna</title>
-<meta name="description" content="Why Finna exists. An office of your own: the complete picture, the quiet attention, the continuity.">
+<title>Investment · Finna</title>
+<meta name="description" content="Everything you hold, wherever it is held, in one view: public and private markets, measured against your own policy, with every fee counted.">
 <!-- source · the words are the ones the site shipped with (source/copy.md);
      every value is taken from brand/tokens.css through site.css. -->
-<link rel="canonical" href="https://finnafamilyoffice.com/about.html">
+<link rel="canonical" href="https://finnafamilyoffice.com/investment.html">
 
 <!-- HOW THE SITE LOOKS WHEN SOMEONE PASTES THE LINK (13 Sep 2026). Every value here is the
      page's own title and description, so there is one place to change the words. The card is
@@ -19,16 +19,16 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Finna">
 <meta property="og:locale" content="en">
-<meta property="og:url" content="https://finnafamilyoffice.com/about.html">
-<meta property="og:title" content="About Finna">
-<meta property="og:description" content="Why Finna exists. An office of your own: the complete picture, the quiet attention, the continuity.">
+<meta property="og:url" content="https://finnafamilyoffice.com/investment.html">
+<meta property="og:title" content="Investment">
+<meta property="og:description" content="Everything you hold, wherever it is held, in one view: public and private markets, measured against your own policy, with every fee counted.">
 <meta property="og:image" content="https://finnafamilyoffice.com/media/finna-share.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Finna, your own family office">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="About Finna">
-<meta name="twitter:description" content="Why Finna exists. An office of your own: the complete picture, the quiet attention, the continuity.">
+<meta name="twitter:title" content="Investment">
+<meta name="twitter:description" content="Everything you hold, wherever it is held, in one view: public and private markets, measured against your own policy, with every fee counted.">
 <meta name="twitter:image" content="https://finnafamilyoffice.com/media/finna-share.jpg">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
@@ -38,6 +38,8 @@
 <link rel="stylesheet" href="brand/tokens.css?v=525d3a32">
 <link rel="stylesheet" href="site.css?v=3d1274cf">
 <link rel="stylesheet" href="nav-site.css?v=766365ac">
+<!-- the desk's cover: data-cover above picks its picture and the pull band's colour -->
+<link rel="stylesheet" href="hero-tones.css?v=2dd0ccf5">
 <link rel="stylesheet" href="vendor/lenis.css?v=599bcc02">
 </head>
 <body>
@@ -68,7 +70,7 @@
         </div>
       </div>
       <a href="service-levels.html">Service levels</a>
-      <a href="about.html" aria-current="page">About</a>
+      <a href="about.html">About</a>
       <a class="key key-s nav-cta-m" href="waitlist.html">Explore your family office<svg width="18" height="18" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
     </div>
     <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false"><svg width="22" height="22" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg></button>
@@ -76,55 +78,126 @@
   </nav>
 </div>
 
-<div class="hero" id="top">
+<div class="hero hero-cover" id="top">
 
   <div class="wrap inner">
-    <h1>Why Finna exists.</h1>
-    <p class="lede">An office of your own: the complete picture, the quiet attention, the continuity.</p>
+    <p class="eyebrow">Grow it</p>
+    <h1>Investment</h1>
+    <p class="lede">See what you hold the way a family office does: across public and private markets, against your own policy, over decades.</p>
   </div>
 </div>
 
 <main id="main">
 
+  <!-- INSIDE THE DESK (27 Sep 2026). The desk figure from mockups/desk-figures.html, the same
+       on all five desk pages: one screen template, and the four takeaways pinned in the same
+       four places. The screen is a picture (aria-hidden); the takeaways carry its meaning.
+       desk-figure.js draws the leader lines when the takeaways sit beside the screen. -->
+  <section class="band-mint band-grid inside" id="inside" aria-labelledby="inside-h">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Inside the desk</p>
+        <h2 id="inside-h">How Investment works.</h2>
+        <p class="lede">What you hold elsewhere, measured against your own policy. Four things to know, pinned to one screen.</p>
+      </div>
+      <figure class="dfig" aria-label="Investment, explained on one screen">
+        <svg class="dfig-lead" aria-hidden="true"></svg>
+        <div class="dfig-grid">
+          <ol class="dfig-notes l">
+            <li class="dfig-note" data-n="1"><span class="dfig-n">1</span><span class="dfig-k">What it is</span><p>Everything you hold, wherever it is held: brokerage, pensions, bonds, private holdings.</p></li>
+            <li class="dfig-note" data-n="2"><span class="dfig-n">2</span><span class="dfig-k">What you see</span><p>Each holding against your own policy, and every fee added up in one line.</p></li>
+          </ol>
+          <div class="dfig-screen" aria-hidden="true">
+            <div class="dfig-tabs"><b>Investment</b><span>Suggested</span><span class="on">What you hold</span><span>Fees</span><span>The learning route</span></div>
+            <div class="dfig-page">
+              <div class="dfig-crumb">Desks &rsaquo; Investment &rsaquo; What you hold</div>
+              <div class="dfig-title dfig-t"><i class="dfig-pin l" data-n="1">1</i><strong>What you hold</strong><span>Held elsewhere · read from Records</span></div>
+              <div class="dfig-figs dfig-t"><i class="dfig-pin l" data-n="2">2</i><div><span>Held elsewhere</span><b>$1,943,000</b></div><div><span>Outside policy</span><b>1</b></div><div><span>Fees a year</span><b>$4,732</b></div></div>
+              <div class="dfig-rows">
+                <div class="dfig-row"><span class="nm">Brokerage account<small>Listed shares · 0.20% a year</small></span><span class="v">$1,214,000</span></div>
+                <div class="dfig-row"><span class="nm">Treasury bonds<small>Bonds, held directly · no fee</small></span><span class="v">$217,000</span></div>
+                <div class="dfig-row dfig-t"><i class="dfig-pin r" data-n="3">3</i><span class="nm">Workplace pension<small>Bonds · 0.45% a year, the highest fee</small></span><span class="v">$512,000</span></div>
+                <div class="dfig-row"><span class="nm">The learning route<small>1 of 4 paths done · next: Bonds</small></span><span class="dfig-chip att">In progress</span></div>
+              </div>
+              <div class="dfig-foot dfig-t"><i class="dfig-pin r" data-n="4">4</i><span>Nothing here is a recommendation</span><span class="dfig-key">Open the route</span></div>
+            </div>
+          </div>
+          <ol class="dfig-notes r" start="3">
+            <li class="dfig-note" data-n="3"><span class="dfig-n">3</span><span class="dfig-k">Why it matters</span><p>The portfolio is the family’s, not one provider’s slice, and unseen fees still compound.</p></li>
+            <li class="dfig-note" data-n="4"><span class="dfig-n">4</span><span class="dfig-k">What stays yours</span><p>Nothing here is a recommendation. What you learn opens what comes next.</p></li>
+          </ol>
+          <div class="dfig-held"><span class="dfig-k">Held to</span><p>Every fee counted, nothing recommended.</p></div>
+        </div>
+      </figure>
+      <p class="small dfig-caption">An illustrative household. The figures are examples, not advice.</p>
+    </div>
+  </section>
+
+  <!-- THE INVESTMENT DESK (27 Sep 2026) is what the app's desk does at launch: what the
+       household holds elsewhere, read from Records, against the ranges on the Policy desk,
+       with every fee counted — and the route that learning opens. The Grow it page's first
+       half (the written policy) moved to policy.html; its Core Portfolios paragraph came out
+       with it, because Finna offers no investments and gives no investment advice. -->
   <section>
     <div class="wrap">
       <div class="section-head">
-        <h2>For more than a century, one kind of family has had an office.</h2>
+        <p class="eyebrow">What it does</p>
+        <h2>Public and private, in one picture.</h2>
       </div>
-      <p>Families with great wealth have long had something better than products: an office of their own. People who saw everything, coordinated everything and answered only to the family. Everyone else got accounts, apps and advice that never quite joined up.</p>
-      <p>We built Finna because that difference always seemed wrong, and because for the first time it doesn&rsquo;t have to exist. Technology can now carry much of what once took a staff of ten: the complete picture, the quiet attention, the continuity. So we built your own family office, and made it much more than investing.</p>
-      <p><b>— Christian Lindekilde, Founder</b></p>
+      <div class="grid g-3">
+        <article class="card">
+          <h3>Wherever it is held</h3>
+          <p>Brokerage accounts, pensions, bonds and private holdings, read from the household record, so the portfolio you see is the family&rsquo;s and not one provider&rsquo;s slice of it.</p>
+        </article>
+        <article class="card">
+          <h3>Against your own policy</h3>
+          <p>Every holding measured against the ranges your household wrote on the Policy desk.
+            Not a benchmark we chose, and not a model portfolio.</p>
+        </article>
+        <article class="card">
+          <h3>Every fee, counted</h3>
+          <p>What each holding costs a year, added up in one line. A fee you have not entered is
+            never guessed.</p>
+        </article>
+      </div>
     </div>
   </section>
 
   <section class="band-mint">
+    <div class="wrap split">
+      <h2>Understanding comes first.</h2>
+      <div>
+        <p class="lede">Short lessons in plain language, built around your own numbers. Each one you finish opens the part of the platform it belongs to.</p>
+        <div class="cta-row">
+          <a class="link" href="how-it-works.html">How the office works<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE FIVE DESKS (27 Sep 2026): the way on from any desk, with this one marked -->
+  <section class="band-tint dnav-sec" aria-labelledby="desks-h">
     <div class="wrap">
       <div class="section-head">
-        <h2>Who we are.</h2>
-        <p class="lede" style="margin-top:var(--space-6)">Operators who have each done a piece of this before.</p>
+        <p class="eyebrow">The five desks</p>
+        <h2 id="desks-h">Five desks, one office.</h2>
+        <p class="lede">Every desk is written from the same household record, so nothing is entered twice.</p>
       </div>
-      <div class="grid g-3">
-        <article class="card">
-          <h3>Christian Lindekilde</h3>
-          <p>Christian holds a PhD in finance and law, with a thesis on M&A. He was an executive in UBS&rsquo;s Global Family Office, and has spent his career advising and building family offices across more than $30bn of family wealth. He later raised over $280m of capital for US technology companies. He started Finna on one conviction: that having an office of your own should depend on understanding your money, not on the size of it.</p>
-        </article>
-        <article class="card">
-          <h3>Carolin Feindor</h3>
-          <p>At LGT Capital Partners, Carolin ran the operations behind $60bn in private markets, across 30 private equity boards in Luxembourg and Liechtenstein. Before that, PwC in Zurich and New York. She is a chartered accountant (FCCA), a Swiss-licensed audit expert and a Liechtenstein CPA.</p>
-        </article>
-        <article class="card">
-          <h3>Chris Mills</h3>
-          <p>Chris came to finance from AI, cybersecurity and games. He builds the intelligence behind Freya, the security model that lets a household put everything in one place, and the engineering that keeps it running quietly.</p>
-        </article>
-      </div>
+      <nav class="dnav" aria-label="The five desks">
+        <a href="records.html"><svg class="plate" aria-hidden="true" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.6" cy="12.4" r="2.3"/> <circle cx="16.4" cy="12.4" r="2.3"/> <path d="M3.9 20v-.5a3.7 3.7 0 0 1 7.4 0V20"/> <path d="M12.7 20v-.5a3.7 3.7 0 0 1 7.4 0V20"/> <path d="M12 3.1A5.734 5.734 0 0 1 13.9 5A5.734 5.734 0 0 1 12 6.9A5.734 5.734 0 0 1 10.1 5A5.734 5.734 0 0 1 12 3.1Z" fill="currentColor" stroke="none"/></svg><span class="eyebrow">Gather it</span><b>Records</b><span class="d">The household record, reconciled.</span></a>
+        <a href="policy.html"><svg class="plate" aria-hidden="true" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="12.6" height="12.6" rx="4"/> <path d="M6.5 14.4 9 16.9 13.5 11.6"/> <path d="M8 8V6.6A2.6 2.6 0 0 1 10.6 4h7.8A2.6 2.6 0 0 1 21 6.6V15a2.6 2.6 0 0 1-2.6 2.6h-2.8"/></svg><span class="eyebrow">Govern it</span><b>Policy</b><span class="d">Your rules, written down once.</span></a>
+        <a href="investment.html" aria-current="page"><svg class="plate" aria-hidden="true" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3.6" y="13.6" width="3.8" height="6.8" rx="1.9"/> <rect x="9.1" y="10.4" width="3.8" height="10" rx="1.9"/> <rect x="14.6" y="7" width="3.8" height="13.4" rx="1.9"/> <path d="M16.5 1.6A5.734 5.734 0 0 1 18.4 3.5A5.734 5.734 0 0 1 16.5 5.4A5.734 5.734 0 0 1 14.6 3.5A5.734 5.734 0 0 1 16.5 1.6Z" fill="currentColor" stroke="none"/></svg><span class="eyebrow">Grow it</span><b>Investment</b><span class="d">What you hold, against your policy.</span><span class="here">You are here</span></a>
+        <a href="protection.html"><svg class="plate" aria-hidden="true" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2 4.8 6v5.6c0 4.4 3 7.1 7.2 8.6 4.2-1.5 7.2-4.2 7.2-8.6V6Z"/> <path d="M12 9.1A6.941 6.941 0 0 1 14.3 11.4A6.941 6.941 0 0 1 12 13.7A6.941 6.941 0 0 1 9.7 11.4A6.941 6.941 0 0 1 12 9.1Z" fill="currentColor" stroke="none"/></svg><span class="eyebrow">Protect it</span><b>Protection</b><span class="d">Covered, missing, needs attention.</span></a>
+        <a href="succession.html"><svg class="plate" aria-hidden="true" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="7.9" r="3"/> <path d="M3.2 19.4a5.3 5.3 0 0 1 10.6 0"/> <circle cx="17.6" cy="12.6" r="1.9"/> <path d="M14.4 19.4a3.2 3.2 0 0 1 6.4 0"/> <path d="M17.6 6.9A4.225 4.225 0 0 1 19.0 8.3A4.225 4.225 0 0 1 17.6 9.7A4.225 4.225 0 0 1 16.2 8.3A4.225 4.225 0 0 1 17.6 6.9Z" fill="currentColor" stroke="none"/></svg><span class="eyebrow">Pass it on</span><b>Succession</b><span class="d">The people, the papers, the reasons.</span></a>
+      </nav>
     </div>
   </section>
 
   <section class="band final">
     <div class="wrap">
-      <h2>Meet the people behind it.</h2>
-      <p>Wealth, investing, protection, technology and learning, in the hands of people who have done this work for families before.</p>
-      <a class="key key-l key-white" href="team.html">The team</a>
+      <h2>The next desk: Protection.</h2>
+      <p>See what is covered, what is missing and what needs attention, before it becomes a problem.</p>
+      <a class="key key-l key-white" href="protection.html">Protection</a>
     </div>
   </section>
 </main>
@@ -218,5 +291,6 @@
 <script src="vendor/lenis.min.js?v=daec1872"></script>
 <script src="vendor/smooth-scroll.js?v=cb7b0132" defer></script>
 <script src="nav-site.js?v=4483fad9"></script>
+<script src="desk-figure.js?v=3b1e17e3" defer></script>
 </body>
 </html>

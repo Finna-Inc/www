@@ -1,4 +1,4 @@
-/* Finna design tokens · rev 40 · 21 SEP 2026
+/* Finna design tokens · rev 44 · 26 SEP 2026
    GENERATED — do not edit. Built from source.py by generate.py.
    Every value carries its job. Ratios are measured, not estimated. */
 :root{
@@ -7,6 +7,8 @@
   --bg-sunken:#F0F0F0;        /* Background, sunken — 6% text tint · input fields, loading blocks. */
   --border:#E0E0E0;           /* Border — 12% text tint · dividers between rows. */
   --border-strong:#CCCCCC;    /* Border, strong — 20% text tint · the edge of a card or object. */
+  --bg-raised:#FFFFFF;        /* Background, raised — A card or panel's face. White on white; in dark mode it lifts lighter than the page. */
+  --bg-selected:#E5EDEA;      /* Background, selected — The current row in a menu, the selected item. Primary 12% on white. */
   --bg-dark:#0D231B;          /* Background, dark — The one dark surface. Headers, footers, moments of ceremony. */
   --bg-closing:#485955;       /* Background, closing — The ground under the closing on every page — the one place the site stops arguing and asks. */
   /* ---- Text ---- */
@@ -16,6 +18,10 @@
   --text-secondary:#555555;   /* Text, secondary — Meta: timestamps, units, captions. */
   --text-tertiary:#737373;    /* Text, tertiary — The smallest labels — the floor for anything carrying information. */
   --text-disabled:#9A9A9A;    /* Text, disabled — Disabled states only. Never carries information. */
+  --heading:#000000;          /* Heading — Headings and section icons. Black on white, white in dark mode. */
+  --text-link:#246853;        /* Text, link — Primary-coloured text: links, a secondary key's label, the brand's line icons. The brand green on white; Primary 48% in dark mode. */
+  --text-selected:#184537;    /* Text, selected — Text on --bg-selected: the current menu row, a chip's words. */
+  --text-error:#661C28;       /* Text, error — An error's words. Night Bordeaux on white. */
   /* ---- Primary — the brand green ---- */
   --primary:#246853;          /* Primary — The brand green. Primary means action: buttons, links, the active state. */
   --primary-hover:#33735F;    /* Primary, hover — A button under the pointer. */
@@ -27,12 +33,12 @@
   --primary-6:#F2F6F5;        /* Primary 6% — The faintest tint. */
   --primary-glow:#F1FFE0;     /* Primary, glow — On trial. A pale lime, not a tint of the green. */
   /* ---- Accents — gold and warning ---- */
-  --gold:#BC9635;             /* Bullion — Earned only: certificates. About 2% of any surface. */
-  --gold-light:#E3C98C;       /* Gold, light — The certificate medal, top of the gradient. */
+  --gold:#BC9635;             /* Bullion — Earned: certificates. And attention — the edge of a card that needs you and the shelf of the attention key (27 Sep 2026). About 2% of any surface. */
+  --gold-light:#E3C98C;       /* Gold, light — The certificate medal, top of the gradient. The attention label and the attention key’s face (27 Sep 2026). */
   --gold-dark:#E1EAE4;        /* Mint Cream — A pale, cool ground — quieter than white, warmer than the sunken grey. */
-  --warning:#E54B28;          /* Fiery — One flag per screen. Something needs the client's attention. */
+  --warning:#E54B28;          /* Fiery — Errors: a field that is wrong, Freya’s needs-you ring. Attention moved to Bullion (27 Sep 2026) — Fiery read as an error there. */
   --warning-dark:#661C28;     /* Night Bordeaux — Warning text on white, and the pressed face of a destructive key. */
-  --midnight-violet:#2B0515;  /* Midnight Violet — No job. Parked in Considering — the last colour section on this page. */
+  --midnight-violet:#2B0515;  /* Midnight Violet — The tip in dark mode — the box that names a folded icon, with white words (Rose, 27 Sep 2026). Its first job; it left Considering for it. */
   --purple-dark:#5B3E9E;      /* Purple Crystal — The same job on white, where the bright purple dies. */
   --purple-bg:#1E1830;        /* Dark Purple — The surface behind a purple thing on the dark ground. */
   /* ---- Chart colours — chart marks only ---- */
@@ -85,6 +91,7 @@
   --r-card:14px;              /* Cards, fields, panes. */
   --r-key:12px;               /* Keys. */
   --r-tile:14px;              /* Icon tiles. */
+  --r-bar:30px;               /* Freya's bar at the foot of the product, and her panel above it. The field inside it takes this less the bar's padding, so the two curves run parallel (Rose, 27 Sep 2026: 30px as a baseline, in place of the pill). */
   --r-pill:999px;             /* The switch, and the pill labels promoted from the site’s chip — the status label and the filter tag. Nothing else. */
   --line-hairline:1px;        /* Row dividers, table lines. Uses the border colour. */
   --line-object:1px;          /* Cards and figures. Uses the strong border. */
@@ -93,31 +100,42 @@
   --line-icon-s:1.5px;        /* Icons below 24px — interface glyphs, inline arrows. */
   --line-icon:1.75px;         /* Icons 24 to 40px. The ratified stroke, unchanged. */
   --line-icon-l:2px;          /* Icons above 40px — the plates, the section marks. */
+  /* ---- the product's frame ---- */
+  --mainbar-open:264px;       /* The main bar, open: the lockup and every place's name. Home shows it open; elsewhere it opens over the work. */
+  --mainbar-folded:76px;      /* The main bar folded to its icons — every place but Home. The mark and the icons share its centre line. */
+  --mainbar-icon:28px;        /* The main bar's icons, one size for both families: the 24-grid at 28 (Rose, 25 Sep 2026: "a little larger"). Larger than --key-icon-xl on purpose — a menu row, not a key. */
+  --submenu-w:264px;          /* The sub menu: a place's pages, names only, beside the folded main bar. As wide as the open bar, so the longest page name (Certificates and badges) holds one line. */
+  --phone-head:64px;          /* The phone's header: the menu key, the place's name, and the place's own key. */
+  --sheet-w:560px;            /* The side sheet: a record's detail and its forms, over the work. */
   /* ---- motion ---- */
   --t-state:140ms;            /* Hover, press, focus. A state change. */
+  --ease:cubic-bezier(.2,.8,.2,1);/* The one easing curve — the site and the product already used it; now it has a home. */
   --t-move:240ms;             /* Something entering or leaving. */
   /* ---- the hero wash ---- */
   --wash-hero:radial-gradient(95% 75% at 6% 4%,color-mix(in srgb,#fff 9%,color-mix(in srgb,var(--primary) 26%,var(--bg-dark))) 0%,transparent 60%),radial-gradient(105% 95% at 97% 104%,color-mix(in srgb,var(--primary) 60%,var(--bg-dark)) 0%,transparent 72%),radial-gradient(70% 62% at 82% 6%,color-mix(in srgb,var(--primary) 8%,var(--bg-dark)) 0%,transparent 70%),color-mix(in srgb,var(--primary) 21%,var(--bg-dark)); /* The header wash. The top of a page, and nothing else. */
   /* ---- the button: the hard key ---- */
-  --key-height:48px;          /* The touch floor: on a touch screen every button is at least this tall — below 768px the mobile scale raises every size to clear it. On desktop, size S sits at 36px for dense rows; the floor is a touch rule, not a desktop one. */
+  --key-touch-target:48px;    /* Minimum mobile hit area, not visible face height. */
+  --input-height:48px;        /* Input desktop height, independent of compact buttons. */
+  --button-white-text:#000000;/* White button label; aliases the black role. */
+  --key-height:40px;          /* Default button face. Mobile touch area is separately at least 48px. */
   --key-radius:12px;          /* The key's corner. */
-  --key-offset:4px;           /* The solid offset under a key at rest — thrown straight down. */
-  --key-offset-hover:6px;     /* The offset on hover. The face lightens one step. */
+  --key-offset:2px;           /* The solid offset under a key at rest — thrown straight down. */
+  --key-offset-hover:1px;     /* The offset on hover: half the rest offset — the key sinks halfway (27 Sep 2026, it used to lift). The face lightens one step. */
   --key-offset-press:0px;     /* Pressed: the key sits down onto its offset and moves --key-offset. */
   --key-sheen:linear-gradient(180deg,rgba(255,255,255,.16) 0%,rgba(255,255,255,0) 56%,rgba(0,0,0,.12) 100%);/* The face's light and shade. Fixed — it never changes between states, so hover animates. */
   --key-edge:inset 0 1px 0 rgba(255,255,255,.14);/* The lit top edge. */
-  --key-height-s:36px;        /* Size S — Dense rows: a toolbar, a table row, the second action inside a card. */
-  --key-height-m:48px;        /* Size M — The default. Every ordinary action, on every surface. */
-  --key-height-l:56px;        /* Size L — The one action a page is built around. */
-  --key-height-xl:64px;       /* Size XL — A landing hero. Once on a page, and never twice. */
+  --key-height-s:32px;        /* Size S — Dense rows: a toolbar, a table row, the second action inside a card. */
+  --key-height-m:40px;        /* Size M — The default. Every ordinary action, on every surface. */
+  --key-height-l:48px;        /* Size L — The one action a page is built around. */
+  --key-height-xl:56px;       /* Size XL — A landing hero. Once on a page, and never twice. */
   --key-radius-s:10px;        /* Size S's corner. */
   --key-radius-m:12px;        /* Size M's corner. */
   --key-radius-l:14px;        /* Size L's corner. */
   --key-radius-xl:16px;       /* Size XL's corner. */
-  --key-offset-s:3px;         /* Size S's offset at rest. Hover adds 2px; pressed is 0. */
-  --key-offset-m:4px;         /* Size M's offset at rest. Hover adds 2px; pressed is 0. */
-  --key-offset-l:5px;         /* Size L's offset at rest. Hover adds 2px; pressed is 0. */
-  --key-offset-xl:6px;        /* Size XL's offset at rest. Hover adds 2px; pressed is 0. */
+  --key-offset-s:2px;         /* Size S's offset at rest. Hover halves it and the key sinks the same; pressed is 0. */
+  --key-offset-m:2px;         /* Size M's offset at rest. Hover halves it and the key sinks the same; pressed is 0. */
+  --key-offset-l:3px;         /* Size L's offset at rest. Hover halves it and the key sinks the same; pressed is 0. */
+  --key-offset-xl:4px;        /* Size XL's offset at rest. Hover halves it and the key sinks the same; pressed is 0. */
   --key-label-s:14px;         /* Size S's label. */
   --key-label-m:15px;         /* Size M's label. */
   --key-label-l:16px;         /* Size L's label. */
@@ -128,7 +146,12 @@
   --key-icon-xl:22px;         /* Size XL's icon. Never below the 16px floor. */
 }
 /* ---- the mobile scale ---- */
-/* Every size steps one rung up the ladder below 768px, which puts the floor at 48px.
+/* Face heights stay compact below 768px; the separate hit area is at least 48px.
    One set of names, two scales — the browser picks by width. */
-@media (max-width:768px){:root{--key-height-s:48px;--key-height-m:56px;--key-height-l:64px;--key-height-xl:72px;--key-label-s:15px;--key-label-m:16px;--key-label-l:17px;--key-label-xl:19px;--key-height:56px}}
+@media (max-width:768px){:root{--key-height-s:32px;--key-height-m:40px;--key-height-l:48px;--key-height-xl:56px;--key-label-s:15px;--key-label-m:16px;--key-label-l:17px;--key-label-xl:19px;--key-height:40px;--input-height:56px}}
 @media (prefers-reduced-motion:reduce){:root{--t-state:0ms;--t-move:0ms}}
+/* ---- dark mode — OPT-IN: a product sets data-mode on <html>. "auto" follows the
+   device, "dark" and "light" override it. A page without data-mode never changes. */
+:root[data-mode]{color-scheme:light}
+@media (prefers-color-scheme:dark){:root[data-mode="auto"]{color-scheme:dark;--bg:#161616;--bg-raised:#202020;--bg-sunken:#292929;--border:#333333;--border-strong:#424242;--text:#FFFFFF;--text-secondary:#A8A8A8;--text-tertiary:#8C8C8C;--text-disabled:color-mix(in srgb,#A8A8A8 50%,#161616);--heading:#FFFFFF;--text-link:#96B7AC;--text-selected:#FFFFFF;--text-error:#D4A894;--bg-selected:color-mix(in srgb,#246853 32%,#161616);--primary-12:color-mix(in srgb,#246853 24%,#161616);--primary-6:color-mix(in srgb,#246853 12%,#161616);--chart-bg:#202020}}
+:root[data-mode="dark"]{color-scheme:dark;--bg:#161616;--bg-raised:#202020;--bg-sunken:#292929;--border:#333333;--border-strong:#424242;--text:#FFFFFF;--text-secondary:#A8A8A8;--text-tertiary:#8C8C8C;--text-disabled:color-mix(in srgb,#A8A8A8 50%,#161616);--heading:#FFFFFF;--text-link:#96B7AC;--text-selected:#FFFFFF;--text-error:#D4A894;--bg-selected:color-mix(in srgb,#246853 32%,#161616);--primary-12:color-mix(in srgb,#246853 24%,#161616);--primary-6:color-mix(in srgb,#246853 12%,#161616);--chart-bg:#202020}

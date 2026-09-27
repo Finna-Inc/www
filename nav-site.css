@@ -1,6 +1,6 @@
 /* ══ THE SITE'S NAVIGATION ══════════════════════════════════════════════════════════
    Lifted 1:1 from the 2026-09 site (now _archive/landing-2026-09-11/site.css): the frosted
-   bar, the centred menu, the promises dropdown with its rows and its rule, the burger
+   bar, the centred menu, the desks dropdown with its rows and its rule, the burger
    sheet. Nothing about its geometry or motion is re-decided here.
 
    TWO THINGS CHANGED on the way over, both of them icons:
@@ -96,7 +96,11 @@
 .nav-links{display:flex;gap:30px;align-items:center;margin-left:6px;margin-right:auto}
 .nav-links a{font-size:var(--text-reading);text-decoration:none;color:rgba(255,255,255,.90)}
 .nav-links a:hover{color:var(--white)}
-/* ---------- the promises menu (from the Claude Design nav file, Rose 3 Sep) ---------- */
+/* the bar marks the page you are on (27 Sep 2026): the link to the page you are reading
+   carries aria-current, and the bar underlines it in the green's light step */
+.nav-links > a[aria-current="page"]{color:var(--white);text-decoration:underline;
+  text-decoration-thickness:var(--line-figure);text-underline-offset:var(--space-2);text-decoration-color:var(--primary-48)}
+/* ---------- the desks menu (from the Claude Design nav file, Rose 3 Sep) ---------- */
 .nav-has-dd{position:relative;display:inline-flex;align-items:center}
 .nav-dd-t{display:inline-flex;align-items:center;gap:7px}
 .nav-chev{opacity:.62;transition:transform 220ms var(--ease,cubic-bezier(.22,1,.36,1))}
@@ -135,7 +139,9 @@
 .nav-links .nav-has-dd.open .nav-ddl:nth-child(2){transition-delay:0ms,0ms,80ms,80ms}
 .nav-links .nav-has-dd.open .nav-ddl:nth-child(3){transition-delay:0ms,0ms,120ms,120ms}
 .nav-links .nav-has-dd.open .nav-ddl:nth-child(4){transition-delay:0ms,0ms,160ms,160ms}
-.nav-links .nav-has-dd.open .nav-ddl:nth-child(6){transition-delay:0ms,0ms,210ms,210ms}
+.nav-links .nav-has-dd.open .nav-ddl:nth-child(5){transition-delay:0ms,0ms,200ms,200ms}
+/* child 6 is the rule; 7 is "What is a family office?" under it (five desks, 27 Sep 2026) */
+.nav-links .nav-has-dd.open .nav-ddl:nth-child(7){transition-delay:0ms,0ms,250ms,250ms}
 .nav-links .nav-ddl:hover{background:rgba(255,255,255,.10);color:var(--white)}
 /* THE SUB ROW IS GOLD, NOT DIMMED (Rose, 14 Sep 2026: "what is a family office stands
    out a bit too much in a negative way — make it our golden colour, as the headline in
@@ -163,7 +169,11 @@
    the pressed green reads against it without any extra help. */
 .nav-toggle{display:none}
 .nav-cta-m{display:none}
-@media (max-width:900px){
+/* THE SHEET FROM 1099px DOWN, NOT 900 (27 Sep 2026). With How it works, Your family office,
+   Service levels and About in the bar, the row needs about 1100px: below that the labels
+   and the key broke onto two lines. The burger takes over where the row runs out. The
+   same number is in nav-site.js (inSheet), so the two cannot disagree. */
+@media (max-width:1099px){
 .nav-links{display:none}
 .nav-links.open{display:flex;position:absolute;top:76px;left:0;right:0;transform:none;z-index:70;
     flex-direction:column;gap:0;border-radius:20px;padding:8px 0;
@@ -189,7 +199,13 @@
        needs when it sits beside the name; in the sheet they pushed it 6px off the bar's
        left edge, and `align-items:center` shrank the two plain items to their text and
        centred them while the dropdown rows ran full width. */
-    margin:0;align-items:stretch}
+    margin:0;align-items:stretch;
+    /* THE SHEET SCROLLS WHEN THE SCREEN IS SHORT (27 Sep 2026). Five desks made it a row
+       taller, about 516px, which ran past the bottom of a 568px screen and of any phone
+       held sideways, with the key out of reach under a bar that does not scroll. It now
+       stops a gap short of the bottom and scrolls inside itself; on a normal phone it is
+       shorter than that and nothing changes. */
+    max-height:calc(100dvh - 76px - var(--space-6));overflow-y:auto;overscroll-behavior:contain}
 /* TIGHTER ROWS (Rose, 14 Sep 2026: "pull the menu items together a little bit — dropdown
    menu is a little too tall on mobile"). The padding here was set when the rows were 13
    and 17px; at 17 and 19 it stacked on top of type that had already grown. Every row

@@ -18,27 +18,27 @@
   const HTML = "\n<div class=\"pbar\"><span class=\"mk\"></span><b>Finna</b>\n  <span class=\"k\">Your family office <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12h14\"/><path d=\"m12 5 7 7-7 7\"/></svg></span></div>\n<div class=\"fhead\"><span class=\"av\"></span>\n  <span class=\"who\"><b>Freya</b><span>Chief of staff</span></span>\n  <span class=\"tag\">HOUSEHOLD</span></div>\n<div class=\"scroll\"><div class=\"roll\"></div></div>\n<div class=\"pin\"><span class=\"field\">Ask Freya anything</span>\n  <span class=\"send\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 19V5\"/><path d=\"m5 12 7-7 7 7\"/></svg></span></div>\n";
 
   const SCRIPT = {
-    divider: 'Freya · Household briefing · Sunday, 23:14',
+    divider: 'Freya · Household briefing · Sunday, 11:14 pm',
     duration: 23,
     beats: [
       { at:0.4,  kind:'freya', text:'The household is in order. One item wants a decision before the week starts.' },
       { at:1.2,  kind:'freya', text:'Your April tax bill is confirmed at **$84,200**, due on the 15th.' },
       { at:2.4,  kind:'ask',   text:'Can we cover it without selling the fund?', type:1.6 },
-      { at:4.6,  kind:'freya', text:'Yes — without touching the fund. Four ways, in the order I would rank them.' },
+      { at:4.6,  kind:'freya', text:'Yes, without touching the fund. Here are four ways, from the lowest cost to the highest.' },
       { at:5.6,  kind:'options',
                  pick:2, pressAt:11.4, sendAt:12.6, sendText:'Sell the money-market holding',
                  items:[
                    { title:'Pay it from cash',            cost:'Leaves the buffer at $18,000' },
-                   { title:'Sell the money-market holding', cost:'No gain realised · settles in two days' },
+                   { title:'Sell the money-market holding', cost:'No gain realized · settles in two days' },
                    { title:'Draw on the credit line',      cost:'Interest running until September' },
-                   { title:'Sell part of the fund',        cost:'Realises a $41,000 gain this year' },
+                   { title:'Sell part of the fund',        cost:'Realizes a $41,000 gain this year' },
                  ] },
       { at:13.4, kind:'typing', until:14.4 },
       { at:14.4, kind:'card', title:'What happens now', stagger:0.85, lines:[
                    '**$84,200** leaves the money-market holding. It settles in two days.',
-                   'No gain realised this year. The fund is untouched.',
+                   'No gain realized this year. The fund is untouched.',
                    'Your cash buffer holds at **$60,000** after the payment.',
-                   'Drafted for your adviser of record to sign.',
+                   'Drafted for you to approve, or to send to your own adviser.',
                  ] },
     ],
   };

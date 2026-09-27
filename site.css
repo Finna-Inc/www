@@ -126,7 +126,7 @@ section{padding:var(--space-8) 0}
              transform var(--t-state) var(--ease);
 }
 .key:hover{background-color:var(--primary-hover);
-  box-shadow:0 calc(var(--ko) + 2px) 0 var(--primary-pressed), inset 0 1px 0 rgba(255,255,255,.18)}
+  transform:translateY(calc(var(--ko) / 2)); box-shadow:0 calc(var(--ko) / 2) 0 var(--primary-pressed), inset 0 1px 0 rgba(255,255,255,.18)}
 .key:active{transform:translateY(var(--ko));background-color:var(--primary-pressed);
   box-shadow:0 0 0 var(--primary-pressed), inset 0 1px 0 rgba(255,255,255,.10)}
 .key:focus-visible{outline:2px solid var(--primary);outline-offset:3px}
@@ -139,12 +139,14 @@ section{padding:var(--space-8) 0}
 .key-xl{--kh:var(--key-height-xl);--kr:var(--key-radius-xl);--ko:var(--key-offset-xl);
         --klabel:var(--key-label-xl);--kicon:var(--key-icon-xl)}
 
-/* WHITE — the same key on the dark ground, where green on green would vanish */
-.key-white{background-color:var(--white);color:var(--text);
-  box-shadow:0 var(--ko) 0 var(--primary-pressed), inset 0 1px 0 rgba(255,255,255,.6)}
+/* WHITE — the same key on the dark ground, where green on green would vanish. Its shelf is
+   white at 30%, as in the brand's .key-white (Rose, 18 Sep; the site caught up 27 Sep 2026) —
+   the green shelf belongs to green keys, and under a white key on the dark ground it read wrong. */
+.key-white{--kwt:color-mix(in srgb,var(--white) 30%,transparent);background-color:var(--white);color:var(--text);
+  box-shadow:0 var(--ko) 0 var(--kwt), inset 0 1px 0 rgba(255,255,255,.6)}
 .key-white:hover{background-color:var(--bg-sunken);
-  box-shadow:0 calc(var(--ko) + 2px) 0 var(--primary-pressed), inset 0 1px 0 rgba(255,255,255,.6)}
-.key-white:active{background-color:var(--bg-sunken);box-shadow:0 0 0 var(--primary-pressed)}
+  transform:translateY(calc(var(--ko) / 2)); box-shadow:0 calc(var(--ko) / 2) 0 var(--kwt), inset 0 1px 0 rgba(255,255,255,.6)}
+.key-white:active{background-color:var(--bg-sunken);box-shadow:0 0 0 var(--kwt)}
 
 /* GOLD — the Pro key only (Rose, 13 Sep 2026: "use golden cta color in premium").
    Gold is the earned colour, about 2% of a surface, and Pro is where the page earns it.
@@ -154,7 +156,7 @@ section{padding:var(--space-8) 0}
 .key-gold{background-color:var(--gold);color:var(--text);
   box-shadow:0 var(--ko) 0 color-mix(in srgb,var(--gold) 62%,var(--black)), inset 0 1px 0 rgba(255,255,255,.28)}
 .key-gold:hover{background-color:color-mix(in srgb,var(--gold) 88%,var(--white));
-  box-shadow:0 calc(var(--ko) + 2px) 0 color-mix(in srgb,var(--gold) 62%,var(--black)), inset 0 1px 0 rgba(255,255,255,.30)}
+  transform:translateY(calc(var(--ko) / 2)); box-shadow:0 calc(var(--ko) / 2) 0 color-mix(in srgb,var(--gold) 62%,var(--black)), inset 0 1px 0 rgba(255,255,255,.30)}
 .key-gold:active{background-color:color-mix(in srgb,var(--gold) 86%,var(--black));
   box-shadow:0 0 0 color-mix(in srgb,var(--gold) 62%,var(--black))}
 .key-gold:focus-visible{outline-color:var(--gold)}
@@ -163,7 +165,7 @@ section{padding:var(--space-8) 0}
 .key-2{background:transparent;background-image:none;color:var(--primary);
   box-shadow:inset 0 0 0 var(--line-object) var(--primary), 0 var(--ko) 0 var(--primary-24)}
 .key-2:hover{background:var(--primary-6);
-  box-shadow:inset 0 0 0 var(--line-object) var(--primary), 0 calc(var(--ko) + 2px) 0 var(--primary-24)}
+  transform:translateY(calc(var(--ko) / 2)); box-shadow:inset 0 0 0 var(--line-object) var(--primary), 0 calc(var(--ko) / 2) 0 var(--primary-24)}
 .on-dark .key-2{color:var(--white);
   box-shadow:inset 0 0 0 var(--line-object) rgba(255,255,255,.55), 0 var(--ko) 0 rgba(255,255,255,.22)}
 .on-dark .key-2:hover{background:rgba(255,255,255,.06)}
@@ -206,6 +208,44 @@ section{padding:var(--space-8) 0}
 .hero h1{font-size:var(--text-display);font-weight:var(--weight-reading);
   letter-spacing:var(--track-display)}
 .hero .lede{color:rgba(255,255,255,.82);max-width:52ch;margin-top:var(--space-6)}
+
+/* ── THE DESK COVERS (Christian, 27 Sep 2026) ─────────────────────────────────
+   Each of the five desk pages opens on its own photograph, media/desks/<desk>.webp, the way
+   the home page does: the picture with nothing laid over it, so the wash steps aside. The
+   page names its desk once, as data-cover on <html>; hero-tones.css (build/hero-tones.py)
+   turns that into the picture and the pull band's colour in one rule, so the two cannot
+   disagree. With no data-cover the hero keeps its wash.
+
+   TWO COMPOSITIONS, NOT ONE SCALED. On a wide screen the words sit low on the left, on the
+   dark ground every cover carries there (the home heroes' test), and the hero is the
+   picture's own 16:9 at the window's width: the whole frame, never taller than the screen,
+   never shorter than the words need. Below 1100px the dark left third is too narrow to hold
+   the words — measured on the five covers, the lede fell to 3.9:1 at 1024 where the light
+   is, and every line clears 4.5:1 from 1100 up — so the picture stands on its own at the
+   top, cropped toward the light, and the words sit under it on --bg-dark. The breakpoint is
+   the pictures', not the bar's: re-measure it if a cover changes. */
+.hero-cover::before{background-image:var(--cover,var(--wash-hero));background-size:cover;
+  background-repeat:no-repeat;background-position:left center}
+@media (width >= 1100px){
+  .hero-cover{display:flex;flex-direction:column;justify-content:flex-end;
+    min-height:min(100svh,max(36rem,56.25vw))}
+  /* a flex column shrinks .wrap to its words and centres it; it keeps the page's measure */
+  .hero-cover > .inner{width:100%}
+}
+@supports not (height:100svh){@media (width >= 1100px){
+  .hero-cover{min-height:min(100vh,max(36rem,56.25vw))}}}
+@media (width < 1100px){
+  /* the picture joins the flow as the hero's first block; the bar floats over its top.
+     Its own 16:9 at the window's width, never under 24rem on a phone, and never more than
+     60% of the screen, so a tablet held sideways still opens on the name as well as the
+     picture. 80% keeps the light, which sits right of centre in all five — and it is the
+     slice build/hero-tones.py samples for the pull band, so change the two together. */
+  .hero-cover::before{position:static;display:block;
+    height:clamp(24rem,56.25vw,60vh);height:clamp(24rem,56.25vw,60svh);
+    background-position:80% center}
+  /* the picture already clears the bar, so the words need a block's gap, not the bar's */
+  .hero-cover > .inner{padding-top:var(--space-7)}
+}
 
 /* a dark band anywhere further down the page — the same surface, without the wash */
 .band{background:var(--bg-dark);color:var(--white)}
@@ -299,6 +339,8 @@ section{padding:var(--space-8) 0}
 .g-2{grid-template-columns:repeat(2,1fr)}
 .g-3{grid-template-columns:repeat(3,1fr)}
 .g-4{grid-template-columns:repeat(4,1fr)}
+.g-2 > .card-lead{grid-column:1 / -1}
+.card > .eyebrow{margin-bottom:var(--space-3)}
 @media (max-width:900px){.g-3,.g-4{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:600px){.g-2,.g-3,.g-4{grid-template-columns:1fr}}
 
@@ -389,10 +431,9 @@ a.soon.is-here{cursor:default}
        border-top:1px solid rgba(255,255,255,.14);
        color:rgba(255,255,255,.55);font-size:var(--text-label);line-height:1.65}
 .legal p{max-width:none;margin:0 0 12px}
-/* the two labels inside the legal block: "Important information" sets the disclaimer apart
-   from the regulatory paragraphs, and the copyright closes the page. Both stay at the label
-   rung — they are the quietest text on the site and should read that way. */
-.legal-h{margin-top:var(--space-5);font-weight:var(--weight-label);color:rgba(255,255,255,.72)}
+/* the legal block is one short disclaimer (27 Sep 2026) and the copyright that closes the
+   page. Both stay at the label rung — the quietest text on the site, and they should read
+   that way. */
 .legal-c{margin-top:var(--space-5);padding-top:var(--space-4);
          border-top:1px solid rgba(255,255,255,.14)}
 
@@ -648,20 +689,28 @@ figcaption{margin-top:var(--space-4);color:var(--text-tertiary);font-size:var(--
 .facts p{margin:0;color:var(--text-secondary);font-size:var(--text-reading)}
 @media (max-width:700px){.facts > div{grid-template-columns:1fr;gap:var(--space-3)}}
 
-/* ══ THE FOUR PROMISES ══ back from the 2026-09 site (Rose, 12 Sep 2026) ═══════════
-   Each promise is a row of two: the words on one side, the thing itself on the other,
-   alternating. Ported as it stood; the only substitution is --warning-bg, which is not a
+/* ══ THE FIVE DESKS ══ the four promises of the 2026-09 site (Rose, 12 Sep 2026), re-cut
+   as the app's five desks (Christian, 27 Sep 2026). Each desk is a row of two: the words on
+   one side, the thing itself on the other, alternating. Ported as it stood; the only substitution is --warning-bg, which is not a
    token in this system — it is a stated mix of --warning and white (§21). */
-.promise{padding:74px 0}
+.desk{padding:74px 0}
 /* THE HEADING MATCHES ITS ICON (Rose, 13 Sep 2026: "the headers are way too small in
    reference to the icons"). It was h3 — the subhead rung, 19-21px — next to a 48px plate,
    better than 2:1 in the icon's favour, so the drawing read as the subject and the words as
    a caption. --text-title puts it at 24-32 and the ratio at about 1.5:1. Still a rung below
    the section's own h2, which is what it is. */
-.promise h3{display:flex;align-items:center;gap:16px;margin:0;
+.desk h3{display:flex;align-items:center;gap:16px;margin:0;
   font-size:var(--text-title);line-height:1.2}
-.promise h3 .plate{margin-bottom:0}
-.promise .lede{margin-top:22px}
+.desk h3 .plate{margin-bottom:0}
+.desk .lede{margin-top:22px}
+/* THE DESK'S NAME AND ITS VERB (27 Sep 2026). The name is the heading, as it is in the app;
+   the verb sits above it as an eyebrow — the brand's section-introduction pattern
+   (components.css: eyebrow, title, lead), one rung below the reading size and quiet. The
+   two stack beside the plate, so the icon still pairs with the name. */
+.desk-t{display:flex;flex-direction:column;gap:var(--space-2)}
+.eyebrow{display:block;margin:0;font:var(--weight-heading) var(--text-label)/1 var(--font);
+  letter-spacing:.12em;text-transform:uppercase;color:var(--text-tertiary)}
+.hero .eyebrow{color:rgba(255,255,255,.72);margin-bottom:var(--space-5)}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
 /* the ledger card draws its treemap only above 520px of its OWN width, and an even split
    of the measure leaves it 518. The row it sits in gives it the extra: the words are
@@ -696,7 +745,7 @@ figcaption{margin-top:var(--space-4);color:var(--text-tertiary);font-size:var(--
 .two.invest{grid-template-columns:.9fr 1.1fr}
 .invest-clip{width:100%;border:var(--line-object) solid var(--border-strong);border-radius:var(--r-card);
   overflow:hidden;background:var(--white)}
-.invest-clip img,.invest-clip video{display:block;width:100%;height:auto}    /* 4:3 sets its own height */
+.invest-clip img,.invest-clip video{display:block;width:100%;height:auto}    /* the frame sets its own height: 16:9 since the 27 Sep re-cut */
 @media (max-width:900px){.two.invest{grid-template-columns:1fr}}
 /* THE FIGURES ARE RIGHT-ALIGNED, NOT TABULAR (Rose, 13 Sep 2026: "delete all Inter fonts").
    Lexend's digits are proportional and its file carries no tabular-figures feature, so a
@@ -735,7 +784,8 @@ figcaption{margin-top:var(--space-4);color:var(--text-tertiary);font-size:var(--
 .rev .rl small{display:block;font-weight:var(--weight-reading);font-size:var(--text-reading);color:var(--text-tertiary);margin-top:3px}
 .rec{display:flex;justify-content:space-between;gap:20px;padding:22px 0;
   border-bottom:1px solid var(--border);font-size:var(--text-reading)}
-.rec .rv{color:var(--text-secondary)}
+.rec .rv,.rev .rv{color:var(--text-secondary)}
+.rev .rv{font-size:var(--text-reading);white-space:nowrap}
 .chip{font-family:var(--font-sans);font-size:var(--text-label);font-weight:var(--weight-heading);padding:7px 14px;
   border-radius:999px;white-space:nowrap}
 .chip-ok{background:var(--primary-12);color:var(--primary-pressed)}
@@ -755,9 +805,9 @@ figcaption{margin-top:var(--space-4);color:var(--text-tertiary);font-size:var(--
 
 @media (max-width:1080px){.two{gap:56px}}
 @media (max-width:900px){
-  .promise{padding:48px 0}
+  .desk{padding:48px 0}
   .two,.two:has(finna-ledger){grid-template-columns:1fr;gap:36px}
-  /* stacked, the words come first in every promise, whatever the desktop order */
+  /* stacked, the words come first in every desk, whatever the desktop order */
   .two.top > .panel,.two.top > .card-white,.two.top > finna-ledger{order:2}
   .panel,.card-white{padding:24px}
   .panel h4,.card-white h4{font-size:var(--text-subhead)}
@@ -1011,7 +1061,7 @@ figcaption{margin-top:var(--space-4);color:var(--text-tertiary);font-size:var(--
      the paragraph under it. On a screen this size those read as the page having lost
      its place, not as breathing room. Same ladder, one rung down. */
   .section-head{margin-bottom:var(--space-6)}   /* 56 → 32 */
-  .promise{padding:36px 0}                      /* 48 → 36 */
+  .desk{padding:36px 0}                         /* 48 → 36 */
   /* .band-violet .rule is (0,2,0) and beat a bare .rule even inside this query, so the
      divider in that section kept its desktop margin. Matched here rather than raised
      with !important. */
@@ -1029,7 +1079,7 @@ figcaption{margin-top:var(--space-4);color:var(--text-tertiary);font-size:var(--
      one, and centring a table of figures or a list of rows would be wrong.
      Only headings and the one opening paragraph: a long run of body text stays ranged
      left, because centring several lines costs the reader the return edge. */
-  .promise > .wrap > div:not([class]),
+  .desk > .wrap > div:not([class]),
   .band-violet > .wrap > div,
   .section-head{text-align:center}
   /* THE ICON GOES ABOVE THE HEADING (Rose, 14 Sep 2026: "put the icons on top centered
@@ -1038,12 +1088,12 @@ figcaption{margin-top:var(--space-4);color:var(--text-tertiary);font-size:var(--
      centred block a top to hang from. The baseline alignment that pairs them side by
      side has no job once they are stacked. */
   /* TWO STRUCTURES, ONE RESULT. home-00 puts the icon in an .ico-row beside the heading;
-     the four promise sections put it INSIDE the h3, which is its own flex row. Both stack
+     the five desk blocks put it INSIDE the h3, which is its own flex row. Both stack
      and centre here. The baseline nudge that pairs icon and heading side by side has no
      job once they sit one above the other. */
-  .ico-row,.promise h3{flex-direction:column;align-items:center;gap:14px;text-align:center}
-  .ico-row .plate,.promise h3 .plate{translate:none}
-  .promise > .wrap > div:not([class]) > .lede,
+  .ico-row,.desk h3{flex-direction:column;align-items:center;gap:14px;text-align:center}
+  .ico-row .plate,.desk h3 .plate{translate:none}
+  .desk > .wrap > div:not([class]) > .lede,
   .band-violet .pull,.band-violet .lede{margin-inline:auto}
   .band-violet .rule{margin-inline:auto}
   .link{margin-inline:auto}
@@ -1197,3 +1247,304 @@ body:has(.nav-links.open) .to-top{opacity:0;pointer-events:none}
    nothing at top:10px — it was unreadable and unclickable on every page. 102px is the
    tallest measured bar plus air. Delete this one rule for the original geometry. */
 .hero .sec-chip,.hero-home .sec-chip{top:102px}
+
+/* ══ THE DESK PAGES (27 Sep 2026) ══════════════════════════════════════════════════
+   One flow on all five: the cover, then Inside the desk (the figure), What it does (the
+   cards), the statement as a split, the five desks, and the next desk. Every section's
+   heading carries an eyebrow saying what it is, in the brand green. */
+.section-head .eyebrow{color:var(--text-link);margin-bottom:var(--space-3)}
+:is(.inside,.dnav-sec) .section-head .lede{margin:var(--space-4) 0 0;max-width:60ch}
+
+/* the figure's ground: Mint Cream with a hairline grid in the brand green */
+.band-grid{--grid-line:color-mix(in srgb,var(--primary) 9%,transparent);
+  background-image:linear-gradient(var(--grid-line) var(--line-hairline),transparent var(--line-hairline)),
+                   linear-gradient(90deg,var(--grid-line) var(--line-hairline),transparent var(--line-hairline));
+  background-size:var(--space-5) var(--space-5)}
+.dfig-caption{margin:var(--space-5) 0 0;max-width:none}
+
+/* ── THE DESK FIGURE ── lifted from mockups/desk-figures.html, where the design lives.
+   A piece of the platform with the same four takeaways pinned in the same four places on
+   every desk: 1 the title · 2 the three figures · 3 the third row · 4 the decision. Its
+   layout answers its OWN width (container queries):
+     phone    screen · takeaways 1–4 · held to
+     tablet   screen · takeaways two by two · held to
+     desktop  takeaways 1–2 · screen · takeaways 3–4 · held to, with leader lines */
+.dfig{container-type:inline-size;position:relative;margin:0}
+.dfig-grid{position:relative;z-index:1;display:grid;gap:var(--space-5);
+  grid-template-columns:minmax(0,1fr);grid-template-areas:"screen" "nl" "nr" "held"}
+.dfig-notes{list-style:none;margin:0;padding:0;display:grid;gap:var(--space-5);align-content:start}
+.dfig-notes.l{grid-area:nl}
+.dfig-notes.r{grid-area:nr}
+.dfig-note{display:grid;grid-template-columns:auto minmax(0,1fr);gap:var(--space-2) var(--space-3);align-items:center}
+.dfig-n{grid-row:span 2;align-self:start;display:grid;place-items:center;inline-size:var(--space-6);block-size:var(--space-6);
+  border-radius:var(--r-pill);background:var(--primary);color:var(--white);box-shadow:0 0 0 var(--space-1) var(--primary-12);
+  font:var(--weight-heading) var(--text-label)/1 var(--font-sans)}
+.dfig-k{font:var(--weight-heading) var(--text-label)/1.2 var(--font-sans);letter-spacing:.12em;text-transform:uppercase;color:var(--text-link)}
+.dfig-note p{grid-column:2;margin:0;max-width:none;font-size:var(--text-reading);line-height:var(--lh-subhead);color:var(--text)}
+/* the standard the desk is held to — the app's own line, on the glow */
+.dfig-held{grid-area:held;display:flex;flex-wrap:wrap;align-items:baseline;gap:var(--space-2) var(--space-4);
+  padding:var(--space-4) var(--space-5);border-radius:var(--r-card);
+  background:var(--primary-glow);box-shadow:inset 0 0 0 var(--line-hairline) var(--primary-24)}
+.dfig-held p{margin:0;max-width:none;font:var(--weight-label) var(--text-subhead)/var(--lh-subhead) var(--font-sans);color:var(--primary-pressed)}
+
+/* the screen: the same template on every desk */
+.dfig-screen{grid-area:screen;position:relative;display:flex;flex-direction:column;align-self:center;
+  background:var(--bg-raised);border:var(--line-object) solid var(--border);border-radius:var(--r-card);
+  box-shadow:0 var(--space-5) var(--space-7) calc(var(--space-5) * -1) color-mix(in srgb,var(--primary-pressed) 35%,transparent);
+  font-size:var(--text-label);line-height:1.4;color:var(--text)}
+.dfig-tabs{display:flex;align-items:center;gap:var(--space-1);padding:var(--space-3) var(--space-4);overflow:hidden;
+  border-bottom:var(--line-hairline) solid var(--border);mask-image:linear-gradient(90deg,var(--black) 85%,transparent)}
+.dfig-tabs b{padding-right:var(--space-3);margin-right:var(--space-1);border-right:var(--line-hairline) solid var(--border);
+  color:var(--black);white-space:nowrap}
+.dfig-tabs span{padding:var(--space-1) var(--space-2);border-radius:var(--r-chip);color:var(--text-secondary);white-space:nowrap}
+.dfig-tabs .on{background:var(--bg-selected);color:var(--text-selected);font-weight:var(--weight-label)}
+/* --pad is the page's side margin; the pins read it to sit centred on the screen's edge */
+.dfig-page{--pad:var(--space-6);min-width:0;display:flex;flex-direction:column;gap:var(--space-4);
+  padding:var(--space-4) var(--pad) var(--space-5)}
+.dfig-crumb{color:var(--text-secondary)}
+.dfig-t{position:relative}
+.dfig-title strong{display:block;font:var(--weight-heading) var(--text-subhead)/1.2 var(--font-sans);color:var(--black)}
+.dfig-title span{color:var(--text-secondary)}
+.dfig-figs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-2)}
+.dfig-figs div{min-width:0;border:var(--line-hairline) solid var(--border);border-radius:var(--r-chip);padding:var(--space-2) var(--space-3)}
+.dfig-figs div:last-child{background:var(--primary-glow);border-color:var(--primary)}
+.dfig-figs span{display:block;color:var(--text-secondary)}
+.dfig-figs b{display:block;font-size:var(--text-reading);color:var(--black);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dfig-rows{display:flex;flex-direction:column}
+.dfig-row{position:relative;display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);
+  padding:var(--space-2) 0;border-bottom:var(--line-hairline) solid var(--border)}
+.dfig-row:last-child{border-bottom:0}
+.dfig-row .nm{min-width:0;color:var(--black)}
+.dfig-row .nm small{display:block;color:var(--text-secondary);font-size:inherit}
+.dfig-row .v{flex:none;text-align:right;white-space:nowrap}
+.dfig-chip{flex:none;padding:var(--space-1) var(--space-2);border-radius:var(--r-pill);font-weight:var(--weight-heading);white-space:nowrap}
+.dfig-chip.ok{background:var(--primary-12);color:var(--primary-pressed)}
+.dfig-chip.miss{background:color-mix(in srgb,var(--warning) 14%,var(--white));color:var(--warning-dark);
+  box-shadow:inset 0 0 0 var(--line-hairline) var(--warning)}
+.dfig-chip.att{box-shadow:inset 0 0 0 var(--line-hairline) var(--border-strong);color:var(--text)}
+.dfig-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--space-2) var(--space-3);
+  padding-top:var(--space-3);border-top:var(--line-hairline) solid var(--border)}
+.dfig-foot > span:first-child{color:var(--text-secondary)}
+/* the brand's hard key, drawn: a slight sheen on a solid offset */
+.dfig-key{display:inline-flex;align-items:center;min-height:var(--key-height-s);padding:0 var(--space-3);
+  border-radius:var(--key-radius-s);background-color:var(--primary);background-image:var(--key-sheen);color:var(--white);
+  box-shadow:var(--key-edge),0 var(--key-offset-s) 0 var(--primary-pressed);font-weight:var(--weight-label);white-space:nowrap}
+/* the pins: on the screen's edge, level with the part a takeaway is about */
+.dfig-pin{position:absolute;z-index:2;top:50%;translate:0 -50%;display:grid;place-items:center;
+  inline-size:var(--space-5);block-size:var(--space-5);border-radius:var(--r-pill);
+  background:var(--primary);color:var(--white);font:var(--weight-heading) var(--text-label)/1 var(--font-sans);font-style:normal;
+  box-shadow:0 0 0 var(--space-1) var(--bg-raised)}
+.dfig-pin.l{left:calc(var(--pad) * -1 - var(--space-5) / 2)}
+.dfig-pin.r{right:calc(var(--pad) * -1 - var(--space-5) / 2)}
+.dfig-lead{position:absolute;inset:0;z-index:2;inline-size:100%;block-size:100%;pointer-events:none;overflow:visible}
+.dfig-lead path{fill:none;stroke:var(--primary);stroke-width:var(--line-figure);stroke-dasharray:var(--space-1) var(--space-1);stroke-linecap:round}
+.dfig-lead circle{fill:var(--primary)}
+@container (min-width:620px){
+  .dfig-grid{gap:var(--space-6);grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+    grid-template-areas:"screen screen" "nl nr" "held held"}
+}
+@container (min-width:1000px){
+  .dfig-grid{column-gap:var(--space-7);row-gap:var(--space-7);
+    grid-template-columns:minmax(0,1fr) minmax(0,1.9fr) minmax(0,1fr);
+    grid-template-areas:"nl screen nr" "held held held"}
+  .dfig-notes{align-content:space-evenly}
+}
+/* a phone: tighter margins, and the three figures two over one — the one that matters full width */
+@container (max-width:519px){
+  .dfig-tabs b{display:none}
+  .dfig-page{--pad:var(--space-5)}
+  .dfig-figs{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .dfig-figs div:last-child{grid-column:1 / -1}
+}
+
+/* ── THE STATEMENT, SPLIT ── the desk's one idea as a heading on the left, the reason on
+   the right, the way an editorial page reads; one column from a tablet down */
+.split{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--space-5) var(--space-7);align-items:start}
+.split .lede{margin:0;max-width:56ch;color:var(--text)}
+.split .cta-row{margin-top:var(--space-5)}
+@media (max-width:900px){.split{grid-template-columns:minmax(0,1fr)}}
+/* the three cards on a desk page: two across on a tablet would leave the third alone on
+   its row, so it takes the full width instead */
+@media (min-width:601px) and (max-width:900px){main:has(.dfig) .g-3 > :nth-child(3):last-child{grid-column:1 / -1}}
+
+/* ── THE FIVE DESKS ── the way on from any desk page. This desk is marked, and it looks
+   pressed — sat down into the page — not just tinted. */
+.dnav{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:var(--space-3)}
+/* a tablet: three over two, every row full — never four and one left alone */
+@media (min-width:701px) and (max-width:1100px){
+  .dnav{grid-template-columns:repeat(6,minmax(0,1fr))}
+  .dnav a{grid-column:span 2}
+  .dnav a:nth-child(n+4){grid-column:span 3}
+}
+.dnav a{display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-2);padding:var(--space-5);
+  background:var(--bg);border:var(--line-object) solid var(--border-strong);border-radius:var(--r-card);
+  color:var(--text);text-decoration:none;
+  transition:border-color var(--t-state) var(--ease),transform var(--t-state) var(--ease),box-shadow var(--t-state) var(--ease)}
+.dnav a:hover{border-color:var(--primary);transform:translateY(calc(var(--space-1) * -1));
+  box-shadow:0 var(--space-3) var(--space-5) calc(var(--space-3) * -1) color-mix(in srgb,var(--primary-pressed) 30%,transparent)}
+.dnav a:focus-visible{outline:2px solid var(--primary);outline-offset:3px}
+.dnav .plate{width:40px;height:40px;margin:0 0 var(--space-2)}
+.dnav b{font-size:var(--text-subhead);line-height:1.2;color:var(--black)}
+.dnav .eyebrow{color:var(--text-link)}
+.dnav .d{color:var(--text-secondary);font-size:var(--text-label);line-height:1.5}
+.dnav a[aria-current="page"]{background:var(--bg-selected);border-color:var(--primary);transform:none;cursor:default;
+  box-shadow:inset 0 var(--key-offset) 0 color-mix(in srgb,var(--primary-pressed) 22%,transparent)}
+.dnav .here{margin-top:auto;padding-top:var(--space-2);font:var(--weight-heading) var(--text-label)/1 var(--font-sans);
+  letter-spacing:.08em;text-transform:uppercase;color:var(--text-selected)}
+@media (prefers-reduced-motion:reduce){.dnav a{transition:none}.dnav a:hover{transform:none}}
+
+@media (max-width:700px){
+  /* LOOSE TEXT IS CENTRED ON A PHONE (Rose, 14 Sep 2026): the split's heading and its
+     paragraph sit straight on the page, so they centre like every other section head */
+  .split{text-align:center}
+  .split .lede{margin-inline:auto}
+  .split .cta-row{justify-content:center}
+  /* the five desks become a list: the icon beside the words, not above them */
+  .dnav{grid-template-columns:minmax(0,1fr);gap:var(--space-2)}
+  .dnav a{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:var(--space-4);row-gap:var(--space-1);
+    align-items:center;padding:var(--space-4)}
+  .dnav .plate{grid-row:span 4;margin:0}
+  .dnav .here{margin-top:0}
+}
+
+/* ══ HOW IT WORKS (27 Sep 2026) ═══════════════════════════════════════════════════════
+   The page rebuilt from mockups/how-it-works-sandbox.html (approved by Christian): three
+   steps, the first conversation, the first week, the five desks, Learn, where the money
+   stays, what it costs, questions. The hw-* pieces are this page's; the hero's key-and-link
+   row and the split's eyebrow work on any page. Tokens only. */
+
+
+/* the hero: an eyebrow, and the key and link under the words */
+.hero .cta-row{margin-top:var(--space-6)}
+.hero .link{color:var(--white)}
+
+/* eyebrows on the split sections, and the paragraph under a split heading */
+.hw-eyebrow{color:var(--text-link);margin-bottom:var(--space-3)}
+.band .hw-eyebrow{color:var(--primary-24)}
+.band .split .lede{color:color-mix(in srgb,var(--white) 82%,transparent)}
+.hw-side{margin-top:var(--space-5)}
+.hw-head-lede{margin:var(--space-4) 0 0;max-width:60ch}
+
+/* ── 01 · the three steps ── a row of three on a desktop, joined by a dashed line; a
+   column on a phone, joined down the left */
+/* subgrid lines the three steps up row by row: pictures, numbers, headings, words */
+.hw-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  grid-template-rows:auto auto auto auto;column-gap:var(--space-6);row-gap:0}
+.hw-step{position:relative;display:grid;grid-row:span 4;grid-template-rows:subgrid}
+.hw-step h3{margin:var(--space-2) 0 var(--space-2);font-size:var(--text-title)}
+.hw-step p{margin:0;color:var(--text-secondary)}
+.hw-step-n{margin-top:var(--space-5);font:var(--weight-heading) var(--text-label)/1 var(--font-sans);letter-spacing:.12em;color:var(--text-link)}
+.hw-step + .hw-step::before{content:"";position:absolute;top:calc(var(--space-8) + var(--space-5));right:100%;
+  width:var(--space-6);border-top:var(--line-figure) dashed var(--primary-48)}
+
+/* the small pictures of the app: the same white screen as the desk figures */
+.hw-mini{display:flex;flex-direction:column;gap:var(--space-3);padding:var(--space-4) var(--space-5);
+  background:var(--bg-raised);border:var(--line-object) solid var(--border);border-radius:var(--r-card);
+  box-shadow:0 var(--space-5) var(--space-7) calc(var(--space-5) * -1) color-mix(in srgb,var(--primary-pressed) 30%,transparent);
+  font-size:var(--text-label);line-height:1.4}
+.hw-mini-k{color:var(--text-secondary)}
+.hw-mini-q{font:var(--weight-heading) var(--text-subhead)/1.25 var(--font-sans);color:var(--black)}
+.hw-seg{display:flex;flex-wrap:wrap;gap:var(--space-1);padding:var(--space-1);border-radius:var(--r-key);background:var(--bg-sunken)}
+.hw-seg span{flex:1;text-align:center;padding:var(--space-2);border-radius:var(--r-chip);white-space:nowrap}
+.hw-seg .on{background:var(--bg-selected);color:var(--text-selected);font-weight:var(--weight-label);
+  box-shadow:inset 0 var(--key-offset) 0 color-mix(in srgb,var(--primary-pressed) 18%,transparent)}
+.hw-mini-foot{margin-top:auto;color:var(--text-link);font-weight:var(--weight-label)}
+.hw-net{display:flex;justify-content:space-between;align-items:baseline;padding:var(--space-3);
+  border:var(--line-hairline) solid var(--primary);border-radius:var(--r-chip);background:var(--primary-glow)}
+.hw-net span{color:var(--text-secondary)}
+.hw-net b{font-size:var(--text-subhead);color:var(--black)}
+.hw-chips{display:flex;flex-wrap:wrap;gap:var(--space-1)}
+.hw-chips span{padding:var(--space-1) var(--space-2);border-radius:var(--r-pill);background:var(--primary-12);color:var(--primary-pressed);font-weight:var(--weight-label)}
+.hw-card{display:flex;flex-direction:column;gap:var(--space-1);padding:var(--space-3);border-radius:var(--r-chip);
+  border:var(--line-hairline) solid var(--border);border-left:var(--line-heavy) solid var(--primary)}
+.hw-card.flag{border-left-color:var(--warning)}
+.hw-card b{color:var(--black)}
+.hw-card small{color:var(--text-secondary);font-size:inherit}
+
+/* ── 02 · the five questions, as a list of prompts on the Mint Cream ── */
+.hw-asks{margin:0;max-width:none;background:var(--bg-raised);border-radius:var(--r-card);padding:var(--space-2) var(--space-5);
+  border:var(--line-object) solid var(--border)}
+.hw-asks li:last-child{border-bottom:0}
+.hw-asks li::before{color:var(--text-link);font-weight:var(--weight-heading)}
+
+/* ── 03 · the first week ── a timeline: across on a desktop, down on a phone */
+.hw-week{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:var(--space-5);position:relative}
+.hw-week::before{content:"";position:absolute;left:0;right:0;top:calc(var(--space-7) / 2);border-top:var(--line-figure) dashed var(--primary-48)}
+.hw-day{position:relative;display:flex;flex-direction:column;gap:var(--space-2)}
+.hw-day-mark{display:grid;place-items:center;inline-size:var(--space-7);block-size:var(--space-7);border-radius:var(--r-pill);
+  background:var(--primary-glow);color:var(--primary);box-shadow:inset 0 0 0 var(--line-hairline) var(--primary-24),0 0 0 var(--space-2) var(--bg)}
+.hw-day-mark svg{inline-size:28px;block-size:28px;margin:0}
+.hw-day-mark svg *{vector-effect:non-scaling-stroke;stroke-width:var(--line-icon)}
+.hw-day-n{margin-top:var(--space-2);font:var(--weight-heading) var(--text-label)/1 var(--font-sans);letter-spacing:.12em;text-transform:uppercase;color:var(--text-link)}
+.hw-day b{font-size:var(--text-subhead);color:var(--black);line-height:1.2}
+.hw-day p{margin:0;color:var(--text-secondary);font-size:var(--text-reading);line-height:1.5}
+.hw-soon{display:inline-block;vertical-align:middle;margin-left:var(--space-1);padding:var(--space-1) var(--space-2);border-radius:var(--r-pill);
+  background:var(--bg-sunken);color:var(--text-secondary);font:var(--weight-heading) var(--text-label)/1 var(--font-sans);letter-spacing:.04em}
+
+/* ── 05 · Learn's marks on the dark band ── */
+.hw-path{list-style:none;margin:var(--space-6) 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-4);position:relative}
+.hw-path::before{content:"";position:absolute;left:var(--space-3);right:var(--space-3);top:var(--space-3);border-top:var(--line-figure) solid color-mix(in srgb,var(--white) 24%,transparent)}
+.hw-path li{position:relative;display:flex;flex-direction:column;gap:var(--space-1)}
+.hw-path i{position:relative;inline-size:var(--space-5);block-size:var(--space-5);border-radius:var(--r-pill);
+  border:var(--line-figure) solid var(--white);background:var(--bg-dark);margin-bottom:var(--space-2)}
+.hw-path .done i{background:var(--white)}
+.hw-path .part i{background:conic-gradient(var(--white) 0 40%,var(--bg-dark) 40% 100%)}
+.hw-path .next i{border-style:dashed;border-color:color-mix(in srgb,var(--white) 60%,transparent)}
+.hw-path span{color:var(--white);font-weight:var(--weight-label)}
+.hw-path small{color:color-mix(in srgb,var(--white) 72%,transparent);font-size:var(--text-label)}
+.hw-path .cert{position:absolute;top:calc(var(--space-1) * -1);left:calc(var(--space-5) + var(--space-2));inline-size:var(--space-4);block-size:var(--space-4);
+  rotate:45deg;border:var(--line-figure) solid var(--white)}
+.hw-path .cert.earned{background:var(--gold);border-color:var(--gold)}
+
+/* ── 06 · four plain facts ── */
+.hw-facts{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-5)}
+.hw-facts li{display:flex;flex-direction:column;gap:var(--space-2);padding-top:var(--space-5);border-top:var(--line-heavy) solid var(--primary)}
+.hw-facts .ic{inline-size:28px;block-size:28px;color:var(--primary);margin-bottom:var(--space-2)}
+.hw-facts b{font-size:var(--text-subhead);color:var(--black);line-height:1.25}
+.hw-facts p{margin:0;color:var(--text-secondary)}
+
+/* ── 07 · the rule, set apart ── */
+.hw-rule{margin:var(--space-5) 0 0;padding:var(--space-4) var(--space-5);border-radius:var(--r-card);max-width:56ch;
+  background:var(--primary-glow);box-shadow:inset 0 0 0 var(--line-hairline) var(--primary-24);
+  font:var(--weight-label) var(--text-subhead)/var(--lh-subhead) var(--font-sans);color:var(--primary-pressed)}
+
+/* ── 08 · questions ── */
+.hw-faq{border-top:var(--line-hairline) solid var(--border-strong)}
+.hw-q{border-bottom:var(--line-hairline) solid var(--border-strong)}
+.hw-q summary{display:flex;justify-content:space-between;align-items:center;gap:var(--space-4);min-height:var(--key-touch-target);
+  padding:var(--space-4) 0;cursor:pointer;list-style:none;font:var(--weight-label) var(--text-subhead)/1.3 var(--font-sans);color:var(--black)}
+.hw-q summary::-webkit-details-marker{display:none}
+.hw-q summary .ic{flex:none;inline-size:22px;block-size:22px;color:var(--primary);transition:rotate var(--t-state) var(--ease)}
+.hw-q[open] summary .ic{rotate:45deg}
+.hw-q summary:focus-visible{outline:2px solid var(--primary);outline-offset:3px}
+.hw-q p{margin:0 0 var(--space-5);max-width:60ch;color:var(--text-secondary)}
+
+/* ── a tablet ── */
+@media (max-width:1100px){
+  .hw-week{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:var(--space-7)}
+  .hw-week::before{display:none}
+  .hw-facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:900px){
+  .hw-steps{grid-template-columns:minmax(0,1fr);grid-template-rows:none;row-gap:var(--space-7);max-width:520px}
+  .hw-step{display:flex;flex-direction:column;grid-row:auto}
+  .hw-step + .hw-step::before{display:none}
+}
+/* ── a phone ── one column; the week runs down a line on the left */
+@media (max-width:700px){
+  .hw-week{grid-template-columns:minmax(0,1fr);row-gap:var(--space-5);padding-left:0}
+  .hw-week::before{display:block;left:calc(var(--space-7) / 2);right:auto;top:0;bottom:0;border-top:0;
+    border-left:var(--line-figure) dashed var(--primary-48)}
+  .hw-day{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:var(--space-4);row-gap:var(--space-1);text-align:left}
+  .hw-day-mark{grid-row:span 3}
+  .hw-day-n{margin-top:0}
+  .hw-path{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:var(--space-5)}
+  .hw-path::before{display:none}
+  .hw-facts{grid-template-columns:minmax(0,1fr)}
+  .hw-steps{max-width:none}
+  .hw-step{text-align:left}
+  .hw-faq,.hw-asks,.hw-path{text-align:left}
+  .hw-q p{margin-inline:0}
+  .hero .cta-row{flex-direction:column;align-items:flex-start;gap:var(--space-4)}
+}
+@media (prefers-reduced-motion:reduce){.hw-q summary .ic{transition:none}}
