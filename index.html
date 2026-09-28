@@ -38,11 +38,11 @@
 <meta name="theme-color" content="#0D231B">
 <link rel="stylesheet" href="chrome/fonts.css?v=0c6cbb49">
 <link rel="stylesheet" href="brand/tokens.css?v=525d3a32">
-<link rel="stylesheet" href="site.css?v=3d1274cf">
-<link rel="stylesheet" href="nav-site.css?v=766365ac">
+<link rel="stylesheet" href="site.css?v=41c85af7">
+<link rel="stylesheet" href="nav-site.css?v=3ead211f">
 <link rel="stylesheet" href="vendor/lenis.css?v=599bcc02">
 <link rel="stylesheet" href="hero-home.css?v=09d92864">
-<link rel="stylesheet" href="hero-tones.css?v=2dd0ccf5">
+<link rel="stylesheet" href="hero-tones.css?v=00ae4508">
 <!-- A DIFFERENT HERO EACH VISIT (Rose, 13 Sep 2026). In the <head> on purpose: it sets
      the custom property before the hero has painted, so there is no flash of one picture
      being replaced by another, and only the chosen file is ever fetched. N is the count
@@ -85,7 +85,7 @@ r.dataset.hero=i;})();</script>
           </div>
         </div>
       </div>
-      <a href="service-levels.html">Service levels</a>
+      <a href="pricing.html">Pricing</a>
       <a href="about.html">About</a>
       <a class="key key-s nav-cta-m" href="waitlist.html">Explore your family office<svg width="18" height="18" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
     </div>
@@ -113,6 +113,9 @@ r.dataset.hero=i;})();</script>
       <a class="key key-l btn-paper btn-nudge" href="waitlist.html">Explore your family office<!--icon:arrow 18--><svg width="18" height="18" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-icon="arrow"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg><!--/icon--></a>
       <a class="key key-l btn-ghost-light" href="how-it-works.html">See how it works</a>
     </div>
+    <!-- THE PROOF LINE (Christian, 27 Sep 2026, from the website review): who built it, what it
+         costs and that connections are read-only, under the keys. The last one opens Security. -->
+    <p class="hero-proof"><span>Built by people who ran family offices and private markets at UBS and LGT</span><span>Free for your household</span></p>
     <!-- THE ANIMATED FIGURE IS GONE (Rose, 12 Sep 2026). The hero is the words, the wave
          and the two keys; the beams drawing and its five nodes were removed here and their
          CSS with them. It is in the history if it is ever wanted back. -->
@@ -182,8 +185,12 @@ r.dataset.hero=i;})();</script>
           offered the office.</p>
         <hr class="rule">
         <p class="lede">A family office is the small staff a wealthy family employs to run
-          everything their money touches: what they own, what they owe, what&rsquo;s insured, what&rsquo;s inherited and what&rsquo;s coming next. Investing is one desk
-          in that office.</p>
+          everything their money touches.</p>
+        <!-- THE HANDOFF (Christian, 27 Sep 2026): the line that leads into "Five desks, one
+             office." stands on its own, in the gold the dark ground already uses for its
+             one emphasis. The list that ran before it went: the section above and the
+             desks below already name what the office runs. -->
+        <p class="lede idea-key">Investing is only one desk in that office.</p>
       </div>
 
       <!-- Freya at plate scale: the four rings with the shape they share left open, and a
@@ -246,6 +253,11 @@ r.dataset.hero=i;})();</script>
     <div class="wrap">
       <div class="section-head">
         <h2>Five desks, one office.</h2>
+      </div>
+      <!-- THE REAL APP (Christian, 27 Sep 2026): Home as it is in the platform, the sample
+           household. On a phone the <source> swaps in the app's phone screen. -->
+      <div class="app-hero">
+        <figure class="app-shot has-m"><span class="frame"><picture><source media="(max-width:700px)" srcset="media/app/app-home-m.webp" width="600" height="1298"><img src="media/app/app-home.webp" width="1600" height="1000" loading="lazy" decoding="async" alt="Home in the Finna app for a sample household: net worth, what needs attention today and what the household owns"></picture></span><figcaption><b>Home, in the app.</b> Net worth, what needs you today and everything you own, on one screen. Shown with a sample household.</figcaption></figure>
       </div>
     </div>
 
@@ -448,18 +460,6 @@ r.dataset.hero=i;})();</script>
         </div>
         <!-- NO KEYS IN THIS SECTION (Esben, 21 Sep 2026). The white key and the
              how-it-works link are gone; the clip is what this section is for. -->
-        <p style="margin-top:var(--space-5)">
-          <span class="freya" tabindex="0" role="note" aria-label="Freya, coming soon">
-            <svg class="ring" viewBox="39 39 50 50" fill="none" aria-hidden="true">
-              <circle cx="57" cy="57" r="16.5" stroke="currentColor" stroke-width="1.5"/>
-              <circle cx="71" cy="57" r="16.5" stroke="currentColor" stroke-width="1.5"/>
-              <circle cx="71" cy="71" r="16.5" stroke="currentColor" stroke-width="1.5"/>
-              <circle cx="57" cy="71" r="16.5" stroke="currentColor" stroke-width="1.5"/>
-            </svg>
-            <span style="color:rgba(255,255,255,.7);font-size:var(--text-label)">Freya is not switched on yet</span>
-            <span class="note">Coming soon</span>
-          </span>
-        </p>
       </div>
 
       <!-- THE FREYA CLIP (Rose, 17 Sep 2026, "do B"). The 9:16 clip replaces the drawn
@@ -477,58 +477,8 @@ r.dataset.hero=i;})();</script>
     </div>
   </section>
 
-  <!-- ══ 05 · WHITE ═══ the household, drawn ══════════════════════════════════ -->
-  <section>
-    <div class="wrap two top wide-fig">
-      <div>
-        <h2>Wealth becomes family before it becomes legacy.</h2>
-        <div class="stack" style="margin-top:30px">
-          <p class="lede">Your partner may see money differently. Your children will inherit more
-            than assets. The decisions you make today can shape your family for decades.</p>
-          <p class="lede">Finna holds each person&rsquo;s view, and the household&rsquo;s.</p>
-        </div>
-        <!-- the "See how learning opens access" link is gone (Esben, 21 Sep 2026) -->
-      </div>
-
-      <!-- FIG 2 · who holds what, and who benefits. One household, drawn as one object. -->
-      <figure class="fig">
-        <div class="fig-scroll"><svg viewBox="0 0 520 320" role="img"
-             aria-label="The household structure: a trust, a holding company and personal accounts above two principals and the children">
-          <!-- the household is the one element in the green: it is the thing being explained -->
-          <rect class="lead" x="186" y="14" width="148" height="40" rx="10"/>
-          <text class="t-lead" x="260" y="39" text-anchor="middle">THE HOUSEHOLD</text>
-
-          <path class="stroke" d="M260 54 V76 M110 76 H410 M110 76 V100 M260 76 V100 M410 76 V100"/>
-          <g class="stroke">
-            <rect x="40" y="100" width="140" height="42" rx="10"/>
-            <rect x="190" y="100" width="140" height="42" rx="10"/>
-            <rect x="340" y="100" width="140" height="42" rx="10"/>
-          </g>
-          <g class="t">
-            <text x="110" y="126" text-anchor="middle">Family trust</text>
-            <text x="260" y="126" text-anchor="middle">Holding company</text>
-            <text x="410" y="126" text-anchor="middle">Personal accounts</text>
-          </g>
-
-          <path class="stroke" d="M110 142 V170 M260 142 V170 M410 142 V170 M110 170 H410
-                                  M185 170 V198 M335 170 V198"/>
-          <g class="stroke">
-            <rect x="115" y="198" width="140" height="42" rx="10"/>
-            <rect x="265" y="198" width="140" height="42" rx="10"/>
-          </g>
-          <g class="t">
-            <text x="185" y="224" text-anchor="middle">Two principals</text>
-            <text x="335" y="224" text-anchor="middle">Children</text>
-          </g>
-
-          <path class="stroke" d="M185 240 V266 M335 240 V266 M185 266 H335 M260 266 V284"/>
-          <text class="t" x="260" y="302" text-anchor="middle">Who benefits, and when</text>
-        </svg></div>
-        <figcaption>Who holds what, and who benefits: the
-          trust, the holding company, the principals and the children, drawn as one household.</figcaption>
-      </figure>
-    </div>
-  </section>
+  <!-- THE HOUSEHOLD FIGURE ("Wealth becomes family before it becomes legacy") moved to
+       succession.html (Christian, 27 Sep 2026, from the website review), to shorten this page. -->
 
   <!-- ══ 06 · MINT, full bleed ═══ access, and the lesson that opens it ═══════
        THE CLIP (19 Sep 2026). Words left, the clip right, as the household figure above it.
@@ -551,27 +501,24 @@ r.dataset.hero=i;})();</script>
            plays and loops as an image — no autoplay policy, no low-power-mode pause, crisp at any
            width, 76 KB with Lexend embedded. finna-invest-clip.{mp4,webm,-poster.jpg} in media/
            are the same clip as video, kept for sharing outside the site.
-           RE-CUT 27 Sep 2026 (copy review, H28): the SVG is now 8.8 s, the two mixes and the end
-           card; the return lines and multiples came out. The MP4, WebM and poster still show the
-           old 19.6 s cut with the returns, so do not share them until they are re-captured. -->
+           THE 19 SEP CUT IS BACK (Christian, 27 Sep 2026). The copy review re-cut the SVG to 8.8 s
+           (the two mixes and the end card, 600 x 338) and it did not play as it should on the site,
+           so the original 19.6 s, 600 x 450 file is restored as committed on 19 Sep (ee0a03f),
+           returns and all. The re-cut is in git history (7258c75) if it is wanted again. -->
       <div class="invest-clip">
-        <img src="media/finna-invest-clip.svg" width="600" height="338"
-             alt="Two portfolio mixes, illustrative: what most portfolios own, 60% stocks and 40% bonds, and what a family office owns, 30% stocks, 15% bonds, 20% private equity, 20% real estate and 15% infrastructure">
+        <img src="media/finna-invest-clip.svg" width="600" height="450"
+             alt="Two portfolios over thirty years, illustrative: a typical stocks-and-bonds portfolio grows to 4.32 times the investment, a family-office portfolio with private equity, real estate and infrastructure to 7.61 times">
       </div>
     </div>
   </section>
 
-  <!-- ══ 06 · MINT ═══ so you learn your way in ═══════════════════════════════════
-       REBUILT (Rose, 13 Sep 2026). This was a tight centred band, and the one real
-       lesson question sat two sections up beside the access copy, where it was the
-       second thing in a column and easy to scroll past. They belong together: the
-       claim is that the learning is serious, and the question is the evidence for it.
-       R3 — evidence sits beside the claim. Now a full section, two up, claim left and
-       proof right. ══════════════════════════════════════════════════════════════ -->
-  <section class="band-mint">
+  <!-- ══ 07 · WHITE ═══ learn your way in. ITS OWN SECTION AGAIN (Christian, 27 Sep 2026): Learn is
+       a core part of Finna, so it does not share the invest band. White, between the mint above and
+       the plans' tint below. The heading no longer starts with "So". ═══════════════════════════════ -->
+  <section class="learn-sec">
     <div class="wrap two top clip">
       <div>
-        <h2>So you learn your way in.</h2>
+        <h2>Learn your way in.</h2>
         <p class="lede" style="margin-top:30px">Short lessons, plain language, built around your
           own numbers. Finish one and it opens the part of the platform it belongs to.</p>
         <p class="lede" style="margin-top:var(--space-5);color:var(--text)">What opens depends on what you have learned, not on what you own.</p>
@@ -594,74 +541,73 @@ r.dataset.hero=i;})();</script>
     </div>
   </section>
 
-    <!-- ══ 08 · TINT ═══ service levels ════════════════════════════════════════ -->
-  <section class="band-tint">
+    <!-- ══ 08 · TINT ═══ the plans ═════════════════════════════════════════════════ -->
+  <section class="band-tint" id="plans">
     <div class="wrap">
       <!-- THE HEADER IS THE 2026-09 ONE (Rose, 12 Sep 2026). Split across two columns the
            heading sat low-left and the words high-right, reading as two loose pieces; they
            are one stacked block again, on the page's left edge. -->
       <div class="price-head">
         <h2>Start where you are.</h2>
+        <p class="lede price-lede">Your own household is free. You pay only when your office reaches further.</p>
       </div>
-      <!-- THE PRICING CARDS ARE THE 2026-09 ONES (Rose, 12 Sep 2026), brought back whole:
-           the billing switch, the badge and emblem row, the spec table, the price, and the
-           featured middle card in the primary gradient. Only the buttons changed on the way
-           over — they are this site's .key, so the cards carry the same object as the rest
-           of the page. -->
-      <div class="toggle-row">
-        <div class="toggle" role="group" aria-label="Billing period">
-          <button type="button" data-bill="monthly" aria-pressed="true">Monthly</button>
-          <button type="button" data-bill="annual" aria-pressed="false">Annual</button>
-        </div>
-        <span class="cancel">Cancel any time.</span>
-      </div>
-
+      <!-- THE THREE PLANS (Christian, 27 Sep 2026): Family Office, free · Family Office Plus,
+           $15 a month · Family Office Pro, $249 a month, coming soon (its key joins the waitlist).
+           The cards are the 2026-09 ones (Rose, 12 Sep 2026): badge, spec rows, price, key, the
+           featured middle card. The billing switch went with the annual prices, and pricing.js
+           and text-roll.js with it. What each plan holds follows the build spec's modules (§5):
+           Plus is the family, two advisers and the quarterly report; Pro is every module. The
+           full comparison is on pricing.html. -->
+      <div class="toggle-row"><span class="cancel">Prices in USD, per household. Cancel any time. Everything you entered always exports. Connections are <a href="security.html">read-only</a>.</span></div>
       <div class="tiers">
         <article class="tier">
           <div class="tier-top">
-            <span class="badge badge-found">Foundation</span>
+            <span class="badge badge-found">Family Office</span>
           </div>
-          <h4>Build the foundation.</h4>
-          <div class="spec"><span class="k">For</span><span class="v">Getting organized</span></div>
-          <div class="spec"><span class="k">Suits households with</span><span class="v num">$10k+</span></div>
-          <div class="spec"><span class="k">Rhythm</span><span class="v">Self-directed</span></div>
-          <div class="spec"><span class="k">Named contact</span><span class="v">No</span></div>
-          <div class="spec"><span class="k">Your own adviser in the office</span><span class="v">No</span></div>
-          <div class="price"><span class="num" data-price="15" data-annual="12">$15</span><small>/ month</small></div>
-          <div class="billed" data-billed>Billed monthly</div>
-          <a class="key" href="waitlist.html">Start with Foundation</a>
+          <h4>Your family office, free.</h4>
+          <div class="spec"><span class="k">For</span><span class="v">Your own household</span></div>
+          <div class="spec"><span class="k">People</span><span class="v">Two adults</span></div>
+          <div class="spec"><span class="k">Advisers</span><span class="v">Kept on record</span></div>
+          <div class="spec"><span class="k">Reporting</span><span class="v">Your live statement</span></div>
+          <div class="spec"><span class="k">Structures</span><span class="v">Not included</span></div>
+          <div class="price"><span class="num">$0</span><small>/ month</small></div>
+          <div class="billed">Free for your own household</div>
+          <a class="key" href="waitlist.html">Start for free</a>
         </article>
 
         <article class="tier feature">
           <div class="tier-top">
-            <span class="badge badge-fo">Family Office</span>
+            <span class="badge badge-fo">Family Office Plus</span>
           </div>
-          <h4>Your complete family office.</h4>
-          <div class="spec"><span class="k">For</span><span class="v">The whole household</span></div>
-          <div class="spec"><span class="k">Suits households with</span><span class="v num">$100k+</span></div>
-          <div class="spec"><span class="k">Rhythm</span><span class="v">Quarterly review</span></div>
-          <div class="spec"><span class="k">Named contact</span><span class="v">Yes</span></div>
-          <div class="spec"><span class="k">Your own adviser in the office</span><span class="v">No</span></div>
-          <div class="price"><span class="num" data-price="49" data-annual="41">$49</span><small>/ month</small></div>
-          <div class="billed" data-billed>Billed monthly</div>
-          <a class="key key-white" href="waitlist.html">Choose Family Office</a>
+          <h4>For the whole family.</h4>
+          <div class="spec"><span class="k">For</span><span class="v">The whole family</span></div>
+          <div class="spec"><span class="k">People</span><span class="v">Every generation</span></div>
+          <div class="spec"><span class="k">Advisers</span><span class="v">Invite two</span></div>
+          <div class="spec"><span class="k">Reporting</span><span class="v">Quarterly family report</span></div>
+          <div class="spec"><span class="k">Structures</span><span class="v">Not included</span></div>
+          <div class="price"><span class="num">$15</span><small>/ month</small></div>
+          <div class="billed">Billed monthly. Cancel any time.</div>
+          <a class="key key-white" href="waitlist.html">Choose Plus</a>
         </article>
 
-        <article class="tier">
+        <article class="tier is-soon">
           <div class="tier-top">
             <span class="badge badge-pro">Family Office Pro</span>
+            <span class="tier-soon">Coming soon</span>
           </div>
           <h4>For more complex wealth.</h4>
-          <div class="spec"><span class="k">For</span><span class="v">More complex wealth</span></div>
-          <div class="spec"><span class="k">Suits households with</span><span class="v num">$1m+</span></div>
-          <div class="spec"><span class="k">Rhythm</span><span class="v">Monthly touchpoints</span></div>
-          <div class="spec"><span class="k">Named contact</span><span class="v">Yes</span></div>
-          <div class="spec"><span class="k">Your own adviser in the office</span><span class="v">Yes</span></div>
-          <div class="price"><span class="num" data-price="249" data-annual="207">$249</span><small>/ month</small></div>
-          <div class="billed" data-billed>Billed monthly</div>
-          <a class="key key-gold" href="waitlist.html">Choose Family Office Pro</a>
+          <div class="spec"><span class="k">For</span><span class="v">Complex wealth</span></div>
+          <div class="spec"><span class="k">People</span><span class="v">Every generation</span></div>
+          <div class="spec"><span class="k">Advisers</span><span class="v">Unlimited, and the network</span></div>
+          <div class="spec"><span class="k">Reporting</span><span class="v">Trustee and bank packs</span></div>
+          <div class="spec"><span class="k">Structures</span><span class="v">Trusts and companies</span></div>
+          <div class="price"><span class="num">$249</span><small>/ month</small></div>
+          <div class="billed">When Pro opens</div>
+          <a class="key key-gold" href="waitlist.html">Join the Pro waitlist</a>
         </article>
       </div>
+      <p class="pro-note"><b>Pro opens in the next few months.</b> Until then, start with Family Office or Plus: everything you set up carries straight into Pro.</p>
+      <p class="tiers-more"><a class="link" href="pricing.html#compare">Compare every plan<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></p>
     </div>
   </section>
 
@@ -694,9 +640,10 @@ r.dataset.hero=i;})();</script>
         <p class="small" style="color:rgba(255,255,255,.7);margin-top:var(--space-5);max-width:34ch">
           Your own family office. Everything you own in one place, and a door that opens on
           what you understand.</p>
-        <!-- FREYA IS NAMED BEFORE SHE EXISTS. The note says so on hover rather than a link
-             that goes nowhere (Rose, 11 Sep 2026). -->
-        <span class="freya" tabindex="0" role="note" aria-label="Freya, coming soon">
+        <!-- FREYA IS NAMED BEFORE SHE EXISTS. The note said so on hover rather than a link
+             that goes nowhere (Rose, 11 Sep 2026). She launches with the site (Christian,
+             27 Sep 2026), so the note is gone and the name stands on its own. -->
+        <span class="freya">
           <svg class="ring" viewBox="39 39 50 50" fill="none" aria-hidden="true">
             <circle cx="57" cy="57" r="16.5" stroke="currentColor" stroke-width="1.5"/>
             <circle cx="71" cy="57" r="16.5" stroke="currentColor" stroke-width="1.5"/>
@@ -704,7 +651,6 @@ r.dataset.hero=i;})();</script>
             <circle cx="57" cy="71" r="16.5" stroke="currentColor" stroke-width="1.5"/>
           </svg>
           <span style="color:rgba(255,255,255,.78);font-size:var(--text-label)">Freya, your chief of staff</span>
-          <span class="note">Coming soon</span>
         </span>
       </div>
 
@@ -714,7 +660,8 @@ r.dataset.hero=i;})();</script>
           <li><a href="what-is-a-family-office.html">What is a family office?</a></li>
           <li><a href="your-family-office.html">Your family office</a></li>
           <li><a href="how-it-works.html">How it works</a></li>
-          <li><a href="service-levels.html">Service levels</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="security.html">Security</a></li>
         </ul>
       </div>
 
@@ -733,8 +680,7 @@ r.dataset.hero=i;})();</script>
         <h3>Finna</h3>
         <ul>
           <li><a href="about.html">About</a></li>
-          <li><a href="team.html">Team</a></li>
-          <li><a class="soon" href="privacy.html">Privacy</a></li>
+          <li><a href="privacy.html">Privacy</a></li>
         </ul>
       </div>
     </div>
@@ -762,8 +708,6 @@ r.dataset.hero=i;})();</script>
 <script src="vendor/finna-threads.js?v=e1ca1632"></script>
 <script src="vendor/finna-chat-clip.js?v=3eec3edb"></script>
 <script src="vendor/finna-learn-clip.js?v=64044fe6"></script>
-<script src="vendor/text-roll.js?v=a57ddd58"></script>
-<script src="pricing.js?v=9d27f49b"></script>
 <script src="spotlight.js?v=adbdd547"></script>
 <!-- BACK TO TOP, back from the 2026-09 site (Rose, 12 Sep 2026). The hard key as a
      circle; it appears once the header is behind you and is a plain anchor, so it

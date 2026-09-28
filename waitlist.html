@@ -4,10 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Join the waitlist · Finna</title>
-<meta name="description" content="Finna is opening to a first group of families. Leave your name and email and we will write when the office is ready for you.">
+<meta name="description" content="Finna opens to families a group at a time. Leave your name and email and we will invite you in when your place opens.">
 <!-- THE WAITLIST (Rose, 14 Sep 2026). Every CTA on the site used to point at
      app.finnafamilyoffice.com, which is not open yet — 43 links across 17 pages, all of
      them a door with nothing behind it. They point here instead.
+     THE APP IS LIVE AT LAUNCH (Christian, 27 Sep 2026). The site now speaks as if the
+     office is open; the links into it still land here, as a gated rollout — families are
+     invited in a group at a time — so this page says "Save your place", not "soon".
 
      The field posts to Mailchimp and the answer comes back on this page, so nobody is
      handed off to a Mailchimp-styled page at the moment they decide. Two values wire it
@@ -22,8 +25,8 @@
 <meta name="theme-color" content="#0D231B">
 <link rel="stylesheet" href="chrome/fonts.css?v=0c6cbb49">
 <link rel="stylesheet" href="brand/tokens.css?v=525d3a32">
-<link rel="stylesheet" href="site.css?v=3d1274cf">
-<link rel="stylesheet" href="nav-site.css?v=766365ac">
+<link rel="stylesheet" href="site.css?v=41c85af7">
+<link rel="stylesheet" href="nav-site.css?v=3ead211f">
 <link rel="stylesheet" href="vendor/lenis.css?v=599bcc02">
 </head>
 <body>
@@ -53,7 +56,7 @@
           </div>
         </div>
       </div>
-      <a href="service-levels.html">Service levels</a>
+      <a href="pricing.html">Pricing</a>
       <a href="about.html">About</a>
       <a class="key key-s nav-cta-m" href="#top">Explore your family office<svg width="18" height="18" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
     </div>
@@ -66,9 +69,8 @@
   <div class="wrap inner">
 
     <div id="wlAsk">
-      <h1>The door opens soon.</h1>
-      <p class="lede">Finna is opening to a first group of families. Leave your name and
-        email and we will write to you when the office is ready.</p>
+      <h1>Save your place.</h1>
+      <p class="lede">Finna opens to families a group at a time. Leave your name and email and we will invite you in when your place opens.</p>
 
       <form class="wl-form" id="wlForm" method="post" target="_blank" novalidate>
         <input class="wl-input" id="wlFirst" type="text" name="FNAME" required
@@ -85,8 +87,8 @@
       </form>
 
       <p class="wl-msg" id="wlMsg" role="status" aria-live="polite"></p>
-      <p class="wl-note" id="wlNote">One message when the door opens. Your address is not
-        shared, and you can leave the list at any time.</p>
+      <p class="wl-note" id="wlNote">One message when your place opens. Your address is not shared, and you can leave the list at any time. <a href="privacy.html">How we handle it</a>. <a href="security.html">How the office keeps your data safe</a>.</p>
+      <p class="wl-pro"><b>Joining for Pro?</b> Pro opens in the next few months. Until then, start with Family Office or Plus: everything you set up carries straight into Pro.</p>
     </div>
 
     <!-- THE ANSWER TAKES THE WHOLE SCREEN (Rose, 14 Sep 2026). A line under a form the
@@ -108,7 +110,7 @@
                  A16.5 16.5 0 0 1 56.06 64 A16.5 16.5 0 0 1 64 56.06 Z" fill="currentColor"/>
       </svg>
       <h1 id="wlDoneH" tabindex="-1">Welcome, <span id="wlDoneName">friend</span>.</h1>
-      <p class="lede">You are on the list. We will write to you once, when the office is ready for you, and not before.</p>
+      <p class="lede">You are on the list. We will write to you once, when your place opens, and not before.</p>
       <a class="key key-l key-white" href="./">Back to Finna</a>
     </div>
 
@@ -135,9 +137,10 @@
         <p class="small" style="color:rgba(255,255,255,.7);margin-top:var(--space-5);max-width:34ch">
           Your own family office. Everything you own in one place, and a door that opens on
           what you understand.</p>
-        <!-- FREYA IS NAMED BEFORE SHE EXISTS. The note says so on hover rather than a link
-             that goes nowhere (Rose, 11 Sep 2026). -->
-        <span class="freya" tabindex="0" role="note" aria-label="Freya, coming soon">
+        <!-- FREYA IS NAMED BEFORE SHE EXISTS. The note said so on hover rather than a link
+             that goes nowhere (Rose, 11 Sep 2026). She launches with the site (Christian,
+             27 Sep 2026), so the note is gone and the name stands on its own. -->
+        <span class="freya">
           <svg class="ring" viewBox="39 39 50 50" fill="none" aria-hidden="true">
               <circle cx="57" cy="57" r="16.5" stroke="currentColor" stroke-width="1.5"/>
               <circle cx="71" cy="57" r="16.5" stroke="currentColor" stroke-width="1.5"/>
@@ -145,7 +148,6 @@
               <circle cx="57" cy="71" r="16.5" stroke="currentColor" stroke-width="1.5"/>
             </svg>
           <span style="color:rgba(255,255,255,.78);font-size:var(--text-label)">Freya, your chief of staff</span>
-          <span class="note">Coming soon</span>
         </span>
       </div>
 
@@ -155,7 +157,8 @@
           <li><a href="what-is-a-family-office.html">What is a family office?</a></li>
           <li><a href="your-family-office.html">Your family office</a></li>
           <li><a href="how-it-works.html">How it works</a></li>
-          <li><a href="service-levels.html">Service levels</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="security.html">Security</a></li>
         </ul>
       </div>
 
@@ -174,8 +177,7 @@
         <h3>Finna</h3>
         <ul>
           <li><a href="about.html">About</a></li>
-          <li><a href="team.html">Team</a></li>
-          <li><a class="soon" href="privacy.html">Privacy</a></li>
+          <li><a href="privacy.html">Privacy</a></li>
         </ul>
       </div>
     </div>
