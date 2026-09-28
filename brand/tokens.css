@@ -1,4 +1,4 @@
-/* Finna design tokens · rev 44 · 26 SEP 2026
+/* Finna design tokens · rev 45 · 28 SEP 2026
    GENERATED — do not edit. Built from source.py by generate.py.
    Every value carries its job. Ratios are measured, not estimated. */
 :root{
@@ -91,7 +91,6 @@
   --r-card:14px;              /* Cards, fields, panes. */
   --r-key:12px;               /* Keys. */
   --r-tile:14px;              /* Icon tiles. */
-  --r-bar:30px;               /* Freya's bar at the foot of the product, and her panel above it. The field inside it takes this less the bar's padding, so the two curves run parallel (Rose, 27 Sep 2026: 30px as a baseline, in place of the pill). */
   --r-pill:999px;             /* The switch, and the pill labels promoted from the site’s chip — the status label and the filter tag. Nothing else. */
   --line-hairline:1px;        /* Row dividers, table lines. Uses the border colour. */
   --line-object:1px;          /* Cards and figures. Uses the strong border. */
@@ -100,13 +99,6 @@
   --line-icon-s:1.5px;        /* Icons below 24px — interface glyphs, inline arrows. */
   --line-icon:1.75px;         /* Icons 24 to 40px. The ratified stroke, unchanged. */
   --line-icon-l:2px;          /* Icons above 40px — the plates, the section marks. */
-  /* ---- the product's frame ---- */
-  --mainbar-open:264px;       /* The main bar, open: the lockup and every place's name. Home shows it open; elsewhere it opens over the work. */
-  --mainbar-folded:76px;      /* The main bar folded to its icons — every place but Home. The mark and the icons share its centre line. */
-  --mainbar-icon:28px;        /* The main bar's icons, one size for both families: the 24-grid at 28 (Rose, 25 Sep 2026: "a little larger"). Larger than --key-icon-xl on purpose — a menu row, not a key. */
-  --submenu-w:264px;          /* The sub menu: a place's pages, names only, beside the folded main bar. As wide as the open bar, so the longest page name (Certificates and badges) holds one line. */
-  --phone-head:64px;          /* The phone's header: the menu key, the place's name, and the place's own key. */
-  --sheet-w:560px;            /* The side sheet: a record's detail and its forms, over the work. */
   /* ---- motion ---- */
   --t-state:140ms;            /* Hover, press, focus. A state change. */
   --ease:cubic-bezier(.2,.8,.2,1);/* The one easing curve — the site and the product already used it; now it has a home. */

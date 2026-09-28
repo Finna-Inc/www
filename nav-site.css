@@ -93,7 +93,11 @@
    baseline — which put the row 4px below the bar's centre and read as sitting low. The
    bar's centre wins: the row is now on it, measured, and the name and the key keep their
    own alignment. */
-.nav-links{display:flex;gap:30px;align-items:center;margin-left:6px;margin-right:auto}
+/* THE ITEMS MOVED RIGHT, BESIDE THE KEY (Christian, 27 Sep 2026). The mark and the name
+   stand alone on the left; the four items and the key make one group on the right, with
+   the bar's own 28px gap between the last item and the key. The sheet (1099px down) sets
+   its own margin:0, so it is unchanged. */
+.nav-links{display:flex;gap:30px;align-items:center;margin-left:auto;margin-right:0}
 .nav-links a{font-size:var(--text-reading);text-decoration:none;color:rgba(255,255,255,.90)}
 .nav-links a:hover{color:var(--white)}
 /* the bar marks the page you are on (27 Sep 2026): the link to the page you are reading
