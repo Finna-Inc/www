@@ -1,0 +1,8 @@
+# The published site: build/publish.py in the design repo writes everything here.
+# Only machine metadata is ignored; every site file is meant to be committed.
+.DS_Store
+._*
+desktop.ini
+Desktop.ini
+Thumbs.db
+Claude outputs/
