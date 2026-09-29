@@ -579,9 +579,12 @@ figcaption{margin-top:var(--space-4);color:var(--text-tertiary);font-size:var(--
      moment the mark fades. The padding grows the painted box past the fringe and the negative
      margin gives the space back, so nothing moves. */
   background:var(--bg-dark);padding:64px;margin:-64px}
-/* the padded ground can reach past the wrap on a narrow screen; the band is full-bleed, so
-   trimming it sideways costs nothing and keeps the page free of a horizontal scrollbar. */
-.band-violet{overflow-x:clip}
+/* the padded ground can reach past the band: sideways on a narrow screen, and past the bottom on a
+   phone, where the mark sits last and its ground stuck 8px out over the next section as a dark step
+   (Rose, 29 Sep 2026: "the big ring section is ugly now"). The band is full-bleed, so it clips on
+   both axes: nothing of the mark is ever cut while its edge is on screen (checked at 1440, 1024,
+   820 and 700 through the whole parallax pass), and the page keeps no horizontal scrollbar. */
+.band-violet{overflow:clip}
 @media (prefers-reduced-motion:reduce){
   .band-violet h2,.band-violet .pull,.band-violet .rule,.band-violet .lede{
     transform:none!important;opacity:1!important}
@@ -642,10 +645,12 @@ figcaption{margin-top:var(--space-4);color:var(--text-tertiary);font-size:var(--
   animation:fm-ride 18s linear infinite;
 }
 .idea-mark .fm-core circle{stroke:var(--white);stroke-width:.7px}   /* blur: #fm-blur-core */
-.idea-mark .fm-halo circle{stroke:var(--primary-24);stroke-width:1.75px} /* blur: #fm-blur-halo, once for the whole halo */
-/* 1.75, not .75 (29 Sep 2026): the halo's five arcs now share ONE blur instead of one each, and a
-   blur of the arcs together holds less light than five blurs summed. The wider stroke puts that
-   light back — matched against the old halo frame by frame, the difference is under 1%. */
+.idea-mark .fm-halo circle{stroke:var(--primary-24);stroke-width:.75px} /* blur: #fm-blur-halo, one per arc */
+/* BACK TO THE RATIFIED HALO (Rose, 29 Sep 2026: "the animations on the big ring section is ugly now
+   and it runs weird"). The same morning the halo's five arcs were given ONE shared blur at a wider
+   stroke, for speed; on the iPhone it looked wrong. So the halo is the bench-15 one again — a blur
+   per arc at .75. The speed is kept by the other two changes of that morning, which stay: the light
+   rests while the section is off screen, and a touch screen has no scroll parallax. */
 
 /* the four rings run at four speeds sharing no common factor, each entered part-way through
    by a negative delay, so they drift apart and back instead of marching together */

@@ -37,8 +37,8 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#0D231B">
 <link rel="stylesheet" href="chrome/fonts.css?v=0c6cbb49">
-<link rel="stylesheet" href="brand/tokens.css?v=681fb23f">
-<link rel="stylesheet" href="site.css?v=f04dce40">
+<link rel="stylesheet" href="brand/tokens.css?v=688c6df8">
+<link rel="stylesheet" href="site.css?v=c3f19a60">
 <link rel="stylesheet" href="nav-site.css?v=3ead211f">
 <link rel="stylesheet" href="vendor/lenis.css?v=599bcc02">
 <link rel="stylesheet" href="hero-home.css?v=62a9cc27">
@@ -191,16 +191,15 @@ r.dataset.hero=i;})();</script>
             <g class="fm-f" filter="url(#fm-blur-core)" style="--f:0.8"><circle cx="57" cy="57" r="16.5"/><circle cx="71" cy="57" r="16.5"/><circle cx="71" cy="71" r="16.5"/><circle cx="57" cy="71" r="16.5"/></g>
             <g class="fm-f" filter="url(#fm-blur-core)" style="--f:1.0"><circle cx="57" cy="57" r="16.5"/><circle cx="71" cy="57" r="16.5"/><circle cx="71" cy="71" r="16.5"/><circle cx="57" cy="71" r="16.5"/></g>
           </g>
-          <!-- ONE BLUR FOR THE WHOLE HALO (29 Sep 2026: the section stuttered on phones, worst with the
-               nav's mark running too). Ten blurs were redrawn on every frame; the halo's five arcs
-               now share one, which gives the same soft light for half the work. The core keeps a
-               blur per arc — that is where the taper reads. -->
-          <g class="fm-l fm-halo" filter="url(#fm-blur-halo)">
-            <g class="fm-f" style="--f:0.2"><circle cx="57" cy="57" r="16.5"/><circle cx="71" cy="57" r="16.5"/><circle cx="71" cy="71" r="16.5"/><circle cx="57" cy="71" r="16.5"/></g>
-            <g class="fm-f" style="--f:0.4"><circle cx="57" cy="57" r="16.5"/><circle cx="71" cy="57" r="16.5"/><circle cx="71" cy="71" r="16.5"/><circle cx="57" cy="71" r="16.5"/></g>
-            <g class="fm-f" style="--f:0.6"><circle cx="57" cy="57" r="16.5"/><circle cx="71" cy="57" r="16.5"/><circle cx="71" cy="71" r="16.5"/><circle cx="57" cy="71" r="16.5"/></g>
-            <g class="fm-f" style="--f:0.8"><circle cx="57" cy="57" r="16.5"/><circle cx="71" cy="57" r="16.5"/><circle cx="71" cy="71" r="16.5"/><circle cx="57" cy="71" r="16.5"/></g>
-            <g class="fm-f" style="--f:1.0"><circle cx="57" cy="57" r="16.5"/><circle cx="71" cy="57" r="16.5"/><circle cx="71" cy="71" r="16.5"/><circle cx="57" cy="71" r="16.5"/></g>
+          <!-- A BLUR PER ARC, AS RATIFIED (Rose, 29 Sep 2026). One shared blur for the halo was tried the
+               same morning for speed and looked wrong on the iPhone; the reason is over .fm-halo in
+               site.css. -->
+          <g class="fm-l fm-halo">
+            <g class="fm-f" filter="url(#fm-blur-halo)" style="--f:0.2"><circle cx="57" cy="57" r="16.5"/><circle cx="71" cy="57" r="16.5"/><circle cx="71" cy="71" r="16.5"/><circle cx="57" cy="71" r="16.5"/></g>
+            <g class="fm-f" filter="url(#fm-blur-halo)" style="--f:0.4"><circle cx="57" cy="57" r="16.5"/><circle cx="71" cy="57" r="16.5"/><circle cx="71" cy="71" r="16.5"/><circle cx="57" cy="71" r="16.5"/></g>
+            <g class="fm-f" filter="url(#fm-blur-halo)" style="--f:0.6"><circle cx="57" cy="57" r="16.5"/><circle cx="71" cy="57" r="16.5"/><circle cx="71" cy="71" r="16.5"/><circle cx="57" cy="71" r="16.5"/></g>
+            <g class="fm-f" filter="url(#fm-blur-halo)" style="--f:0.8"><circle cx="57" cy="57" r="16.5"/><circle cx="71" cy="57" r="16.5"/><circle cx="71" cy="71" r="16.5"/><circle cx="57" cy="71" r="16.5"/></g>
+            <g class="fm-f" filter="url(#fm-blur-halo)" style="--f:1.0"><circle cx="57" cy="57" r="16.5"/><circle cx="71" cy="57" r="16.5"/><circle cx="71" cy="71" r="16.5"/><circle cx="57" cy="71" r="16.5"/></g>
           </g>
         </svg>
       </div>
