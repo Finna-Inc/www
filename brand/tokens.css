@@ -1,4 +1,4 @@
-/* Finna design tokens · rev 48 · 29 SEP 2026
+/* Finna design tokens · rev 52 · 29 SEP 2026
    GENERATED — do not edit. Built from source.py by generate.py.
    Every value carries its job. Ratios are measured, not estimated. */
 :root{
@@ -19,7 +19,7 @@
   --text-tertiary:#737373;    /* Text, tertiary — The smallest labels — the floor for anything carrying information. */
   --text-disabled:#9A9A9A;    /* Text, disabled — Disabled states only. Never carries information. */
   --heading:#000000;          /* Heading — Headings and section icons. Black on white, white in dark mode. */
-  --text-link:#246853;        /* Text, link — Primary-coloured text: links, a secondary key's label, the brand's line icons. The brand green on white; Primary 48% in dark mode. */
+  --text-link:#246853;        /* Text, link — Primary-coloured text: links and a secondary key's label. Not icons — icons take the heading colour (REV 51). The brand green on white; Primary 48% in dark mode. */
   --text-selected:#184537;    /* Text, selected — Text on --bg-selected: the current menu row, a chip's words. */
   --text-error:#661C28;       /* Text, error — An error's words. Night Bordeaux on white. */
   /* ---- Primary — the brand green ---- */
@@ -36,7 +36,7 @@
   --gold:#BC9635;             /* Bullion — Earned: certificates. And attention — the edge of a card that needs you and the shelf of the attention key (27 Sep 2026). About 2% of any surface. */
   --gold-light:#E3C98C;       /* Gold, light — The certificate medal, top of the gradient. The attention label and the attention key’s face (27 Sep 2026). */
   --gold-dark:#E1EAE4;        /* Mint Cream — A pale, cool ground — quieter than white, warmer than the sunken grey. */
-  --warning:#E54B28;          /* Fiery — Errors: a field that is wrong, Freya’s needs-you ring. Attention moved to Bullion (27 Sep 2026) — Fiery read as an error there. */
+  --warning:#E54B28;          /* Fiery — Errors: a field that is wrong, Freya’s needs-you ring. And Freya’s has-something dot (29 Sep 2026), menus included. Attention moved to Bullion (27 Sep 2026) — Fiery read as an error there. */
   --warning-dark:#661C28;     /* Night Bordeaux — Warning text on white, and the pressed face of a destructive key. */
   --midnight-violet:#2B0515;  /* Midnight Violet — The tip in dark mode — the box that names a folded icon, with white words (Rose, 27 Sep 2026). Its first job; it left Considering for it. */
   --purple-dark:#5B3E9E;      /* Purple Crystal — The same job on white, where the bright purple dies. */
