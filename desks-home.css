@@ -1,52 +1,139 @@
-/* ══ HOME · 03 · FIVE DESKS, ONE OFFICE ═══════════════════════════════════════════════════════════
-   One desk open at a time, as the app shows it (Christian, 29 Sep 2026: "revisit the website section
-   regarding the five desks ... more in line with the platform"; approved from
-   mockups/five-desks-sandbox.html the same day). Home only; loaded after site.css, and adds the
-   fd-* pieces only. Tokens only: every tint is a brand token, the desk grounds are the app's scene
-   grounds (the platform's app.css, SCENES), and the pictures are the platform's (the map, the range,
-   the line). Layout is by container query, so a desk recomposes by the room it has, not the screen:
-     the explorer (.fd-x, fdx)   five keys over the open desk; words and app side by side from 960px
-     the app (.fd-app, fdapp)    the map stands taller, the range and fees wrap, the line stands up
-   Below 1100px the desks are swiped like cards, the next one at the edge (desks-home.js keeps the
-   keys, the pager and the swipe in step). Motion runs only while the section is on screen, only on
-   the desk that is open, and never with reduced motion. */
+/* ══ HOME · 03 · FIVE DESKS, ONE OFFICE, ONE BY ONE ON THE SCROLL ═════════════════════════════════
+   Christian, 29 Sep 2026: "we want the five desks to emerge when you scroll ... people having to
+   click ... for each of them to continue". Nothing to press: the desks come to the visitor in turn.
+   Home only; loaded after site.css, and adds the fd-* pieces only. Tokens only: every tint is a brand
+   token, the desk grounds are the app's scene grounds (the platform's app.css, SCENES), and the
+   pictures are the platform's (the map, the range, the line); money is shown on the map.
+   Two ways of showing the same five desks, chosen by desks-home.js from the room there is:
+     THE STAGE (.is-stage)   a desktop with the height for the window: one app window held still on
+                             the right while the five questions pass on the left; the window changes
+                             desk as each question reaches the middle of the screen, and the rail
+                             over it fills as you go.
+     THE FLOW (default)      anything narrower or shorter, and without the script: each desk in turn,
+                             words then window; the window rises and its ground spreads out from
+                             Freya's mark as it scrolls in (scroll-driven where the browser has it),
+                             with the rail held under the bar.
+   Layout is by container query, so a desk recomposes by the room it has, not the screen:
+     the explorer (.fd-x, fdx)   the flow puts words beside the window from 860px of its own width
+     the app (.fd-app, fdapp)    the map stands taller, the range and the names wrap, the line stands up
+   Motion runs only while the section is on screen and never with reduced motion. */
 
 /* ── the head ── */
 .fd{--fd-gap:var(--space-3)}
 .fd .section-head .eyebrow{color:var(--text-link);margin-bottom:var(--space-4)}
 .fd-head{margin-bottom:var(--space-6)}
 
-/* ── the five keys ── .dnav's card, as a tab: the open desk looks pressed, sat down into the page ── */
-.fd-tabs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:var(--fd-gap);margin:0 0 var(--space-5)}
-.fd-tab{appearance:none;font:inherit;text-align:left;cursor:pointer;min-width:0;
-  display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-3);padding:var(--space-4) var(--space-5) var(--space-5);
-  background:var(--bg);color:var(--text);border:var(--line-object) solid var(--border-strong);border-radius:var(--r-card);
-  transition:border-color var(--t-state) var(--ease),transform var(--t-state) var(--ease),box-shadow var(--t-state) var(--ease),background-color var(--t-state) var(--ease)}
-.fd-tab .plate{width:36px;height:36px;margin:0;color:var(--heading)}
-.fd-tab-t{display:flex;flex-direction:column;gap:var(--space-2);min-width:0}
-.fd-tab .eyebrow{color:var(--text-link)}
-.fd-tab b{font-size:var(--text-subhead);line-height:1.2;color:var(--black)}
-@media (hover:hover){
-  .fd-tab:hover{border-color:var(--primary);transform:translateY(calc(var(--space-1) * -1));
-    box-shadow:0 var(--space-3) var(--space-5) calc(var(--space-3) * -1) color-mix(in srgb,var(--primary-pressed) 30%,transparent)}
-}
-.fd-tab:focus-visible{outline:2px solid var(--primary);outline-offset:3px}
-.fd-tab[aria-selected="true"]{background:var(--bg-selected);border-color:var(--primary);transform:none;cursor:default;
-  box-shadow:inset 0 var(--key-offset) 0 color-mix(in srgb,var(--primary-pressed) 22%,transparent)}
+/* ── the explorer ── --fd-top is the clearance under the bar, measured by the script (nav-site.js
+   publishes it as scroll-padding-top); --fd-st is where the stage is held */
+.fd-x{container:fdx / inline-size;--fd-top:96px}
 
-/* ── the track: the five desks side by side, one in view. Swiped on a touch screen, keyed on a desk ── */
-.fd-track{display:grid;grid-auto-flow:column;grid-auto-columns:100%;column-gap:var(--space-5);align-items:start;
-  overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scrollbar-width:none;
-  transition:height var(--t-move) var(--ease)}
-.fd-track::-webkit-scrollbar{display:none}
-.fd-p{scroll-snap-align:start;scroll-snap-stop:always;min-width:0;
-  display:grid;grid-template-columns:minmax(0,1fr);gap:var(--space-6);transition:opacity var(--t-move) var(--ease)}
-.fd-p[aria-hidden="true"]{opacity:.35}
-/* the words and the app side by side once a desk has the room (a container query on the track's own width) */
-.fd-x{container:fdx / inline-size}
-@container fdx (min-width:960px){
-  .fd-p{grid-template-columns:minmax(0,4.3fr) minmax(0,7.7fr);gap:var(--space-7);align-items:center}
+/* ── the rail: the five desks in order, each with a bar that fills while its desk is on screen ── */
+.fd-rail{container:fdrail / inline-size;margin:0 0 var(--space-6)}
+.fd-rail ol{list-style:none;margin:0;padding:0;display:flex;gap:var(--space-3)}
+.fd-rail li{flex:1 1 0;min-width:0}
+.fd-rail a{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;column-gap:var(--space-2);row-gap:var(--space-2);
+  min-height:var(--key-touch-target);padding:var(--space-1) 0 0;text-decoration:none;color:var(--text-tertiary);
+  font:var(--weight-heading) var(--text-label)/1.2 var(--font);transition:color var(--t-state) var(--ease)}
+.fd-rail .plate{width:20px;height:20px;margin:0;color:currentColor}
+.fd-rail b{font-weight:inherit;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fd-bar{grid-column:1 / -1;display:block;height:3px;border-radius:2px;background:var(--border);overflow:hidden}
+.fd-bar i{display:block;height:100%;border-radius:inherit;background:var(--primary);transform-origin:left center;transform:scaleX(var(--f,0))}
+.fd-rail a.is-on{color:var(--black)}
+.fd-rail a.is-on .plate{color:var(--heading)}
+@media (hover:hover){.fd-rail a:hover{color:var(--text)}}
+.fd-rail a:focus-visible{outline:2px solid var(--primary);outline-offset:3px;border-radius:var(--r-chip)}
+
+/* ── the flow: each desk in turn, its words then its window ── */
+.fd-flow{display:grid;grid-template-columns:minmax(0,1fr);row-gap:var(--space-8)}
+.fd-c{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--space-6);align-items:center;min-width:0}
+.fd-stage{display:none}
+@container fdx (min-width:700px){
+  .fd-x:not(.is-stage) .fd-c{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(var(--space-5),4cqi,var(--space-7))}
 }
+/* the rail, while the desks flow: held under the bar on a pale glass, the open desk named */
+.fd-x.is-js:not(.is-stage) .fd-rail{position:sticky;top:calc(var(--fd-top) - var(--space-2));z-index:5;margin-bottom:var(--space-7);
+  padding:var(--space-1) var(--space-4) var(--space-2);border-radius:var(--r-card);border:var(--line-hairline) solid var(--border);
+  background:color-mix(in srgb,var(--bg) 86%,transparent);-webkit-backdrop-filter:blur(14px) saturate(1.2);backdrop-filter:blur(14px) saturate(1.2);
+  box-shadow:0 var(--space-3) var(--space-6) calc(var(--space-4) * -1) color-mix(in srgb,var(--primary-pressed) 30%,transparent)}
+/* a narrow rail names only the open desk: the others keep their plate at a fixed width, and the open
+   one takes the rest of the row, so its name always fits */
+.fd-rail li{transition:flex-grow var(--t-move) var(--ease),flex-basis var(--t-move) var(--ease)}
+@container fdrail (max-width:560px){
+  .fd-x.is-js .fd-rail ol{gap:var(--space-2)}
+  .fd-x.is-js .fd-rail li{flex:0 0 28px}
+  .fd-x.is-js .fd-rail li:has(> a.is-on){flex:1 1 0}
+  .fd-x.is-js .fd-rail a:not(.is-on) b{opacity:0}
+  .fd-x.is-js .fd-rail a{grid-template-columns:20px minmax(0,1fr)}
+}
+/* a phone on its side: too little height to hold the rail as well as the bar, so it stays in place */
+@media (max-height:520px){
+  .fd-x.is-js:not(.is-stage) .fd-rail{position:static}
+}
+
+/* ── the stage: one app window held still while the five questions pass beside it ── */
+.fd-x.is-stage .fd-flow{grid-template-columns:minmax(0,4.3fr) minmax(0,7.7fr);column-gap:clamp(var(--space-6),5vw,var(--space-8));row-gap:0}
+.fd-x.is-stage .fd-c{grid-column:1;display:flex;align-items:center;min-height:max(26rem,64svh)}
+.fd-x.is-stage .fd-c[data-k="4"]{min-height:max(30rem,76svh,var(--fd-last,0px))}
+.fd-x.is-stage .fd-stage{display:block;grid-column:2;grid-row:1 / span 5;align-self:start;position:sticky;top:var(--fd-st,var(--fd-top))}
+.fd-x.is-stage .fd-rail{margin-bottom:var(--space-3)}
+/* the window: one frame, as tall as the desk it shows (the script sets the height, and it eases from
+   desk to desk); the five desks sit in it, one shown, and pass through it with a short blur */
+.fd-x.is-stage .fd-deck{--fd-pad:var(--space-4);position:relative;overflow:hidden;padding:var(--fd-pad);
+  border:var(--line-object) solid var(--border-strong);border-radius:var(--r-card);background:var(--bg);
+  box-shadow:0 var(--space-6) var(--space-8) calc(var(--space-6) * -1) color-mix(in srgb,var(--primary-pressed) 28%,transparent);
+  transition:height 640ms var(--ease)}
+.fd-x.is-stage .fd-deck > .fd-screen{position:absolute;top:var(--fd-pad);left:var(--fd-pad);right:var(--fd-pad);
+  opacity:0;visibility:hidden;transform:translate3d(0,var(--fd-shift,32px),0) scale(.985);filter:blur(8px);
+  transition:opacity 520ms var(--ease),transform 720ms var(--ease),filter 520ms var(--ease),visibility 0s linear 720ms}
+.fd-x.is-stage .fd-deck > .fd-screen.is-before{--fd-shift:-32px}
+.fd-x.is-stage .fd-deck > .fd-screen.is-on{position:relative;top:auto;left:auto;right:auto;
+  opacity:1;visibility:visible;transform:none;filter:none;transition-delay:90ms,0s,90ms,0s}
+.fd-x.is-stage .fd-deck .fd-app{border:0;border-radius:0;padding:0;background:none}
+/* the window, drawn to fit a laptop's height: tighter margins, the answer on wider lines, the map a
+   little lower, and the two tiles laid out as figure-and-line (the script scales what is left over) */
+.fd-x.is-stage .fd-app-h{margin-bottom:var(--space-3)}
+.fd-x.is-stage .fd-scene{padding:var(--space-4) var(--space-5)}
+.fd-x.is-stage .fd-rail a{min-height:40px}
+.fd-x.is-stage .fd-src{margin-top:var(--space-2)}
+.fd-x.is-stage :is(.fd-rg,.fd-ln-w,.fd-wl){padding:var(--space-3) var(--space-4)}
+.fd-x.is-stage .fd-rg{gap:var(--space-2)}
+.fd-x.is-stage .fd-fy{margin-bottom:var(--space-3)}
+.fd-x.is-stage .fd-ans{max-width:34ch}
+.fd-x.is-stage .fd-sub{max-width:none;margin-bottom:var(--space-4)}
+@container fdapp (min-width:560px){.fd-x.is-stage .fd-tv{aspect-ratio:16 / 7.2}}
+@container fdapp (max-width:559px){.fd-x.is-stage .fd-tv{aspect-ratio:4 / 3}}
+.fd-x.is-stage .fd-tiles{margin-top:var(--space-3)}
+.fd-x.is-stage.is-short .fd-sub{display:none}
+.fd-x.is-stage .fd-tiles li{padding:var(--space-3) var(--space-4)}
+/* the questions: the one beside the window is read, the others wait in the margin of the eye */
+.fd-x.is-stage .fd-words{opacity:.26;transform:translateY(var(--fd-wy,14px));transition:opacity 520ms var(--ease),transform 720ms var(--ease)}
+.fd-x.is-stage .fd-c.is-before .fd-words{--fd-wy:-14px}
+.fd-x.is-stage .fd-c.is-on .fd-words{opacity:1;transform:none}
+
+/* ── the flow's entrance: the window rises into place and its ground spreads out from Freya's mark.
+   Scroll-driven where the browser has it (the scroll itself is the timeline, so it runs backwards
+   too); else a class, set by the script, starts the same movement once. ── */
+@supports (animation-timeline: view()){
+  .fd-x.is-anim:not(.is-stage) .fd-words{animation:fd-in-w linear both;animation-timeline:view();animation-range:entry 5% entry 85%}
+  .fd-x.is-anim:not(.is-stage) .fd-screen{animation:fd-in-s linear both;animation-timeline:view();animation-range:entry 0% entry 80%}
+  .fd-x.is-anim:not(.is-stage) .fd-scene{animation:fd-flood linear both;animation-timeline:view();animation-range:entry 25% cover 40%}
+}
+@supports not (animation-timeline: view()){
+  .fd-x.is-anim:not(.is-stage) .fd-screen{transition:opacity 700ms var(--ease),transform 900ms var(--ease)}
+  .fd-x.is-anim:not(.is-stage) .fd-scene{transition:clip-path 1100ms var(--ease) 150ms}
+  .fd-x.is-anim:not(.is-stage) .fd-screen:not(.is-in){opacity:0;transform:translateY(56px) scale(.94)}
+  .fd-x.is-anim:not(.is-stage) .fd-screen:not(.is-in) .fd-scene{clip-path:circle(0% at var(--fd-o))}
+  .fd-x.is-anim:not(.is-stage) .fd-screen.is-in .fd-scene{clip-path:circle(150% at var(--fd-o))}
+}
+.fd-scene{--fd-o:calc(clamp(var(--space-4),4cqi,var(--space-6)) + 18px) calc(clamp(var(--space-4),4cqi,var(--space-6)) + 18px)}
+@keyframes fd-in-w{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@keyframes fd-in-s{from{opacity:.15;transform:translateY(72px) scale(.93)}to{opacity:1;transform:none}}
+@keyframes fd-flood{from{clip-path:circle(0% at var(--fd-o))}to{clip-path:circle(150% at var(--fd-o))}}
+
+/* ── the words ── */
+.fd-w-plate{display:flex;align-items:center;gap:var(--space-3);margin-bottom:var(--space-4);
+  font:var(--weight-heading) var(--text-label)/1 var(--font);letter-spacing:.12em;color:var(--text-tertiary)}
+.fd-w-plate .plate{width:40px;height:40px;margin:0;color:var(--heading)}
 
 /* ── the words ── */
 .fd-words .eyebrow{color:var(--text-link);margin-bottom:var(--space-4)}
@@ -73,9 +160,14 @@
 .fd-lt svg{width:15px;height:15px;transform:rotate(38deg);overflow:visible}
 .fd-lt path{fill:none;stroke:currentColor;stroke-width:1.8}
 
-/* the desk grounds are the app's own (app.css, SCENES): a brand token mixed into the page */
+/* the desk grounds are the app's own (app.css, SCENES): a brand token mixed into the page; Records' blue
+   is the site's own until the app takes it too */
 .fd-scene{--scene:color-mix(in srgb,var(--primary-48) 30%,var(--bg));border-radius:var(--r-card);background:var(--scene);
   padding:clamp(var(--space-4),4cqi,var(--space-6))}
+/* Records: a pale blue at the lightness and quiet of the other four grounds (Christian, 29 Sep 2026:
+   "change the background color of Records to a blue"); there is no blue token, so it is written
+   here in OKLCH beside them: L 0.93, C 0.02, hue 245 */
+.is-records .fd-scene{--scene:oklch(0.93 0.02 245)}
 .is-policy .fd-scene{--scene:color-mix(in srgb,var(--gold-light) 32%,var(--bg))}
 .is-investment .fd-scene{--scene:var(--primary-12)}
 .is-protection .fd-scene{--scene:color-mix(in srgb,var(--d-real) 17%,var(--bg))}
@@ -109,32 +201,79 @@
 .fd-tiles b{margin-top:var(--space-1);font:var(--weight-heading) min(var(--text-title),7cqi)/1.1 var(--font);letter-spacing:var(--track-heading);color:var(--black);overflow-wrap:anywhere}
 .fd-tiles li > span:last-child{font-size:var(--text-label);line-height:1.45;color:var(--text-secondary)}
 @container fdapp (max-width:260px){.fd-tiles{grid-template-columns:minmax(0,1fr)}}
-
-/* ── RECORDS · the map: flat blocks sized by value, one green in steps, the darkest the largest ── */
-.fd-tm{display:grid;gap:2px;height:clamp(220px,46cqi,300px);
-  grid-template-columns:48.1fr 27.5fr 13.9fr 10.5fr;grid-template-rows:53fr 30fr 17fr;
-  grid-template-areas:"p l b b" "p l v c" "p l v o"}
-.fd-tm .b{position:relative;container-type:size;overflow:hidden;border-radius:var(--r-chip);padding:var(--space-3);
-  display:flex;flex-direction:column;gap:2px;background:var(--c);color:var(--ink)}
-.fd-tm .b1{grid-area:p;--c:var(--primary-pressed);--ink:var(--white)}
-.fd-tm .b2{grid-area:l;--c:var(--primary);--ink:var(--white)}
-.fd-tm .b3{grid-area:b;--c:var(--primary-hover);--ink:var(--white)}
-.fd-tm .b4{grid-area:v;--c:var(--primary-72);--ink:var(--white)}
-.fd-tm .b5{grid-area:c;--c:var(--primary-48);--ink:var(--black)}
-.fd-tm .b6{grid-area:o;--c:var(--primary-24);--ink:var(--black);align-items:center;justify-content:center;padding:0}
-.fd-tm .n{font:var(--weight-label) var(--text-label)/1.25 var(--font)}
-.fd-tm .v{font:var(--weight-heading) min(var(--text-title),24cqi)/1.1 var(--font);letter-spacing:var(--track-heading);white-space:nowrap}
-.fd-tm .b6 .v{font-size:var(--text-label)}
-.fd-tm .p{margin-top:auto;align-self:flex-end;font:var(--weight-label) var(--text-label)/1 var(--font);opacity:.86}
-@container (max-width:84px){.fd-tm .b .n{display:none}}
-@container (max-height:64px){.fd-tm .b .p{display:none}}
-@container (max-width:52px){.fd-tm .b .v{font-size:var(--text-label)}}
-/* narrow: the map stands taller, the largest block across the top */
-@container fdapp (max-width:480px){
-  .fd-tm{height:auto;aspect-ratio:1 / 1.1;grid-template-columns:50fr 26fr 24fr;grid-template-rows:44fr 30fr 26fr;
-    grid-template-areas:"p p p" "l b b" "l v c"}
-  .fd-tm .b6{display:none}
+/* on the stage, with the width for it: the label and its figure on one line, what it means under them */
+@container fdapp (min-width:520px){
+  .fd-x.is-stage .fd-tiles li{display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-areas:"l n" "t t";column-gap:var(--space-3);row-gap:var(--space-2);align-items:center}
+  .fd-x.is-stage .fd-tiles .fd-lab{grid-area:l;justify-self:start}
+  .fd-x.is-stage .fd-tiles li > b{grid-area:n;margin:0}
+  .fd-x.is-stage .fd-tiles li > span:last-child{grid-area:t}
 }
+
+/* ── THE MAP · Finna's way of looking at money, as in the app (What you own, Your investments):
+   flat blocks sized by value, each with its name, a line under it, its value and its share pinned
+   bottom-right. What you own: one green in six steps, the darkest the largest. Investments: each
+   asset class in its own colour, and the accounts and funds inside a class in shades of it
+   (Christian, 29 Sep 2026). Selecting a block opens it into what it is made of, and the path above
+   goes back; blocks travel between the two rather than redraw. Drawn by desks-home.js from the
+   figures written into the page; without the script, the first level in one line. ── */
+.fd-map{display:grid;gap:var(--space-2)}
+/* the head: the path on its own line (cut short, never wrapped, so the map never moves), then what
+   is shown and the hint */
+.fd-map-h{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:var(--space-3);row-gap:2px;
+  font-size:var(--text-label);line-height:1.35;color:var(--text-secondary)}
+.fd-crumbs{grid-column:1 / -1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fd-crumbs .sep{margin-inline:var(--space-2)}
+.fd-crumbs [aria-current]{color:var(--heading);font-weight:var(--weight-heading)}
+.fd-crumbs button{appearance:none;padding:0;border:0;background:none;font:inherit;color:var(--text-link);cursor:pointer;
+  text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.fd-crumbs button:focus-visible{outline:2px solid var(--primary);outline-offset:2px;border-radius:2px}
+.fd-crumbs .sep{color:var(--text-tertiary)}
+.fd-map-hint{text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fd-map-sum{font-variant-numeric:tabular-nums}
+.fd-map-hint{color:var(--text-tertiary)}
+.fd-tv{--fd-gap:3px;--fd-tt:calc(var(--t-move) * 2.2);position:relative;width:100%;aspect-ratio:16 / 8.4}
+.fd-tv.is-js:not(.ready){visibility:hidden}
+.fd-b{position:absolute;margin:0;border:0;padding:var(--space-3) var(--space-3) var(--space-2);border-radius:var(--r-chip);
+  background:var(--c);color:var(--ink);text-align:left;cursor:pointer;overflow:hidden;font:inherit;
+  transition:left var(--fd-tt) var(--ease),top var(--fd-tt) var(--ease),width var(--fd-tt) var(--ease),height var(--fd-tt) var(--ease),
+    opacity var(--t-move) var(--ease),background-color var(--fd-tt) var(--ease),outline-color var(--t-state) var(--ease);
+  outline:2px solid transparent;outline-offset:2px}
+.fd-b.is-leaf,.fd-b.is-tail{cursor:default}
+@media (hover:hover){.fd-b:not(.is-leaf):not(.is-tail):hover{outline-color:var(--primary-48)}}
+.fd-b:focus-visible{outline-color:var(--primary)}
+.fd-b-in{display:flex;flex-direction:column;height:100%;min-height:0;overflow:hidden}
+.fd-b-in.is-arriving{animation:fd-fade var(--t-move) var(--ease) calc(var(--fd-tt) * .55) both}
+.fd-b .n{font:var(--weight-label) var(--text-label)/1.25 var(--font);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;flex:none}
+.fd-b .s{font-size:var(--text-label);line-height:1.35;opacity:.84;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:none}
+.fd-b .v{margin-top:var(--space-1);font:var(--weight-heading) var(--text-subhead)/1.1 var(--font);letter-spacing:var(--track-heading);white-space:nowrap;flex:none}
+.fd-b .vs{display:none}
+.fd-b .p{margin-top:auto;align-self:flex-end;padding-top:var(--space-1);font:var(--weight-label) var(--text-label)/1 var(--font);opacity:.86;white-space:nowrap;flex:none}
+/* a block's words fit, or they step down: the short value, no second line, a smaller value, no share,
+   less room, the smallest value; a block too small for its name shows how many it stands for */
+.fd-b.fs .vf{display:none}
+.fd-b.fs .vs{display:inline}
+.fd-b.f1 .s{display:none}
+.fd-b.f2 .v{font-size:var(--text-reading)}
+.fd-b.f3 .p{display:none}
+.fd-b.f4{padding:var(--space-2)}
+.fd-b.f5 .v{font-size:var(--text-label)}
+.fd-b.xs .fd-b-in{visibility:hidden}
+.fd-b .x{display:none}
+.fd-b.xs .x{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:var(--weight-label) var(--text-label)/1 var(--font)}
+/* what is too small to name on the map is named under it */
+.fd-map-more{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-1) var(--space-4);margin:0;font-size:var(--text-label);line-height:1.4;color:var(--text-secondary)}
+.fd-map-more[hidden]{display:none}
+.fd-map-more .h{font-weight:var(--weight-heading);letter-spacing:.12em;text-transform:uppercase;color:var(--text-link)}
+.fd-map-more span{display:inline-flex;align-items:center;gap:var(--space-2)}
+.fd-map-more i{width:10px;height:10px;border-radius:3px;background:var(--c);flex:none}
+.fd-map-more b{color:var(--text);font-weight:var(--weight-label)}
+/* without the script: the first level in one line */
+.fd-tv-flat{list-style:none;margin:0;padding:0;display:flex;gap:3px;height:100%}
+.fd-tv-flat li{flex:var(--v) 1 0;min-width:0;display:flex;flex-direction:column;gap:2px;padding:var(--space-2);border-radius:var(--r-chip);
+  background:var(--c);color:var(--ink);overflow:hidden;font-size:var(--text-label)}
+.fd-tv-flat :is(b,span){font-weight:var(--weight-label);white-space:nowrap;overflow:hidden;text-overflow:clip}
+@container fdapp (max-width:480px){.fd-tv{aspect-ratio:1 / 1}.fd-map-hint{visibility:hidden}}
+@container fdapp (max-width:340px){.fd-tv{aspect-ratio:1 / 1.12}}
 
 /* ── POLICY · the range: the range the household wrote, its target, and where it is today ── */
 .fd-rg{display:grid;gap:var(--space-3);padding:var(--space-4);border-radius:var(--r-tile);background:color-mix(in srgb,var(--bg) 80%,transparent)}
@@ -162,32 +301,7 @@
   .fd-rg .r{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"n v" "t t" "s s";row-gap:var(--space-1)}
   .fd-rg .rv{align-self:center}
   .fd-rg .rs{text-align:left;margin-top:-2px}
-}
-
-/* ── INVESTMENT · the mix in one line, and what it costs ── */
-.fd-iv{display:grid;gap:var(--space-4);padding:var(--space-4);border-radius:var(--r-tile);background:color-mix(in srgb,var(--bg) 80%,transparent)}
-.fd-mix{display:flex;gap:2px;height:22px}
-.fd-mix i{flex:0 0 calc(var(--w) * 1% - 2px);background:var(--c);border-radius:3px;transform-origin:left center}
-.fd-mix i:first-child{border-top-left-radius:var(--r-chip);border-bottom-left-radius:var(--r-chip)}
-.fd-mix i:last-child{border-top-right-radius:var(--r-chip);border-bottom-right-radius:var(--r-chip)}
-.fd-mix-k{list-style:none;margin:calc(var(--space-2) * -1) 0 0;padding:0;display:flex;flex-wrap:wrap;gap:var(--space-2) var(--space-4);font-size:var(--text-label);color:var(--text-secondary)}
-.fd-mix-k li{display:inline-flex;align-items:center;gap:var(--space-2)}
-.fd-mix-k i{width:10px;height:10px;border-radius:3px;background:var(--c);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--black) 8%,transparent)}
-.fd-mix-k b{color:var(--text);font-weight:var(--weight-heading)}
-.fd-fees{display:grid;gap:var(--space-2);padding-top:var(--space-3);border-top:var(--line-hairline) solid var(--border)}
-.fd-fees .eyebrow{margin-bottom:var(--space-1)}
-.fd-fees .fe{display:grid;grid-template-columns:minmax(0,9.5rem) minmax(0,1fr) 4.5rem;align-items:center;gap:var(--space-4)}
-.fd-fees .fn{display:flex;flex-direction:column;gap:2px;font:var(--weight-label) var(--text-label)/1.3 var(--font);color:var(--text)}
-.fd-fees .fn small{font-weight:var(--weight-reading);color:var(--text-secondary);font-size:var(--text-label)}
-.fd-fees .fb{height:8px;border-radius:4px;background:var(--bg-sunken);overflow:hidden}
-.fd-fees .fb i{display:block;height:100%;width:calc(var(--f) / 1918 * 100%);border-radius:4px;background:var(--primary-48);transform-origin:left center}
-.fd-fees .fv{text-align:right;font:var(--weight-heading) var(--text-reading)/1 var(--font);color:var(--black)}
-.fd-fees .is-total{grid-template-columns:minmax(0,1fr) auto;padding-top:var(--space-2);border-top:var(--line-heavy) solid var(--text)}
-.fd-fees .is-total .fv{font-size:var(--text-subhead)}
-@container fdapp (max-width:470px){
-  .fd-fees .fe{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"n v" "b b";row-gap:var(--space-2)}
-  .fd-fees .fn{grid-area:n}.fd-fees .fv{grid-area:v}.fd-fees .fb{grid-area:b}
-  .fd-fees .is-total{grid-template-areas:"n v"}
+  .fd-rg .r:nth-of-type(4){display:none}
 }
 
 /* ── PROTECTION · the line, lying down: the next twelve months, Today with its halo, what needs you in Bullion ── */
@@ -237,110 +351,79 @@
 .fd-pairs dt{font-size:var(--text-label);color:var(--text-secondary)}
 .fd-pairs dd{margin:2px 0 0;font:var(--weight-label) var(--text-reading)/1.35 var(--font);color:var(--text)}
 
-/* ── the pager (a tablet and a phone) and the caption ── */
-.fd-pg{display:none}
-.fd-cap{margin:var(--space-4) 0 0;font-size:var(--text-label);line-height:1.5;color:var(--text-secondary);max-width:none}
 
-/* ── the three facts under the desks, and the one key ── */
+/* ── the caption, the three facts under the desks, and the one key ── */
+.fd-cap{margin:var(--space-6) 0 0;font-size:var(--text-label);line-height:1.5;color:var(--text-secondary);max-width:none}
+
 .fd-facts{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:var(--space-7)}
 .fd-facts p{font-size:var(--text-reading)}
 .fd .center-cta{margin-top:var(--space-7)}
 
-/* ══ MOTION ═ the open desk, once the section is on screen (.is-live), restarted each time a desk opens ═ */
+/* ══ MOTION ═ a desk arriving (.is-wait, then .is-live): Freya thinks, answers, and the picture plays.
+   On the stage it plays each time the window changes desk; in the flow, once, as the desk scrolls in ═ */
 .fd-x .fd-ans,.fd-x .fd-sub{transition:opacity 420ms var(--ease),transform 420ms var(--ease)}
-.fd-p.is-wait .fd-ans,.fd-p.is-wait .fd-sub{opacity:0;transform:translateY(8px)}
-.fd-p.is-live .fd-sub{transition-delay:90ms}
-.fd-p.is-wait .fd-mix i,.fd-p.is-wait .fd-fees .fb i,.fd-p.is-wait .fd-rg .band{transform:scaleX(0)}
-.fd-p.is-wait .fd-ln li,.fd-p.is-wait .fd-wl-l li,.fd-p.is-wait .fd-tiles li,.fd-p.is-wait .fd-tm .b > *{opacity:0}
-.fd-p.is-wait .fd-ln::before{transform:scaleX(0)}
-@container fdapp (max-width:559px){.fd-p.is-wait .fd-ln::before{transform:scaleY(0)}}
-/* the map fills upward, block by block, the largest first */
-.fd-p.is-wait .fd-tm .b{clip-path:inset(100% 0 0 0 round var(--r-chip))}
-.fd-p.is-live .fd-tm .b{animation:fd-rise 620ms var(--ease) both;animation-delay:calc(260ms + var(--i) * 70ms)}
+.fd-screen.is-wait .fd-ans,.fd-screen.is-wait .fd-sub{opacity:0;transform:translateY(8px)}
+.fd-screen.is-live .fd-sub{transition-delay:90ms}
+.fd-screen.is-wait .fd-rg .band{transform:scaleX(0)}
+.fd-screen.is-wait .fd-ln li,.fd-screen.is-wait .fd-wl-l li,.fd-screen.is-wait .fd-tiles li,.fd-screen.is-wait .fd-map-h{opacity:0}
+.fd-screen.is-wait .fd-ln::before{transform:scaleX(0)}
+@container fdapp (max-width:559px){.fd-screen.is-wait .fd-ln::before{transform:scaleY(0)}}
+/* the map fills upward, block by block, the largest first (.is-rise, set by the script as the desk arrives) */
+.fd-screen.is-wait .fd-b{clip-path:inset(100% 0 0 0 round var(--r-chip))}
+.fd-tv.is-rise .fd-b{animation:fd-rise 620ms var(--ease) both;animation-delay:calc(140ms + var(--i) * 70ms)}
 @keyframes fd-rise{from{clip-path:inset(100% 0 0 0 round var(--r-chip))}to{clip-path:inset(0 0 0 0 round var(--r-chip))}}
-.fd-p.is-live .fd-tm .b > *{animation:fd-fade 360ms var(--ease) both;animation-delay:calc(560ms + var(--i) * 70ms)}
+.fd-tv.is-rise .fd-b-in{animation:fd-fade 360ms var(--ease) both;animation-delay:calc(440ms + var(--i) * 70ms)}
+.fd-screen.is-live .fd-map-h{transition:opacity 420ms var(--ease) 200ms}
 @keyframes fd-fade{from{opacity:0}to{opacity:1}}
 /* the range: the band arrives, and the marker slides from the target to today */
-.fd-p.is-wait .fd-rg .now{left:calc(var(--t) * 1%);opacity:0}
-.fd-p.is-live .fd-rg .now{transition:left 900ms var(--ease) 420ms,opacity 200ms var(--ease) 300ms}
-.fd-p.is-live .fd-rg .band{animation:fd-grow 520ms var(--ease) both 200ms;transform-origin:left center}
+.fd-screen.is-wait .fd-rg .now{left:calc(var(--t) * 1%);opacity:0}
+.fd-screen.is-live .fd-rg .now{transition:left 900ms var(--ease) 420ms,opacity 200ms var(--ease) 300ms}
+.fd-screen.is-live .fd-rg .band{animation:fd-grow 520ms var(--ease) both 200ms;transform-origin:left center}
 @keyframes fd-grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 /* outside its range: a slow Bullion pulse, as on Drift, while the section is on screen */
-.fd.is-seen .fd-p.is-live .fd-rg .is-out .now{animation:fd-halo 2.4s var(--ease) 1.4s infinite}
+.fd.is-seen .fd-screen.is-live .fd-rg .is-out .now{animation:fd-halo 2.4s var(--ease) 1.4s infinite}
 @keyframes fd-halo{0%,100%{box-shadow:0 0 0 0 color-mix(in srgb,var(--gold) 55%,transparent)}50%{box-shadow:0 0 0 6px color-mix(in srgb,var(--gold) 0%,transparent)}}
-/* the mix fills from the left; the fees follow */
-.fd-p.is-live .fd-mix i{animation:fd-grow 560ms var(--ease) both;animation-delay:calc(240ms + var(--i) * 90ms)}
-.fd-p.is-live .fd-fees .fb i{animation:fd-grow 700ms var(--ease) both;animation-delay:calc(520ms + var(--i) * 90ms)}
 /* the lines draw, then their moments arrive in order */
-.fd-p.is-live .fd-ln::before{animation:fd-draw-x 900ms var(--ease) both 260ms}
-@container fdapp (max-width:559px){.fd-p.is-live .fd-ln::before{animation-name:fd-draw-y}}
+.fd-screen.is-live .fd-ln::before{animation:fd-draw-x 900ms var(--ease) both 260ms}
+@container fdapp (max-width:559px){.fd-screen.is-live .fd-ln::before{animation-name:fd-draw-y}}
 @keyframes fd-draw-x{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 @keyframes fd-draw-y{from{transform:scaleY(0)}to{transform:scaleY(1)}}
-.fd-p.is-live .fd-ln li,.fd-p.is-live .fd-wl-l li{animation:fd-fade 420ms var(--ease) both;animation-delay:calc(360ms + var(--i) * 160ms)}
-.fd.is-seen .fd-p.is-live .fd-ln li.is-today::before,.fd.is-seen .fd-p.is-live .fd-wl-l li.today::before{animation:fd-today 2.4s var(--ease) 1.2s infinite}
+.fd-screen.is-live .fd-ln li,.fd-screen.is-live .fd-wl-l li{animation:fd-fade 420ms var(--ease) both;animation-delay:calc(360ms + var(--i) * 160ms)}
+.fd.is-seen .fd-screen.is-live .fd-ln li.is-today::before,.fd.is-seen .fd-screen.is-live .fd-wl-l li.today::before{animation:fd-today 2.4s var(--ease) 1.2s infinite}
 @keyframes fd-today{0%,100%{box-shadow:0 0 0 3px var(--scene),0 0 0 3px color-mix(in srgb,var(--heading) 30%,transparent)}50%{box-shadow:0 0 0 3px var(--scene),0 0 0 9px color-mix(in srgb,var(--heading) 0%,transparent)}}
-.fd.is-seen .fd-p.is-live .fd-ln li.is-att::before{animation:fd-halo 2.4s var(--ease) 1.6s infinite}
-.fd-p.is-live .fd-wl-l li::after{animation:fd-draw-y 360ms var(--ease) both;animation-delay:calc(420ms + var(--i) * 160ms)}
+.fd.is-seen .fd-screen.is-live .fd-ln li.is-att::before{animation:fd-halo 2.4s var(--ease) 1.6s infinite}
+.fd-screen.is-live .fd-wl-l li::after{animation:fd-draw-y 360ms var(--ease) both;animation-delay:calc(420ms + var(--i) * 160ms)}
 /* the tiles come up last */
-.fd-p.is-live .fd-tiles li{animation:fd-up 480ms var(--ease) both;animation-delay:calc(700ms + var(--n, 0) * 90ms)}
-.fd-p.is-live .fd-tiles li + li{--n:1}
+.fd-screen.is-live .fd-tiles li{animation:fd-up 480ms var(--ease) both;animation-delay:calc(700ms + var(--n, 0) * 90ms)}
+.fd-screen.is-live .fd-tiles li + li{--n:1}
 @keyframes fd-up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 /* the loops (a Bullion pulse, Today's halo) run only while the section is on screen: .is-seen, set by the script */
 @media (prefers-reduced-motion:reduce){
   .fd *,.fd *::before,.fd *::after{animation:none!important;transition:none!important}
-  .fd-p.is-wait .fd-ans,.fd-p.is-wait .fd-sub{opacity:1;transform:none}
-  .fd-p.is-wait .fd-tm .b{clip-path:none}
-  .fd-p.is-wait .fd-rg .now{left:calc(var(--v) * 1%);opacity:1}
-  .fd-p.is-wait .fd-mix i,.fd-p.is-wait .fd-fees .fb i,.fd-p.is-wait .fd-rg .band,.fd-p.is-wait .fd-ln::before{transform:none}
-  .fd-p.is-wait .fd-ln li,.fd-p.is-wait .fd-wl-l li,.fd-p.is-wait .fd-tiles li,.fd-p.is-wait .fd-tm .b > *{opacity:1}
+  .fd-x.is-stage .fd-deck > .fd-screen{filter:none;transform:none}
+  .fd-x.is-stage .fd-deck{transition:none}
+  .fd-x.is-stage .fd-words{transform:none}
+  .fd-screen.is-wait .fd-ans,.fd-screen.is-wait .fd-sub{opacity:1;transform:none}
+  .fd-screen.is-wait .fd-b{clip-path:none}
+  .fd-screen.is-wait .fd-rg .now{left:calc(var(--v) * 1%);opacity:1}
+  .fd-screen.is-wait .fd-rg .band,.fd-screen.is-wait .fd-ln::before{transform:none}
+  .fd-screen.is-wait .fd-ln li,.fd-screen.is-wait .fd-wl-l li,.fd-screen.is-wait .fd-tiles li,.fd-screen.is-wait .fd-map-h{opacity:1}
 }
 
-/* ══ A TABLET (up to 1099px) ═ the desks stack, and are swiped like cards with the next one at the edge ═ */
+/* ══ A TABLET AND A PHONE ═════════════════════════════════════════════════════════════════════ */
 @media (max-width:1099px){
-  .fd-tab{padding:var(--space-4);gap:var(--space-2)}
-  .fd-tab .plate{width:32px;height:32px}
-  .fd-tab b{font-size:var(--text-reading)}
-  .fd-track{margin-inline:calc(var(--gutter) * -1);padding-inline:var(--gutter);scroll-padding-inline:var(--gutter);
-    grid-auto-columns:calc(100% - var(--space-6));column-gap:var(--space-4);
-    -webkit-mask-image:linear-gradient(90deg,transparent,#000 var(--gutter),#000 calc(100% - var(--gutter)),transparent);
-            mask-image:linear-gradient(90deg,transparent,#000 var(--gutter),#000 calc(100% - var(--gutter)),transparent)}
-  .fd-p{gap:var(--space-5)}
-  .fd-pg{display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);margin-top:var(--space-4)}
-  .fd-pg-b{appearance:none;background:none;border:0;cursor:pointer;display:inline-flex;align-items:center;gap:var(--space-2);
-    min-height:44px;padding:0 var(--space-1);font:var(--weight-heading) var(--text-reading)/1 var(--font);color:var(--primary)}
-  .fd-pg-b .ic{width:18px;height:18px}
-  .fd-pg-b:focus-visible{outline:2px solid var(--primary);outline-offset:2px;border-radius:var(--r-chip)}
-  .fd-pg-n{display:flex;gap:6px}
-  .fd-pg-n i{width:6px;height:6px;border-radius:50%;background:var(--border-strong);transition:width var(--t-move) var(--ease),background-color var(--t-move) var(--ease)}
-  .fd-pg-n i.on{width:20px;border-radius:3px;background:var(--primary)}
   .fd-facts{grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-4)}
 }
-/* a tablet: the desk's question on the left, what it does on the right, so the words do not leave half the width empty */
-@media (min-width:701px){
-  @container fdx (max-width:959px){
-    .fd-words{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);column-gap:var(--space-6);align-items:start}
-    .fd-words>.eyebrow{grid-column:1 / -1}
-    .fd .fd-words h3{grid-column:1;grid-row:2 / span 3;margin:0}
-    .fd-words>p:not(.eyebrow):not(.fd-held){grid-column:2;grid-row:2}
-    .fd-words .fd-held{grid-column:2;grid-row:3;margin-bottom:var(--space-4)}
-    .fd-words .link{grid-column:2;grid-row:4;justify-self:start}
-  }
-}
-
-/* ══ A PHONE (up to 700px) ═ the keys become one row that scrolls sideways; loose words centre, the app does not ═ */
+/* a phone: loose words centre, the window does not; the desks sit a little closer */
 @media (max-width:700px){
   .fd-head{margin-bottom:var(--space-5)}
-  .fd-tabs{display:flex;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none;gap:var(--space-2);
-    margin:0 calc(var(--gutter) * -1) var(--space-4);padding:2px var(--gutter) var(--space-1);scroll-padding-inline:var(--gutter)}
-  .fd-tabs::-webkit-scrollbar{display:none}
-  .fd-tab{flex:none;scroll-snap-align:start;flex-direction:row;align-items:center;gap:var(--space-2);min-height:48px;padding:0 var(--space-4) 0 var(--space-3);border-radius:var(--r-key)}
-  .fd-tab .plate{width:24px;height:24px}
-  .fd-tab .eyebrow{display:none}
-  .fd-tab b{font-size:var(--text-reading);white-space:nowrap}
-  .fd-track{grid-auto-columns:calc(100% - var(--space-5));column-gap:var(--space-3)}
+  .fd-flow{row-gap:var(--space-7)}
+  .fd-c{gap:var(--space-5)}
+  .fd-x.is-js:not(.is-stage) .fd-rail{margin-inline:calc(var(--space-2) * -1);padding-inline:var(--space-3);margin-bottom:var(--space-6)}
   .fd-pairs div{padding:var(--space-2) var(--space-3)}
   .fd-tiles li{padding:var(--space-3)}
   .fd-words{text-align:center}
+  .fd-w-plate{display:none}
   .fd .fd-words h3,.fd-words p{margin-inline:auto}
   .fd-words .fd-held{align-items:center;padding:var(--space-3) 0 0;border-left:0;border-top:var(--line-heavy) solid var(--primary);max-width:34ch}
   .fd-words .link{margin-inline:auto}

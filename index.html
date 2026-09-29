@@ -38,12 +38,12 @@
 <meta name="theme-color" content="#0D231B">
 <link rel="stylesheet" href="chrome/fonts.css?v=0c6cbb49">
 <link rel="stylesheet" href="brand/tokens.css?v=688c6df8">
-<link rel="stylesheet" href="site.css?v=c3f19a60">
+<link rel="stylesheet" href="site.css?v=0aca43db">
 <link rel="stylesheet" href="nav-site.css?v=3ead211f">
 <link rel="stylesheet" href="vendor/lenis.css?v=599bcc02">
 <link rel="stylesheet" href="hero-home.css?v=62a9cc27">
-<link rel="stylesheet" href="hero-tones.css?v=ad344043">
-<link rel="stylesheet" href="desks-home.css?v=7afbc669">
+<link rel="stylesheet" href="hero-tones.css?v=3e8ff81a">
+<link rel="stylesheet" href="desks-home.css?v=8e658534">
 <!-- A DIFFERENT HERO EACH VISIT (Rose, 13 Sep 2026). In the <head> on purpose: it sets
      the custom property before the hero has painted, so there is no flash of one picture
      being replaced by another, and only the chosen file is ever fetched. N is the count
@@ -207,19 +207,30 @@ r.dataset.hero=i;})();</script>
     </div>
   </section>
 
-  <!-- ══ 03 · WHITE ═══ five desks, one office: one desk open at a time, as the app shows it ══
-       ONE DESK AT A TIME (Christian, 29 Sep 2026: "revisit the website section regarding the five
-       desks on the landing page ... more in line with the platform and what we want people to
-       understand"; approved from mockups/five-desks-sandbox.html the same day). It replaces the
-       Home screenshot and the five alternating blocks (the ledger, the allocation panel, the review
-       cards), which ran to 6,600px on a phone. Five keys, in the app's order, each with its plate
-       and its verb (DESKS in the platform's app.js); under them the open desk: one question about the
-       family's own money, its "Held to" line and the way inside, beside the desk as the app shows it
-       on its own scene ground: Freya's answer, the desk's picture (the map, the range, the mix and
-       its fees, the renewals line, the will's line), what needs you and what she noticed. The
-       Johnsens, the sample household of the app screenshots, with the app's own figures. Then the
-       three facts a visitor should leave with, and the one key. Below 1100px the desks are swiped
-       like cards with the next one at the edge. Styles desks-home.css, script desks-home.js. -->
+  <!-- ══ 03 · WHITE ═══ five desks, one office: the desks arrive one by one as you scroll ═══════
+       ONE BY ONE, ON THE SCROLL (Christian, 29 Sep 2026: "we want the five desks to emerge when you
+       scroll. We have a user problem with people having to click ... for each of them to continue").
+       No keys to press: every desk comes to you in turn. The words and the desk as the app shows it
+       are the same as the tabbed version of the same day (mockups/five-desks-sandbox.html): one
+       question about the family's own money, its "Held to" line and the way inside, beside Freya's
+       answer on the desk's own scene ground, the desk's picture, what needs you and what she noticed.
+       The Johnsens, the sample household of the app screenshots, with the app's own figures.
+       MONEY IS SHOWN ON THE MAP (Christian, 29 Sep 2026: "the core approach to show investments for
+       finna is the treemap"): Records and Investment carry the app's treemap, live, a block opening
+       into what it is made of. It rises block by block as its desk arrives, like the other pictures.
+       Investment's blocks wear the asset-class colours, and what is inside a class its shades; its
+       example is a more diversified household than the Johnsens (six classes, fourteen accounts),
+       so every class colour shows.
+       Records' ground is a pale blue. Nothing about fees is shown before the fee feature is linked
+       to Plaid.
+       A desktop with the height for it: ONE APP WINDOW HELD STILL on the right while the five
+       questions pass on the left; as each question reaches the middle of the screen the window
+       changes desk (its ground, Freya thinking then answering, the picture playing), and the rail
+       over it fills as you go. Anything narrower or shorter: the desks come in one after another,
+       each window rising and its ground spreading out from Freya's mark as it scrolls in, with the
+       rail held under the bar. The rail is also a way to jump. Reduced motion: the same order, no
+       movement. Without the script: every desk in turn, as written below.
+       Styles desks-home.css, script desks-home.js. -->
   <section class="fd" id="desks" aria-labelledby="fd-h">
     <div class="wrap">
       <div class="section-head fd-head">
@@ -230,55 +241,42 @@ r.dataset.hero=i;})();</script>
       </div>
 
       <div class="fd-x" data-fd>
-        <div class="fd-tabs" role="tablist" aria-label="The five desks">
-          <button class="fd-tab" role="tab" type="button" id="fd-t-records" aria-controls="fd-p-records" aria-selected="true" data-k="records">
-            <svg class="plate" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.6" cy="12.4" r="2.3"/><circle cx="16.4" cy="12.4" r="2.3"/><path d="M3.9 20v-.5a3.7 3.7 0 0 1 7.4 0V20"/><path d="M12.7 20v-.5a3.7 3.7 0 0 1 7.4 0V20"/><path d="M12 3.1A5.734 5.734 0 0 1 13.9 5A5.734 5.734 0 0 1 12 6.9A5.734 5.734 0 0 1 10.1 5A5.734 5.734 0 0 1 12 3.1Z" fill="currentColor" stroke="none"/></svg>
-            <span class="fd-tab-t"><span class="eyebrow">Gather it</span><b>Records</b></span>
-          </button>
-          <button class="fd-tab" role="tab" type="button" id="fd-t-policy" aria-controls="fd-p-policy" aria-selected="false" tabindex="-1" data-k="policy">
-            <svg class="plate" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="12.6" height="12.6" rx="4"/><path d="M6.5 14.4 9 16.9 13.5 11.6"/><path d="M8 8V6.6A2.6 2.6 0 0 1 10.6 4h7.8A2.6 2.6 0 0 1 21 6.6V15a2.6 2.6 0 0 1-2.6 2.6h-2.8"/></svg>
-            <span class="fd-tab-t"><span class="eyebrow">Govern it</span><b>Policy</b></span>
-          </button>
-          <button class="fd-tab" role="tab" type="button" id="fd-t-investment" aria-controls="fd-p-investment" aria-selected="false" tabindex="-1" data-k="investment">
-            <svg class="plate" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3.6" y="13.6" width="3.8" height="6.8" rx="1.9"/><rect x="9.1" y="10.4" width="3.8" height="10" rx="1.9"/><rect x="14.6" y="7" width="3.8" height="13.4" rx="1.9"/><path d="M16.5 1.6A5.734 5.734 0 0 1 18.4 3.5A5.734 5.734 0 0 1 16.5 5.4A5.734 5.734 0 0 1 14.6 3.5A5.734 5.734 0 0 1 16.5 1.6Z" fill="currentColor" stroke="none"/></svg>
-            <span class="fd-tab-t"><span class="eyebrow">Grow it</span><b>Investment</b></span>
-          </button>
-          <button class="fd-tab" role="tab" type="button" id="fd-t-protection" aria-controls="fd-p-protection" aria-selected="false" tabindex="-1" data-k="protection">
-            <svg class="plate" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2 4.8 6v5.6c0 4.4 3 7.1 7.2 8.6 4.2-1.5 7.2-4.2 7.2-8.6V6Z"/><path d="M12 9.1A6.941 6.941 0 0 1 14.3 11.4A6.941 6.941 0 0 1 12 13.7A6.941 6.941 0 0 1 9.7 11.4A6.941 6.941 0 0 1 12 9.1Z" fill="currentColor" stroke="none"/></svg>
-            <span class="fd-tab-t"><span class="eyebrow">Protect it</span><b>Protection</b></span>
-          </button>
-          <button class="fd-tab" role="tab" type="button" id="fd-t-succession" aria-controls="fd-p-succession" aria-selected="false" tabindex="-1" data-k="succession">
-            <svg class="plate" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="7.9" r="3"/><path d="M3.2 19.4a5.3 5.3 0 0 1 10.6 0"/><circle cx="17.6" cy="12.6" r="1.9"/><path d="M14.4 19.4a3.2 3.2 0 0 1 6.4 0"/><path d="M17.6 6.9A4.225 4.225 0 0 1 19.0 8.3A4.225 4.225 0 0 1 17.6 9.7A4.225 4.225 0 0 1 16.2 8.3A4.225 4.225 0 0 1 17.6 6.9Z" fill="currentColor" stroke="none"/></svg>
-            <span class="fd-tab-t"><span class="eyebrow">Pass it on</span><b>Succession</b></span>
-          </button>
-        </div>
+        <!-- the rail: where you are among the five, filling as you scroll; each one jumps to its desk -->
+        <nav class="fd-rail" aria-label="The five desks">
+          <ol>
+            <li><a href="#fd-records" data-k="0"><svg class="plate" width="20" height="20" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.6" cy="12.4" r="2.3"/><circle cx="16.4" cy="12.4" r="2.3"/><path d="M3.9 20v-.5a3.7 3.7 0 0 1 7.4 0V20"/><path d="M12.7 20v-.5a3.7 3.7 0 0 1 7.4 0V20"/><path d="M12 3.1A5.734 5.734 0 0 1 13.9 5A5.734 5.734 0 0 1 12 6.9A5.734 5.734 0 0 1 10.1 5A5.734 5.734 0 0 1 12 3.1Z" fill="currentColor" stroke="none"/></svg><b>Records</b><i class="fd-bar" aria-hidden="true"><i></i></i></a></li>
+            <li><a href="#fd-policy" data-k="1"><svg class="plate" width="20" height="20" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="12.6" height="12.6" rx="4"/><path d="M6.5 14.4 9 16.9 13.5 11.6"/><path d="M8 8V6.6A2.6 2.6 0 0 1 10.6 4h7.8A2.6 2.6 0 0 1 21 6.6V15a2.6 2.6 0 0 1-2.6 2.6h-2.8"/></svg><b>Policy</b><i class="fd-bar" aria-hidden="true"><i></i></i></a></li>
+            <li><a href="#fd-investment" data-k="2"><svg class="plate" width="20" height="20" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3.6" y="13.6" width="3.8" height="6.8" rx="1.9"/><rect x="9.1" y="10.4" width="3.8" height="10" rx="1.9"/><rect x="14.6" y="7" width="3.8" height="13.4" rx="1.9"/><path d="M16.5 1.6A5.734 5.734 0 0 1 18.4 3.5A5.734 5.734 0 0 1 16.5 5.4A5.734 5.734 0 0 1 14.6 3.5A5.734 5.734 0 0 1 16.5 1.6Z" fill="currentColor" stroke="none"/></svg><b>Investment</b><i class="fd-bar" aria-hidden="true"><i></i></i></a></li>
+            <li><a href="#fd-protection" data-k="3"><svg class="plate" width="20" height="20" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2 4.8 6v5.6c0 4.4 3 7.1 7.2 8.6 4.2-1.5 7.2-4.2 7.2-8.6V6Z"/><path d="M12 9.1A6.941 6.941 0 0 1 14.3 11.4A6.941 6.941 0 0 1 12 13.7A6.941 6.941 0 0 1 9.7 11.4A6.941 6.941 0 0 1 12 9.1Z" fill="currentColor" stroke="none"/></svg><b>Protection</b><i class="fd-bar" aria-hidden="true"><i></i></i></a></li>
+            <li><a href="#fd-succession" data-k="4"><svg class="plate" width="20" height="20" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="7.9" r="3"/><path d="M3.2 19.4a5.3 5.3 0 0 1 10.6 0"/><circle cx="17.6" cy="12.6" r="1.9"/><path d="M14.4 19.4a3.2 3.2 0 0 1 6.4 0"/><path d="M17.6 6.9A4.225 4.225 0 0 1 19.0 8.3A4.225 4.225 0 0 1 17.6 9.7A4.225 4.225 0 0 1 16.2 8.3A4.225 4.225 0 0 1 17.6 6.9Z" fill="currentColor" stroke="none"/></svg><b>Succession</b><i class="fd-bar" aria-hidden="true"><i></i></i></a></li>
+          </ol>
+        </nav>
 
-        <div class="fd-track">
+        <div class="fd-flow">
 
-          <!-- ── a · RECORDS · the map ─────────────────────────────────────────────── -->
-          <article class="fd-p is-records" role="tabpanel" id="fd-p-records" aria-labelledby="fd-t-records">
+          <!-- ── a · RECORDS ── -->
+          <article class="fd-c" id="fd-records" data-k="0" aria-labelledby="fd-q-records">
             <div class="fd-words">
+              <span class="fd-w-plate"><svg class="plate" width="40" height="40" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.6" cy="12.4" r="2.3"/><circle cx="16.4" cy="12.4" r="2.3"/><path d="M3.9 20v-.5a3.7 3.7 0 0 1 7.4 0V20"/><path d="M12.7 20v-.5a3.7 3.7 0 0 1 7.4 0V20"/><path d="M12 3.1A5.734 5.734 0 0 1 13.9 5A5.734 5.734 0 0 1 12 6.9A5.734 5.734 0 0 1 10.1 5A5.734 5.734 0 0 1 12 3.1Z" fill="currentColor" stroke="none"/></svg><span>01</span></span>
               <p class="eyebrow">Records &middot; Gather it</p>
-              <h3>What do we have, and where is it?</h3>
+              <h3 id="fd-q-records">What do we have, and where is it?</h3>
               <p>Every account, property, policy, document and adviser, entered once. The other four desks
                 all read from it.</p>
               <p class="fd-held"><span>Held to</span>Reconciled, not estimated.</p>
               <a class="link" href="records.html">Inside Records<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
             </div>
-            <figure class="fd-screen">
+            <figure class="fd-screen is-records" data-k="0">
               <div class="fd-app">
                 <div class="fd-app-h"><b>Records</b><span class="fd-ok">Open</span><span class="fd-lt"><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M11 20.5Q3.2 11.5 11 1.5Q18.8 11.5 11 20.5Z"/></svg>+40 XP</span></div>
                 <div class="fd-scene">
                   <div class="fd-fy"><svg class="fd-mk" viewBox="39 39 50 50" aria-hidden="true" data-state="ready"><path class="core" d="M64 56.06 A16.5 16.5 0 0 1 71.94 64 A16.5 16.5 0 0 1 64 71.94 A16.5 16.5 0 0 1 56.06 64 A16.5 16.5 0 0 1 64 56.06 Z"/><circle class="r r1" cx="57" cy="57" r="16.5"/><circle class="r r2" cx="71" cy="57" r="16.5"/><circle class="r r3" cx="71" cy="71" r="16.5"/><circle class="r r4" cx="57" cy="71" r="16.5"/></svg><span><span class="eyebrow">Freya &middot; your AI chief of staff</span><span class="fd-fy-m">Records &middot; Thursday, September 24</span></span></div>
                   <p class="fd-ans">$3.19M is yours, and two figures need checking.</p>
                   <p class="fd-sub">Everything you own comes to $4.1M, less the $904K you owe.</p>
-                  <div class="fd-tm" role="img" aria-label="What the household owns, sized by value: property $1.97 million, listed shares $1.13 million, bonds $532,000, private markets $270,000, cash $137,000, and valuables $65,000">
-                    <div class="b b1" style="--i:0"><span class="n">Property</span><span class="v">$1.97M</span><span class="p">48.1%</span></div>
-                    <div class="b b2" style="--i:1"><span class="n">Listed shares</span><span class="v">$1.13M</span><span class="p">27.5%</span></div>
-                    <div class="b b3" style="--i:2"><span class="n">Bonds</span><span class="v">$532K</span><span class="p">13.0%</span></div>
-                    <div class="b b4" style="--i:3"><span class="n">Private markets</span><span class="v">$270K</span></div>
-                    <div class="b b5" style="--i:4"><span class="n">Cash</span><span class="v">$137K</span></div>
-                    <div class="b b6" style="--i:5"><span class="v">+1</span></div>
+                  <div class="fd-map" data-fd-map data-root="All you own" data-of="what you own" data-leaf="In the app, each opens its source">
+                    <div class="fd-map-h"><nav class="fd-crumbs" aria-label="Where you are on the map"><span aria-current="page">All you own</span></nav><span class="fd-map-sum">$4,098,500</span><span class="fd-map-hint"></span></div>
+                    <div class="fd-tv" role="group" aria-label="What you own, as blocks sized by value. Select a block to open it"><ol class="fd-tv-flat"><li style="--v:48.1;--c:var(--primary-pressed);--ink:var(--white)"><b>Property</b><span>$1.97M</span></li><li style="--v:27.5;--c:var(--primary);--ink:var(--white)"><b>Listed shares</b><span>$1.13M</span></li><li style="--v:13.0;--c:var(--primary-hover);--ink:var(--white)"><b>Bonds</b><span>$532K</span></li><li style="--v:6.6;--c:var(--primary-72);--ink:var(--white)"><b>Private markets</b><span>$270K</span></li><li style="--v:3.3;--c:var(--primary-48);--ink:var(--black)"><b>Cash</b><span>$136K</span></li><li style="--v:1.6;--c:var(--primary-24);--ink:var(--black)"><b>Valuables and vehicles</b><span>$65K</span></li></ol></div>
+                    <p class="fd-map-more" hidden></p>
+                    <script type="application/json">{"total":4098500,"nodes":[{"k":"pp","l":"Property","v":1970000,"kids":[{"k":"a1","l":"Home, Edina","s":"Held jointly","v":1450000},{"k":"a2","l":"Lake cabin, Gull Lake","s":"Held jointly","v":520000}],"s":"2 properties"},{"k":"eq","l":"Listed shares","v":1125200,"kids":[{"k":"a5","l":"Brokerage account","s":"Michael","v":380000},{"k":"a7-eq","l":"SEP IRA · stock funds","s":"Michael","v":328800},{"k":"a8-eq","l":"401(k) · stock funds","s":"Lauren","v":241800},{"k":"a6","l":"Employer stock (RSUs), vested","s":"Lauren","v":134000},{"k":"a14-eq","l":"529 plan for Oscar · stock funds","s":"Michael","v":40600}],"s":"5 accounts"},{"k":"fx","l":"Bonds","v":531800,"kids":[{"k":"a7-fx","l":"SEP IRA · bond funds","s":"Michael","v":219200},{"k":"a9","l":"Treasury ladder","s":"Michael","v":165000},{"k":"a8-fx","l":"401(k) · bond funds","s":"Lauren","v":130200},{"k":"a14-fx","l":"529 plan for Oscar · bond funds","s":"Michael","v":17400}],"s":"4 accounts"},{"k":"pr","l":"Private markets","v":270000,"kids":[{"k":"a10","l":"Johnsen Advisory LLC","s":"Michael’s company","v":225000},{"k":"a11","l":"Lakes Seed Fund II","s":"Held jointly","v":45000}],"s":"2 accounts"},{"k":"ca","l":"Cash","v":136500,"kids":[{"k":"a4","l":"Emergency savings","s":"Held jointly","v":95000},{"k":"a3","l":"Joint checking","s":"Held jointly","v":41500}],"s":"2 accounts"},{"k":"vv","l":"Valuables and vehicles","v":65000,"kids":[{"k":"a13","l":"Car, Toyota Highlander","s":"Held jointly","v":38000},{"k":"a12","l":"Art and prints","s":"Lauren","v":27000}],"s":"2 items"}]}</script>
                   </div>
                   <p class="fd-src">Every figure keeps its source and its date.</p>
                   <ul class="fd-tiles">
@@ -290,17 +288,18 @@ r.dataset.hero=i;})();</script>
             </figure>
           </article>
 
-          <!-- ── b · POLICY · the range ────────────────────────────────────────────── -->
-          <article class="fd-p is-policy" role="tabpanel" id="fd-p-policy" aria-labelledby="fd-t-policy" aria-hidden="true">
+          <!-- ── b · POLICY ── -->
+          <article class="fd-c" id="fd-policy" data-k="1" aria-labelledby="fd-q-policy">
             <div class="fd-words">
+              <span class="fd-w-plate"><svg class="plate" width="40" height="40" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="12.6" height="12.6" rx="4"/><path d="M6.5 14.4 9 16.9 13.5 11.6"/><path d="M8 8V6.6A2.6 2.6 0 0 1 10.6 4h7.8A2.6 2.6 0 0 1 21 6.6V15a2.6 2.6 0 0 1-2.6 2.6h-2.8"/></svg><span>02</span></span>
               <p class="eyebrow">Policy &middot; Govern it</p>
-              <h3>Are we keeping to our own rules?</h3>
+              <h3 id="fd-q-policy">Are we keeping to our own rules?</h3>
               <p>Your family&rsquo;s rules for its money, in plain words: how much in each kind of investment,
                 and how much cash to keep at hand. Checked against what you own, every day.</p>
               <p class="fd-held"><span>Held to</span>The policy your household agreed, not a benchmark we chose.</p>
-              <a class="link" href="policy.html" tabindex="-1">Inside Policy<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+              <a class="link" href="policy.html">Inside Policy<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
             </div>
-            <figure class="fd-screen">
+            <figure class="fd-screen is-policy" data-k="1">
               <div class="fd-app">
                 <div class="fd-app-h"><b>Policy</b><span class="fd-ok">Open</span><span class="fd-lt"><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M11 20.5Q3.2 11.5 11 1.5Q18.8 11.5 11 20.5Z"/></svg>+40 XP</span></div>
                 <div class="fd-scene">
@@ -325,45 +324,33 @@ r.dataset.hero=i;})();</script>
             </figure>
           </article>
 
-          <!-- ── c · INVESTMENT · the mix, and what it costs ───────────────────────── -->
-          <article class="fd-p is-investment" role="tabpanel" id="fd-p-investment" aria-labelledby="fd-t-investment" aria-hidden="true">
+          <!-- ── c · INVESTMENT ── -->
+          <article class="fd-c" id="fd-investment" data-k="2" aria-labelledby="fd-q-investment">
             <div class="fd-words">
+              <span class="fd-w-plate"><svg class="plate" width="40" height="40" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3.6" y="13.6" width="3.8" height="6.8" rx="1.9"/><rect x="9.1" y="10.4" width="3.8" height="10" rx="1.9"/><rect x="14.6" y="7" width="3.8" height="13.4" rx="1.9"/><path d="M16.5 1.6A5.734 5.734 0 0 1 18.4 3.5A5.734 5.734 0 0 1 16.5 5.4A5.734 5.734 0 0 1 14.6 3.5A5.734 5.734 0 0 1 16.5 1.6Z" fill="currentColor" stroke="none"/></svg><span>03</span></span>
               <p class="eyebrow">Investment &middot; Grow it</p>
-              <h3>What do we hold, and what does it cost?</h3>
-              <p>Everything you hold, wherever it is held, in one view: measured against your own policy,
-                with every fee counted.</p>
-              <p class="fd-held"><span>Held to</span>A fee you haven&rsquo;t entered is never guessed.</p>
-              <a class="link" href="investment.html" tabindex="-1">Inside Investment<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+              <h3 id="fd-q-investment">What do we hold, and does it match our policy?</h3>
+              <p>Everything you hold, in every account and every name, read as one mix and measured
+                against your own policy.</p>
+              <p class="fd-held"><span>Held to</span>The whole portfolio in one view, and nothing recommended.</p>
+              <a class="link" href="investment.html">Inside Investment<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
             </div>
-            <figure class="fd-screen">
+            <figure class="fd-screen is-investment" data-k="2">
               <div class="fd-app">
                 <div class="fd-app-h"><b>Investment</b><span class="fd-ok">Open</span><span class="fd-lt"><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M11 20.5Q3.2 11.5 11 1.5Q18.8 11.5 11 20.5Z"/></svg>+40 XP</span></div>
                 <div class="fd-scene">
                   <div class="fd-fy"><svg class="fd-mk" viewBox="39 39 50 50" aria-hidden="true" data-state="ready"><path class="core" d="M64 56.06 A16.5 16.5 0 0 1 71.94 64 A16.5 16.5 0 0 1 64 71.94 A16.5 16.5 0 0 1 56.06 64 A16.5 16.5 0 0 1 64 56.06 Z"/><circle class="r r1" cx="57" cy="57" r="16.5"/><circle class="r r2" cx="71" cy="57" r="16.5"/><circle class="r r3" cx="71" cy="71" r="16.5"/><circle class="r r4" cx="57" cy="71" r="16.5"/></svg><span><span class="eyebrow">Freya &middot; your AI chief of staff</span><span class="fd-fy-m">Investment &middot; Thursday, September 24</span></span></div>
-                  <p class="fd-ans">$1.84M invested, and one class is outside its range.</p>
-                  <p class="fd-sub">The fees you entered come to $5,616 a year, 0.31% of what you invest. Two holdings have
-                    no fee entered.</p>
-                  <div class="fd-iv">
-                    <div class="fd-mix" role="img" aria-label="What is invested, by class: listed shares 61 percent, bonds 29 percent, cash 7 percent, private markets 2 percent">
-                      <i style="--w:61.2;--c:var(--d-equities);--i:0"></i><i style="--w:28.9;--c:var(--d-fixed);--i:1"></i><i style="--w:7.4;--c:var(--d-cash);--i:2"></i><i style="--w:2.4;--c:var(--d-private);--i:3"></i>
-                    </div>
-                    <ul class="fd-mix-k" aria-hidden="true">
-                      <li><i style="--c:var(--d-equities)"></i>Listed shares <b>61%</b></li>
-                      <li><i style="--c:var(--d-fixed)"></i>Bonds <b>29%</b></li>
-                      <li><i style="--c:var(--d-cash)"></i>Cash <b>7%</b></li>
-                      <li><i style="--c:var(--d-private)"></i>Private <b>2%</b></li>
-                    </ul>
-                    <div class="fd-fees" role="img" aria-label="What it costs a year: SEP IRA $1,918, 401(k) $1,674, brokerage account $950; every fee on file, $5,616">
-                      <p class="eyebrow">What it costs a year</p>
-                      <div class="fe" style="--f:1918;--i:0"><span class="fn">SEP IRA<small>$548,000 &middot; 0.35%</small></span><span class="fb"><i></i></span><span class="fv">$1,918</span></div>
-                      <div class="fe" style="--f:1674;--i:1"><span class="fn">401(k)<small>$372,000 &middot; 0.45%</small></span><span class="fb"><i></i></span><span class="fv">$1,674</span></div>
-                      <div class="fe" style="--f:950;--i:2"><span class="fn">Brokerage account<small>$380,000 &middot; 0.25%</small></span><span class="fb"><i></i></span><span class="fv">$950</span></div>
-                      <div class="fe is-total"><span class="fn">Every fee on file<small>and two more holdings</small></span><span class="fv">$5,616</span></div>
-                    </div>
+                  <p class="fd-ans">$4.26M invested, across six asset classes.</p>
+                  <p class="fd-sub">Fourteen accounts, in two names, a joint account and a family trust, on one map: every class, every account, every fund.</p>
+                  <div class="fd-map" data-fd-map data-root="All investments" data-of="your investments" data-leaf="Each is its share of the latest statement" data-colors="class">
+                    <div class="fd-map-h"><nav class="fd-crumbs" aria-label="Where you are on the map"><span aria-current="page">All investments</span></nav><span class="fd-map-sum">$4,260,000</span><span class="fd-map-hint"></span></div>
+                    <div class="fd-tv" role="group" aria-label="Your investments, as blocks sized by value. Select a block to open it"><ol class="fd-tv-flat"><li style="--v:44.1;--c:var(--d-equities);--ink:var(--white)"><b>Shares</b><span>$1.88M</span></li><li style="--v:21.8;--c:var(--d-fixed);--ink:var(--white)"><b>Bonds</b><span>$930K</span></li><li style="--v:14.1;--c:var(--d-private);--ink:var(--white)"><b>Private markets</b><span>$600K</span></li><li style="--v:8.9;--c:var(--d-real);--ink:var(--white)"><b>Real estate</b><span>$380K</span></li><li style="--v:6.1;--c:var(--d-cash);--ink:var(--black)"><b>Cash</b><span>$260K</span></li><li style="--v:4.9;--c:var(--l-property);--ink:var(--white)"><b>Infrastructure</b><span>$210K</span></li></ol></div>
+                    <p class="fd-map-more" hidden></p>
+                    <script type="application/json">{"total":4260000,"nodes":[{"k":"eq","l":"Shares","s":"4 accounts","v":1880000,"kids":[{"k":"d-brk","l":"Brokerage account","s":"Daniel · taxable brokerage","v":720000,"kids":[{"k":"d-brk-p0","l":"US total market index fund","s":"Shares","v":331200},{"k":"d-brk-p1","l":"International developed index fund","s":"Shares","v":172800},{"k":"d-brk-p2","l":"Individual shares · 9 companies","s":"Shares","v":144000},{"k":"d-brk-p3","l":"Emerging markets index fund","s":"Shares","v":72000}]},{"k":"s-401k-eq","l":"401(k) · stock funds","s":"Sofia · 401(k)","v":540000,"kids":[{"k":"s-401k-eq-p0","l":"US large-company index fund","s":"Shares","v":324000},{"k":"s-401k-eq-p1","l":"International index fund","s":"Shares","v":135000},{"k":"s-401k-eq-p2","l":"US small-company fund","s":"Shares","v":81000}]},{"k":"d-ira-eq","l":"IRA · stock funds","s":"Daniel · IRA","v":380000,"kids":[{"k":"d-ira-eq-p0","l":"Global shares index fund","s":"Shares","v":266000},{"k":"d-ira-eq-p1","l":"US dividend fund","s":"Shares","v":114000}]},{"k":"t-eq","l":"Family trust · shares","s":"Family trust · trust account","v":240000,"kids":[{"k":"t-eq-p0","l":"Global shares index fund","s":"Shares","v":240000}]}]},{"k":"fx","l":"Bonds","s":"4 accounts","v":930000,"kids":[{"k":"j-tsy","l":"Treasury ladder","s":"Joint · taxable brokerage","v":360000,"kids":[{"k":"j-tsy-p0","l":"US Treasury note · 2027","s":"Bonds","v":90000},{"k":"j-tsy-p1","l":"US Treasury note · 2028","s":"Bonds","v":90000},{"k":"j-tsy-p2","l":"US Treasury note · 2029","s":"Bonds","v":90000},{"k":"j-tsy-p3","l":"US Treasury note · 2030","s":"Bonds","v":90000}]},{"k":"j-muni","l":"Municipal bonds","s":"Joint · taxable brokerage","v":250000,"kids":[{"k":"j-muni-p0","l":"State general obligation bonds","s":"Bonds","v":150000},{"k":"j-muni-p1","l":"City water revenue bonds","s":"Bonds","v":100000}]},{"k":"s-401k-fx","l":"401(k) · bond funds","s":"Sofia · 401(k)","v":180000,"kids":[{"k":"s-401k-fx-p0","l":"Core bond fund","s":"Bonds","v":180000}]},{"k":"d-ira-fx","l":"IRA · bond funds","s":"Daniel · IRA","v":140000,"kids":[{"k":"d-ira-fx-p0","l":"Aggregate bond index fund","s":"Bonds","v":98000},{"k":"d-ira-fx-p1","l":"Inflation-protected bond fund","s":"Bonds","v":42000}]}]},{"k":"pr","l":"Private markets","s":"4 funds","v":600000,"kids":[{"k":"j-pe","l":"Private equity funds","s":"Joint · two limited partnerships","v":330000,"kids":[{"k":"j-pe-p0","l":"Buyout fund","s":"Private markets","v":210000},{"k":"j-pe-p1","l":"Growth equity fund","s":"Private markets","v":120000}]},{"k":"t-pc","l":"Private credit fund","s":"Family trust · limited partnership","v":170000,"kids":[{"k":"t-pc-p0","l":"Direct lending fund","s":"Private markets","v":170000}]},{"k":"d-vc","l":"Venture fund","s":"Daniel · limited partnership","v":100000,"kids":[{"k":"d-vc-p0","l":"Early-stage venture fund","s":"Private markets","v":100000}]}]},{"k":"re","l":"Real estate","s":"4 funds","v":380000,"kids":[{"k":"j-pre","l":"Private real estate fund","s":"Joint · limited partnership","v":230000,"kids":[{"k":"j-pre-p0","l":"Residential property fund","s":"Real estate","v":130000},{"k":"j-pre-p1","l":"Logistics property fund","s":"Real estate","v":100000}]},{"k":"d-reit","l":"Real estate index funds","s":"Daniel · IRA","v":150000,"kids":[{"k":"d-reit-p0","l":"US real estate index fund","s":"Real estate","v":100000},{"k":"d-reit-p1","l":"Global real estate index fund","s":"Real estate","v":50000}]}]},{"k":"ca","l":"Cash","s":"3 accounts","v":260000,"kids":[{"k":"j-mmf","l":"Money market fund","s":"Joint · brokerage cash","v":140000,"kids":[{"k":"j-mmf-p0","l":"Treasury money market fund","s":"Cash","v":140000}]},{"k":"j-sav","l":"High-yield savings","s":"Joint · bank deposits","v":80000,"kids":[{"k":"j-sav-p0","l":"Savings balance","s":"Cash","v":80000}]},{"k":"j-chk","l":"Checking","s":"Joint · bank deposits","v":40000,"kids":[{"k":"j-chk-p0","l":"Checking balance","s":"Cash","v":40000}]}]},{"k":"inf","l":"Infrastructure","s":"2 funds","v":210000,"kids":[{"k":"t-infra","l":"Private infrastructure fund","s":"Family trust · limited partnership","v":120000,"kids":[{"k":"t-infra-p0","l":"Core infrastructure fund","s":"Infrastructure","v":120000}]},{"k":"s-infra","l":"Infrastructure index fund","s":"Sofia · taxable brokerage","v":90000,"kids":[{"k":"s-infra-p0","l":"Global infrastructure index fund","s":"Infrastructure","v":90000}]}]}]}</script>
                   </div>
-                  <p class="fd-src">Read from Records &middot; every fee you have entered</p>
+                  <p class="fd-src">Read from Records &middot; as of each account&rsquo;s latest statement</p>
                   <ul class="fd-tiles">
-                    <li><span class="fd-lab">Noticed</span><b class="fd-n">$5,616</b><span>a year in fees. The largest: the SEP IRA, $1,918.</span></li>
+                    <li><span class="fd-lab">Noticed</span><b class="fd-n">$60,000</b><span>went into the buyout fund on Sep 15, the third of five calls. $140,000 is still to come.</span></li>
                     <li class="learn"><span class="fd-lab ok">Opens next</span><b class="fd-n">14 quests</b><span>Investment Foundation. It ends in a certificate.</span></li>
                   </ul>
                 </div>
@@ -371,17 +358,18 @@ r.dataset.hero=i;})();</script>
             </figure>
           </article>
 
-          <!-- ── d · PROTECTION · the line, lying down ──────────────────────────────── -->
-          <article class="fd-p is-protection" role="tabpanel" id="fd-p-protection" aria-labelledby="fd-t-protection" aria-hidden="true">
+          <!-- ── d · PROTECTION ── -->
+          <article class="fd-c" id="fd-protection" data-k="3" aria-labelledby="fd-q-protection">
             <div class="fd-words">
+              <span class="fd-w-plate"><svg class="plate" width="40" height="40" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2 4.8 6v5.6c0 4.4 3 7.1 7.2 8.6 4.2-1.5 7.2-4.2 7.2-8.6V6Z"/><path d="M12 9.1A6.941 6.941 0 0 1 14.3 11.4A6.941 6.941 0 0 1 12 13.7A6.941 6.941 0 0 1 9.7 11.4A6.941 6.941 0 0 1 12 9.1Z" fill="currentColor" stroke="none"/></svg><span>04</span></span>
               <p class="eyebrow">Protection &middot; Protect it</p>
-              <h3>What if something goes wrong?</h3>
+              <h3 id="fd-q-protection">What if something goes wrong?</h3>
               <p>Every policy the family holds, what it covers and when it renews, seen together before anything
                 becomes a claim.</p>
               <p class="fd-held"><span>Held to</span>Gaps named while they are still gaps.</p>
-              <a class="link" href="protection.html" tabindex="-1">Inside Protection<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+              <a class="link" href="protection.html">Inside Protection<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
             </div>
-            <figure class="fd-screen">
+            <figure class="fd-screen is-protection" data-k="3">
               <div class="fd-app">
                 <div class="fd-app-h"><b>Protection</b><span class="fd-ok">Open</span><span class="fd-lt"><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M11 20.5Q3.2 11.5 11 1.5Q18.8 11.5 11 20.5Z"/></svg>+40 XP</span></div>
                 <div class="fd-scene">
@@ -408,16 +396,17 @@ r.dataset.hero=i;})();</script>
             </figure>
           </article>
 
-          <!-- ── e · SUCCESSION · the line, standing up ─────────────────────────────── -->
-          <article class="fd-p is-succession" role="tabpanel" id="fd-p-succession" aria-labelledby="fd-t-succession" aria-hidden="true">
+          <!-- ── e · SUCCESSION ── -->
+          <article class="fd-c" id="fd-succession" data-k="4" aria-labelledby="fd-q-succession">
             <div class="fd-words">
+              <span class="fd-w-plate"><svg class="plate" width="40" height="40" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="7.9" r="3"/><path d="M3.2 19.4a5.3 5.3 0 0 1 10.6 0"/><circle cx="17.6" cy="12.6" r="1.9"/><path d="M14.4 19.4a3.2 3.2 0 0 1 6.4 0"/><path d="M17.6 6.9A4.225 4.225 0 0 1 19.0 8.3A4.225 4.225 0 0 1 17.6 9.7A4.225 4.225 0 0 1 16.2 8.3A4.225 4.225 0 0 1 17.6 6.9Z" fill="currentColor" stroke="none"/></svg><span>05</span></span>
               <p class="eyebrow">Succession &middot; Pass it on</p>
-              <h3>What happens next, and does the family know?</h3>
+              <h3 id="fd-q-succession">What happens next, and does the family know?</h3>
               <p>The will, the people it names and the reasons behind it, kept together and read again on time.</p>
               <p class="fd-held"><span>Held to</span>Written so the people who inherit it can read it before they inherit it.</p>
-              <a class="link" href="succession.html" tabindex="-1">Inside Succession<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+              <a class="link" href="succession.html">Inside Succession<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
             </div>
-            <figure class="fd-screen">
+            <figure class="fd-screen is-succession" data-k="4">
               <div class="fd-app">
                 <div class="fd-app-h"><b>Succession</b><span class="fd-ok">Open</span><span class="fd-lt"><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M11 20.5Q3.2 11.5 11 1.5Q18.8 11.5 11 20.5Z"/></svg>+40 XP</span></div>
                 <div class="fd-scene">
@@ -447,15 +436,12 @@ r.dataset.hero=i;})();</script>
               </div>
             </figure>
           </article>
+
+          <!-- a desktop: the one window the desks pass through (desks-home.js moves the five into it) -->
+          <div class="fd-stage"><div class="fd-deck"></div></div>
         </div>
 
-        <!-- a tablet and a phone: where you are, and the desk before and after -->
-        <div class="fd-pg">
-          <button type="button" class="fd-pg-b" data-step="-1"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg><span data-prev>Succession</span></button>
-          <span class="fd-pg-n" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i></span>
-          <button type="button" class="fd-pg-b" data-step="1"><span data-next>Policy</span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
-        </div>
-        <p class="fd-cap">Each desk as the app shows it, with a sample household. The figures are examples, not advice.</p>
+        <p class="fd-cap">Each desk as the app shows it, with sample households. The figures are examples, not advice.</p>
       </div>
 
       <!-- what holds for every desk: three plain facts, and the one key -->
@@ -738,7 +724,7 @@ r.dataset.hero=i;})();</script>
 <script src="vendor/lenis.min.js?v=daec1872"></script>
 <script src="vendor/smooth-scroll.js?v=cb7b0132" defer></script>
 <script src="hero-parallax.js?v=d172b74e" defer></script>
-<script src="desks-home.js?v=05fc47d0" defer></script>
+<script src="desks-home.js?v=69000ca9" defer></script>
 <script src="nav-site.js?v=4483fad9"></script>
 </body>
 </html>

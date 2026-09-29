@@ -34,12 +34,14 @@
 <link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#0D231B">
+<!-- the cover starts with the page, not after the CSS (hero-tones.css names the same file) -->
+<link rel="preload" as="image" href="media/covers/how-it-works.webp" type="image/webp">
 <link rel="stylesheet" href="chrome/fonts.css?v=0c6cbb49">
 <link rel="stylesheet" href="brand/tokens.css?v=688c6df8">
-<link rel="stylesheet" href="site.css?v=c3f19a60">
+<link rel="stylesheet" href="site.css?v=0aca43db">
 <link rel="stylesheet" href="nav-site.css?v=3ead211f">
 <!-- the page's cover: data-cover above picks its picture and the pull band's colour -->
-<link rel="stylesheet" href="hero-tones.css?v=ad344043">
+<link rel="stylesheet" href="hero-tones.css?v=3e8ff81a">
 <link rel="stylesheet" href="vendor/lenis.css?v=599bcc02">
 </head>
 <body>
@@ -95,7 +97,13 @@
 <main id="main">
 
   <!-- 01 · THREE STEPS. The whole page in one row: tell it, it opens, it keeps watch.
-       Each step carries a small picture of the app at that moment. -->
+       Each step carries a small picture of the app at that moment.
+       IN THE APP'S OWN TERMS (Christian, 29 Sep 2026: "the How it works sub page has to be updated,
+       colors, visuals, and maybe some of the text"). The three pictures now use the platform's
+       pieces and the sample household the rest of the site shows: the first picture's question answered
+       as the app keeps it (14 years, in the field with its unit), Home's figure over the map in one line (one green in steps, the
+       darkest the largest), and Today as Freya prepares it, with what needs you in Champagne and a
+       Bullion edge (Fiery is for errors only). The pale lime glow is gone from the page. -->
   <section id="steps" aria-labelledby="steps-h">
     <div class="wrap">
       <div class="section-head">
@@ -105,9 +113,10 @@
       <ol class="hw-steps">
         <li class="hw-step">
           <div class="hw-mini" aria-hidden="true">
-            <span class="hw-mini-k">Your first picture &middot; question 3</span>
+            <span class="hw-mini-k">Your first picture</span>
             <b class="hw-mini-q">How long could your savings wait?</b>
-            <span class="hw-seg"><span>1 year</span><span class="on">5 years</span><span>10 years or more</span></span>
+            <span class="hw-field"><span>14</span><small>years</small></span>
+            <span class="hw-help">The years before you would need most of it.</span>
             <span class="hw-mini-foot">Skip for now</span>
           </div>
           <span class="hw-step-n">01</span>
@@ -118,7 +127,8 @@
         <li class="hw-step">
           <div class="hw-mini" aria-hidden="true">
             <span class="hw-mini-k">Home</span>
-            <span class="hw-net"><span>Net</span><b>$4,328,000</b></span>
+            <span class="hw-net"><span>What you own, less what you owe</span><b>$3,194,500</b></span>
+            <span class="hw-map"><i style="--w:48.1"></i><i style="--w:27.5"></i><i style="--w:13"></i><i style="--w:6.6"></i><i style="--w:3.3"></i><i style="--w:1.5"></i></span>
             <span class="hw-chips"><span>Records</span><span>Policy</span><span>Investment</span><span>Protection</span><span>Succession</span></span>
           </div>
           <span class="hw-step-n">02</span>
@@ -128,16 +138,17 @@
         </li>
         <li class="hw-step">
           <div class="hw-mini" aria-hidden="true">
-            <span class="hw-mini-k">Today</span>
-            <span class="hw-card flag"><b>Bonds are above their range</b><small>Policy &middot; told the same day</small></span>
-            <span class="hw-card"><b>Property cover renews in 21 days</b><small>Protection &middot; on the timeline</small></span>
+            <span class="hw-fy"><svg class="hw-mk" viewBox="39 39 50 50" aria-hidden="true"><path d="M64 56.06 A16.5 16.5 0 0 1 71.94 64 A16.5 16.5 0 0 1 64 71.94 A16.5 16.5 0 0 1 56.06 64 A16.5 16.5 0 0 1 64 56.06 Z" fill="currentColor"/><g fill="none" stroke="currentColor" stroke-width="2.6"><circle cx="57" cy="57" r="16.5"/><circle cx="71" cy="57" r="16.5"/><circle cx="71" cy="71" r="16.5"/><circle cx="57" cy="71" r="16.5"/></g></svg><span>Today &middot; prepared by Freya</span></span>
+            <span class="hw-tile att"><em>Needs you</em><b>Listed shares are 1.2 points over your ceiling</b><small>Policy &middot; against your own rule</small></span>
+            <span class="hw-tile"><em>Noticed</em><b>Homeowners cover renews in 21 days</b><small>Protection &middot; on the renewals line</small></span>
           </div>
           <span class="hw-step-n">03</span>
           <h3>It keeps paying attention.</h3>
-          <p>One card at a time on Home, and a nudge when something drifts, lapses or renews.
-            You decide what happens next.</p>
+          <p>Every day, Home shows what needs you and what changed, checked against your own rules
+            and dates. You decide what happens next.</p>
         </li>
       </ol>
+      <p class="hw-cap">Pictures from the app, with a sample household.</p>
     </div>
   </section>
 
@@ -162,7 +173,12 @@
   </section>
 
   <!-- 03 · THE FIRST WEEK. The app's own sequence (build spec §3): the other desks open one
-       card at a time on Home. Days are the earliest a card can appear, not a schedule. -->
+       card at a time on Home. Days are the earliest a card can appear, not a schedule.
+       29 Sep 2026: the words are the app's own cards (FIRST_WEEK in the platform's app.js; Day 0
+       is its two Records cards in one), and Day 7 is Freya's weekly briefing, with her mark. It is
+       drawn as the platform's line: the line draws once when the week is on screen, and the days
+       arrive in order along it (the script at the foot of the page; reduced motion shows it all).
+       The marks are white with black plates, as icons are on the site (brand REV 51). -->
   <section id="week" aria-labelledby="week-h">
     <div class="wrap">
       <div class="section-head">
@@ -171,13 +187,13 @@
         <p class="lede hw-head-lede">Never a checklist. Each card waits until the one before it is done
           or skipped, so the office grows at the pace your family sets.</p>
       </div>
-      <ol class="hw-week">
-        <li class="hw-day"><span class="hw-day-mark"><svg class="plate" aria-hidden="true" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.6" cy="12.4" r="2.3"/> <circle cx="16.4" cy="12.4" r="2.3"/> <path d="M3.9 20v-.5a3.7 3.7 0 0 1 7.4 0V20"/> <path d="M12.7 20v-.5a3.7 3.7 0 0 1 7.4 0V20"/> <path d="M12 3.1A5.734 5.734 0 0 1 13.9 5A5.734 5.734 0 0 1 12 6.9A5.734 5.734 0 0 1 10.1 5A5.734 5.734 0 0 1 12 3.1Z" fill="currentColor" stroke="none"/></svg></span><span class="hw-day-n">Day 0</span><b>Records</b><p>Add what you owe. Your net worth becomes what you own minus what you owe.</p></li>
-        <li class="hw-day"><span class="hw-day-mark"><svg class="plate" aria-hidden="true" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="12.6" height="12.6" rx="4"/> <path d="M6.5 14.4 9 16.9 13.5 11.6"/> <path d="M8 8V6.6A2.6 2.6 0 0 1 10.6 4h7.8A2.6 2.6 0 0 1 21 6.6V15a2.6 2.6 0 0 1-2.6 2.6h-2.8"/></svg></span><span class="hw-day-n">Day 1</span><b>Policy</b><p>Write your first rule: how much cash must always be reachable.</p></li>
-        <li class="hw-day"><span class="hw-day-mark"><svg class="plate" aria-hidden="true" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.6" cy="12.4" r="2.3"/> <circle cx="16.4" cy="12.4" r="2.3"/> <path d="M3.9 20v-.5a3.7 3.7 0 0 1 7.4 0V20"/> <path d="M12.7 20v-.5a3.7 3.7 0 0 1 7.4 0V20"/> <path d="M12 3.1A5.734 5.734 0 0 1 13.9 5A5.734 5.734 0 0 1 12 6.9A5.734 5.734 0 0 1 10.1 5A5.734 5.734 0 0 1 12 3.1Z" fill="currentColor" stroke="none"/></svg></span><span class="hw-day-n">Day 2</span><b>Records</b><p>Add the family: children, parents, anyone you want in the record.</p></li>
-        <li class="hw-day"><span class="hw-day-mark"><svg class="plate" aria-hidden="true" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2 4.8 6v5.6c0 4.4 3 7.1 7.2 8.6 4.2-1.5 7.2-4.2 7.2-8.6V6Z"/> <path d="M12 9.1A6.941 6.941 0 0 1 14.3 11.4A6.941 6.941 0 0 1 12 13.7A6.941 6.941 0 0 1 9.7 11.4A6.941 6.941 0 0 1 12 9.1Z" fill="currentColor" stroke="none"/></svg></span><span class="hw-day-n">Day 3</span><b>Protection</b><p>List the cover you have, one policy at a time. Renewals reach the timeline.</p></li>
-        <li class="hw-day"><span class="hw-day-mark"><svg class="plate" aria-hidden="true" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="7.9" r="3"/> <path d="M3.2 19.4a5.3 5.3 0 0 1 10.6 0"/> <circle cx="17.6" cy="12.6" r="1.9"/> <path d="M14.4 19.4a3.2 3.2 0 0 1 6.4 0"/> <path d="M17.6 6.9A4.225 4.225 0 0 1 19.0 8.3A4.225 4.225 0 0 1 17.6 9.7A4.225 4.225 0 0 1 16.2 8.3A4.225 4.225 0 0 1 17.6 6.9Z" fill="currentColor" stroke="none"/></svg></span><span class="hw-day-n">Day 5</span><b>Succession</b><p>Is there a will, and where is the original kept?</p></li>
-        <li class="hw-day"><span class="hw-day-mark"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/></svg></span><span class="hw-day-n">Day 7</span><b>Freya</b><p>Your first weekly briefing: what changed, and what is coming up.</p></li>
+      <ol class="hw-week" data-week>
+        <li class="hw-day" style="--i:0"><span class="hw-day-mark"><svg class="plate" aria-hidden="true" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.6" cy="12.4" r="2.3"/> <circle cx="16.4" cy="12.4" r="2.3"/> <path d="M3.9 20v-.5a3.7 3.7 0 0 1 7.4 0V20"/> <path d="M12.7 20v-.5a3.7 3.7 0 0 1 7.4 0V20"/> <path d="M12 3.1A5.734 5.734 0 0 1 13.9 5A5.734 5.734 0 0 1 12 6.9A5.734 5.734 0 0 1 10.1 5A5.734 5.734 0 0 1 12 3.1Z" fill="currentColor" stroke="none"/></svg></span><span class="hw-day-n">Day 0</span><b>Records</b><p>Add what you have, then what you owe: a mortgage, a loan, a card.</p></li>
+        <li class="hw-day" style="--i:1"><span class="hw-day-mark"><svg class="plate" aria-hidden="true" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="12.6" height="12.6" rx="4"/> <path d="M6.5 14.4 9 16.9 13.5 11.6"/> <path d="M8 8V6.6A2.6 2.6 0 0 1 10.6 4h7.8A2.6 2.6 0 0 1 21 6.6V15a2.6 2.6 0 0 1-2.6 2.6h-2.8"/></svg></span><span class="hw-day-n">Day 1</span><b>Policy</b><p>Write your first rule: how much cash must always be reachable.</p></li>
+        <li class="hw-day" style="--i:2"><span class="hw-day-mark"><svg class="plate" aria-hidden="true" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.6" cy="12.4" r="2.3"/> <circle cx="16.4" cy="12.4" r="2.3"/> <path d="M3.9 20v-.5a3.7 3.7 0 0 1 7.4 0V20"/> <path d="M12.7 20v-.5a3.7 3.7 0 0 1 7.4 0V20"/> <path d="M12 3.1A5.734 5.734 0 0 1 13.9 5A5.734 5.734 0 0 1 12 6.9A5.734 5.734 0 0 1 10.1 5A5.734 5.734 0 0 1 12 3.1Z" fill="currentColor" stroke="none"/></svg></span><span class="hw-day-n">Day 2</span><b>Records</b><p>Who is in the family? Add the children, parents, anyone you want in the record.</p></li>
+        <li class="hw-day" style="--i:3"><span class="hw-day-mark"><svg class="plate" aria-hidden="true" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2 4.8 6v5.6c0 4.4 3 7.1 7.2 8.6 4.2-1.5 7.2-4.2 7.2-8.6V6Z"/> <path d="M12 9.1A6.941 6.941 0 0 1 14.3 11.4A6.941 6.941 0 0 1 12 13.7A6.941 6.941 0 0 1 9.7 11.4A6.941 6.941 0 0 1 12 9.1Z" fill="currentColor" stroke="none"/></svg></span><span class="hw-day-n">Day 3</span><b>Protection</b><p>List the cover you have, one policy at a time, or upload the policy and Freya fills it in.</p></li>
+        <li class="hw-day" style="--i:4"><span class="hw-day-mark"><svg class="plate" aria-hidden="true" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="7.9" r="3"/> <path d="M3.2 19.4a5.3 5.3 0 0 1 10.6 0"/> <circle cx="17.6" cy="12.6" r="1.9"/> <path d="M14.4 19.4a3.2 3.2 0 0 1 6.4 0"/> <path d="M17.6 6.9A4.225 4.225 0 0 1 19.0 8.3A4.225 4.225 0 0 1 17.6 9.7A4.225 4.225 0 0 1 16.2 8.3A4.225 4.225 0 0 1 17.6 6.9Z" fill="currentColor" stroke="none"/></svg></span><span class="hw-day-n">Day 5</span><b>Succession</b><p>Is there a will, and where is the original?</p></li>
+        <li class="hw-day" style="--i:5"><span class="hw-day-mark"><svg class="hw-mk plate" viewBox="39 39 50 50" aria-hidden="true"><path d="M64 56.06 A16.5 16.5 0 0 1 71.94 64 A16.5 16.5 0 0 1 64 71.94 A16.5 16.5 0 0 1 56.06 64 A16.5 16.5 0 0 1 64 56.06 Z" fill="currentColor"/><g fill="none" stroke="currentColor" stroke-width="2.6"><circle cx="57" cy="57" r="16.5"/><circle cx="71" cy="57" r="16.5"/><circle cx="71" cy="71" r="16.5"/><circle cx="57" cy="71" r="16.5"/></g></svg></span><span class="hw-day-n">Day 7</span><b>Freya</b><p>Your first weekly briefing: what changed, what needs you, and what falls due in the next 30 days.</p></li>
       </ol>
     </div>
   </section>
@@ -202,17 +218,20 @@
 
   <!-- 05 · LEARN. Access by knowledge, drawn with Learn's own marks: filled = done, a ring
        that fills = in progress, hollow = open, dashed = next; the diamond is a certificate,
-       in bullion only once it is earned. -->
+       in bullion only once it is earned.
+       29 Sep 2026: "Access by knowledge, not net worth." read as access to investments, which the
+       site does not promise before registration. The heading is now what Learn does, and the words
+       tie it to the first conversation: its answers are the first quest of the Financial Identity. -->
   <section class="band" id="learn" aria-labelledby="learn-h">
     <div class="wrap split">
       <div>
         <p class="eyebrow hw-eyebrow">Learn</p>
-        <h2 id="learn-h">Access by knowledge, not net worth.</h2>
+        <h2 id="learn-h">What you learn opens what comes next.</h2>
       </div>
       <div>
-        <p class="lede">Short lessons in plain language, built around your own numbers. Finishing a
-          path earns its badge, and passing its test earns a certificate. What you learn opens
-          what comes next.</p>
+        <p class="lede">Short quests in plain language, built around your own numbers. Every path
+          ends in a badge, and passing its test earns a certificate. Your first answers already
+          begin your Financial Identity.</p>
         <ol class="hw-path" aria-label="An example learning route">
           <li class="done"><i></i><span>Investment Foundation</span><small>Certificate earned</small><em class="cert earned"></em></li>
           <li class="part"><i></i><span>Public markets</span><small>In progress</small></li>
@@ -254,8 +273,8 @@
       </div>
       <div>
         <p class="lede">The five desks and Learn cost nothing for your own household. You pay only
-          when your office reaches further: more people, legal structures, outside parties or
-          specialist work.</p>
+          when your office reaches further: the whole family, invited advisers, more of Freya each
+          month, or trusts and companies.</p>
         <p class="hw-rule">Finna charges for scope. Never for information, and never for understanding.</p>
         <div class="cta-row">
           <a class="link" href="pricing.html">Compare the plans<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
@@ -273,6 +292,7 @@
       </div>
       <div class="hw-faq">
         <details class="hw-q"><summary>Do I need documents to start?<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg></summary><p>No. Start with what you know, and add statements and documents later. Nothing is required to see your first picture.</p></details>
+        <details class="hw-q"><summary>Is Freya a person?<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg></summary><p>No. Freya is an AI, your AI chief of staff. She reads your record, prepares Home and your weekly briefing, and answers questions about it. She never moves money, and every decision stays with you.</p></details>
         <details class="hw-q"><summary>Does Finna give financial advice?<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg></summary><p>No. Finna is a technology platform that helps your household organize and understand its finances. The decisions stay with you, and with the specialists you choose.</p></details>
         <details class="hw-q"><summary>Can Finna move my money?<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg></summary><p>No. Finna never holds your assets, and anything you connect is read-only.</p></details>
         <details class="hw-q"><summary>Who can see our information?<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg></summary><p>Your household&rsquo;s principals decide. Nothing is shared outside the household without that decision.</p></details>
@@ -380,5 +400,20 @@
 <script src="vendor/lenis.min.js?v=daec1872"></script>
 <script src="vendor/smooth-scroll.js?v=cb7b0132" defer></script>
 <script src="nav-site.js?v=4483fad9"></script>
+<script>
+/* THE FIRST WEEK DRAWS ONCE (29 Sep 2026): when it comes on screen the line draws and the days
+   arrive along it, as the platform's line does. Without the script, or with reduced motion, it
+   simply shows. */
+(function () {
+  var w = document.querySelector('[data-week]');
+  if (!w || !('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  w.classList.add('is-wait');
+  var io = new IntersectionObserver(function (es) {
+    if (!es.some(function (e) { return e.isIntersecting; })) return;
+    io.disconnect(); void w.offsetWidth; w.classList.remove('is-wait'); w.classList.add('is-live');
+  }, { threshold: 0.3 });
+  io.observe(w);
+})();
+</script>
 </body>
 </html>
