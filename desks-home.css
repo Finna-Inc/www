@@ -1,0 +1,355 @@
+/* ══ HOME · 03 · FIVE DESKS, ONE OFFICE ═══════════════════════════════════════════════════════════
+   One desk open at a time, as the app shows it (Christian, 29 Sep 2026: "revisit the website section
+   regarding the five desks ... more in line with the platform"; approved from
+   mockups/five-desks-sandbox.html the same day). Home only; loaded after site.css, and adds the
+   fd-* pieces only. Tokens only: every tint is a brand token, the desk grounds are the app's scene
+   grounds (the platform's app.css, SCENES), and the pictures are the platform's (the map, the range,
+   the line). Layout is by container query, so a desk recomposes by the room it has, not the screen:
+     the explorer (.fd-x, fdx)   five keys over the open desk; words and app side by side from 960px
+     the app (.fd-app, fdapp)    the map stands taller, the range and fees wrap, the line stands up
+   Below 1100px the desks are swiped like cards, the next one at the edge (desks-home.js keeps the
+   keys, the pager and the swipe in step). Motion runs only while the section is on screen, only on
+   the desk that is open, and never with reduced motion. */
+
+/* ── the head ── */
+.fd{--fd-gap:var(--space-3)}
+.fd .section-head .eyebrow{color:var(--text-link);margin-bottom:var(--space-4)}
+.fd-head{margin-bottom:var(--space-6)}
+
+/* ── the five keys ── .dnav's card, as a tab: the open desk looks pressed, sat down into the page ── */
+.fd-tabs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:var(--fd-gap);margin:0 0 var(--space-5)}
+.fd-tab{appearance:none;font:inherit;text-align:left;cursor:pointer;min-width:0;
+  display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-3);padding:var(--space-4) var(--space-5) var(--space-5);
+  background:var(--bg);color:var(--text);border:var(--line-object) solid var(--border-strong);border-radius:var(--r-card);
+  transition:border-color var(--t-state) var(--ease),transform var(--t-state) var(--ease),box-shadow var(--t-state) var(--ease),background-color var(--t-state) var(--ease)}
+.fd-tab .plate{width:36px;height:36px;margin:0;color:var(--heading)}
+.fd-tab-t{display:flex;flex-direction:column;gap:var(--space-2);min-width:0}
+.fd-tab .eyebrow{color:var(--text-link)}
+.fd-tab b{font-size:var(--text-subhead);line-height:1.2;color:var(--black)}
+@media (hover:hover){
+  .fd-tab:hover{border-color:var(--primary);transform:translateY(calc(var(--space-1) * -1));
+    box-shadow:0 var(--space-3) var(--space-5) calc(var(--space-3) * -1) color-mix(in srgb,var(--primary-pressed) 30%,transparent)}
+}
+.fd-tab:focus-visible{outline:2px solid var(--primary);outline-offset:3px}
+.fd-tab[aria-selected="true"]{background:var(--bg-selected);border-color:var(--primary);transform:none;cursor:default;
+  box-shadow:inset 0 var(--key-offset) 0 color-mix(in srgb,var(--primary-pressed) 22%,transparent)}
+
+/* ── the track: the five desks side by side, one in view. Swiped on a touch screen, keyed on a desk ── */
+.fd-track{display:grid;grid-auto-flow:column;grid-auto-columns:100%;column-gap:var(--space-5);align-items:start;
+  overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scrollbar-width:none;
+  transition:height var(--t-move) var(--ease)}
+.fd-track::-webkit-scrollbar{display:none}
+.fd-p{scroll-snap-align:start;scroll-snap-stop:always;min-width:0;
+  display:grid;grid-template-columns:minmax(0,1fr);gap:var(--space-6);transition:opacity var(--t-move) var(--ease)}
+.fd-p[aria-hidden="true"]{opacity:.35}
+/* the words and the app side by side once a desk has the room (a container query on the track's own width) */
+.fd-x{container:fdx / inline-size}
+@container fdx (min-width:960px){
+  .fd-p{grid-template-columns:minmax(0,4.3fr) minmax(0,7.7fr);gap:var(--space-7);align-items:center}
+}
+
+/* ── the words ── */
+.fd-words .eyebrow{color:var(--text-link);margin-bottom:var(--space-4)}
+.fd .fd-words h3{font-size:var(--text-title);line-height:1.2;letter-spacing:var(--track-heading);margin:0 0 var(--space-4);max-width:18ch}
+.fd-words p:where(:not(.eyebrow)){color:var(--text-secondary);font-size:var(--text-reading);margin:0 0 var(--space-5);max-width:44ch}
+.fd-words .fd-held{display:flex;flex-direction:column;gap:var(--space-2);padding-left:var(--space-4);border-left:var(--line-heavy) solid var(--primary);
+  color:var(--text);font-weight:var(--weight-label)}
+.fd-held span{font:var(--weight-heading) var(--text-label)/1 var(--font);letter-spacing:.12em;text-transform:uppercase;color:var(--text-tertiary)}
+
+/* ── the app, simplified: the desk's page head and Freya's scene on the desk's own ground ── */
+.fd-screen{margin:0;min-width:0}
+.fd-app{container:fdapp / inline-size;border:var(--line-object) solid var(--border-strong);border-radius:var(--r-card);background:var(--bg);
+  padding:clamp(var(--space-4),2.2vw,var(--space-6))}
+.fd-app-h{display:flex;align-items:center;flex-wrap:wrap;gap:var(--space-2) var(--space-3);margin:0 0 var(--space-4)}
+.fd-app-h b{font:var(--weight-heading) var(--text-title)/1.1 var(--font);letter-spacing:var(--track-heading);color:var(--black);margin-right:var(--space-1)}
+.fd-ok,.fd-lab{display:inline-flex;align-items:center;white-space:nowrap;font:var(--weight-heading) var(--text-label)/1 var(--font);
+  padding:7px 12px;border-radius:var(--r-pill);background:var(--bg-sunken);color:var(--text-secondary)}
+.fd-ok,.fd-lab.ok{background:var(--primary-12);color:var(--text-selected)}
+.fd-lab.att{background:var(--gold-light);color:var(--black)}
+/* the Learn tag, as it is on every desk page: a leaf, and what the quest beside it is worth */
+.fd-lt{display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 10px 0 7px;border-radius:var(--r-pill);
+  background:var(--primary-6);box-shadow:inset 0 0 0 1px var(--primary-24);color:var(--text-link);
+  font:var(--weight-label) var(--text-label)/1 var(--font);white-space:nowrap}
+.fd-lt svg{width:15px;height:15px;transform:rotate(38deg);overflow:visible}
+.fd-lt path{fill:none;stroke:currentColor;stroke-width:1.8}
+
+/* the desk grounds are the app's own (app.css, SCENES): a brand token mixed into the page */
+.fd-scene{--scene:color-mix(in srgb,var(--primary-48) 30%,var(--bg));border-radius:var(--r-card);background:var(--scene);
+  padding:clamp(var(--space-4),4cqi,var(--space-6))}
+.is-policy .fd-scene{--scene:color-mix(in srgb,var(--gold-light) 32%,var(--bg))}
+.is-investment .fd-scene{--scene:var(--primary-12)}
+.is-protection .fd-scene{--scene:color-mix(in srgb,var(--d-real) 17%,var(--bg))}
+.is-succession .fd-scene{--scene:color-mix(in srgb,var(--l-property) 13%,var(--bg))}
+
+/* Freya's line: her mark, stateful as in the app (ready, thinking, answering), and who is speaking */
+.fd-fy{display:flex;align-items:center;gap:var(--space-3);margin:0 0 var(--space-4)}
+.fd-fy > span{display:flex;flex-direction:column;gap:6px;min-width:0}
+.fd-fy .eyebrow{color:var(--text-link);line-height:1.35;text-wrap:balance}
+.fd-fy-m{font-size:var(--text-label);line-height:1.35;color:var(--text-secondary);text-wrap:balance}
+.fd-mk{width:36px;height:36px;flex:none;color:var(--heading);overflow:visible}
+.fd-mk circle.r{fill:none;stroke:currentColor;stroke-width:2.6;transition:stroke-width var(--t-state) var(--ease)}
+.fd-mk .core{fill:currentColor;fill-opacity:0;transition:fill-opacity var(--t-move) var(--ease)}
+.fd-mk circle.r2{transform-box:fill-box;transform-origin:center}
+.fd-mk[data-state="thinking"] circle.r2{stroke-dasharray:72 32;stroke-linecap:round;animation:fd-turn 2.4s linear infinite}
+.fd-mk[data-state="answering"] .core{fill-opacity:.9}
+.fd-mk[data-state="answering"] circle.r{stroke-width:3.1}
+@keyframes fd-turn{to{transform:rotate(360deg)}}
+
+.fd-ans{font:var(--weight-heading) min(var(--text-title),8.2cqi)/1.18 var(--font);letter-spacing:var(--track-heading);color:var(--black);
+  margin:0 0 var(--space-2);max-width:24ch;text-wrap:balance}
+.fd-sub{font-size:var(--text-reading);line-height:1.5;color:var(--text-secondary);margin:0 0 var(--space-5);max-width:54ch}
+.fd-src{margin:var(--space-3) 0 0;font-size:var(--text-label);line-height:1.4;color:var(--text-secondary)}
+.fd-scene .eyebrow{color:var(--text-link)}
+
+/* the two tiles: what needs you (Champagne, a Bullion edge) and what Freya noticed */
+.fd-tiles{list-style:none;margin:var(--space-4) 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-3)}
+.fd-tiles li{display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-2);min-width:0;padding:var(--space-4);border-radius:var(--r-tile);
+  background:color-mix(in srgb,var(--bg) 80%,transparent)}
+.fd-tiles li.att{background:color-mix(in srgb,var(--gold-light) 30%,var(--bg));box-shadow:inset 0 0 0 1px var(--gold)}
+.fd-tiles b{margin-top:var(--space-1);font:var(--weight-heading) min(var(--text-title),7cqi)/1.1 var(--font);letter-spacing:var(--track-heading);color:var(--black);overflow-wrap:anywhere}
+.fd-tiles li > span:last-child{font-size:var(--text-label);line-height:1.45;color:var(--text-secondary)}
+@container fdapp (max-width:260px){.fd-tiles{grid-template-columns:minmax(0,1fr)}}
+
+/* ── RECORDS · the map: flat blocks sized by value, one green in steps, the darkest the largest ── */
+.fd-tm{display:grid;gap:2px;height:clamp(220px,46cqi,300px);
+  grid-template-columns:48.1fr 27.5fr 13.9fr 10.5fr;grid-template-rows:53fr 30fr 17fr;
+  grid-template-areas:"p l b b" "p l v c" "p l v o"}
+.fd-tm .b{position:relative;container-type:size;overflow:hidden;border-radius:var(--r-chip);padding:var(--space-3);
+  display:flex;flex-direction:column;gap:2px;background:var(--c);color:var(--ink)}
+.fd-tm .b1{grid-area:p;--c:var(--primary-pressed);--ink:var(--white)}
+.fd-tm .b2{grid-area:l;--c:var(--primary);--ink:var(--white)}
+.fd-tm .b3{grid-area:b;--c:var(--primary-hover);--ink:var(--white)}
+.fd-tm .b4{grid-area:v;--c:var(--primary-72);--ink:var(--white)}
+.fd-tm .b5{grid-area:c;--c:var(--primary-48);--ink:var(--black)}
+.fd-tm .b6{grid-area:o;--c:var(--primary-24);--ink:var(--black);align-items:center;justify-content:center;padding:0}
+.fd-tm .n{font:var(--weight-label) var(--text-label)/1.25 var(--font)}
+.fd-tm .v{font:var(--weight-heading) min(var(--text-title),24cqi)/1.1 var(--font);letter-spacing:var(--track-heading);white-space:nowrap}
+.fd-tm .b6 .v{font-size:var(--text-label)}
+.fd-tm .p{margin-top:auto;align-self:flex-end;font:var(--weight-label) var(--text-label)/1 var(--font);opacity:.86}
+@container (max-width:84px){.fd-tm .b .n{display:none}}
+@container (max-height:64px){.fd-tm .b .p{display:none}}
+@container (max-width:52px){.fd-tm .b .v{font-size:var(--text-label)}}
+/* narrow: the map stands taller, the largest block across the top */
+@container fdapp (max-width:480px){
+  .fd-tm{height:auto;aspect-ratio:1 / 1.1;grid-template-columns:50fr 26fr 24fr;grid-template-rows:44fr 30fr 26fr;
+    grid-template-areas:"p p p" "l b b" "l v c"}
+  .fd-tm .b6{display:none}
+}
+
+/* ── POLICY · the range: the range the household wrote, its target, and where it is today ── */
+.fd-rg{display:grid;gap:var(--space-3);padding:var(--space-4);border-radius:var(--r-tile);background:color-mix(in srgb,var(--bg) 80%,transparent)}
+.fd-rg .r{display:grid;grid-template-columns:minmax(0,8.5rem) minmax(0,1fr) minmax(6.5rem,auto);grid-template-areas:"n t v" "n t s";align-items:center;gap:2px var(--space-4)}
+.fd-rg .rn{grid-area:n}.fd-rg .rt{grid-area:t}.fd-rg .rv{grid-area:v;align-self:end}.fd-rg .rs{grid-area:s;align-self:start;text-align:right;font-size:var(--text-label);color:var(--text-secondary)}
+.fd-rg .rn{font:var(--weight-label) var(--text-label)/1.3 var(--font);color:var(--text)}
+.fd-rg .rv{text-align:right;white-space:nowrap}
+.fd-rg .rv b{font:var(--weight-heading) var(--text-reading)/1.1 var(--font);color:var(--black)}
+.fd-rg .rt{position:relative;height:20px;border-radius:var(--r-chip);background:var(--bg-sunken)}
+.fd-rg .band{position:absolute;top:0;bottom:0;left:calc(var(--lo) * 1%);width:calc((var(--hi) - var(--lo)) * 1%);border-radius:var(--r-chip);background:var(--primary-24)}
+.fd-rg .tgt{position:absolute;top:3px;bottom:3px;left:calc(var(--t) * 1%);width:2px;margin-left:-1px;background:var(--primary-72)}
+.fd-rg .now{position:absolute;top:-3px;bottom:-3px;width:4px;margin-left:-2px;border-radius:2px;background:var(--heading);left:calc(var(--v) * 1%)}
+.fd-rg .is-out .now{background:var(--gold)}
+.fd-rg .is-out .rv b{color:var(--black)}
+.fd-rg .is-out .rv b::after{content:"Over";margin-left:var(--space-2);padding:3px 8px;border-radius:var(--r-pill);background:var(--gold-light);
+  font:var(--weight-heading) var(--text-label)/1 var(--font);vertical-align:1px}
+.fd-rg .rk{display:flex;flex-wrap:wrap;gap:var(--space-2) var(--space-5);padding-top:var(--space-2);border-top:var(--line-hairline) solid var(--border);
+  font-size:var(--text-label);color:var(--text-secondary)}
+.fd-rg .rk span{display:inline-flex;align-items:center;gap:var(--space-2)}
+.fd-rg .rk i{display:inline-block;flex:none}
+.fd-rg .k-band{width:16px;height:10px;border-radius:3px;background:var(--primary-24)}
+.fd-rg .k-tgt{width:2px;height:12px;background:var(--primary-72)}
+.fd-rg .k-now{width:4px;height:14px;border-radius:2px;background:var(--heading)}
+@container fdapp (max-width:470px){
+  .fd-rg .r{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"n v" "t t" "s s";row-gap:var(--space-1)}
+  .fd-rg .rv{align-self:center}
+  .fd-rg .rs{text-align:left;margin-top:-2px}
+}
+
+/* ── INVESTMENT · the mix in one line, and what it costs ── */
+.fd-iv{display:grid;gap:var(--space-4);padding:var(--space-4);border-radius:var(--r-tile);background:color-mix(in srgb,var(--bg) 80%,transparent)}
+.fd-mix{display:flex;gap:2px;height:22px}
+.fd-mix i{flex:0 0 calc(var(--w) * 1% - 2px);background:var(--c);border-radius:3px;transform-origin:left center}
+.fd-mix i:first-child{border-top-left-radius:var(--r-chip);border-bottom-left-radius:var(--r-chip)}
+.fd-mix i:last-child{border-top-right-radius:var(--r-chip);border-bottom-right-radius:var(--r-chip)}
+.fd-mix-k{list-style:none;margin:calc(var(--space-2) * -1) 0 0;padding:0;display:flex;flex-wrap:wrap;gap:var(--space-2) var(--space-4);font-size:var(--text-label);color:var(--text-secondary)}
+.fd-mix-k li{display:inline-flex;align-items:center;gap:var(--space-2)}
+.fd-mix-k i{width:10px;height:10px;border-radius:3px;background:var(--c);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--black) 8%,transparent)}
+.fd-mix-k b{color:var(--text);font-weight:var(--weight-heading)}
+.fd-fees{display:grid;gap:var(--space-2);padding-top:var(--space-3);border-top:var(--line-hairline) solid var(--border)}
+.fd-fees .eyebrow{margin-bottom:var(--space-1)}
+.fd-fees .fe{display:grid;grid-template-columns:minmax(0,9.5rem) minmax(0,1fr) 4.5rem;align-items:center;gap:var(--space-4)}
+.fd-fees .fn{display:flex;flex-direction:column;gap:2px;font:var(--weight-label) var(--text-label)/1.3 var(--font);color:var(--text)}
+.fd-fees .fn small{font-weight:var(--weight-reading);color:var(--text-secondary);font-size:var(--text-label)}
+.fd-fees .fb{height:8px;border-radius:4px;background:var(--bg-sunken);overflow:hidden}
+.fd-fees .fb i{display:block;height:100%;width:calc(var(--f) / 1918 * 100%);border-radius:4px;background:var(--primary-48);transform-origin:left center}
+.fd-fees .fv{text-align:right;font:var(--weight-heading) var(--text-reading)/1 var(--font);color:var(--black)}
+.fd-fees .is-total{grid-template-columns:minmax(0,1fr) auto;padding-top:var(--space-2);border-top:var(--line-heavy) solid var(--text)}
+.fd-fees .is-total .fv{font-size:var(--text-subhead)}
+@container fdapp (max-width:470px){
+  .fd-fees .fe{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"n v" "b b";row-gap:var(--space-2)}
+  .fd-fees .fn{grid-area:n}.fd-fees .fv{grid-area:v}.fd-fees .fb{grid-area:b}
+  .fd-fees .is-total{grid-template-areas:"n v"}
+}
+
+/* ── PROTECTION · the line, lying down: the next twelve months, Today with its halo, what needs you in Bullion ── */
+.fd-ln-w{padding:var(--space-4);border-radius:var(--r-tile);background:color-mix(in srgb,var(--bg) 80%,transparent)}
+.fd-ln-w > .eyebrow{margin-bottom:var(--space-4)}
+.fd-ln{--dot:12px;list-style:none;margin:0;padding:0;position:relative}
+/* a column by default: the line down the left, a moment per row */
+.fd-ln::before{content:"";position:absolute;left:calc(var(--dot) / 2 - 1px);top:6px;bottom:6px;width:2px;background:var(--primary-24);transform-origin:top}
+.fd-ln li{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:var(--space-4);align-items:baseline;padding:0 0 var(--space-4) calc(var(--dot) + var(--space-3))}
+.fd-ln li:last-child{padding-bottom:0}
+.fd-ln li::before{content:"";position:absolute;left:0;top:5px;width:var(--dot);height:var(--dot);border-radius:50%;background:var(--primary-72);box-shadow:0 0 0 3px var(--scene)}
+.fd-ln li.is-today::before{background:var(--heading)}
+.fd-ln li.is-att::before{background:var(--gold)}
+.fd-ln b{font:var(--weight-heading) var(--text-reading)/1.3 var(--font);color:var(--black);white-space:nowrap}
+.fd-ln span{font-size:var(--text-label);line-height:1.45;color:var(--text-secondary)}
+.fd-ln em{font-style:normal;font-size:var(--text-label);font-weight:var(--weight-heading);color:var(--text)}
+.fd-ln-ax{display:none}
+/* wide: the line lies down, the year under it, labels above and below so they never meet */
+@container fdapp (min-width:560px){
+  .fd-ln{height:176px}
+  .fd-ln::before{left:0;right:0;top:50%;bottom:auto;width:auto;height:2px;margin-top:-1px;transform-origin:left}
+  .fd-ln li{position:absolute;left:calc(var(--x) * 1%);top:50%;display:flex;flex-direction:column;gap:2px;width:max-content;max-width:11rem;padding:0;
+    transform:translate(-6px,calc(-100% - var(--space-4)))}
+  .fd-ln li.below{transform:translate(-6px,var(--space-4))}
+  .fd-ln li::before{top:auto;bottom:calc(var(--space-4) * -1 - var(--dot) / 2);left:0}
+  .fd-ln li.below::before{bottom:auto;top:calc(var(--space-4) * -1 - var(--dot) / 2)}
+  .fd-ln-ax{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));margin-top:var(--space-2);padding-top:var(--space-2);border-top:var(--line-hairline) solid var(--border);
+    font-size:var(--text-label);color:var(--text-secondary)}
+  .fd-ln-ax span{padding-left:4px;border-left:var(--line-hairline) solid var(--border)}
+}
+
+/* ── SUCCESSION · the line, standing up, beside what the will says ── */
+.fd-wl{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--space-4);padding:var(--space-4);border-radius:var(--r-tile);background:color-mix(in srgb,var(--bg) 80%,transparent)}
+@container fdapp (min-width:560px){.fd-wl{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--space-5);align-items:start}}
+.fd-wl-l{--dot:12px;list-style:none;margin:0;padding:0;position:relative}
+.fd-wl-l li:not(:last-child)::after{content:"";position:absolute;left:calc(var(--dot) / 2 - 1px);top:calc(4px + var(--dot));bottom:-4px;width:2px;background:var(--primary);transform-origin:top}
+.fd-wl-l li.today::after{width:0;background:none;border-left:2px dashed var(--primary-48)}
+.fd-wl-l li{position:relative;display:flex;flex-direction:column;gap:2px;padding:0 0 var(--space-3) calc(var(--dot) + var(--space-3))}
+.fd-wl-l li:last-child{padding-bottom:0}
+.fd-wl-l li::before{content:"";position:absolute;left:0;top:4px;width:var(--dot);height:var(--dot);border-radius:50%;background:var(--primary);box-shadow:0 0 0 3px color-mix(in srgb,var(--bg) 80%,var(--scene))}
+.fd-wl-l li.today::before{background:var(--heading)}
+.fd-wl-l li.ahead::before{background:var(--bg);box-shadow:inset 0 0 0 2px var(--primary-48),0 0 0 3px color-mix(in srgb,var(--bg) 80%,var(--scene))}
+.fd-wl-l b{font:var(--weight-heading) var(--text-reading)/1.3 var(--font);color:var(--black)}
+.fd-wl-l span{font-size:var(--text-label);line-height:1.4;color:var(--text-secondary)}
+.fd-pairs{margin:0;display:grid;gap:var(--space-2)}
+.fd-pairs div{padding:var(--space-3) var(--space-4);border-radius:var(--r-chip);background:var(--bg)}
+.fd-pairs dt{font-size:var(--text-label);color:var(--text-secondary)}
+.fd-pairs dd{margin:2px 0 0;font:var(--weight-label) var(--text-reading)/1.35 var(--font);color:var(--text)}
+
+/* ── the pager (a tablet and a phone) and the caption ── */
+.fd-pg{display:none}
+.fd-cap{margin:var(--space-4) 0 0;font-size:var(--text-label);line-height:1.5;color:var(--text-secondary);max-width:none}
+
+/* ── the three facts under the desks, and the one key ── */
+.fd-facts{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:var(--space-7)}
+.fd-facts p{font-size:var(--text-reading)}
+.fd .center-cta{margin-top:var(--space-7)}
+
+/* ══ MOTION ═ the open desk, once the section is on screen (.is-live), restarted each time a desk opens ═ */
+.fd-x .fd-ans,.fd-x .fd-sub{transition:opacity 420ms var(--ease),transform 420ms var(--ease)}
+.fd-p.is-wait .fd-ans,.fd-p.is-wait .fd-sub{opacity:0;transform:translateY(8px)}
+.fd-p.is-live .fd-sub{transition-delay:90ms}
+.fd-p.is-wait .fd-mix i,.fd-p.is-wait .fd-fees .fb i,.fd-p.is-wait .fd-rg .band{transform:scaleX(0)}
+.fd-p.is-wait .fd-ln li,.fd-p.is-wait .fd-wl-l li,.fd-p.is-wait .fd-tiles li,.fd-p.is-wait .fd-tm .b > *{opacity:0}
+.fd-p.is-wait .fd-ln::before{transform:scaleX(0)}
+@container fdapp (max-width:559px){.fd-p.is-wait .fd-ln::before{transform:scaleY(0)}}
+/* the map fills upward, block by block, the largest first */
+.fd-p.is-wait .fd-tm .b{clip-path:inset(100% 0 0 0 round var(--r-chip))}
+.fd-p.is-live .fd-tm .b{animation:fd-rise 620ms var(--ease) both;animation-delay:calc(260ms + var(--i) * 70ms)}
+@keyframes fd-rise{from{clip-path:inset(100% 0 0 0 round var(--r-chip))}to{clip-path:inset(0 0 0 0 round var(--r-chip))}}
+.fd-p.is-live .fd-tm .b > *{animation:fd-fade 360ms var(--ease) both;animation-delay:calc(560ms + var(--i) * 70ms)}
+@keyframes fd-fade{from{opacity:0}to{opacity:1}}
+/* the range: the band arrives, and the marker slides from the target to today */
+.fd-p.is-wait .fd-rg .now{left:calc(var(--t) * 1%);opacity:0}
+.fd-p.is-live .fd-rg .now{transition:left 900ms var(--ease) 420ms,opacity 200ms var(--ease) 300ms}
+.fd-p.is-live .fd-rg .band{animation:fd-grow 520ms var(--ease) both 200ms;transform-origin:left center}
+@keyframes fd-grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+/* outside its range: a slow Bullion pulse, as on Drift, while the section is on screen */
+.fd.is-seen .fd-p.is-live .fd-rg .is-out .now{animation:fd-halo 2.4s var(--ease) 1.4s infinite}
+@keyframes fd-halo{0%,100%{box-shadow:0 0 0 0 color-mix(in srgb,var(--gold) 55%,transparent)}50%{box-shadow:0 0 0 6px color-mix(in srgb,var(--gold) 0%,transparent)}}
+/* the mix fills from the left; the fees follow */
+.fd-p.is-live .fd-mix i{animation:fd-grow 560ms var(--ease) both;animation-delay:calc(240ms + var(--i) * 90ms)}
+.fd-p.is-live .fd-fees .fb i{animation:fd-grow 700ms var(--ease) both;animation-delay:calc(520ms + var(--i) * 90ms)}
+/* the lines draw, then their moments arrive in order */
+.fd-p.is-live .fd-ln::before{animation:fd-draw-x 900ms var(--ease) both 260ms}
+@container fdapp (max-width:559px){.fd-p.is-live .fd-ln::before{animation-name:fd-draw-y}}
+@keyframes fd-draw-x{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes fd-draw-y{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+.fd-p.is-live .fd-ln li,.fd-p.is-live .fd-wl-l li{animation:fd-fade 420ms var(--ease) both;animation-delay:calc(360ms + var(--i) * 160ms)}
+.fd.is-seen .fd-p.is-live .fd-ln li.is-today::before,.fd.is-seen .fd-p.is-live .fd-wl-l li.today::before{animation:fd-today 2.4s var(--ease) 1.2s infinite}
+@keyframes fd-today{0%,100%{box-shadow:0 0 0 3px var(--scene),0 0 0 3px color-mix(in srgb,var(--heading) 30%,transparent)}50%{box-shadow:0 0 0 3px var(--scene),0 0 0 9px color-mix(in srgb,var(--heading) 0%,transparent)}}
+.fd.is-seen .fd-p.is-live .fd-ln li.is-att::before{animation:fd-halo 2.4s var(--ease) 1.6s infinite}
+.fd-p.is-live .fd-wl-l li::after{animation:fd-draw-y 360ms var(--ease) both;animation-delay:calc(420ms + var(--i) * 160ms)}
+/* the tiles come up last */
+.fd-p.is-live .fd-tiles li{animation:fd-up 480ms var(--ease) both;animation-delay:calc(700ms + var(--n, 0) * 90ms)}
+.fd-p.is-live .fd-tiles li + li{--n:1}
+@keyframes fd-up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+/* the loops (a Bullion pulse, Today's halo) run only while the section is on screen: .is-seen, set by the script */
+@media (prefers-reduced-motion:reduce){
+  .fd *,.fd *::before,.fd *::after{animation:none!important;transition:none!important}
+  .fd-p.is-wait .fd-ans,.fd-p.is-wait .fd-sub{opacity:1;transform:none}
+  .fd-p.is-wait .fd-tm .b{clip-path:none}
+  .fd-p.is-wait .fd-rg .now{left:calc(var(--v) * 1%);opacity:1}
+  .fd-p.is-wait .fd-mix i,.fd-p.is-wait .fd-fees .fb i,.fd-p.is-wait .fd-rg .band,.fd-p.is-wait .fd-ln::before{transform:none}
+  .fd-p.is-wait .fd-ln li,.fd-p.is-wait .fd-wl-l li,.fd-p.is-wait .fd-tiles li,.fd-p.is-wait .fd-tm .b > *{opacity:1}
+}
+
+/* ══ A TABLET (up to 1099px) ═ the desks stack, and are swiped like cards with the next one at the edge ═ */
+@media (max-width:1099px){
+  .fd-tab{padding:var(--space-4);gap:var(--space-2)}
+  .fd-tab .plate{width:32px;height:32px}
+  .fd-tab b{font-size:var(--text-reading)}
+  .fd-track{margin-inline:calc(var(--gutter) * -1);padding-inline:var(--gutter);scroll-padding-inline:var(--gutter);
+    grid-auto-columns:calc(100% - var(--space-6));column-gap:var(--space-4);
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 var(--gutter),#000 calc(100% - var(--gutter)),transparent);
+            mask-image:linear-gradient(90deg,transparent,#000 var(--gutter),#000 calc(100% - var(--gutter)),transparent)}
+  .fd-p{gap:var(--space-5)}
+  .fd-pg{display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);margin-top:var(--space-4)}
+  .fd-pg-b{appearance:none;background:none;border:0;cursor:pointer;display:inline-flex;align-items:center;gap:var(--space-2);
+    min-height:44px;padding:0 var(--space-1);font:var(--weight-heading) var(--text-reading)/1 var(--font);color:var(--primary)}
+  .fd-pg-b .ic{width:18px;height:18px}
+  .fd-pg-b:focus-visible{outline:2px solid var(--primary);outline-offset:2px;border-radius:var(--r-chip)}
+  .fd-pg-n{display:flex;gap:6px}
+  .fd-pg-n i{width:6px;height:6px;border-radius:50%;background:var(--border-strong);transition:width var(--t-move) var(--ease),background-color var(--t-move) var(--ease)}
+  .fd-pg-n i.on{width:20px;border-radius:3px;background:var(--primary)}
+  .fd-facts{grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-4)}
+}
+/* a tablet: the desk's question on the left, what it does on the right, so the words do not leave half the width empty */
+@media (min-width:701px){
+  @container fdx (max-width:959px){
+    .fd-words{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);column-gap:var(--space-6);align-items:start}
+    .fd-words>.eyebrow{grid-column:1 / -1}
+    .fd .fd-words h3{grid-column:1;grid-row:2 / span 3;margin:0}
+    .fd-words>p:not(.eyebrow):not(.fd-held){grid-column:2;grid-row:2}
+    .fd-words .fd-held{grid-column:2;grid-row:3;margin-bottom:var(--space-4)}
+    .fd-words .link{grid-column:2;grid-row:4;justify-self:start}
+  }
+}
+
+/* ══ A PHONE (up to 700px) ═ the keys become one row that scrolls sideways; loose words centre, the app does not ═ */
+@media (max-width:700px){
+  .fd-head{margin-bottom:var(--space-5)}
+  .fd-tabs{display:flex;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none;gap:var(--space-2);
+    margin:0 calc(var(--gutter) * -1) var(--space-4);padding:2px var(--gutter) var(--space-1);scroll-padding-inline:var(--gutter)}
+  .fd-tabs::-webkit-scrollbar{display:none}
+  .fd-tab{flex:none;scroll-snap-align:start;flex-direction:row;align-items:center;gap:var(--space-2);min-height:48px;padding:0 var(--space-4) 0 var(--space-3);border-radius:var(--r-key)}
+  .fd-tab .plate{width:24px;height:24px}
+  .fd-tab .eyebrow{display:none}
+  .fd-tab b{font-size:var(--text-reading);white-space:nowrap}
+  .fd-track{grid-auto-columns:calc(100% - var(--space-5));column-gap:var(--space-3)}
+  .fd-pairs div{padding:var(--space-2) var(--space-3)}
+  .fd-tiles li{padding:var(--space-3)}
+  .fd-words{text-align:center}
+  .fd .fd-words h3,.fd-words p{margin-inline:auto}
+  .fd-words .fd-held{align-items:center;padding:var(--space-3) 0 0;border-left:0;border-top:var(--line-heavy) solid var(--primary);max-width:34ch}
+  .fd-words .link{margin-inline:auto}
+  .fd-app{padding:var(--space-3)}
+  .fd-app-h b{font-size:var(--text-subhead)}
+  .fd-scene{padding:var(--space-4)}
+  .fd-sub{font-size:var(--text-label);margin-bottom:var(--space-4)}
+  .fd-cap{text-align:center}
+  .fd-facts{grid-template-columns:minmax(0,1fr);gap:var(--space-5);margin-top:var(--space-6)}
+  .fd-facts li{padding-top:var(--space-4);text-align:center;align-items:center}
+  .fd .center-cta{margin-top:var(--space-6)}
+}

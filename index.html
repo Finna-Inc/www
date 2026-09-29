@@ -43,6 +43,7 @@
 <link rel="stylesheet" href="vendor/lenis.css?v=599bcc02">
 <link rel="stylesheet" href="hero-home.css?v=62a9cc27">
 <link rel="stylesheet" href="hero-tones.css?v=ad344043">
+<link rel="stylesheet" href="desks-home.css?v=7afbc669">
 <!-- A DIFFERENT HERO EACH VISIT (Rose, 13 Sep 2026). In the <head> on purpose: it sets
      the custom property before the hero has painted, so there is no flash of one picture
      being replaced by another, and only the chosen file is ever fetched. N is the count
@@ -206,211 +207,264 @@ r.dataset.hero=i;})();</script>
     </div>
   </section>
 
-  <!-- ══ 03 · WHITE ═══ the five desks, on the ratified plates ════════════════ -->
-  <section>
-    <!-- THE FIVE DESKS (Christian, 27 Sep 2026) replace the four promises, so the site says what
-         the app does: Records, Policy, Investment, Protection and Succession, in the app's order,
-         each named by its noun with its verb above it (DESKS in the platform's app.js). Four of
-         the five objects are the 2026-09 promise objects, reused: the household ledger (Records),
-         the allocation panel (Policy — it was Grow it's, and it is the app's Drift), the
-         protection review and the succession record. Investment's card is new, made from the
-         review card's parts. The sides alternate; on a phone the words come first. Each block
-         is a DIV, not a section, so the whole desk stays one numbered block in the review chips. -->
+  <!-- ══ 03 · WHITE ═══ five desks, one office: one desk open at a time, as the app shows it ══
+       ONE DESK AT A TIME (Christian, 29 Sep 2026: "revisit the website section regarding the five
+       desks on the landing page ... more in line with the platform and what we want people to
+       understand"; approved from mockups/five-desks-sandbox.html the same day). It replaces the
+       Home screenshot and the five alternating blocks (the ledger, the allocation panel, the review
+       cards), which ran to 6,600px on a phone. Five keys, in the app's order, each with its plate
+       and its verb (DESKS in the platform's app.js); under them the open desk: one question about the
+       family's own money, its "Held to" line and the way inside, beside the desk as the app shows it
+       on its own scene ground: Freya's answer, the desk's picture (the map, the range, the mix and
+       its fees, the renewals line, the will's line), what needs you and what she noticed. The
+       Johnsens, the sample household of the app screenshots, with the app's own figures. Then the
+       three facts a visitor should leave with, and the one key. Below 1100px the desks are swiped
+       like cards with the next one at the edge. Styles desks-home.css, script desks-home.js. -->
+  <section class="fd" id="desks" aria-labelledby="fd-h">
     <div class="wrap">
-      <div class="section-head">
-        <h2>Five desks, one office.</h2>
+      <div class="section-head fd-head">
+        <p class="eyebrow">The platform</p>
+        <h2 id="fd-h">Five desks, one office.</h2>
+        <p class="lede hw-head-lede">Every family office runs the same five desks. Finna runs them from one
+          household record, and each desk tells you, in plain words, what needs you today.</p>
       </div>
-      <!-- THE REAL APP (Christian, 27 Sep 2026): Home as it is in the platform, the sample
-           household. On a phone the <source> swaps in the app's phone screen. -->
-      <div class="app-hero">
-        <figure class="app-shot has-m"><span class="frame"><picture><source media="(max-width:700px)" srcset="media/app/app-home-m.webp" width="600" height="1298"><img src="media/app/app-home.webp" width="1600" height="1000" loading="lazy" decoding="async" alt="Home in the Finna app for a sample household: what needs attention today, then a card for each desk with its figure"></picture></span><figcaption><b>Home, in the app.</b> What needs you today, and every desk at a glance, on one screen. Shown with a sample household.</figcaption></figure>
-      </div>
-    </div>
 
-    <!-- a · Records -->
-    <div class="desk">
-      <div class="wrap two top">
-        <div>
-          <h3><svg class="plate" aria-hidden="true" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.6" cy="12.4" r="2.3"/> <circle cx="16.4" cy="12.4" r="2.3"/> <path d="M3.9 20v-.5a3.7 3.7 0 0 1 7.4 0V20"/> <path d="M12.7 20v-.5a3.7 3.7 0 0 1 7.4 0V20"/> <path d="M12 3.1A5.734 5.734 0 0 1 13.9 5A5.734 5.734 0 0 1 12 6.9A5.734 5.734 0 0 1 10.1 5A5.734 5.734 0 0 1 12 3.1Z" fill="currentColor" stroke="none"/></svg><span class="desk-t"><span class="eyebrow">Gather it</span>Records</span></h3>
-          <p class="lede">Every account, property, policy, document and adviser in one complete view of your family&rsquo;s financial life, organized around the household
-            rather than the provider.</p>
+      <div class="fd-x" data-fd>
+        <div class="fd-tabs" role="tablist" aria-label="The five desks">
+          <button class="fd-tab" role="tab" type="button" id="fd-t-records" aria-controls="fd-p-records" aria-selected="true" data-k="records">
+            <svg class="plate" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.6" cy="12.4" r="2.3"/><circle cx="16.4" cy="12.4" r="2.3"/><path d="M3.9 20v-.5a3.7 3.7 0 0 1 7.4 0V20"/><path d="M12.7 20v-.5a3.7 3.7 0 0 1 7.4 0V20"/><path d="M12 3.1A5.734 5.734 0 0 1 13.9 5A5.734 5.734 0 0 1 12 6.9A5.734 5.734 0 0 1 10.1 5A5.734 5.734 0 0 1 12 3.1Z" fill="currentColor" stroke="none"/></svg>
+            <span class="fd-tab-t"><span class="eyebrow">Gather it</span><b>Records</b></span>
+          </button>
+          <button class="fd-tab" role="tab" type="button" id="fd-t-policy" aria-controls="fd-p-policy" aria-selected="false" tabindex="-1" data-k="policy">
+            <svg class="plate" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="12.6" height="12.6" rx="4"/><path d="M6.5 14.4 9 16.9 13.5 11.6"/><path d="M8 8V6.6A2.6 2.6 0 0 1 10.6 4h7.8A2.6 2.6 0 0 1 21 6.6V15a2.6 2.6 0 0 1-2.6 2.6h-2.8"/></svg>
+            <span class="fd-tab-t"><span class="eyebrow">Govern it</span><b>Policy</b></span>
+          </button>
+          <button class="fd-tab" role="tab" type="button" id="fd-t-investment" aria-controls="fd-p-investment" aria-selected="false" tabindex="-1" data-k="investment">
+            <svg class="plate" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3.6" y="13.6" width="3.8" height="6.8" rx="1.9"/><rect x="9.1" y="10.4" width="3.8" height="10" rx="1.9"/><rect x="14.6" y="7" width="3.8" height="13.4" rx="1.9"/><path d="M16.5 1.6A5.734 5.734 0 0 1 18.4 3.5A5.734 5.734 0 0 1 16.5 5.4A5.734 5.734 0 0 1 14.6 3.5A5.734 5.734 0 0 1 16.5 1.6Z" fill="currentColor" stroke="none"/></svg>
+            <span class="fd-tab-t"><span class="eyebrow">Grow it</span><b>Investment</b></span>
+          </button>
+          <button class="fd-tab" role="tab" type="button" id="fd-t-protection" aria-controls="fd-p-protection" aria-selected="false" tabindex="-1" data-k="protection">
+            <svg class="plate" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2 4.8 6v5.6c0 4.4 3 7.1 7.2 8.6 4.2-1.5 7.2-4.2 7.2-8.6V6Z"/><path d="M12 9.1A6.941 6.941 0 0 1 14.3 11.4A6.941 6.941 0 0 1 12 13.7A6.941 6.941 0 0 1 9.7 11.4A6.941 6.941 0 0 1 12 9.1Z" fill="currentColor" stroke="none"/></svg>
+            <span class="fd-tab-t"><span class="eyebrow">Protect it</span><b>Protection</b></span>
+          </button>
+          <button class="fd-tab" role="tab" type="button" id="fd-t-succession" aria-controls="fd-p-succession" aria-selected="false" tabindex="-1" data-k="succession">
+            <svg class="plate" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="7.9" r="3"/><path d="M3.2 19.4a5.3 5.3 0 0 1 10.6 0"/><circle cx="17.6" cy="12.6" r="1.9"/><path d="M14.4 19.4a3.2 3.2 0 0 1 6.4 0"/><path d="M17.6 6.9A4.225 4.225 0 0 1 19.0 8.3A4.225 4.225 0 0 1 17.6 9.7A4.225 4.225 0 0 1 16.2 8.3A4.225 4.225 0 0 1 17.6 6.9Z" fill="currentColor" stroke="none"/></svg>
+            <span class="fd-tab-t"><span class="eyebrow">Pass it on</span><b>Succession</b></span>
+          </button>
         </div>
-        <!-- the household ledger: one element. vendor/finna-ledger.js draws the card, the
-             By category / By entity switch and the treemap in its own shadow root. -->
-        <finna-ledger></finna-ledger>
-      </div>
-    </div>
 
-    <!-- b · Policy -->
-    <div class="desk">
-      <div class="wrap two top">
-        <div class="panel">
-          <h4>Allocation against policy</h4>
-          <p class="panel-note">The household policy sets a range for each holding. Finna shows
-            where you actually sit against it.</p>
+        <div class="fd-track">
 
-          <div class="alloc-row">
-            <div class="alloc-lab">Primary residence<small>Policy 25&ndash;35%</small></div>
-            <div class="alloc-track">
-              <span class="alloc-band" style="left:62.5%;width:25%"></span>
-              <span class="alloc-mark" style="left:93.25%;background:var(--l-property)"></span>
+          <!-- ── a · RECORDS · the map ─────────────────────────────────────────────── -->
+          <article class="fd-p is-records" role="tabpanel" id="fd-p-records" aria-labelledby="fd-t-records">
+            <div class="fd-words">
+              <p class="eyebrow">Records &middot; Gather it</p>
+              <h3>What do we have, and where is it?</h3>
+              <p>Every account, property, policy, document and adviser, entered once. The other four desks
+                all read from it.</p>
+              <p class="fd-held"><span>Held to</span>Reconciled, not estimated.</p>
+              <a class="link" href="records.html">Inside Records<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
             </div>
-            <div class="alloc-val num">37.3%</div>
-            <span class="chip chip-att">Above range</span>
-          </div>
+            <figure class="fd-screen">
+              <div class="fd-app">
+                <div class="fd-app-h"><b>Records</b><span class="fd-ok">Open</span><span class="fd-lt"><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M11 20.5Q3.2 11.5 11 1.5Q18.8 11.5 11 20.5Z"/></svg>+40 XP</span></div>
+                <div class="fd-scene">
+                  <div class="fd-fy"><svg class="fd-mk" viewBox="39 39 50 50" aria-hidden="true" data-state="ready"><path class="core" d="M64 56.06 A16.5 16.5 0 0 1 71.94 64 A16.5 16.5 0 0 1 64 71.94 A16.5 16.5 0 0 1 56.06 64 A16.5 16.5 0 0 1 64 56.06 Z"/><circle class="r r1" cx="57" cy="57" r="16.5"/><circle class="r r2" cx="71" cy="57" r="16.5"/><circle class="r r3" cx="71" cy="71" r="16.5"/><circle class="r r4" cx="57" cy="71" r="16.5"/></svg><span><span class="eyebrow">Freya &middot; your AI chief of staff</span><span class="fd-fy-m">Records &middot; Thursday, September 24</span></span></div>
+                  <p class="fd-ans">$3.19M is yours, and two figures need checking.</p>
+                  <p class="fd-sub">Everything you own comes to $4.1M, less the $904K you owe.</p>
+                  <div class="fd-tm" role="img" aria-label="What the household owns, sized by value: property $1.97 million, listed shares $1.13 million, bonds $532,000, private markets $270,000, cash $137,000, and valuables $65,000">
+                    <div class="b b1" style="--i:0"><span class="n">Property</span><span class="v">$1.97M</span><span class="p">48.1%</span></div>
+                    <div class="b b2" style="--i:1"><span class="n">Listed shares</span><span class="v">$1.13M</span><span class="p">27.5%</span></div>
+                    <div class="b b3" style="--i:2"><span class="n">Bonds</span><span class="v">$532K</span><span class="p">13.0%</span></div>
+                    <div class="b b4" style="--i:3"><span class="n">Private markets</span><span class="v">$270K</span></div>
+                    <div class="b b5" style="--i:4"><span class="n">Cash</span><span class="v">$137K</span></div>
+                    <div class="b b6" style="--i:5"><span class="v">+1</span></div>
+                  </div>
+                  <p class="fd-src">Every figure keeps its source and its date.</p>
+                  <ul class="fd-tiles">
+                    <li class="att"><span class="fd-lab att">Needs you</span><b class="fd-n">2</b><span>figures are past the date you set for checking.</span></li>
+                    <li><span class="fd-lab">Noticed</span><b class="fd-n">+$63,700</b><span>since Sep 2, across three lines.</span></li>
+                  </ul>
+                </div>
+              </div>
+            </figure>
+          </article>
 
-          <div class="alloc-row">
-            <div class="alloc-lab">Operating business<small>Policy 20&ndash;30%</small></div>
-            <div class="alloc-track">
-              <span class="alloc-band" style="left:50%;width:25%"></span>
-              <span class="alloc-mark" style="left:72%;background:var(--d-private)"></span>
+          <!-- ── b · POLICY · the range ────────────────────────────────────────────── -->
+          <article class="fd-p is-policy" role="tabpanel" id="fd-p-policy" aria-labelledby="fd-t-policy" aria-hidden="true">
+            <div class="fd-words">
+              <p class="eyebrow">Policy &middot; Govern it</p>
+              <h3>Are we keeping to our own rules?</h3>
+              <p>Your family&rsquo;s rules for its money, in plain words: how much in each kind of investment,
+                and how much cash to keep at hand. Checked against what you own, every day.</p>
+              <p class="fd-held"><span>Held to</span>The policy your household agreed, not a benchmark we chose.</p>
+              <a class="link" href="policy.html" tabindex="-1">Inside Policy<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
             </div>
-            <div class="alloc-val num">28.8%</div>
-            <span class="chip chip-ok">Within range</span>
-          </div>
+            <figure class="fd-screen">
+              <div class="fd-app">
+                <div class="fd-app-h"><b>Policy</b><span class="fd-ok">Open</span><span class="fd-lt"><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M11 20.5Q3.2 11.5 11 1.5Q18.8 11.5 11 20.5Z"/></svg>+40 XP</span></div>
+                <div class="fd-scene">
+                  <div class="fd-fy"><svg class="fd-mk" viewBox="39 39 50 50" aria-hidden="true" data-state="ready"><path class="core" d="M64 56.06 A16.5 16.5 0 0 1 71.94 64 A16.5 16.5 0 0 1 64 71.94 A16.5 16.5 0 0 1 56.06 64 A16.5 16.5 0 0 1 64 56.06 Z"/><circle class="r r1" cx="57" cy="57" r="16.5"/><circle class="r r2" cx="71" cy="57" r="16.5"/><circle class="r r3" cx="71" cy="71" r="16.5"/><circle class="r r4" cx="57" cy="71" r="16.5"/></svg><span><span class="eyebrow">Freya &middot; your AI chief of staff</span><span class="fd-fy-m">Policy &middot; Thursday, September 24</span></span></div>
+                  <p class="fd-ans">Listed shares are 1.2 points over your ceiling.</p>
+                  <p class="fd-sub">Version 2, agreed by Michael and Lauren. Nothing is traded: what to do about it is the
+                    household&rsquo;s decision.</p>
+                  <div class="fd-rg" role="img" aria-label="What the household invests, against its own ranges: listed shares 61.2 percent, over the 45 to 60 percent range; bonds 28.9 percent, inside 15 to 35; cash 7.4 percent, inside 5 to 15; private markets 2.4 percent, inside 0 to 15">
+                    <div class="r is-out" style="--lo:45;--hi:60;--t:55;--v:61.2"><span class="rn">Listed shares</span><span class="rt"><i class="band"></i><i class="tgt"></i><i class="now"></i></span><span class="rv"><b>61.2%</b></span><span class="rs">range 45&ndash;60%</span></div>
+                    <div class="r" style="--lo:15;--hi:35;--t:25;--v:28.9"><span class="rn">Bonds</span><span class="rt"><i class="band"></i><i class="tgt"></i><i class="now"></i></span><span class="rv"><b>28.9%</b></span><span class="rs">range 15&ndash;35%</span></div>
+                    <div class="r" style="--lo:5;--hi:15;--t:10;--v:7.4"><span class="rn">Cash</span><span class="rt"><i class="band"></i><i class="tgt"></i><i class="now"></i></span><span class="rv"><b>7.4%</b></span><span class="rs">range 5&ndash;15%</span></div>
+                    <div class="r" style="--lo:0;--hi:15;--t:10;--v:2.4"><span class="rn">Private markets</span><span class="rt"><i class="band"></i><i class="tgt"></i><i class="now"></i></span><span class="rv"><b>2.4%</b></span><span class="rs">range 0&ndash;15%</span></div>
+                    <div class="rk"><span><i class="k-band"></i>Your range</span><span><i class="k-tgt"></i>Your target</span><span><i class="k-now"></i>Today</span></div>
+                  </div>
+                  <p class="fd-src">Policy version 2 &middot; computed from the record today</p>
+                  <ul class="fd-tiles">
+                    <li class="att"><span class="fd-lab att">Needs you</span><b class="fd-n">61.2%</b><span>of what you invest is in listed shares, above your 60% ceiling.</span></li>
+                    <li><span class="fd-lab">Noticed</span><b class="fd-n">58%</b><span>of what your three goals need is linked to them today.</span></li>
+                  </ul>
+                </div>
+              </div>
+            </figure>
+          </article>
 
-          <div class="alloc-row">
-            <div class="alloc-lab">Global equities<small>Policy 20&ndash;35%</small></div>
-            <div class="alloc-track">
-              <span class="alloc-band" style="left:50%;width:37.5%"></span>
-              <span class="alloc-mark" style="left:53%;background:var(--d-equities)"></span>
+          <!-- ── c · INVESTMENT · the mix, and what it costs ───────────────────────── -->
+          <article class="fd-p is-investment" role="tabpanel" id="fd-p-investment" aria-labelledby="fd-t-investment" aria-hidden="true">
+            <div class="fd-words">
+              <p class="eyebrow">Investment &middot; Grow it</p>
+              <h3>What do we hold, and what does it cost?</h3>
+              <p>Everything you hold, wherever it is held, in one view: measured against your own policy,
+                with every fee counted.</p>
+              <p class="fd-held"><span>Held to</span>A fee you haven&rsquo;t entered is never guessed.</p>
+              <a class="link" href="investment.html" tabindex="-1">Inside Investment<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
             </div>
-            <div class="alloc-val num">21.2%</div>
-            <span class="chip chip-ok">Within range</span>
-          </div>
+            <figure class="fd-screen">
+              <div class="fd-app">
+                <div class="fd-app-h"><b>Investment</b><span class="fd-ok">Open</span><span class="fd-lt"><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M11 20.5Q3.2 11.5 11 1.5Q18.8 11.5 11 20.5Z"/></svg>+40 XP</span></div>
+                <div class="fd-scene">
+                  <div class="fd-fy"><svg class="fd-mk" viewBox="39 39 50 50" aria-hidden="true" data-state="ready"><path class="core" d="M64 56.06 A16.5 16.5 0 0 1 71.94 64 A16.5 16.5 0 0 1 64 71.94 A16.5 16.5 0 0 1 56.06 64 A16.5 16.5 0 0 1 64 56.06 Z"/><circle class="r r1" cx="57" cy="57" r="16.5"/><circle class="r r2" cx="71" cy="57" r="16.5"/><circle class="r r3" cx="71" cy="71" r="16.5"/><circle class="r r4" cx="57" cy="71" r="16.5"/></svg><span><span class="eyebrow">Freya &middot; your AI chief of staff</span><span class="fd-fy-m">Investment &middot; Thursday, September 24</span></span></div>
+                  <p class="fd-ans">$1.84M invested, and one class is outside its range.</p>
+                  <p class="fd-sub">The fees you entered come to $5,616 a year, 0.31% of what you invest. Two holdings have
+                    no fee entered.</p>
+                  <div class="fd-iv">
+                    <div class="fd-mix" role="img" aria-label="What is invested, by class: listed shares 61 percent, bonds 29 percent, cash 7 percent, private markets 2 percent">
+                      <i style="--w:61.2;--c:var(--d-equities);--i:0"></i><i style="--w:28.9;--c:var(--d-fixed);--i:1"></i><i style="--w:7.4;--c:var(--d-cash);--i:2"></i><i style="--w:2.4;--c:var(--d-private);--i:3"></i>
+                    </div>
+                    <ul class="fd-mix-k" aria-hidden="true">
+                      <li><i style="--c:var(--d-equities)"></i>Listed shares <b>61%</b></li>
+                      <li><i style="--c:var(--d-fixed)"></i>Bonds <b>29%</b></li>
+                      <li><i style="--c:var(--d-cash)"></i>Cash <b>7%</b></li>
+                      <li><i style="--c:var(--d-private)"></i>Private <b>2%</b></li>
+                    </ul>
+                    <div class="fd-fees" role="img" aria-label="What it costs a year: SEP IRA $1,918, 401(k) $1,674, brokerage account $950; every fee on file, $5,616">
+                      <p class="eyebrow">What it costs a year</p>
+                      <div class="fe" style="--f:1918;--i:0"><span class="fn">SEP IRA<small>$548,000 &middot; 0.35%</small></span><span class="fb"><i></i></span><span class="fv">$1,918</span></div>
+                      <div class="fe" style="--f:1674;--i:1"><span class="fn">401(k)<small>$372,000 &middot; 0.45%</small></span><span class="fb"><i></i></span><span class="fv">$1,674</span></div>
+                      <div class="fe" style="--f:950;--i:2"><span class="fn">Brokerage account<small>$380,000 &middot; 0.25%</small></span><span class="fb"><i></i></span><span class="fv">$950</span></div>
+                      <div class="fe is-total"><span class="fn">Every fee on file<small>and two more holdings</small></span><span class="fv">$5,616</span></div>
+                    </div>
+                  </div>
+                  <p class="fd-src">Read from Records &middot; every fee you have entered</p>
+                  <ul class="fd-tiles">
+                    <li><span class="fd-lab">Noticed</span><b class="fd-n">$5,616</b><span>a year in fees. The largest: the SEP IRA, $1,918.</span></li>
+                    <li class="learn"><span class="fd-lab ok">Opens next</span><b class="fd-n">14 quests</b><span>Investment Foundation. It ends in a certificate.</span></li>
+                  </ul>
+                </div>
+              </div>
+            </figure>
+          </article>
 
-          <div class="alloc-row">
-            <div class="alloc-lab">Bonds &amp; pension<small>Policy 10&ndash;20%</small></div>
-            <div class="alloc-track">
-              <span class="alloc-band" style="left:25%;width:25%"></span>
-              <span class="alloc-mark" style="left:31.75%;background:var(--d-fixed)"></span>
+          <!-- ── d · PROTECTION · the line, lying down ──────────────────────────────── -->
+          <article class="fd-p is-protection" role="tabpanel" id="fd-p-protection" aria-labelledby="fd-t-protection" aria-hidden="true">
+            <div class="fd-words">
+              <p class="eyebrow">Protection &middot; Protect it</p>
+              <h3>What if something goes wrong?</h3>
+              <p>Every policy the family holds, what it covers and when it renews, seen together before anything
+                becomes a claim.</p>
+              <p class="fd-held"><span>Held to</span>Gaps named while they are still gaps.</p>
+              <a class="link" href="protection.html" tabindex="-1">Inside Protection<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
             </div>
-            <div class="alloc-val num">12.7%</div>
-            <span class="chip chip-ok">Within range</span>
-          </div>
+            <figure class="fd-screen">
+              <div class="fd-app">
+                <div class="fd-app-h"><b>Protection</b><span class="fd-ok">Open</span><span class="fd-lt"><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M11 20.5Q3.2 11.5 11 1.5Q18.8 11.5 11 20.5Z"/></svg>+40 XP</span></div>
+                <div class="fd-scene">
+                  <div class="fd-fy"><svg class="fd-mk" viewBox="39 39 50 50" aria-hidden="true" data-state="ready"><path class="core" d="M64 56.06 A16.5 16.5 0 0 1 71.94 64 A16.5 16.5 0 0 1 64 71.94 A16.5 16.5 0 0 1 56.06 64 A16.5 16.5 0 0 1 64 56.06 Z"/><circle class="r r1" cx="57" cy="57" r="16.5"/><circle class="r r2" cx="71" cy="57" r="16.5"/><circle class="r r3" cx="71" cy="71" r="16.5"/><circle class="r r4" cx="57" cy="71" r="16.5"/></svg><span><span class="eyebrow">Freya &middot; your AI chief of staff</span><span class="fd-fy-m">Protection &middot; Thursday, September 24</span></span></div>
+                  <p class="fd-ans">$3.26M insured, and the homeowners cover renews in 21 days.</p>
+                  <p class="fd-sub">Six policies, $9,030 a year in premiums.</p>
+                  <div class="fd-ln-w">
+                    <p class="eyebrow">Renewals &middot; the next twelve months</p>
+                    <ol class="fd-ln" aria-label="Cover renewing in the next twelve months">
+                      <li class="is-today" style="--x:0;--i:0"><b>Today</b><span>Sep 24</span></li>
+                      <li class="is-att below" style="--x:5.8;--i:1"><b>Oct 15</b><span>Homeowners, the Edina home</span><em>in 21 days</em></li>
+                      <li style="--x:27.1;--i:2"><b>Jan 1 to 10</b><span>Life, health and the car</span></li>
+                      <li class="below" style="--x:43.3;--i:3"><b>Mar 1</b><span>Homeowners, the lake cabin</span></li>
+                    </ol>
+                    <div class="fd-ln-ax" aria-hidden="true"><span>Oct</span><span>Nov</span><span>Dec</span><span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span></div>
+                  </div>
+                  <p class="fd-src">From the six policies on file</p>
+                  <ul class="fd-tiles">
+                    <li class="att"><span class="fd-lab att">Needs you</span><b class="fd-n">21 days</b><span>until the homeowners cover on the Edina home renews.</span></li>
+                    <li><span class="fd-lab">Noticed</span><b class="fd-n">2</b><span>policies name beneficiaries chosen more than five years ago.</span></li>
+                  </ul>
+                </div>
+              </div>
+            </figure>
+          </article>
 
-          <div class="alloc-scale">
-            <div class="ticks"><span>0%</span><span>10%</span><span>20%</span><span>30%</span><span>40%</span></div>
-          </div>
-
-          <div class="note-strip">
-            <svg width="24" height="24" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></svg>
-            <span><b>One range, one decision.</b> Nothing rebalances on its own. When a holding leaves its range, you are told the same day, and what happens next is yours
-              to decide.</span>
-          </div>
+          <!-- ── e · SUCCESSION · the line, standing up ─────────────────────────────── -->
+          <article class="fd-p is-succession" role="tabpanel" id="fd-p-succession" aria-labelledby="fd-t-succession" aria-hidden="true">
+            <div class="fd-words">
+              <p class="eyebrow">Succession &middot; Pass it on</p>
+              <h3>What happens next, and does the family know?</h3>
+              <p>The will, the people it names and the reasons behind it, kept together and read again on time.</p>
+              <p class="fd-held"><span>Held to</span>Written so the people who inherit it can read it before they inherit it.</p>
+              <a class="link" href="succession.html" tabindex="-1">Inside Succession<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+            </div>
+            <figure class="fd-screen">
+              <div class="fd-app">
+                <div class="fd-app-h"><b>Succession</b><span class="fd-ok">Open</span><span class="fd-lt"><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M11 20.5Q3.2 11.5 11 1.5Q18.8 11.5 11 20.5Z"/></svg>+40 XP</span></div>
+                <div class="fd-scene">
+                  <div class="fd-fy"><svg class="fd-mk" viewBox="39 39 50 50" aria-hidden="true" data-state="ready"><path class="core" d="M64 56.06 A16.5 16.5 0 0 1 71.94 64 A16.5 16.5 0 0 1 64 71.94 A16.5 16.5 0 0 1 56.06 64 A16.5 16.5 0 0 1 64 56.06 Z"/><circle class="r r1" cx="57" cy="57" r="16.5"/><circle class="r r2" cx="71" cy="57" r="16.5"/><circle class="r r3" cx="71" cy="71" r="16.5"/><circle class="r r4" cx="57" cy="71" r="16.5"/></svg><span><span class="eyebrow">Freya &middot; your AI chief of staff</span><span class="fd-fy-m">Succession &middot; Thursday, September 24</span></span></div>
+                  <p class="fd-ans">The will is on file, last read 10 years ago.</p>
+                  <p class="fd-sub">Mirror wills for Michael and Lauren, signed May 12, 2016.</p>
+                  <div class="fd-wl">
+                    <ol class="fd-wl-l" aria-label="The will, from signing to the next reading">
+                      <li class="done" style="--i:0"><b>May 12, 2016</b><span>Signed</span></li>
+                      <li class="done" style="--i:1"><b>2019</b><span>Lauren named on Michael&rsquo;s life cover</span></li>
+                      <li class="done" style="--i:2"><b>2024</b><span>Emma turned 18</span></li>
+                      <li class="today" style="--i:3"><b>Today</b><span>10 years on</span></li>
+                      <li class="ahead" style="--i:4"><b>Dec 31, 2026</b><span>Read it again, by your date</span></li>
+                    </ol>
+                    <dl class="fd-pairs">
+                      <div><dt>Where the original is</dt><dd>Holm &amp; Reed LLP, Minneapolis</dd></div>
+                      <div><dt>Executors</dt><dd>The surviving spouse, then Andrew Holm</dd></div>
+                      <div><dt>The family</dt><dd>Three generations, five people</dd></div>
+                    </dl>
+                  </div>
+                  <p class="fd-src">From the will on file and Records &middot; Family</p>
+                  <ul class="fd-tiles">
+                    <li><span class="fd-lab">Coming up</span><b class="fd-n">Dec 31</b><span>Read the will again, by the date you set.</span></li>
+                    <li><span class="fd-lab">Noticed</span><b class="fd-n">Andrew Holm</b><span>Your estate attorney has this open: read the wills again now Oscar is 15.</span></li>
+                  </ul>
+                </div>
+              </div>
+            </figure>
+          </article>
         </div>
 
-        <div>
-          <h3><svg class="plate" aria-hidden="true" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="12.6" height="12.6" rx="4"/> <path d="M6.5 14.4 9 16.9 13.5 11.6"/> <path d="M8 8V6.6A2.6 2.6 0 0 1 10.6 4h7.8A2.6 2.6 0 0 1 21 6.6V15a2.6 2.6 0 0 1-2.6 2.6h-2.8"/></svg><span class="desk-t"><span class="eyebrow">Govern it</span>Policy</span></h3>
-          <p class="lede">Your family&rsquo;s rules for its money, written down in plain words: how much to keep in each kind of investment and how much cash to keep at hand. Finna checks what you own against them every day and tells you when something slips outside. Every number is yours.</p>
+        <!-- a tablet and a phone: where you are, and the desk before and after -->
+        <div class="fd-pg">
+          <button type="button" class="fd-pg-b" data-step="-1"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg><span data-prev>Succession</span></button>
+          <span class="fd-pg-n" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i></span>
+          <button type="button" class="fd-pg-b" data-step="1"><span data-next>Policy</span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
         </div>
+        <p class="fd-cap">Each desk as the app shows it, with a sample household. The figures are examples, not advice.</p>
       </div>
-    </div>
 
-    <!-- c · Investment -->
-    <div class="desk">
-      <div class="wrap two top">
-        <div>
-          <h3><svg class="plate" aria-hidden="true" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3.6" y="13.6" width="3.8" height="6.8" rx="1.9"/> <rect x="9.1" y="10.4" width="3.8" height="10" rx="1.9"/> <rect x="14.6" y="7" width="3.8" height="13.4" rx="1.9"/> <path d="M16.5 1.6A5.734 5.734 0 0 1 18.4 3.5A5.734 5.734 0 0 1 16.5 5.4A5.734 5.734 0 0 1 14.6 3.5A5.734 5.734 0 0 1 16.5 1.6Z" fill="currentColor" stroke="none"/></svg><span class="desk-t"><span class="eyebrow">Grow it</span>Investment</span></h3>
-          <p class="lede">Everything you hold, wherever it is held, in one view: public and private markets, measured against your own policy, with every fee counted.</p>
-        </div>
-
-        <!-- WHAT YOU HOLD (27 Sep 2026) · the Investment desk's object, made from the review
-             card's parts: one row per holding, where it sits in the ledger above, what it costs
-             a year, and the fees added up. The same household as the ledger: its Global equities
-             and Bonds & pension, $1,943,000 between them, are what it holds elsewhere. It is the
-             app's Investment › What you hold, read from Records. -->
-        <div class="card-white">
-          <h4>What you hold elsewhere</h4>
-          <div class="rev">
-            <div class="rl">Brokerage account<small>Global equities &middot; 0.20% a year</small></div>
-            <span class="rv num">$1,214,000</span>
-          </div>
-          <div class="rev">
-            <div class="rl">Workplace pension<small>Bonds &amp; pension &middot; 0.45% a year</small></div>
-            <span class="rv num">$512,000</span>
-          </div>
-          <div class="rev">
-            <div class="rl">Treasury bonds<small>Held directly &middot; no fee</small></div>
-            <span class="rv num">$217,000</span>
-          </div>
-          <div class="rev" style="border-bottom:0">
-            <div class="rl">Fees a year<small>Every fee on file, added up</small></div>
-            <span class="rv num">$4,732</span>
-          </div>
-          <div class="note-strip">
-            <svg width="24" height="24" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></svg>
-            <span><b>Every fee, counted.</b> Measured against your own policy. A fee you
-              haven&rsquo;t entered is never guessed.</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- d · Protection -->
-    <div class="desk">
-      <div class="wrap two top">
-        <div class="card-white">
-          <h4>Protection review</h4>
-          <div class="rev">
-            <div class="rl">Life cover, both principals<small>In force</small></div>
-            <span class="chip chip-ok">Covered</span>
-          </div>
-          <div class="rev">
-            <div class="rl">Property &amp; contents<small>Both homes</small></div>
-            <span class="chip chip-ok">Covered</span>
-          </div>
-          <div class="rev">
-            <div class="rl">Disability, second principal<small>No policy on file</small></div>
-            <span class="chip chip-miss">Missing</span>
-          </div>
-          <div class="rev" style="border-bottom:0">
-            <div class="rl">Umbrella liability<small>Limit below household exposure</small></div>
-            <span class="chip chip-att">Needs attention</span>
-          </div>
-          <div class="note-strip">
-            <svg width="24" height="24" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
-            <span><b>One gap, one action.</b> Gaps are named while they are still gaps, and what to do about each one stays your decision.</span>
-          </div>
-        </div>
-
-        <div>
-          <h3><svg class="plate" aria-hidden="true" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2 4.8 6v5.6c0 4.4 3 7.1 7.2 8.6 4.2-1.5 7.2-4.2 7.2-8.6V6Z"/> <path d="M12 9.1A6.941 6.941 0 0 1 14.3 11.4A6.941 6.941 0 0 1 12 13.7A6.941 6.941 0 0 1 9.7 11.4A6.941 6.941 0 0 1 12 9.1Z" fill="currentColor" stroke="none"/></svg><span class="desk-t"><span class="eyebrow">Protect it</span>Protection</span></h3>
-          <p class="lede">See what is covered, what is missing and what needs attention, before it becomes a problem.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- e · Succession -->
-    <div class="desk">
-      <div class="wrap two top">
-        <div>
-          <!-- THE ICON IS `pi-nextgen` FROM THE RATIFIED SET (brand/build/plates.json).
-               It was lucide's graduation cap, which reads as school, not succession — and
-               it was the only stock drawing among four Finna-drawn ones. pr-forward is the
-               icon named for this promise but its arrow sits in the right half of the 24
-               grid only, which is why it was swapped out on 14 Sep; pi-nextgen fills the
-               grid like its three neighbours, carries the same mark motif, and draws what
-               the section's words say — the generation coming after. (Esben, 22 Sep 2026) -->
-          <h3><svg class="plate" aria-hidden="true" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="7.9" r="3"/> <path d="M3.2 19.4a5.3 5.3 0 0 1 10.6 0"/> <circle cx="17.6" cy="12.6" r="1.9"/> <path d="M14.4 19.4a3.2 3.2 0 0 1 6.4 0"/> <path d="M17.6 6.9A4.225 4.225 0 0 1 19.0 8.3A4.225 4.225 0 0 1 17.6 9.7A4.225 4.225 0 0 1 16.2 8.3A4.225 4.225 0 0 1 17.6 6.9Z" fill="currentColor" stroke="none"/></svg><span class="desk-t"><span class="eyebrow">Pass it on</span>Succession</span></h3>
-          <p class="lede">Prepare the people, decisions and structures that come next, so wealth never reaches the next generation without the understanding to carry it.</p>
-        </div>
-
-        <div class="card-white">
-          <h4>The succession record</h4>
-          <div class="rec"><span>Wills and directives</span><span class="rv">Held</span></div>
-          <div class="rec"><span>Successor trustees</span><span class="rv">Named</span></div>
-          <div class="rec"><span>The next generation</span><span class="rv">Two children</span></div>
-          <div class="rec" style="border-bottom:0"><span>Family agreements</span><span class="rv">One on file</span></div>
-          <div class="note-strip">
-            <svg width="24" height="24" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
-            <span>None of this appears on a statement.</span>
-          </div>
-        </div>
-      </div>
-      <div class="wrap center-cta">
-        <a class="key" href="waitlist.html">See all five inside your own office</a>
-      </div>
+      <!-- what holds for every desk: three plain facts, and the one key -->
+      <ul class="hw-facts fd-facts">
+        <li><b>One record.</b><p>Entered once. Every desk reads from it, so nothing is typed twice.</p></li>
+        <li><b>Checked every day.</b><p>Against your own rules and your own dates, and told in plain words.</p></li>
+        <li><b>Yours to decide.</b><p>Nothing is traded, moved or signed on its own.</p></li>
+      </ul>
+      <div class="center-cta"><a class="key" href="waitlist.html">See all five inside your own office</a></div>
     </div>
   </section>
 
@@ -681,10 +735,10 @@ r.dataset.hero=i;})();</script>
      works with the script off. -->
 <a class="to-top" href="#top" aria-label="Back to top"><svg width="22" height="22" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg></a>
 
-<script src="vendor/finna-ledger.js?v=2543ac7e"></script>
 <script src="vendor/lenis.min.js?v=daec1872"></script>
 <script src="vendor/smooth-scroll.js?v=cb7b0132" defer></script>
 <script src="hero-parallax.js?v=d172b74e" defer></script>
+<script src="desks-home.js?v=05fc47d0" defer></script>
 <script src="nav-site.js?v=4483fad9"></script>
 </body>
 </html>
