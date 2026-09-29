@@ -642,7 +642,10 @@ figcaption{margin-top:var(--space-4);color:var(--text-tertiary);font-size:var(--
   animation:fm-ride 18s linear infinite;
 }
 .idea-mark .fm-core circle{stroke:var(--white);stroke-width:.7px}   /* blur: #fm-blur-core */
-.idea-mark .fm-halo circle{stroke:var(--primary-24);stroke-width:.75px} /* blur: #fm-blur-halo */
+.idea-mark .fm-halo circle{stroke:var(--primary-24);stroke-width:1.75px} /* blur: #fm-blur-halo, once for the whole halo */
+/* 1.75, not .75 (29 Sep 2026): the halo's five arcs now share ONE blur instead of one each, and a
+   blur of the arcs together holds less light than five blurs summed. The wider stroke puts that
+   light back — matched against the old halo frame by frame, the difference is under 1%. */
 
 /* the four rings run at four speeds sharing no common factor, each entered part-way through
    by a negative delay, so they drift apart and back instead of marching together */
@@ -661,6 +664,8 @@ figcaption{margin-top:var(--space-4);color:var(--text-tertiary);font-size:var(--
 @media (prefers-reduced-motion:reduce){
   .idea-mark .fm-f circle{animation:none}
 }
+/* out of sight, the light rests where it is (hero-parallax.js sets .is-off) */
+.band-violet.is-off .idea-mark .fm-f circle{animation-play-state:paused}
 
 @media (max-width:900px){
   .idea-row{grid-template-columns:1fr;gap:var(--space-7);justify-items:start}

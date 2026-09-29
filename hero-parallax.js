@@ -63,6 +63,21 @@
 
   var reduce = matchMedia('(prefers-reduced-motion:reduce)');
 
+  /* FREYA'S LIGHT RESTS WHILE THE SECTION IS OUT OF SIGHT (29 Sep 2026): the glowing rings are
+     the most expensive thing on the page, and there is no reason to draw them when nobody can
+     see them. site.css pauses them under .is-off. */
+  if (idea && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (es) {
+      es.forEach(function (e) { idea.classList.toggle('is-off', !e.isIntersecting); });
+    }, { rootMargin: '100px 0px' }).observe(idea);
+  }
+
+  /* NO SCROLL PARALLAX ON A TOUCH SCREEN (Rose, 29 Sep 2026: "the scroll effect on mobile is very
+     bad"). A phone scrolls on its own fast track and a script can only answer a frame behind, so
+     the picture and the words shook instead of gliding. On touch the page is the still page —
+     every value sits at its rest default — and a mouse or trackpad keeps the effect. */
+  if (matchMedia('(pointer:coarse)').matches) return;
+
   var P_RATE = .32, P_ZOOM = .22, W_RATE = .33, W_FADE = 2.00, W_SPREAD = 1.50, V_RATE = 0;
   var M_DRIFT = 130, M_FADE = .80, W_DRIFT = 90, I_FADE = .90, FADE_AT = .15;
 
