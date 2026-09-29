@@ -35,11 +35,11 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#0D231B">
 <link rel="stylesheet" href="chrome/fonts.css?v=0c6cbb49">
-<link rel="stylesheet" href="brand/tokens.css?v=85c9054d">
-<link rel="stylesheet" href="site.css?v=41c85af7">
+<link rel="stylesheet" href="brand/tokens.css?v=22e11947">
+<link rel="stylesheet" href="site.css?v=cc77330a">
 <link rel="stylesheet" href="nav-site.css?v=3ead211f">
 <!-- the desk's cover: data-cover above picks its picture and the pull band's colour -->
-<link rel="stylesheet" href="hero-tones.css?v=00ae4508">
+<link rel="stylesheet" href="hero-tones.css?v=ad344043">
 <link rel="stylesheet" href="vendor/lenis.css?v=599bcc02">
 </head>
 <body>
@@ -69,6 +69,7 @@
           </div>
         </div>
       </div>
+      <a href="learn.html">Learn</a>
       <a href="pricing.html">Pricing</a>
       <a href="about.html">About</a>
       <a class="key key-s nav-cta-m" href="waitlist.html">Explore your family office<svg width="18" height="18" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
@@ -83,7 +84,7 @@
   <div class="wrap inner">
     <p class="eyebrow">Govern it</p>
     <h1>Policy</h1>
-    <p class="lede">Your household&rsquo;s rules, written down once and monitored. Your holdings are measured against the policy you agreed, not a benchmark we chose.</p>
+    <p class="lede">Your family&rsquo;s rules for its money, written down in plain words. Finna checks what you own against them every day and tells you when something slips outside.</p>
   </div>
 </div>
 
@@ -98,14 +99,14 @@
       <div class="section-head">
         <p class="eyebrow">Inside the desk</p>
         <h2 id="inside-h">How Policy works.</h2>
-        <p class="lede">Your household’s rules, and where you sit against them. Four things to know, pinned to one screen.</p>
+        <p class="lede">Your family’s rules, and where you stand against them today. Four things to know, pinned to one screen.</p>
       </div>
       <figure class="dfig" aria-label="Policy, explained on one screen">
         <svg class="dfig-lead" aria-hidden="true"></svg>
         <div class="dfig-grid">
           <ol class="dfig-notes l">
-            <li class="dfig-note" data-n="1"><span class="dfig-n">1</span><span class="dfig-k">What it is</span><p>Your household’s rules, written down once: a range for each holding and cash kept reachable.</p></li>
-            <li class="dfig-note" data-n="2"><span class="dfig-n">2</span><span class="dfig-k">What you see</span><p>Where you actually sit against every range, and what has drifted outside it.</p></li>
+            <li class="dfig-note" data-n="1"><span class="dfig-n">1</span><span class="dfig-k">What it is</span><p>Your family’s rules on one page: how much to keep in each kind of investment, and how much cash to keep at hand.</p></li>
+            <li class="dfig-note" data-n="2"><span class="dfig-n">2</span><span class="dfig-k">What you see</span><p>Where you stand against each rule today, and anything that has slipped outside it.</p></li>
           </ol>
           <div class="dfig-screen" aria-hidden="true">
             <div class="dfig-tabs"><b>Policy</b><span>Suggested</span><span>Your rules</span><span class="on">Drift</span><span>Wealth planning</span><span>Financial Identity</span><span>The boundary</span></div>
@@ -123,10 +124,10 @@
             </div>
           </div>
           <ol class="dfig-notes r" start="3">
-            <li class="dfig-note" data-n="3"><span class="dfig-n">3</span><span class="dfig-k">Why it matters</span><p>Without written rules, drift goes unnoticed until it has become a problem.</p></li>
-            <li class="dfig-note" data-n="4"><span class="dfig-n">4</span><span class="dfig-k">What stays yours</span><p>Finna supplies the template and never suggests a number. A change is a new version.</p></li>
+            <li class="dfig-note" data-n="3"><span class="dfig-n">3</span><span class="dfig-k">Why it matters</span><p>Left alone, the mix changes by itself. Written rules show it early, while it is still an easy decision.</p></li>
+            <li class="dfig-note" data-n="4"><span class="dfig-n">4</span><span class="dfig-k">What stays yours</span><p>You set every number, and Finna never suggests one. A change is saved as a new version.</p></li>
           </ol>
-          <div class="dfig-held"><span class="dfig-k">Held to</span><p>Measured against the policy your household agreed, not a benchmark we chose.</p></div>
+          <div class="dfig-held"><span class="dfig-k">Held to</span><p>Measured against the rules your family agreed, not a market average we picked.</p></div>
         </div>
       </figure>
       <p class="small dfig-caption">An illustrative household. The figures are examples, not advice.</p>
@@ -138,52 +139,85 @@
     </div>
   </section>
 
-  <!-- THE POLICY DESK (27 Sep 2026) is new with the five desks. Its cards are the
-       first half of the old Grow it page, which was about the written policy all along;
-       the rest is the app's Policy desk: versions that are never edited in place, and the
-       boundary — what Finna does not do, written down where the household's rules are. -->
-  <section>
+  <!-- POLICY IN PLAIN ENGLISH (Christian, 28 Sep 2026, after the website walkthrough: "we need
+       to be better to explain in plain English for outsiders what this desk does and why it's
+       important"). What a household policy is, with an example as a family would write it; why
+       it matters; then what stays yours. The three sections replace "Rules your household writes
+       once", "A policy is never edited in place" and "The boundary, written down too": the same
+       facts (the template, the ranges, the same-day notice, versions, no advice), in plain words.
+       Everything here is what the app's Policy desk does: Your rules, Drift, Wealth planning,
+       Financial Identity, versions agreed by name, The boundary. -->
+  <section aria-labelledby="plain-h">
+    <div class="wrap split">
+      <div>
+        <p class="eyebrow hw-eyebrow">In plain English</p>
+        <h2 id="plain-h">What a household policy is.</h2>
+        <p class="lede">A short set of rules your family agrees for its money, the way a pension
+          fund or a family office writes down how it invests. It answers a few plain questions:
+          what the money is for, how long it could wait, how much to keep in each kind of
+          investment and how much cash to keep at hand.</p>
+      </div>
+      <figure class="card pol-eg" aria-labelledby="pol-eg-h">
+        <p class="eyebrow" id="pol-eg-h">An example</p>
+        <dl>
+          <div><dt>What the money is for</dt><dd>Our retirement first, then the children&rsquo;s education</dd></div>
+          <div><dt>How long it could wait</dt><dd>About fifteen years</dd></div>
+          <div><dt>In a bad year, we would</dt><dd>Hold and wait it out</dd></div>
+          <div><dt>Cash at hand</dt><dd>Always six months of spending</dd></div>
+          <div><dt>Shares</dt><dd>Between 50% and 70% of what we invest</dd></div>
+          <div><dt>Bonds</dt><dd>Between 20% and 35%</dd></div>
+        </dl>
+        <figcaption class="small">An illustrative household, not advice. Your family writes its own
+          answers, and Finna never suggests a number.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="band-mint" aria-labelledby="why-h">
     <div class="wrap">
       <div class="section-head">
-        <p class="eyebrow">What it does</p>
-        <h2>Rules your household writes once.</h2>
+        <p class="eyebrow">Why it matters</p>
+        <h2 id="why-h">Rules on paper beat decisions in the moment.</h2>
       </div>
       <div class="grid g-3">
         <article class="card">
-          <h3>The policy is written down</h3>
-          <p>Your household policy sets what the family wants to own and how much of each, as a range for every holding, plus the cash that must always stay reachable. It is
-            agreed once, in plain language. Finna supplies the template and never suggests a
-            number.</p>
+          <h3>Calm decisions, not rushed ones</h3>
+          <p>Rules agreed on a quiet day keep a bad week in the markets, a tip over dinner or a
+            sales call from deciding for you.</p>
         </article>
         <article class="card">
-          <h3>You can see where you actually sit</h3>
-          <p>Every holding against its range, in one view: what is within policy, what has drifted above it and by how much. The bonds that quietly grew past their range show as
-            exactly that.</p>
+          <h3>Drift is caught early</h3>
+          <p>What does well quietly grows into a bigger share than you ever chose, and cash runs
+            down without anyone deciding it should. Finna shows it the same day, while it is
+            still an easy call.</p>
         </article>
         <article class="card">
-          <h3>Nothing moves on its own</h3>
-          <p>Finna never rebalances your family&rsquo;s wealth. When a holding leaves its range, the household is told the same day, and what happens next is its decision.</p>
+          <h3>Everyone works from the same page</h3>
+          <p>Your partner, your advisers and, later, your children can see what was agreed and
+            why, so nobody has to guess what you would have wanted.</p>
         </article>
       </div>
     </div>
   </section>
 
-  <section class="band-mint">
+  <section aria-labelledby="yours-h">
     <div class="wrap split">
-      <h2>A policy is never edited in place.</h2>
       <div>
-        <p class="lede">A change is a new version: written down, dated and agreed by the people it binds. Every
-         version stays, so the household can always see what the rules were when a decision was
-         made.</p>
+        <h2 id="yours-h">Your rules. Your decisions.</h2>
       </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap split">
-      <h2>The boundary, written down too.</h2>
       <div>
-        <p class="lede">The household&rsquo;s rules live on this desk, and so do Finna&rsquo;s. No investment, tax or legal advice. When a question crosses that line, Freya says so, and the household brings in the specialist it chooses.</p>
+        <p class="lede">Finna gives you the questions and does the checking. You set every
+          number, and Finna never suggests one.</p>
+        <ul class="rows pol-yours">
+          <li><b>Nothing moves on its own.</b> When something slips outside a rule, you are told
+            the same day. Finna never moves your money; what happens next is your family&rsquo;s
+            decision.</li>
+          <li><b>Nothing is written over.</b> A change is saved as a new version, dated and agreed
+            by the people it binds, so you can always see what the rules were when a decision was
+            made.</li>
+          <li><b>No advice.</b> Finna gives no investment, tax or legal advice. When a question needs
+            an expert, Freya says so, and you bring in the one you choose.</li>
+        </ul>
         <div class="cta-row">
           <a class="link" href="how-it-works.html">How the office works<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
         </div>
@@ -247,7 +281,7 @@
               <circle cx="71" cy="71" r="16.5" stroke="currentColor" stroke-width="1.5"/>
               <circle cx="57" cy="71" r="16.5" stroke="currentColor" stroke-width="1.5"/>
             </svg>
-          <span style="color:rgba(255,255,255,.78);font-size:var(--text-label)">Freya, your chief of staff</span>
+          <span style="color:rgba(255,255,255,.78);font-size:var(--text-label)">Freya, your AI chief of staff</span>
         </span>
       </div>
 
@@ -257,6 +291,7 @@
           <li><a href="what-is-a-family-office.html">What is a family office?</a></li>
           <li><a href="your-family-office.html">Your family office</a></li>
           <li><a href="how-it-works.html">How it works</a></li>
+          <li><a href="learn.html">Learn</a></li>
           <li><a href="pricing.html">Pricing</a></li>
           <li><a href="security.html">Security</a></li>
         </ul>

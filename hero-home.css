@@ -100,13 +100,15 @@
   box-shadow:0 4px 0 var(--primary-pressed)}
 .btn-paper:hover{background-color:var(--bg-sunken);box-shadow:0 6px 0 var(--primary-pressed)}
 .btn-paper:active{background-color:var(--border);box-shadow:0 0 0 var(--primary-pressed)}
-/* the outlined one has no face to light, so it gets the offset alone */
+/* the outlined one has no face to light, so it gets the offset alone. ON A COLOURED OR DARK
+   SURFACE THE SECONDARY IS DRAWN IN FULL WHITE — words, outline and shelf (the brand's rule,
+   REV 47, 29 Sep 2026); it was a 55% outline on a 22% shelf, too weak over the photograph. */
 .btn-ghost-light{background-color:transparent;background-image:none;color:var(--white);
-  box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.55), 0 4px 0 rgba(255,255,255,.22)}
-.btn-ghost-light:hover{background-color:rgba(255,255,255,.08);
-  box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.55), 0 6px 0 rgba(255,255,255,.28)}
-.btn-ghost-light:active{background-color:rgba(255,255,255,.12);
-  box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.55), 0 0 0 rgba(255,255,255,.22)}
+  border:var(--line-object) solid var(--white);   /* a real border and a stacked shelf: clean corners (29 Sep) */
+  box-shadow:0 .5px 0 var(--white),0 1px 0 var(--white),0 2px 0 var(--white),0 4px 0 var(--white)}
+.btn-ghost-light:hover{background-color:color-mix(in srgb,var(--white) 8%,transparent);
+  box-shadow:0 .5px 0 var(--white),0 1px 0 var(--white),0 3px 0 var(--white),0 6px 0 var(--white)}
+.btn-ghost-light:active{background-color:color-mix(in srgb,var(--white) 12%,transparent);box-shadow:0 0 0 var(--white)}
 .btn-nudge:hover .ic{transform:translateX(4px)}
 .btn-nudge:active .ic{transform:translateX(7px)}
 /* ---------- hero ---------- */

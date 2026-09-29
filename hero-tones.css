@@ -18,6 +18,7 @@ html[data-hero="9"]{--pull-bg:#030E22;--pull-mark:#FFFFFF}
 html[data-cover="about"]{--cover:url('media/covers/about.webp');--pull-bg:#9F9D9D;--pull-mark:#0D231B}
 html[data-cover="how-it-works"]{--cover:url('media/covers/how-it-works.webp');--pull-bg:#7B8289;--pull-mark:#0D231B}
 html[data-cover="investment"]{--cover:url('media/covers/investment.webp');--pull-bg:#8A887D;--pull-mark:#0D231B}
+html[data-cover="learn"]{--cover:url('media/covers/learn.webp');--pull-bg:#ABA9A5;--pull-mark:#0D231B}
 html[data-cover="policy"]{--cover:url('media/covers/policy.webp');--pull-bg:#888779;--pull-mark:#0D231B}
 html[data-cover="pricing"]{--cover:url('media/covers/pricing.webp');--pull-bg:#D0C6BE;--pull-mark:#0D231B}
 html[data-cover="protection"]{--cover:url('media/covers/protection.webp');--pull-bg:#6F746F;--pull-mark:#FFFFFF}

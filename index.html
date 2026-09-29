@@ -37,12 +37,12 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#0D231B">
 <link rel="stylesheet" href="chrome/fonts.css?v=0c6cbb49">
-<link rel="stylesheet" href="brand/tokens.css?v=85c9054d">
-<link rel="stylesheet" href="site.css?v=41c85af7">
+<link rel="stylesheet" href="brand/tokens.css?v=22e11947">
+<link rel="stylesheet" href="site.css?v=cc77330a">
 <link rel="stylesheet" href="nav-site.css?v=3ead211f">
 <link rel="stylesheet" href="vendor/lenis.css?v=599bcc02">
-<link rel="stylesheet" href="hero-home.css?v=09d92864">
-<link rel="stylesheet" href="hero-tones.css?v=00ae4508">
+<link rel="stylesheet" href="hero-home.css?v=62a9cc27">
+<link rel="stylesheet" href="hero-tones.css?v=ad344043">
 <!-- A DIFFERENT HERO EACH VISIT (Rose, 13 Sep 2026). In the <head> on purpose: it sets
      the custom property before the hero has painted, so there is no flash of one picture
      being replaced by another, and only the chosen file is ever fetched. N is the count
@@ -85,6 +85,7 @@ r.dataset.hero=i;})();</script>
           </div>
         </div>
       </div>
+      <a href="learn.html">Learn</a>
       <a href="pricing.html">Pricing</a>
       <a href="about.html">About</a>
       <a class="key key-s nav-cta-m" href="waitlist.html">Explore your family office<svg width="18" height="18" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
@@ -125,48 +126,12 @@ r.dataset.hero=i;})();</script>
 </header>
 
 <main id="main">
-  <!-- ══ 01 · WHITE ═══ the problem, and the three piles it is in ══════════════
-       TAKEN BACK FROM THE 2026-09 SITE (Rose, 12 Sep 2026): the icon beside the heading,
-       the two paragraphs at full measure, and the three dark spotlight cards. The drawn
-       Fig. 1 that stood here in the rebuild is gone. One substitution, stated: the old
-       illustrated plate was retired from the estate on 6 Sep, so the heading carries the
-       ratified line icon instead. -->
-  <section class="centred">
-    <div class="wrap">
-      <div class="ico-row">
-        <svg class="plate" aria-hidden="true" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.6" cy="12.4" r="2.3"/> <circle cx="16.4" cy="12.4" r="2.3"/> <path d="M3.9 20v-.5a3.7 3.7 0 0 1 7.4 0V20"/> <path d="M12.7 20v-.5a3.7 3.7 0 0 1 7.4 0V20"/> <path d="M12 3.1A5.734 5.734 0 0 1 13.9 5A5.734 5.734 0 0 1 12 6.9A5.734 5.734 0 0 1 10.1 5A5.734 5.734 0 0 1 12 3.1Z" fill="currentColor" stroke="none"/></svg>
-        <h2>Nobody has the whole picture.</h2>
-      </div>
-      <div class="stack" style="max-width:66ch;margin-inline:auto">
-        <p class="lede">Your investments, pensions, property, insurance, debt and family plans sit
-          in different places. Each provider understands its part. Nobody is responsible for the
-          whole.</p>
-        <p class="lede">A family office works another way. Specialists may handle separate matters, but everything is understood as one financial life.</p>
-      </div>
-
-      <div class="cards3">
-        <article class="card-dark">
-          <svg class="card-ico" aria-hidden="true" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4.2" y="4.4" width="13.2" height="4.8" rx="2.4"/> <rect x="4.2" y="14.8" width="8.6" height="4.8" rx="2.4"/> <path d="M3 12h18"/> <path d="M19.2 10.3A5.131 5.131 0 0 1 20.9 12A5.131 5.131 0 0 1 19.2 13.7A5.131 5.131 0 0 1 17.5 12A5.131 5.131 0 0 1 19.2 10.3Z" fill="currentColor" stroke="none"/></svg>
-          <h3>What you&rsquo;ve invested</h3>
-          <hr>
-          <ul><li>Brokerage</li><li>Pension</li><li>Private funds</li><li>Cash</li></ul>
-        </article>
-        <article class="card-dark">
-          <svg class="card-ico" aria-hidden="true" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="5" rx="2"/> <rect x="3" y="16" width="6" height="5" rx="2"/> <rect x="15" y="16" width="6" height="5" rx="2"/> <path d="M12 8v4"/> <path d="M6 16v-4h12v4"/> <path d="M12 4.15A4.074 4.074 0 0 1 13.35 5.5A4.074 4.074 0 0 1 12 6.85A4.074 4.074 0 0 1 10.65 5.5A4.074 4.074 0 0 1 12 4.15Z" fill="currentColor" stroke="none"/></svg>
-          <h3>What you own and owe</h3>
-          <hr>
-          <ul><li>Property</li><li>Business</li><li>Mortgage</li><li>Insurance</li><li>Liabilities</li></ul>
-        </article>
-        <article class="card-dark">
-          <svg class="card-ico" aria-hidden="true" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18"/> <circle cx="5.2" cy="12" r="2.1"/> <path d="M9.6 9.4v5.2"/> <path d="M14.1 9.4v5.2"/> <path d="M18.6 9.4v5.2"/> <path d="M5.2 10.85A3.471 3.471 0 0 1 6.35 12A3.471 3.471 0 0 1 5.2 13.15A3.471 3.471 0 0 1 4.05 12A3.471 3.471 0 0 1 5.2 10.85Z" fill="currentColor" stroke="none"/></svg>
-          <h3>What happens next</h3>
-          <hr>
-          <ul><li>Wills</li><li>Children</li><li>Succession</li><li>Family agreements</li></ul>
-        </article>
-      </div>
-    </div>
-  </section>
-
+  <!-- ══ 01 · DARK, full bleed ═══ the investing desk you were sold, and the office you weren't ══
+       ONE TRANSITION, NOT TWO SECTIONS (Christian, 28 Sep 2026, after the walkthrough with the
+       team): "Nobody has the whole picture" and "Not a fund. A team." are merged into this one
+       section. Simple on purpose: the pain point (you were only sold the Investment desk), the
+       four other desks named, and the handoff that Finna gives you all five. The five desks are
+       presented in the next section. The layout, Freya's mark and the parallax are unchanged. -->
   <!-- ══ 02 · MINT, full bleed ═══ what a family office actually is ═══════════ -->
   <!-- PORTED FROM THE 2026-09 SITE (Rose, 12 Sep 2026), REORDERED 13 Sep.
        THE HIERARCHY RAN 42 -> 21 -> 32: the heading, then the explanation small, then the
@@ -180,17 +145,15 @@ r.dataset.hero=i;})();</script>
   <section class="band band-violet">
     <div class="wrap idea-row">
       <div>
-        <h2>Not a fund. A team.</h2>
-        <p class="pull">You&rsquo;ve been sold the investing desk.<br>You&rsquo;ve never been
-          offered the office.</p>
+        <h2>You&rsquo;ve been sold the investing desk.</h2>
+        <p class="pull">You&rsquo;ve never been offered the office.</p>
         <hr class="rule">
-        <p class="lede">A family office is the small staff a wealthy family employs to run
-          everything their money touches.</p>
-        <!-- THE HANDOFF (Christian, 27 Sep 2026): the line that leads into "Five desks, one
-             office." stands on its own, in the gold the dark ground already uses for its
-             one emphasis. The list that ran before it went: the section above and the
-             desks below already name what the office runs. -->
-        <p class="lede idea-key">Investing is only one desk in that office.</p>
+        <p class="lede">Your bank or adviser looks after your investments. That is one desk. A
+          family office runs four more: Records, Policy, Protection and Succession. For most
+          families, nobody runs those at all.</p>
+        <!-- THE HANDOFF into "Five desks, one office.", in the gold the dark ground keeps for its
+             one emphasis. The desks themselves are shown in the next section, not here. -->
+        <p class="lede idea-key">Finna gives you all five desks.</p>
       </div>
 
       <!-- Freya at plate scale: the four rings with the shape they share left open, and a
@@ -336,7 +299,7 @@ r.dataset.hero=i;})();</script>
 
         <div>
           <h3><svg class="plate" aria-hidden="true" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="12.6" height="12.6" rx="4"/> <path d="M6.5 14.4 9 16.9 13.5 11.6"/> <path d="M8 8V6.6A2.6 2.6 0 0 1 10.6 4h7.8A2.6 2.6 0 0 1 21 6.6V15a2.6 2.6 0 0 1-2.6 2.6h-2.8"/></svg><span class="desk-t"><span class="eyebrow">Govern it</span>Policy</span></h3>
-          <p class="lede">Your household&rsquo;s rules, written down once and monitored: a range for each holding, the cash that must stay reachable and the point where drift becomes a decision. Finna supplies the template. Every number is yours.</p>
+          <p class="lede">Your family&rsquo;s rules for its money, written down in plain words: how much to keep in each kind of investment and how much cash to keep at hand. Finna checks what you own against them every day and tells you when something slips outside. Every number is yours.</p>
         </div>
       </div>
     </div>
@@ -449,13 +412,17 @@ r.dataset.hero=i;})();</script>
   </section>
 
   <!-- ══ 04 · DARK, full bleed ═══ Freya. The site raises its voice here ══════ -->
+  <!-- FREYA IS INTRODUCED, AND SHE IS AN AI (Christian and Shelley, 28 Sep 2026, the website
+       walkthrough). The heading was "Your family office doesn't keep office hours", which named
+       the office instead of her; Shelley: say plainly that Freya is an AI, so nobody takes her
+       for a person. "Your AI chief of staff" is her label everywhere on the site and in the app. -->
   <section class="band">
     <div class="wrap two clip">
       <div>
-        <h2>Your family office doesn&rsquo;t keep office hours.</h2>
+        <h2>Meet Freya, your AI chief of staff.</h2>
         <h3 style="margin-top:26px;color:rgba(255,255,255,.94)">Open at eleven on a<br>Sunday night.</h3>
         <div class="stack" style="margin-top:30px">
-          <p class="lede">Meet Freya, your chief of staff. She reads everything, does the arithmetic and puts the work on your desk before you ask for it.</p>
+          <p class="lede">She reads everything in your record, does the arithmetic and puts the work on your desk before you ask for it.</p>
           <p class="lede">When a question needs a specialist in investment, protection, law or tax, she brings one in and keeps the record of what was decided.</p>
         </div>
         <!-- NO KEYS IN THIS SECTION (Esben, 21 Sep 2026). The white key and the
@@ -519,25 +486,23 @@ r.dataset.hero=i;})();</script>
     <div class="wrap two top clip">
       <div>
         <h2>Learn your way in.</h2>
-        <p class="lede" style="margin-top:30px">Short lessons, plain language, built around your
-          own numbers. Finish one and it opens the part of the platform it belongs to.</p>
+        <p class="lede" style="margin-top:30px">Short quests in plain language, built around your
+          own numbers. Every answer grows your map, and every path ends in a badge or a
+          certificate.</p>
         <p class="lede" style="margin-top:var(--space-5);color:var(--text)">What opens depends on what you have learned, not on what you own.</p>
-        <!-- NO KEYS IN THIS SECTION (Esben, 21 Sep 2026). The pair that stood here — the
-             waitlist key and the service-levels link — is gone: the clip beside the words is
-             the thing to look at, and a key under the paragraph was pulling against it. The
-             same two actions sit in the sections above and below. -->
+        <!-- NO KEYS IN THIS SECTION (Esben, 21 Sep 2026): the waitlist key and the service-levels
+             link that stood here pulled against the picture beside the words. ONE QUIET LINK came
+             back on 29 Sep 2026, because Learn now has its own page (Christian). -->
+        <div class="cta-row">
+          <a class="link" href="learn.html">Inside Learn<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+        </div>
       </div>
 
-      <!-- THE LEARN CLIP (21 Sep 2026) replaces Fig. 3 — the path, the first quest,
-           the path again, as a coded scene: <finna-learn-clip> (vendor/finna-learn-clip.js),
-           packaged from lab/learn-clip.html, the scene of record. Same delivery as the
-           Freya clip; loops at 13.55s; under reduced motion it plays with the travel
-           taken out — the quest cross-fades instead of sliding (22 Sep 2026). IN REVIEW —
-           lesson names, unlocking rules and the +20 xp are ILLUSTRATIVE until confirmed,
-           and the path/progress/feedback patterns are proposals, not shared components. -->
-      <div class="freya-clip">
-        <finna-learn-clip aria-label="The Learn path: one lesson opened, answered, and the next two unlocked"></finna-learn-clip>
-      </div>
+      <!-- THE APP'S OWN LEARN (Christian, 29 Sep 2026: "look up the latest learn on the app"). The
+           Learn clip (<finna-learn-clip>) was a stand-in until the platform's Map was built, and its
+           lessons no longer matched it; the section now shows the app's Map on a phone, the
+           Investment branch with a certificate earned. The clip stays in vendor/ and lab/. -->
+      <figure class="app-shot learn-phone"><span class="frame"><picture><img src="media/app/app-learn-m.webp" width="600" height="1298" loading="lazy" decoding="async" alt="The Map in the Finna app on a phone: the trunk, the Investment Foundation certificate earned and the next two paths open"></picture></span><figcaption><b>The Map,</b> on a phone. Shown with a sample household.</figcaption></figure>
     </div>
   </section>
 
@@ -615,7 +580,7 @@ r.dataset.hero=i;})();</script>
   <section class="band final">
     <div class="wrap">
       <h2>Open your family office.</h2>
-      <p>Everything you own in one place, a chief of staff who has already done the reading, and a
+      <p>Everything you own in one place, an AI chief of staff who has already done the reading, and a
         door that opens on what you understand.</p>
       <a class="key key-l key-white" href="waitlist.html">Explore your family office</a>
     </div>
@@ -650,7 +615,7 @@ r.dataset.hero=i;})();</script>
             <circle cx="71" cy="71" r="16.5" stroke="currentColor" stroke-width="1.5"/>
             <circle cx="57" cy="71" r="16.5" stroke="currentColor" stroke-width="1.5"/>
           </svg>
-          <span style="color:rgba(255,255,255,.78);font-size:var(--text-label)">Freya, your chief of staff</span>
+          <span style="color:rgba(255,255,255,.78);font-size:var(--text-label)">Freya, your AI chief of staff</span>
         </span>
       </div>
 
@@ -660,6 +625,7 @@ r.dataset.hero=i;})();</script>
           <li><a href="what-is-a-family-office.html">What is a family office?</a></li>
           <li><a href="your-family-office.html">Your family office</a></li>
           <li><a href="how-it-works.html">How it works</a></li>
+          <li><a href="learn.html">Learn</a></li>
           <li><a href="pricing.html">Pricing</a></li>
           <li><a href="security.html">Security</a></li>
         </ul>
@@ -706,9 +672,7 @@ r.dataset.hero=i;})();</script>
   /* the bar takes its surface after the page has moved a little — one class, no reflow */
 </script>
 <script src="vendor/finna-threads.js?v=e1ca1632"></script>
-<script src="vendor/finna-chat-clip.js?v=3eec3edb"></script>
-<script src="vendor/finna-learn-clip.js?v=64044fe6"></script>
-<script src="spotlight.js?v=adbdd547"></script>
+<script src="vendor/finna-chat-clip.js?v=1a17ca47"></script>
 <!-- BACK TO TOP, back from the 2026-09 site (Rose, 12 Sep 2026). The hard key as a
      circle; it appears once the header is behind you and is a plain anchor, so it
      works with the script off. -->

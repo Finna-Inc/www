@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en" data-cover="learn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Learn · Finna</title>
+<meta name="description" content="Short quests in plain language, built around your own numbers. One map that grows with you, badges for paths and certificates that open more of your family office.">
+<!-- source · the words are the ones the site shipped with (source/copy.md);
+     every value is taken from brand/tokens.css through site.css. -->
+<link rel="canonical" href="https://finnafamilyoffice.com/learn.html">
+
+<!-- HOW THE SITE LOOKS WHEN SOMEONE PASTES THE LINK (13 Sep 2026). Every value here is the
+     page's own title and description, so there is one place to change the words. The card is
+     source/media/finna-share.jpg, 1200x630, built from the mark and the hero wash by
+     build/share-card.py. The absolute URLs only resolve once the site is on the domain.
+     The robots tag above keeps this SOURCE copy out of search — the design repo is itself
+     published at finna-inc.github.io/design/ — and build/site.py strips it from the copy
+     that goes on the domain, which is fully indexable. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Finna">
+<meta property="og:locale" content="en">
+<meta property="og:url" content="https://finnafamilyoffice.com/learn.html">
+<meta property="og:title" content="Learn">
+<meta property="og:description" content="Short quests in plain language, built around your own numbers. One map that grows with you, badges for paths and certificates that open more of your family office.">
+<meta property="og:image" content="https://finnafamilyoffice.com/media/finna-share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Finna, your own family office">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Learn">
+<meta name="twitter:description" content="Short quests in plain language, built around your own numbers. One map that grows with you, badges for paths and certificates that open more of your family office.">
+<meta name="twitter:image" content="https://finnafamilyoffice.com/media/finna-share.jpg">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#0D231B">
+<link rel="stylesheet" href="chrome/fonts.css?v=0c6cbb49">
+<link rel="stylesheet" href="brand/tokens.css?v=22e11947">
+<link rel="stylesheet" href="site.css?v=cc77330a">
+<link rel="stylesheet" href="nav-site.css?v=3ead211f">
+<!-- the page's cover: data-cover above picks its picture and the pull band's colour -->
+<link rel="stylesheet" href="hero-tones.css?v=ad344043">
+<link rel="stylesheet" href="vendor/lenis.css?v=599bcc02">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- THE SITE'S NAVIGATION, 1:1 from the 2026-09 build. The desks menu opens on hover
+     with a pointer and on click or Enter without one; the rows carry the ratified icons. -->
+<div class="nav-outer">
+  <nav class="nav">
+    <a class="brand" href="./" aria-label="Finna, home">
+      <svg class="mark" viewBox="38.75 38.75 50.5 50.5" fill="none" aria-hidden="true"><circle cx="57" cy="57" r="16.5" stroke="currentColor" stroke-width="1.5"/><circle cx="71" cy="57" r="16.5" stroke="currentColor" stroke-width="1.5"/><circle cx="71" cy="71" r="16.5" stroke="currentColor" stroke-width="1.5"/><circle cx="57" cy="71" r="16.5" stroke="currentColor" stroke-width="1.5"/><path d="M64 56.06 A16.5 16.5 0 0 1 71.94 64 A16.5 16.5 0 0 1 64 71.94 A16.5 16.5 0 0 1 56.06 64 A16.5 16.5 0 0 1 64 56.06 Z" fill="currentColor"/></svg>
+      <b>Finna</b>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="how-it-works.html">How it works</a>
+      <div class="nav-has-dd" data-dd>
+        <a href="your-family-office.html" class="nav-dd-t" aria-expanded="false" aria-haspopup="true">Your family office<svg width="9" height="6" viewBox="0 0 9 6" fill="none" aria-hidden="true" class="nav-chev"><path d="M1 1.2 4.5 4.8 8 1.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="nav-ddw">
+          <div class="nav-dd">
+            <a class="nav-ddl" href="records.html"><svg class="nav-ddi" aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.6" cy="12.4" r="2.3"/> <circle cx="16.4" cy="12.4" r="2.3"/> <path d="M3.9 20v-.5a3.7 3.7 0 0 1 7.4 0V20"/> <path d="M12.7 20v-.5a3.7 3.7 0 0 1 7.4 0V20"/> <path d="M12 3.1A5.734 5.734 0 0 1 13.9 5A5.734 5.734 0 0 1 12 6.9A5.734 5.734 0 0 1 10.1 5A5.734 5.734 0 0 1 12 3.1Z" fill="currentColor" stroke="none"/></svg>Records</a>
+            <a class="nav-ddl" href="policy.html"><svg class="nav-ddi" aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="12.6" height="12.6" rx="4"/> <path d="M6.5 14.4 9 16.9 13.5 11.6"/> <path d="M8 8V6.6A2.6 2.6 0 0 1 10.6 4h7.8A2.6 2.6 0 0 1 21 6.6V15a2.6 2.6 0 0 1-2.6 2.6h-2.8"/></svg>Policy</a>
+            <a class="nav-ddl" href="investment.html"><svg class="nav-ddi" aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3.6" y="13.6" width="3.8" height="6.8" rx="1.9"/> <rect x="9.1" y="10.4" width="3.8" height="10" rx="1.9"/> <rect x="14.6" y="7" width="3.8" height="13.4" rx="1.9"/> <path d="M16.5 1.6A5.734 5.734 0 0 1 18.4 3.5A5.734 5.734 0 0 1 16.5 5.4A5.734 5.734 0 0 1 14.6 3.5A5.734 5.734 0 0 1 16.5 1.6Z" fill="currentColor" stroke="none"/></svg>Investment</a>
+            <a class="nav-ddl" href="protection.html"><svg class="nav-ddi" aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2 4.8 6v5.6c0 4.4 3 7.1 7.2 8.6 4.2-1.5 7.2-4.2 7.2-8.6V6Z"/> <path d="M12 9.1A6.941 6.941 0 0 1 14.3 11.4A6.941 6.941 0 0 1 12 13.7A6.941 6.941 0 0 1 9.7 11.4A6.941 6.941 0 0 1 12 9.1Z" fill="currentColor" stroke="none"/></svg>Protection</a>
+            <a class="nav-ddl" href="succession.html"><svg class="nav-ddi" aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13.6 12h5.8"/> <path d="M16.7 9.3 19.4 12 16.7 14.7"/> <path d="M8 9A9.054 9.054 0 0 1 11 12A9.054 9.054 0 0 1 8 15A9.054 9.054 0 0 1 5 12A9.054 9.054 0 0 1 8 9Z" fill="currentColor" stroke="none"/></svg>Succession</a>
+            <span class="nav-dd-rule"></span>
+            <a class="nav-ddl is-sub" href="what-is-a-family-office.html"><svg class="nav-ddi" aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2.8"/> <circle cx="12" cy="4.6" r="1.9"/> <circle cx="4.8" cy="17.4" r="1.9"/> <circle cx="19.2" cy="17.4" r="1.9"/> <path d="M12 9.2V6.5"/> <path d="M9.8 13.8 6.4 16.2"/> <path d="M14.2 13.8 17.6 16.2"/> <path d="M12 10.5A4.527 4.527 0 0 1 13.5 12A4.527 4.527 0 0 1 12 13.5A4.527 4.527 0 0 1 10.5 12A4.527 4.527 0 0 1 12 10.5Z" fill="currentColor" stroke="none"/></svg>What is a family office?</a>
+          </div>
+        </div>
+      </div>
+      <a href="learn.html" aria-current="page">Learn</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="about.html">About</a>
+      <a class="key key-s nav-cta-m" href="waitlist.html">Explore your family office<svg width="18" height="18" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false"><svg width="22" height="22" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg></button>
+    <a class="key key-s" href="waitlist.html">Explore your family office<svg width="18" height="18" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+  </nav>
+</div>
+
+<div class="hero hero-cover" id="top">
+  <div class="wrap inner">
+    <p class="eyebrow">Learn</p>
+    <h1>Learn your way in.</h1>
+    <p class="lede">Short quests in plain language, built around your own numbers. Every answer
+      grows your map, and what you learn opens what comes next.</p>
+    <div class="cta-row">
+      <a class="key key-l key-white" href="waitlist.html">Start for free<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a class="link" href="#map">See the Map<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<main id="main">
+
+  <!-- LEARN, ITS OWN PAGE (Christian, 29 Sep 2026: "create a new menu Learn … and create a full sub
+       page about learn, see the new learn on the app, and remember it will also include financial
+       identity as a branch"). Everything here is the app's Learn as it was built on 29 Sep 2026
+       (learn.js in the platform repo): the Map with the trunk and a branch per desk, quests, XP,
+       badges, the five certificate paths and their test, the rank's rings, the week and the Learn
+       tags. FINANCIAL IDENTITY is shown as a branch of its own (Christian: "it is inside the Policy
+       desk but the learning and assessment of it is in Learn"); on the app's Map it is still a path
+       on the Policy branch. The screens are the app's own, with the sample household further along
+       than its seed (four badges and a certificate), so the Map has grown enough to read. Path
+       names and counts are the launch Map's, which is draft content for the CCO: check them here
+       when it changes. THE COVER (Christian, 29 Sep 2026) is the stone steps up through the pines to the lake
+       at first light, media/covers/learn.webp: a path climbed one step at a time. -->
+
+  <!-- 01 · THE MAP -->
+  <section id="map" class="learn-map" aria-labelledby="map-h">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">The Map</p>
+        <h2 id="map-h">One map, and it grows with you.</h2>
+        <p class="lede hw-head-lede">The tutorial is the trunk. Each desk is a branch, and one branch
+          is about you. Every quest you answer is a leaf, and a branch shows what you have done, the
+          path open now and one step ahead. Never more, so nothing is teased.</p>
+      </div>
+      <div class="app-show">
+        <figure class="app-shot desk-shot"><span class="frame"><picture><source media="(max-width:700px)" srcset="media/app/app-learn-m.webp" width="600" height="1298"><img src="media/app/app-learn.webp" width="1600" height="1000" loading="lazy" decoding="async" alt="The Map in the Finna app: the Investment branch, with the Investment Foundation certificate earned and the next two paths open"></picture></span></figure>
+        <figure class="app-shot phone-shot"><span class="frame"><picture><img src="media/app/app-learn-rank-m.webp" width="600" height="1298" loading="lazy" decoding="async" alt="Learn on a phone: the household's rank as growth rings, and the week"></picture></span></figure>
+      </div>
+      <p class="app-show-cap"><span class="cap-wide"><b>The Map</b> on the web, with a certificate earned, and <b>your rank</b> on a phone. Shown with a sample household.</span><span class="cap-narrow"><b>The Map</b>, on a phone. Shown with a sample household.</span></p>
+    </div>
+  </section>
+
+  <!-- 02 · A QUEST -->
+  <section class="band-mint" id="quest" aria-labelledby="quest-h">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">A quest</p>
+        <h2 id="quest-h">One question at a time.</h2>
+        <p class="lede hw-head-lede">A quest takes about a minute, and it is about your own household,
+          not a textbook family.</p>
+      </div>
+      <div class="fam-row">
+        <ol class="steps3">
+          <li><b>A question about your record.</b><p>One question on your own numbers, with a hint if you want it and the reason behind the answer. Getting it wrong costs nothing.</p></li>
+          <li><b>Every answer is a leaf.</b><p>A right answer adds 40 XP and a leaf on the branch, and See it in your office takes you straight to the page the quest is about.</p></li>
+          <li><b>A path ends in a badge.</b><p>Answer every quest on a path and its badge is yours, and the next step on the branch opens. Some paths end in a certificate instead.</p></li>
+        </ol>
+        <figure class="app-shot has-m"><span class="frame"><picture><source media="(max-width:700px)" srcset="media/app/app-learn-quest-m.webp" width="600" height="1298"><img src="media/app/app-learn-quest.webp" width="1600" height="1000" loading="lazy" decoding="async" alt="A quest in the Finna app: a question about the household's Financial Identity, answered, with the reason and the branch beside it"></picture></span><figcaption><b>A quest,</b> answered, with its branch beside it. Shown with a sample household.</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 · FINANCIAL IDENTITY, a branch about you. The three questions are the app's own
+       (Policy · Financial Identity: who the money is for, how long savings could wait, a bad year). -->
+  <section id="identity" aria-labelledby="identity-h">
+    <div class="wrap split learn-id">
+      <div>
+        <p class="eyebrow hw-eyebrow">A branch about you</p>
+        <h2 id="identity-h">Your Financial Identity.</h2>
+        <p class="lede">Before a family writes its rules, it helps to know itself. This branch asks
+          the questions every family office starts with, and explains what each answer means.</p>
+        <ul class="rows learn-q">
+          <li><b>Who is the money for?</b> Yourselves first, your children, or the generations after.</li>
+          <li><b>How long could it wait?</b> The years before most of it is needed.</li>
+          <li><b>What would you do in a bad year?</b> Sell some to stop the fall, hold and wait it out, or add while it is cheaper.</li>
+        </ul>
+        <p class="learn-id-p">You learn and answer here, in Learn. Your answers are kept on the Policy
+          desk, where your family&rsquo;s rules are built on them, and you answer again when life
+          changes.</p>
+        <div class="cta-row">
+          <a class="link" href="policy.html">Inside Policy<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+        </div>
+      </div>
+      <figure class="app-shot has-m"><span class="frame"><picture><source media="(max-width:700px)" srcset="media/app/app-learn-identity-m.webp" width="600" height="1298"><img src="media/app/app-learn-identity.webp" width="1600" height="1000" loading="lazy" decoding="async" alt="The Map in the Finna app with Your Financial Identity selected: who the money is for, how long it can wait and what you would do in a bad year, three of eight quests answered"></picture></span><figcaption><b>Your Financial Identity,</b> under way on the Map. Shown with a sample household.</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- 04 · BADGES AND CERTIFICATES. The note under them is the CCO's point from the launch Map:
+       a certificate opens access in Finna, and must never read as enough on its own. -->
+  <section class="band-mint" id="certificates" aria-labelledby="cert-h">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Badges and certificates</p>
+        <h2 id="cert-h">A badge for a path. A certificate for knowing it.</h2>
+        <p class="lede hw-head-lede">A badge records a path completed. A certificate records
+          understanding shown in a test, and it is what opens more of the platform.</p>
+      </div>
+      <div class="grid g-3">
+        <article class="card"><h3>Five certificates at launch</h3><p>Investment Foundation, Public markets, Core portfolio, Private markets and Private equity, each at the end of its own path.</p></article>
+        <article class="card"><h3>A fair test</h3><p>Eight questions drawn from fourteen, with no hints and no Freya. Six right to pass, and every retake is free.</p></article>
+        <article class="card"><h3>What a certificate opens</h3><p>Investment Foundation, for one, opens currency exposure on What you hold. What opens depends on what you have learned, not on what you own.</p></article>
+      </div>
+      <figure class="app-shot has-m learn-earned"><span class="frame"><picture><source media="(max-width:700px)" srcset="media/app/app-learn-earned-m.webp" width="600" height="1298"><img src="media/app/app-learn-earned.webp" width="1600" height="1000" loading="lazy" decoding="async" alt="Certificates and badges in the Finna app: the Investment Foundation certificate and four badges, then the certificates still on the way"></picture></span><figcaption><b>Certificates and badges,</b> the certificate in bullion. Shown with a sample household.</figcaption></figure>
+      <p class="small learn-note">A certificate opens parts of Finna. It is not a professional
+        qualification, and it does not make anyone an accredited investor or change the rules that
+        apply to them.</p>
+    </div>
+  </section>
+
+  <!-- 05 · AT YOUR OWN PACE -->
+  <section id="pace" aria-labelledby="pace-h">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">At your own pace</p>
+        <h2 id="pace-h">Learning that fits a busy week.</h2>
+      </div>
+      <div class="grid g-3">
+        <article class="card"><h3>Your rank, in rings</h3><p>Every quest adds to your XP, and your rank grows a ring at a time, twelve in all, from the first quest to the whole Map.</p></article>
+        <article class="card"><h3>The week of leaves</h3><p>The week shows the days you answered a quest. A day without one costs nothing, so nothing nags you.</p></article>
+        <article class="card"><h3>Learn tags</h3><p>A small leaf beside anything in your office that a quest explains. Answer the quest and the tag goes, or switch the tags off.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 · EVERY BRANCH AT LAUNCH: the trunk, the five desks, Financial Identity, and the side
+       branches the app shows as "later". The desk plates are the ratified ones; the trunk and
+       Financial Identity take the brand's learn and user icons (brand/icons.json). -->
+  <section class="band-tint" id="branches" aria-labelledby="branches-h">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">At launch</p>
+        <h2 id="branches-h">Every branch of your office.</h2>
+        <p class="lede hw-head-lede">More than 30 paths and 300 quests, around every part of the
+          platform.</p>
+      </div>
+      <div class="grid g-4 learn-branches">
+        <article class="card"><svg class="plate" aria-hidden="true" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg><p class="eyebrow">The trunk</p><h3>The First Picture</h3><p>The tutorial: your first picture, and what a family office does for you.</p></article>
+        <article class="card"><svg class="plate" aria-hidden="true" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.6" cy="12.4" r="2.3"/> <circle cx="16.4" cy="12.4" r="2.3"/> <path d="M3.9 20v-.5a3.7 3.7 0 0 1 7.4 0V20"/> <path d="M12.7 20v-.5a3.7 3.7 0 0 1 7.4 0V20"/> <path d="M12 3.1A5.734 5.734 0 0 1 13.9 5A5.734 5.734 0 0 1 12 6.9A5.734 5.734 0 0 1 10.1 5A5.734 5.734 0 0 1 12 3.1Z" fill="currentColor" stroke="none"/></svg><p class="eyebrow">Gather it</p><h3>Records</h3><p>Your household record, what you owe, the Timeline, the Family Vault and the people working for you.</p></article>
+        <article class="card"><svg class="plate" aria-hidden="true" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="12.6" height="12.6" rx="4"/> <path d="M6.5 14.4 9 16.9 13.5 11.6"/> <path d="M8 8V6.6A2.6 2.6 0 0 1 10.6 4h7.8A2.6 2.6 0 0 1 21 6.6V15a2.6 2.6 0 0 1-2.6 2.6h-2.8"/></svg><p class="eyebrow">Govern it</p><h3>Policy</h3><p>Your first rule, drift and review, your goals, and whether the money will last.</p></article>
+        <article class="card"><svg class="plate" aria-hidden="true" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3.6" y="13.6" width="3.8" height="6.8" rx="1.9"/> <rect x="9.1" y="10.4" width="3.8" height="10" rx="1.9"/> <rect x="14.6" y="7" width="3.8" height="13.4" rx="1.9"/> <path d="M16.5 1.6A5.734 5.734 0 0 1 18.4 3.5A5.734 5.734 0 0 1 16.5 5.4A5.734 5.734 0 0 1 14.6 3.5A5.734 5.734 0 0 1 16.5 1.6Z" fill="currentColor" stroke="none"/></svg><p class="eyebrow">Grow it</p><h3>Investment</h3><p>The foundation, public and private markets, what it costs and a core portfolio, with five certificates.</p></article>
+        <article class="card"><svg class="plate" aria-hidden="true" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2 4.8 6v5.6c0 4.4 3 7.1 7.2 8.6 4.2-1.5 7.2-4.2 7.2-8.6V6Z"/> <path d="M12 9.1A6.941 6.941 0 0 1 14.3 11.4A6.941 6.941 0 0 1 12 13.7A6.941 6.941 0 0 1 9.7 11.4A6.941 6.941 0 0 1 12 9.1Z" fill="currentColor" stroke="none"/></svg><p class="eyebrow">Protect it</p><h3>Protection</h3><p>What cover is for, resilience when income stops, health and care, life cover and the home.</p></article>
+        <article class="card"><svg class="plate" aria-hidden="true" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="7.9" r="3"/> <path d="M3.2 19.4a5.3 5.3 0 0 1 10.6 0"/> <circle cx="17.6" cy="12.6" r="1.9"/> <path d="M14.4 19.4a3.2 3.2 0 0 1 6.4 0"/> <path d="M17.6 6.9A4.225 4.225 0 0 1 19.0 8.3A4.225 4.225 0 0 1 17.6 9.7A4.225 4.225 0 0 1 16.2 8.3A4.225 4.225 0 0 1 17.6 6.9Z" fill="currentColor" stroke="none"/></svg><p class="eyebrow">Pass it on</p><h3>Succession</h3><p>Where the will is, roles, trusts, beneficiaries and talking to the next generation.</p></article>
+        <article class="card"><svg class="plate" aria-hidden="true" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><p class="eyebrow">About you</p><h3>Financial Identity</h3><p>Who the money is for, how long it can wait and what you would do in a bad year.</p></article>
+        <article class="card is-later"><p class="eyebrow">Later</p><h3>Side branches</h3><p>Philanthropy, owning a business, property and moving country, as the Map grows.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band final">
+    <div class="wrap">
+      <h2>Start learning with your own household.</h2>
+      <p>Learn is free in every plan: every path, badge and certificate.</p>
+      <a class="key key-l key-white" href="waitlist.html">Start for free</a>
+      <p class="final-alt"><a class="link" href="pricing.html">Compare the plans<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></p>
+    </div>
+  </section>
+</main>
+
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a class="foot-lockup" href="./" aria-label="Finna, home">
+          <svg viewBox="38.75 38.75 50.5 50.5" fill="none" aria-hidden="true" class="foot-mark">
+            <circle cx="57" cy="57" r="16.5" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="71" cy="57" r="16.5" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="71" cy="71" r="16.5" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="57" cy="71" r="16.5" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M64 56.06 A16.5 16.5 0 0 1 71.94 64 A16.5 16.5 0 0 1 64 71.94
+                     A16.5 16.5 0 0 1 56.06 64 A16.5 16.5 0 0 1 64 56.06 Z" fill="currentColor"/>
+          </svg>
+          <b>Finna</b>
+        </a>
+        <p class="small" style="color:rgba(255,255,255,.7);margin-top:var(--space-5);max-width:34ch">
+          Your own family office. Everything you own in one place, and a door that opens on
+          what you understand.</p>
+        <!-- FREYA IS NAMED BEFORE SHE EXISTS. The note said so on hover rather than a link
+             that goes nowhere (Rose, 11 Sep 2026). She launches with the site (Christian,
+             27 Sep 2026), so the note is gone and the name stands on its own. -->
+        <span class="freya">
+          <svg class="ring" viewBox="39 39 50 50" fill="none" aria-hidden="true">
+              <circle cx="57" cy="57" r="16.5" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="71" cy="57" r="16.5" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="71" cy="71" r="16.5" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="57" cy="71" r="16.5" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          <span style="color:rgba(255,255,255,.78);font-size:var(--text-label)">Freya, your AI chief of staff</span>
+        </span>
+      </div>
+
+      <div>
+        <h3>The office</h3>
+        <ul>
+          <li><a href="what-is-a-family-office.html">What is a family office?</a></li>
+          <li><a href="your-family-office.html">Your family office</a></li>
+          <li><a href="how-it-works.html">How it works</a></li>
+          <li><a href="learn.html">Learn</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="security.html">Security</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>The five desks</h3>
+        <ul>
+          <li><a href="records.html">Records</a></li>
+          <li><a href="policy.html">Policy</a></li>
+          <li><a href="investment.html">Investment</a></li>
+          <li><a href="protection.html">Protection</a></li>
+          <li><a href="succession.html">Succession</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Finna</h3>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="privacy.html">Privacy</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- THE FOOTER DISCLAIMER IS ONE SHORT PARAGRAPH (Christian, 27 Sep 2026). Finna is not
+         registered or regulated anywhere yet and gives no investment advice: it is a technology
+         platform. So the US and EU regulatory paragraphs and the fund risk warning came out
+         (they are in git history). Bring regulatory language back only when a registration
+         actually exists, and with counsel. -->
+    <div class="legal">
+      <p>Finna is a technology platform that helps people organize and understand their finances.
+        Finna Inc. is not currently registered with or regulated by any financial
+        authority, and does not provide investment, tax or legal advice. Nothing on this site is
+        an offer or solicitation to buy or sell any security or investment.</p>
+
+      <p class="legal-c">&copy; 2026 Finna Inc. &middot; United States &middot; USD
+        &middot; All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+<script>
+</script>
+<!-- BACK TO TOP, back from the 2026-09 site (Rose, 12 Sep 2026). The hard key as a
+     circle; it appears once the header is behind you and is a plain anchor, so it
+     works with the script off. -->
+<a class="to-top" href="#top" aria-label="Back to top"><svg width="22" height="22" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg></a>
+
+<script src="vendor/lenis.min.js?v=daec1872"></script>
+<script src="vendor/smooth-scroll.js?v=cb7b0132" defer></script>
+<script src="nav-site.js?v=4483fad9"></script>
+</body>
+</html>

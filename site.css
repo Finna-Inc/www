@@ -129,7 +129,11 @@ section{padding:var(--space-8) 0}
   transform:translateY(calc(var(--ko) / 2)); box-shadow:0 calc(var(--ko) / 2) 0 var(--primary-pressed), inset 0 1px 0 rgba(255,255,255,.18)}
 .key:active{transform:translateY(var(--ko));background-color:var(--primary-pressed);
   box-shadow:0 0 0 var(--primary-pressed), inset 0 1px 0 rgba(255,255,255,.10)}
-.key:focus-visible{outline:2px solid var(--primary);outline-offset:3px}
+/* the focus ring holds the shelf too — the same gap all round (the brand's rule, 29 Sep 2026) */
+.key:focus-visible{outline:none;position:relative}
+.key:focus-visible::before{--kfo:3px;content:"";position:absolute;pointer-events:none;
+  inset:calc(-1 * var(--kfo)) calc(-1 * var(--kfo)) calc(-1 * (var(--kfo) + var(--ko))) calc(-1 * var(--kfo));
+  border:2px solid var(--primary);border-radius:calc(var(--kr) + var(--kfo))}
 .key svg{width:var(--kicon);height:var(--kicon);flex:none}
 
 .key-s{--kh:var(--key-height-s);--kr:var(--key-radius-s);--ko:var(--key-offset-s);
@@ -159,7 +163,7 @@ section{padding:var(--space-8) 0}
   transform:translateY(calc(var(--ko) / 2)); box-shadow:0 calc(var(--ko) / 2) 0 color-mix(in srgb,var(--gold) 62%,var(--black)), inset 0 1px 0 rgba(255,255,255,.30)}
 .key-gold:active{background-color:color-mix(in srgb,var(--gold) 86%,var(--black));
   box-shadow:0 0 0 color-mix(in srgb,var(--gold) 62%,var(--black))}
-.key-gold:focus-visible{outline-color:var(--gold)}
+.key-gold:focus-visible::before{border-color:var(--gold)}
 
 /* SECONDARY — outlined, the offset alone and no face */
 .key-2{background:transparent;background-image:none;color:var(--primary);
@@ -257,6 +261,11 @@ section{padding:var(--space-8) 0}
      44ch and full white. Every line then clears 5:1 (the h1 3.6:1) from 1100 to 2560. */
   html[data-cover="your-family-office"] .hero-cover > .inner{padding-bottom:var(--space-7)}
   html[data-cover="your-family-office"] .hero-cover .lede{max-width:44ch;color:var(--white)}
+  /* LEARN'S STEPS (29 Sep 2026). The words sit on the dark heather at the foot of the slope, but
+     the sunlit stone steps climb in from the right at the height of the lede, which measured
+     4.6:1 at 1100 where "own numbers" reached them. The lede is held to 44ch, off the steps, and
+     full white. Every line then clears 4.5:1 (most 7:1 or better) from 1100 to 2560. */
+  html[data-cover="learn"] .hero-cover .lede{max-width:44ch;color:var(--white)}
 }
 @supports not (height:100svh){@media (width >= 1100px){
   .hero-cover{min-height:min(100vh,max(36rem,56.25vw))}}}
@@ -529,6 +538,14 @@ figcaption{margin-top:var(--space-4);color:var(--text-tertiary);font-size:var(--
 .band-violet .rule{margin:var(--space-7) 0}
 /* the handoff line into the desks: its own beat, in the dark ground's gold */
 .band-violet .idea-key{margin-top:var(--space-5);color:var(--gold-light);font-weight:var(--weight-heading)}
+/* the transition's pull line breaks evenly, so a phone never leaves "office." on its own line
+   (Christian, 28 Sep 2026) */
+.band-violet .pull{text-wrap:balance}
+/* THE WORDS SIT ABOVE THE MARK'S GROUND. The mark paints the band's colour 64px past its own
+   box (see .idea-mark below); stacked on a phone, that ground covered the descenders of the
+   gold line above it. The words column is lifted over it; the mark's light is untouched,
+   because nothing of the words sits behind the light. */
+.idea-row > div:first-child{position:relative;z-index:1}
 
 /* ── home-01 · the idea ── the words on the left, Freya large on the right ──────
    Two columns that become one below 900, where the mark drops under the words at a size
@@ -1948,3 +1965,57 @@ body:has(.nav-links.open) .to-top{opacity:0;pointer-events:none}
 
 /* beside the app's family tree the three steps run down, not across */
 .fam-row .steps3{grid-template-columns:minmax(0,1fr);gap:var(--space-5)}
+
+/* ══ POLICY · IN PLAIN ENGLISH (Christian, 28 Sep 2026) ═══════════════════════════════
+   An example household policy as a family would write it: a card of plain rows, the question
+   on the left and the family's answer beside it; on a phone the answer drops under its
+   question. The card is a box, so it keeps its left edge when the split centres on a phone. */
+.pol-eg{margin:0;padding:var(--space-5) var(--space-6)}
+.pol-eg > .eyebrow{color:var(--text-link);margin-bottom:var(--space-4)}
+.pol-eg dl{margin:0}
+.pol-eg dl > div{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);gap:var(--space-4);
+  padding:var(--space-3) 0;border-top:var(--line-hairline) solid var(--border)}
+.pol-eg dt{font-size:var(--text-label);line-height:1.5;color:var(--text-secondary)}
+.pol-eg dd{margin:0;font-size:var(--text-reading);line-height:1.45;color:var(--text)}
+.pol-eg figcaption{margin-top:var(--space-4);max-width:none}
+.split > div > h2 + .lede{margin-top:var(--space-5)}
+.pol-yours{margin-top:var(--space-5)}
+.pol-yours li{line-height:1.55;color:var(--text-secondary)}
+.pol-yours b{color:var(--text)}
+@media (max-width:700px){.split .pol-eg,.split .pol-yours{text-align:left}}
+@media (max-width:560px){
+  .pol-eg{padding:var(--space-5)}
+  .pol-eg dl > div{grid-template-columns:minmax(0,1fr);gap:var(--space-1)}
+}
+
+/* ══ LEARN · the page (Christian, 29 Sep 2026) ═════════════════════════════════════════
+   Built from what the site already has: the app shown in its quiet frames (.app-show, .app-shot,
+   the phone screen on a phone), the three numbered steps beside a screen (.fam-row), cards and
+   the split. Only what those needed on a light ground, and the grid of branches, is new here. */
+.learn-map .app-show-cap{color:var(--text-secondary)}
+.learn-map .app-show-cap b{color:var(--text)}
+.learn-id .learn-q{margin:var(--space-5) 0}
+.learn-q li{line-height:1.55;color:var(--text-secondary)}
+.learn-q b{color:var(--text)}
+.learn-id-p{color:var(--text-secondary)}
+.learn-id .cta-row{margin-top:var(--space-4)}
+.learn-id{align-items:center}
+.learn-earned{max-inline-size:920px;margin:var(--space-7) auto 0}
+.learn-note{margin:var(--space-5) auto 0;max-width:72ch;text-align:center}
+.learn-branches .card{display:flex;flex-direction:column}
+.learn-branches .card > .eyebrow{color:var(--text-link)}
+.learn-branches .is-later{border-style:dashed;background:transparent}
+@media (max-width:700px){.split .learn-q,.split .learn-id-p{text-align:left}}
+/* Home · Learn your way in: the app's Map on a phone, where the Learn clip was */
+.learn-sec .learn-phone{inline-size:100%;max-inline-size:360px;justify-self:center}
+.learn-sec .learn-phone .frame{border-radius:calc(var(--r-card) * 2)}
+.learn-sec .learn-phone figcaption{text-align:center}
+/* on a phone the eight branches become a list: the icon beside the words, like the desk nav */
+@media (max-width:600px){
+  .learn-branches{gap:var(--space-3)}
+  .learn-branches .card{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:var(--space-4);
+    align-items:start;padding:var(--space-4)}
+  .learn-branches .card .plate{grid-row:1 / span 3;inline-size:32px;block-size:32px;margin:0}
+  .learn-branches .card > :not(.plate){grid-column:2}
+  .learn-branches .is-later > *{grid-column:1 / -1}
+}
