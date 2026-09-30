@@ -43,7 +43,7 @@
 <link rel="stylesheet" href="vendor/lenis.css?v=599bcc02">
 <link rel="stylesheet" href="hero-home.css?v=62a9cc27">
 <link rel="stylesheet" href="hero-tones.css?v=3e8ff81a">
-<link rel="stylesheet" href="desks-home.css?v=8e658534">
+<link rel="stylesheet" href="desks-home.css?v=33e6a11f">
 <!-- A DIFFERENT HERO EACH VISIT (Rose, 13 Sep 2026). In the <head> on purpose: it sets
      the custom property before the hero has painted, so there is no flash of one picture
      being replaced by another, and only the chosen file is ever fetched. N is the count
@@ -211,9 +211,11 @@ r.dataset.hero=i;})();</script>
        ONE BY ONE, ON THE SCROLL (Christian, 29 Sep 2026: "we want the five desks to emerge when you
        scroll. We have a user problem with people having to click ... for each of them to continue").
        No keys to press: every desk comes to you in turn. The words and the desk as the app shows it
-       are the same as the tabbed version of the same day (mockups/five-desks-sandbox.html): one
-       question about the family's own money, its "Held to" line and the way inside, beside Freya's
-       answer on the desk's own scene ground, the desk's picture, what needs you and what she noticed.
+       are the same as the tabbed version of the same day (mockups/five-desks-sandbox.html), CUT TO A
+       GLANCE the same day (Christian: "too much text in and outside the visuals ... it needs to be a
+       quick scroll and understanding so that the user want to know more"): beside each window, the
+       desk, its question, one line and the way inside; in the window, the desk and its state, Freya's
+       answer and the picture, and nothing else. The detail lives on the desk pages.
        The Johnsens, the sample household of the app screenshots, with the app's own figures.
        MONEY IS SHOWN ON THE MAP (Christian, 29 Sep 2026: "the core approach to show investments for
        finna is the treemap"): Records and Investment carry the app's treemap, live, a block opening
@@ -236,8 +238,8 @@ r.dataset.hero=i;})();</script>
       <div class="section-head fd-head">
         <p class="eyebrow">The platform</p>
         <h2 id="fd-h">Five desks, one office.</h2>
-        <p class="lede hw-head-lede">Every family office runs the same five desks. Finna runs them from one
-          household record, and each desk tells you, in plain words, what needs you today.</p>
+        <p class="lede hw-head-lede">Every family office runs the same five desks. Finna runs all five from one
+          household record.</p>
       </div>
 
       <div class="fd-x" data-fd>
@@ -260,29 +262,21 @@ r.dataset.hero=i;})();</script>
               <span class="fd-w-plate"><svg class="plate" width="40" height="40" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.6" cy="12.4" r="2.3"/><circle cx="16.4" cy="12.4" r="2.3"/><path d="M3.9 20v-.5a3.7 3.7 0 0 1 7.4 0V20"/><path d="M12.7 20v-.5a3.7 3.7 0 0 1 7.4 0V20"/><path d="M12 3.1A5.734 5.734 0 0 1 13.9 5A5.734 5.734 0 0 1 12 6.9A5.734 5.734 0 0 1 10.1 5A5.734 5.734 0 0 1 12 3.1Z" fill="currentColor" stroke="none"/></svg><span>01</span></span>
               <p class="eyebrow">Records &middot; Gather it</p>
               <h3 id="fd-q-records">What do we have, and where is it?</h3>
-              <p>Every account, property, policy, document and adviser, entered once. The other four desks
-                all read from it.</p>
-              <p class="fd-held"><span>Held to</span>Reconciled, not estimated.</p>
+              <p>Everything the family owns and owes, entered once.</p>
               <a class="link" href="records.html">Inside Records<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
             </div>
             <figure class="fd-screen is-records" data-k="0">
               <div class="fd-app">
-                <div class="fd-app-h"><b>Records</b><span class="fd-ok">Open</span><span class="fd-lt"><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M11 20.5Q3.2 11.5 11 1.5Q18.8 11.5 11 20.5Z"/></svg>+40 XP</span></div>
+                <div class="fd-app-h"><b>Records</b><span class="fd-st att">2 to check</span></div>
                 <div class="fd-scene">
-                  <div class="fd-fy"><svg class="fd-mk" viewBox="39 39 50 50" aria-hidden="true" data-state="ready"><path class="core" d="M64 56.06 A16.5 16.5 0 0 1 71.94 64 A16.5 16.5 0 0 1 64 71.94 A16.5 16.5 0 0 1 56.06 64 A16.5 16.5 0 0 1 64 56.06 Z"/><circle class="r r1" cx="57" cy="57" r="16.5"/><circle class="r r2" cx="71" cy="57" r="16.5"/><circle class="r r3" cx="71" cy="71" r="16.5"/><circle class="r r4" cx="57" cy="71" r="16.5"/></svg><span><span class="eyebrow">Freya &middot; your AI chief of staff</span><span class="fd-fy-m">Records &middot; Thursday, September 24</span></span></div>
+                  <div class="fd-fy"><svg class="fd-mk" viewBox="39 39 50 50" aria-hidden="true" data-state="ready"><path class="core" d="M64 56.06 A16.5 16.5 0 0 1 71.94 64 A16.5 16.5 0 0 1 64 71.94 A16.5 16.5 0 0 1 56.06 64 A16.5 16.5 0 0 1 64 56.06 Z"/><circle class="r r1" cx="57" cy="57" r="16.5"/><circle class="r r2" cx="71" cy="57" r="16.5"/><circle class="r r3" cx="71" cy="71" r="16.5"/><circle class="r r4" cx="57" cy="71" r="16.5"/></svg><span class="eyebrow">Freya &middot; your AI chief of staff</span></div>
                   <p class="fd-ans">$3.19M is yours, and two figures need checking.</p>
-                  <p class="fd-sub">Everything you own comes to $4.1M, less the $904K you owe.</p>
                   <div class="fd-map" data-fd-map data-root="All you own" data-of="what you own" data-leaf="In the app, each opens its source">
                     <div class="fd-map-h"><nav class="fd-crumbs" aria-label="Where you are on the map"><span aria-current="page">All you own</span></nav><span class="fd-map-sum">$4,098,500</span><span class="fd-map-hint"></span></div>
                     <div class="fd-tv" role="group" aria-label="What you own, as blocks sized by value. Select a block to open it"><ol class="fd-tv-flat"><li style="--v:48.1;--c:var(--primary-pressed);--ink:var(--white)"><b>Property</b><span>$1.97M</span></li><li style="--v:27.5;--c:var(--primary);--ink:var(--white)"><b>Listed shares</b><span>$1.13M</span></li><li style="--v:13.0;--c:var(--primary-hover);--ink:var(--white)"><b>Bonds</b><span>$532K</span></li><li style="--v:6.6;--c:var(--primary-72);--ink:var(--white)"><b>Private markets</b><span>$270K</span></li><li style="--v:3.3;--c:var(--primary-48);--ink:var(--black)"><b>Cash</b><span>$136K</span></li><li style="--v:1.6;--c:var(--primary-24);--ink:var(--black)"><b>Valuables and vehicles</b><span>$65K</span></li></ol></div>
                     <p class="fd-map-more" hidden></p>
                     <script type="application/json">{"total":4098500,"nodes":[{"k":"pp","l":"Property","v":1970000,"kids":[{"k":"a1","l":"Home, Edina","s":"Held jointly","v":1450000},{"k":"a2","l":"Lake cabin, Gull Lake","s":"Held jointly","v":520000}],"s":"2 properties"},{"k":"eq","l":"Listed shares","v":1125200,"kids":[{"k":"a5","l":"Brokerage account","s":"Michael","v":380000},{"k":"a7-eq","l":"SEP IRA · stock funds","s":"Michael","v":328800},{"k":"a8-eq","l":"401(k) · stock funds","s":"Lauren","v":241800},{"k":"a6","l":"Employer stock (RSUs), vested","s":"Lauren","v":134000},{"k":"a14-eq","l":"529 plan for Oscar · stock funds","s":"Michael","v":40600}],"s":"5 accounts"},{"k":"fx","l":"Bonds","v":531800,"kids":[{"k":"a7-fx","l":"SEP IRA · bond funds","s":"Michael","v":219200},{"k":"a9","l":"Treasury ladder","s":"Michael","v":165000},{"k":"a8-fx","l":"401(k) · bond funds","s":"Lauren","v":130200},{"k":"a14-fx","l":"529 plan for Oscar · bond funds","s":"Michael","v":17400}],"s":"4 accounts"},{"k":"pr","l":"Private markets","v":270000,"kids":[{"k":"a10","l":"Johnsen Advisory LLC","s":"Michael’s company","v":225000},{"k":"a11","l":"Lakes Seed Fund II","s":"Held jointly","v":45000}],"s":"2 accounts"},{"k":"ca","l":"Cash","v":136500,"kids":[{"k":"a4","l":"Emergency savings","s":"Held jointly","v":95000},{"k":"a3","l":"Joint checking","s":"Held jointly","v":41500}],"s":"2 accounts"},{"k":"vv","l":"Valuables and vehicles","v":65000,"kids":[{"k":"a13","l":"Car, Toyota Highlander","s":"Held jointly","v":38000},{"k":"a12","l":"Art and prints","s":"Lauren","v":27000}],"s":"2 items"}]}</script>
                   </div>
-                  <p class="fd-src">Every figure keeps its source and its date.</p>
-                  <ul class="fd-tiles">
-                    <li class="att"><span class="fd-lab att">Needs you</span><b class="fd-n">2</b><span>figures are past the date you set for checking.</span></li>
-                    <li><span class="fd-lab">Noticed</span><b class="fd-n">+$63,700</b><span>since Sep 2, across three lines.</span></li>
-                  </ul>
                 </div>
               </div>
             </figure>
@@ -294,31 +288,21 @@ r.dataset.hero=i;})();</script>
               <span class="fd-w-plate"><svg class="plate" width="40" height="40" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="12.6" height="12.6" rx="4"/><path d="M6.5 14.4 9 16.9 13.5 11.6"/><path d="M8 8V6.6A2.6 2.6 0 0 1 10.6 4h7.8A2.6 2.6 0 0 1 21 6.6V15a2.6 2.6 0 0 1-2.6 2.6h-2.8"/></svg><span>02</span></span>
               <p class="eyebrow">Policy &middot; Govern it</p>
               <h3 id="fd-q-policy">Are we keeping to our own rules?</h3>
-              <p>Your family&rsquo;s rules for its money, in plain words: how much in each kind of investment,
-                and how much cash to keep at hand. Checked against what you own, every day.</p>
-              <p class="fd-held"><span>Held to</span>The policy your household agreed, not a benchmark we chose.</p>
+              <p>Your family&rsquo;s own rules for its money, checked every day.</p>
               <a class="link" href="policy.html">Inside Policy<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
             </div>
             <figure class="fd-screen is-policy" data-k="1">
               <div class="fd-app">
-                <div class="fd-app-h"><b>Policy</b><span class="fd-ok">Open</span><span class="fd-lt"><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M11 20.5Q3.2 11.5 11 1.5Q18.8 11.5 11 20.5Z"/></svg>+40 XP</span></div>
+                <div class="fd-app-h"><b>Policy</b><span class="fd-st att">Outside a range</span></div>
                 <div class="fd-scene">
-                  <div class="fd-fy"><svg class="fd-mk" viewBox="39 39 50 50" aria-hidden="true" data-state="ready"><path class="core" d="M64 56.06 A16.5 16.5 0 0 1 71.94 64 A16.5 16.5 0 0 1 64 71.94 A16.5 16.5 0 0 1 56.06 64 A16.5 16.5 0 0 1 64 56.06 Z"/><circle class="r r1" cx="57" cy="57" r="16.5"/><circle class="r r2" cx="71" cy="57" r="16.5"/><circle class="r r3" cx="71" cy="71" r="16.5"/><circle class="r r4" cx="57" cy="71" r="16.5"/></svg><span><span class="eyebrow">Freya &middot; your AI chief of staff</span><span class="fd-fy-m">Policy &middot; Thursday, September 24</span></span></div>
+                  <div class="fd-fy"><svg class="fd-mk" viewBox="39 39 50 50" aria-hidden="true" data-state="ready"><path class="core" d="M64 56.06 A16.5 16.5 0 0 1 71.94 64 A16.5 16.5 0 0 1 64 71.94 A16.5 16.5 0 0 1 56.06 64 A16.5 16.5 0 0 1 64 56.06 Z"/><circle class="r r1" cx="57" cy="57" r="16.5"/><circle class="r r2" cx="71" cy="57" r="16.5"/><circle class="r r3" cx="71" cy="71" r="16.5"/><circle class="r r4" cx="57" cy="71" r="16.5"/></svg><span class="eyebrow">Freya &middot; your AI chief of staff</span></div>
                   <p class="fd-ans">Listed shares are 1.2 points over your ceiling.</p>
-                  <p class="fd-sub">Version 2, agreed by Michael and Lauren. Nothing is traded: what to do about it is the
-                    household&rsquo;s decision.</p>
                   <div class="fd-rg" role="img" aria-label="What the household invests, against its own ranges: listed shares 61.2 percent, over the 45 to 60 percent range; bonds 28.9 percent, inside 15 to 35; cash 7.4 percent, inside 5 to 15; private markets 2.4 percent, inside 0 to 15">
-                    <div class="r is-out" style="--lo:45;--hi:60;--t:55;--v:61.2"><span class="rn">Listed shares</span><span class="rt"><i class="band"></i><i class="tgt"></i><i class="now"></i></span><span class="rv"><b>61.2%</b></span><span class="rs">range 45&ndash;60%</span></div>
-                    <div class="r" style="--lo:15;--hi:35;--t:25;--v:28.9"><span class="rn">Bonds</span><span class="rt"><i class="band"></i><i class="tgt"></i><i class="now"></i></span><span class="rv"><b>28.9%</b></span><span class="rs">range 15&ndash;35%</span></div>
-                    <div class="r" style="--lo:5;--hi:15;--t:10;--v:7.4"><span class="rn">Cash</span><span class="rt"><i class="band"></i><i class="tgt"></i><i class="now"></i></span><span class="rv"><b>7.4%</b></span><span class="rs">range 5&ndash;15%</span></div>
-                    <div class="r" style="--lo:0;--hi:15;--t:10;--v:2.4"><span class="rn">Private markets</span><span class="rt"><i class="band"></i><i class="tgt"></i><i class="now"></i></span><span class="rv"><b>2.4%</b></span><span class="rs">range 0&ndash;15%</span></div>
-                    <div class="rk"><span><i class="k-band"></i>Your range</span><span><i class="k-tgt"></i>Your target</span><span><i class="k-now"></i>Today</span></div>
+                    <div class="r is-out" style="--lo:45;--hi:60;--t:55;--v:61.2"><span class="rn">Listed shares</span><span class="rt"><i class="band"></i><i class="tgt"></i><i class="now"></i></span><span class="rv"><b>61.2%</b></span></div>
+                    <div class="r" style="--lo:15;--hi:35;--t:25;--v:28.9"><span class="rn">Bonds</span><span class="rt"><i class="band"></i><i class="tgt"></i><i class="now"></i></span><span class="rv"><b>28.9%</b></span></div>
+                    <div class="r" style="--lo:5;--hi:15;--t:10;--v:7.4"><span class="rn">Cash</span><span class="rt"><i class="band"></i><i class="tgt"></i><i class="now"></i></span><span class="rv"><b>7.4%</b></span></div>
+                    <div class="r" style="--lo:0;--hi:15;--t:10;--v:2.4"><span class="rn">Private markets</span><span class="rt"><i class="band"></i><i class="tgt"></i><i class="now"></i></span><span class="rv"><b>2.4%</b></span></div>
                   </div>
-                  <p class="fd-src">Policy version 2 &middot; computed from the record today</p>
-                  <ul class="fd-tiles">
-                    <li class="att"><span class="fd-lab att">Needs you</span><b class="fd-n">61.2%</b><span>of what you invest is in listed shares, above your 60% ceiling.</span></li>
-                    <li><span class="fd-lab">Noticed</span><b class="fd-n">58%</b><span>of what your three goals need is linked to them today.</span></li>
-                  </ul>
                 </div>
               </div>
             </figure>
@@ -330,29 +314,21 @@ r.dataset.hero=i;})();</script>
               <span class="fd-w-plate"><svg class="plate" width="40" height="40" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3.6" y="13.6" width="3.8" height="6.8" rx="1.9"/><rect x="9.1" y="10.4" width="3.8" height="10" rx="1.9"/><rect x="14.6" y="7" width="3.8" height="13.4" rx="1.9"/><path d="M16.5 1.6A5.734 5.734 0 0 1 18.4 3.5A5.734 5.734 0 0 1 16.5 5.4A5.734 5.734 0 0 1 14.6 3.5A5.734 5.734 0 0 1 16.5 1.6Z" fill="currentColor" stroke="none"/></svg><span>03</span></span>
               <p class="eyebrow">Investment &middot; Grow it</p>
               <h3 id="fd-q-investment">What do we hold, and does it match our policy?</h3>
-              <p>Everything you hold, in every account and every name, read as one mix and measured
-                against your own policy.</p>
-              <p class="fd-held"><span>Held to</span>The whole portfolio in one view, and nothing recommended.</p>
+              <p>Every account and every fund, on one map.</p>
               <a class="link" href="investment.html">Inside Investment<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
             </div>
             <figure class="fd-screen is-investment" data-k="2">
               <div class="fd-app">
-                <div class="fd-app-h"><b>Investment</b><span class="fd-ok">Open</span><span class="fd-lt"><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M11 20.5Q3.2 11.5 11 1.5Q18.8 11.5 11 20.5Z"/></svg>+40 XP</span></div>
+                <div class="fd-app-h"><b>Investment</b><span class="fd-st ok">Up to date</span></div>
                 <div class="fd-scene">
-                  <div class="fd-fy"><svg class="fd-mk" viewBox="39 39 50 50" aria-hidden="true" data-state="ready"><path class="core" d="M64 56.06 A16.5 16.5 0 0 1 71.94 64 A16.5 16.5 0 0 1 64 71.94 A16.5 16.5 0 0 1 56.06 64 A16.5 16.5 0 0 1 64 56.06 Z"/><circle class="r r1" cx="57" cy="57" r="16.5"/><circle class="r r2" cx="71" cy="57" r="16.5"/><circle class="r r3" cx="71" cy="71" r="16.5"/><circle class="r r4" cx="57" cy="71" r="16.5"/></svg><span><span class="eyebrow">Freya &middot; your AI chief of staff</span><span class="fd-fy-m">Investment &middot; Thursday, September 24</span></span></div>
+                  <div class="fd-fy"><svg class="fd-mk" viewBox="39 39 50 50" aria-hidden="true" data-state="ready"><path class="core" d="M64 56.06 A16.5 16.5 0 0 1 71.94 64 A16.5 16.5 0 0 1 64 71.94 A16.5 16.5 0 0 1 56.06 64 A16.5 16.5 0 0 1 64 56.06 Z"/><circle class="r r1" cx="57" cy="57" r="16.5"/><circle class="r r2" cx="71" cy="57" r="16.5"/><circle class="r r3" cx="71" cy="71" r="16.5"/><circle class="r r4" cx="57" cy="71" r="16.5"/></svg><span class="eyebrow">Freya &middot; your AI chief of staff</span></div>
                   <p class="fd-ans">$4.26M invested, across six asset classes.</p>
-                  <p class="fd-sub">Fourteen accounts, in two names, a joint account and a family trust, on one map: every class, every account, every fund.</p>
                   <div class="fd-map" data-fd-map data-root="All investments" data-of="your investments" data-leaf="Each is its share of the latest statement" data-colors="class">
                     <div class="fd-map-h"><nav class="fd-crumbs" aria-label="Where you are on the map"><span aria-current="page">All investments</span></nav><span class="fd-map-sum">$4,260,000</span><span class="fd-map-hint"></span></div>
                     <div class="fd-tv" role="group" aria-label="Your investments, as blocks sized by value. Select a block to open it"><ol class="fd-tv-flat"><li style="--v:44.1;--c:var(--d-equities);--ink:var(--white)"><b>Shares</b><span>$1.88M</span></li><li style="--v:21.8;--c:var(--d-fixed);--ink:var(--white)"><b>Bonds</b><span>$930K</span></li><li style="--v:14.1;--c:var(--d-private);--ink:var(--white)"><b>Private markets</b><span>$600K</span></li><li style="--v:8.9;--c:var(--d-real);--ink:var(--white)"><b>Real estate</b><span>$380K</span></li><li style="--v:6.1;--c:var(--d-cash);--ink:var(--black)"><b>Cash</b><span>$260K</span></li><li style="--v:4.9;--c:var(--l-property);--ink:var(--white)"><b>Infrastructure</b><span>$210K</span></li></ol></div>
                     <p class="fd-map-more" hidden></p>
                     <script type="application/json">{"total":4260000,"nodes":[{"k":"eq","l":"Shares","s":"4 accounts","v":1880000,"kids":[{"k":"d-brk","l":"Brokerage account","s":"Daniel · taxable brokerage","v":720000,"kids":[{"k":"d-brk-p0","l":"US total market index fund","s":"Shares","v":331200},{"k":"d-brk-p1","l":"International developed index fund","s":"Shares","v":172800},{"k":"d-brk-p2","l":"Individual shares · 9 companies","s":"Shares","v":144000},{"k":"d-brk-p3","l":"Emerging markets index fund","s":"Shares","v":72000}]},{"k":"s-401k-eq","l":"401(k) · stock funds","s":"Sofia · 401(k)","v":540000,"kids":[{"k":"s-401k-eq-p0","l":"US large-company index fund","s":"Shares","v":324000},{"k":"s-401k-eq-p1","l":"International index fund","s":"Shares","v":135000},{"k":"s-401k-eq-p2","l":"US small-company fund","s":"Shares","v":81000}]},{"k":"d-ira-eq","l":"IRA · stock funds","s":"Daniel · IRA","v":380000,"kids":[{"k":"d-ira-eq-p0","l":"Global shares index fund","s":"Shares","v":266000},{"k":"d-ira-eq-p1","l":"US dividend fund","s":"Shares","v":114000}]},{"k":"t-eq","l":"Family trust · shares","s":"Family trust · trust account","v":240000,"kids":[{"k":"t-eq-p0","l":"Global shares index fund","s":"Shares","v":240000}]}]},{"k":"fx","l":"Bonds","s":"4 accounts","v":930000,"kids":[{"k":"j-tsy","l":"Treasury ladder","s":"Joint · taxable brokerage","v":360000,"kids":[{"k":"j-tsy-p0","l":"US Treasury note · 2027","s":"Bonds","v":90000},{"k":"j-tsy-p1","l":"US Treasury note · 2028","s":"Bonds","v":90000},{"k":"j-tsy-p2","l":"US Treasury note · 2029","s":"Bonds","v":90000},{"k":"j-tsy-p3","l":"US Treasury note · 2030","s":"Bonds","v":90000}]},{"k":"j-muni","l":"Municipal bonds","s":"Joint · taxable brokerage","v":250000,"kids":[{"k":"j-muni-p0","l":"State general obligation bonds","s":"Bonds","v":150000},{"k":"j-muni-p1","l":"City water revenue bonds","s":"Bonds","v":100000}]},{"k":"s-401k-fx","l":"401(k) · bond funds","s":"Sofia · 401(k)","v":180000,"kids":[{"k":"s-401k-fx-p0","l":"Core bond fund","s":"Bonds","v":180000}]},{"k":"d-ira-fx","l":"IRA · bond funds","s":"Daniel · IRA","v":140000,"kids":[{"k":"d-ira-fx-p0","l":"Aggregate bond index fund","s":"Bonds","v":98000},{"k":"d-ira-fx-p1","l":"Inflation-protected bond fund","s":"Bonds","v":42000}]}]},{"k":"pr","l":"Private markets","s":"4 funds","v":600000,"kids":[{"k":"j-pe","l":"Private equity funds","s":"Joint · two limited partnerships","v":330000,"kids":[{"k":"j-pe-p0","l":"Buyout fund","s":"Private markets","v":210000},{"k":"j-pe-p1","l":"Growth equity fund","s":"Private markets","v":120000}]},{"k":"t-pc","l":"Private credit fund","s":"Family trust · limited partnership","v":170000,"kids":[{"k":"t-pc-p0","l":"Direct lending fund","s":"Private markets","v":170000}]},{"k":"d-vc","l":"Venture fund","s":"Daniel · limited partnership","v":100000,"kids":[{"k":"d-vc-p0","l":"Early-stage venture fund","s":"Private markets","v":100000}]}]},{"k":"re","l":"Real estate","s":"4 funds","v":380000,"kids":[{"k":"j-pre","l":"Private real estate fund","s":"Joint · limited partnership","v":230000,"kids":[{"k":"j-pre-p0","l":"Residential property fund","s":"Real estate","v":130000},{"k":"j-pre-p1","l":"Logistics property fund","s":"Real estate","v":100000}]},{"k":"d-reit","l":"Real estate index funds","s":"Daniel · IRA","v":150000,"kids":[{"k":"d-reit-p0","l":"US real estate index fund","s":"Real estate","v":100000},{"k":"d-reit-p1","l":"Global real estate index fund","s":"Real estate","v":50000}]}]},{"k":"ca","l":"Cash","s":"3 accounts","v":260000,"kids":[{"k":"j-mmf","l":"Money market fund","s":"Joint · brokerage cash","v":140000,"kids":[{"k":"j-mmf-p0","l":"Treasury money market fund","s":"Cash","v":140000}]},{"k":"j-sav","l":"High-yield savings","s":"Joint · bank deposits","v":80000,"kids":[{"k":"j-sav-p0","l":"Savings balance","s":"Cash","v":80000}]},{"k":"j-chk","l":"Checking","s":"Joint · bank deposits","v":40000,"kids":[{"k":"j-chk-p0","l":"Checking balance","s":"Cash","v":40000}]}]},{"k":"inf","l":"Infrastructure","s":"2 funds","v":210000,"kids":[{"k":"t-infra","l":"Private infrastructure fund","s":"Family trust · limited partnership","v":120000,"kids":[{"k":"t-infra-p0","l":"Core infrastructure fund","s":"Infrastructure","v":120000}]},{"k":"s-infra","l":"Infrastructure index fund","s":"Sofia · taxable brokerage","v":90000,"kids":[{"k":"s-infra-p0","l":"Global infrastructure index fund","s":"Infrastructure","v":90000}]}]}]}</script>
                   </div>
-                  <p class="fd-src">Read from Records &middot; as of each account&rsquo;s latest statement</p>
-                  <ul class="fd-tiles">
-                    <li><span class="fd-lab">Noticed</span><b class="fd-n">$60,000</b><span>went into the buyout fund on Sep 15, the third of five calls. $140,000 is still to come.</span></li>
-                    <li class="learn"><span class="fd-lab ok">Opens next</span><b class="fd-n">14 quests</b><span>Investment Foundation. It ends in a certificate.</span></li>
-                  </ul>
                 </div>
               </div>
             </figure>
@@ -364,33 +340,24 @@ r.dataset.hero=i;})();</script>
               <span class="fd-w-plate"><svg class="plate" width="40" height="40" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2 4.8 6v5.6c0 4.4 3 7.1 7.2 8.6 4.2-1.5 7.2-4.2 7.2-8.6V6Z"/><path d="M12 9.1A6.941 6.941 0 0 1 14.3 11.4A6.941 6.941 0 0 1 12 13.7A6.941 6.941 0 0 1 9.7 11.4A6.941 6.941 0 0 1 12 9.1Z" fill="currentColor" stroke="none"/></svg><span>04</span></span>
               <p class="eyebrow">Protection &middot; Protect it</p>
               <h3 id="fd-q-protection">What if something goes wrong?</h3>
-              <p>Every policy the family holds, what it covers and when it renews, seen together before anything
-                becomes a claim.</p>
-              <p class="fd-held"><span>Held to</span>Gaps named while they are still gaps.</p>
+              <p>Every policy, what it covers and when it renews.</p>
               <a class="link" href="protection.html">Inside Protection<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
             </div>
             <figure class="fd-screen is-protection" data-k="3">
               <div class="fd-app">
-                <div class="fd-app-h"><b>Protection</b><span class="fd-ok">Open</span><span class="fd-lt"><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M11 20.5Q3.2 11.5 11 1.5Q18.8 11.5 11 20.5Z"/></svg>+40 XP</span></div>
+                <div class="fd-app-h"><b>Protection</b><span class="fd-st att">Renews in 21 days</span></div>
                 <div class="fd-scene">
-                  <div class="fd-fy"><svg class="fd-mk" viewBox="39 39 50 50" aria-hidden="true" data-state="ready"><path class="core" d="M64 56.06 A16.5 16.5 0 0 1 71.94 64 A16.5 16.5 0 0 1 64 71.94 A16.5 16.5 0 0 1 56.06 64 A16.5 16.5 0 0 1 64 56.06 Z"/><circle class="r r1" cx="57" cy="57" r="16.5"/><circle class="r r2" cx="71" cy="57" r="16.5"/><circle class="r r3" cx="71" cy="71" r="16.5"/><circle class="r r4" cx="57" cy="71" r="16.5"/></svg><span><span class="eyebrow">Freya &middot; your AI chief of staff</span><span class="fd-fy-m">Protection &middot; Thursday, September 24</span></span></div>
-                  <p class="fd-ans">$3.26M insured, and the homeowners cover renews in 21 days.</p>
-                  <p class="fd-sub">Six policies, $9,030 a year in premiums.</p>
+                  <div class="fd-fy"><svg class="fd-mk" viewBox="39 39 50 50" aria-hidden="true" data-state="ready"><path class="core" d="M64 56.06 A16.5 16.5 0 0 1 71.94 64 A16.5 16.5 0 0 1 64 71.94 A16.5 16.5 0 0 1 56.06 64 A16.5 16.5 0 0 1 64 56.06 Z"/><circle class="r r1" cx="57" cy="57" r="16.5"/><circle class="r r2" cx="71" cy="57" r="16.5"/><circle class="r r3" cx="71" cy="71" r="16.5"/><circle class="r r4" cx="57" cy="71" r="16.5"/></svg><span class="eyebrow">Freya &middot; your AI chief of staff</span></div>
+                  <p class="fd-ans">$3.26M insured, across six policies.</p>
                   <div class="fd-ln-w">
-                    <p class="eyebrow">Renewals &middot; the next twelve months</p>
                     <ol class="fd-ln" aria-label="Cover renewing in the next twelve months">
                       <li class="is-today" style="--x:0;--i:0"><b>Today</b><span>Sep 24</span></li>
-                      <li class="is-att below" style="--x:5.8;--i:1"><b>Oct 15</b><span>Homeowners, the Edina home</span><em>in 21 days</em></li>
-                      <li style="--x:27.1;--i:2"><b>Jan 1 to 10</b><span>Life, health and the car</span></li>
-                      <li class="below" style="--x:43.3;--i:3"><b>Mar 1</b><span>Homeowners, the lake cabin</span></li>
+                      <li class="is-att below" style="--x:5.8;--i:1"><b>Oct 15</b><span>The home</span><em>in 21 days</em></li>
+                      <li style="--x:27.1;--i:2"><b>Jan 1 to 10</b><span>Life, health, car</span></li>
+                      <li class="below" style="--x:43.3;--i:3"><b>Mar 1</b><span>The lake cabin</span></li>
                     </ol>
                     <div class="fd-ln-ax" aria-hidden="true"><span>Oct</span><span>Nov</span><span>Dec</span><span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span></div>
                   </div>
-                  <p class="fd-src">From the six policies on file</p>
-                  <ul class="fd-tiles">
-                    <li class="att"><span class="fd-lab att">Needs you</span><b class="fd-n">21 days</b><span>until the homeowners cover on the Edina home renews.</span></li>
-                    <li><span class="fd-lab">Noticed</span><b class="fd-n">2</b><span>policies name beneficiaries chosen more than five years ago.</span></li>
-                  </ul>
                 </div>
               </div>
             </figure>
@@ -402,36 +369,23 @@ r.dataset.hero=i;})();</script>
               <span class="fd-w-plate"><svg class="plate" width="40" height="40" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="7.9" r="3"/><path d="M3.2 19.4a5.3 5.3 0 0 1 10.6 0"/><circle cx="17.6" cy="12.6" r="1.9"/><path d="M14.4 19.4a3.2 3.2 0 0 1 6.4 0"/><path d="M17.6 6.9A4.225 4.225 0 0 1 19.0 8.3A4.225 4.225 0 0 1 17.6 9.7A4.225 4.225 0 0 1 16.2 8.3A4.225 4.225 0 0 1 17.6 6.9Z" fill="currentColor" stroke="none"/></svg><span>05</span></span>
               <p class="eyebrow">Succession &middot; Pass it on</p>
               <h3 id="fd-q-succession">What happens next, and does the family know?</h3>
-              <p>The will, the people it names and the reasons behind it, kept together and read again on time.</p>
-              <p class="fd-held"><span>Held to</span>Written so the people who inherit it can read it before they inherit it.</p>
+              <p>The will and the people it names, read again on time.</p>
               <a class="link" href="succession.html">Inside Succession<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
             </div>
             <figure class="fd-screen is-succession" data-k="4">
               <div class="fd-app">
-                <div class="fd-app-h"><b>Succession</b><span class="fd-ok">Open</span><span class="fd-lt"><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M11 20.5Q3.2 11.5 11 1.5Q18.8 11.5 11 20.5Z"/></svg>+40 XP</span></div>
+                <div class="fd-app-h"><b>Succession</b><span class="fd-st">Due Dec 31</span></div>
                 <div class="fd-scene">
-                  <div class="fd-fy"><svg class="fd-mk" viewBox="39 39 50 50" aria-hidden="true" data-state="ready"><path class="core" d="M64 56.06 A16.5 16.5 0 0 1 71.94 64 A16.5 16.5 0 0 1 64 71.94 A16.5 16.5 0 0 1 56.06 64 A16.5 16.5 0 0 1 64 56.06 Z"/><circle class="r r1" cx="57" cy="57" r="16.5"/><circle class="r r2" cx="71" cy="57" r="16.5"/><circle class="r r3" cx="71" cy="71" r="16.5"/><circle class="r r4" cx="57" cy="71" r="16.5"/></svg><span><span class="eyebrow">Freya &middot; your AI chief of staff</span><span class="fd-fy-m">Succession &middot; Thursday, September 24</span></span></div>
+                  <div class="fd-fy"><svg class="fd-mk" viewBox="39 39 50 50" aria-hidden="true" data-state="ready"><path class="core" d="M64 56.06 A16.5 16.5 0 0 1 71.94 64 A16.5 16.5 0 0 1 64 71.94 A16.5 16.5 0 0 1 56.06 64 A16.5 16.5 0 0 1 64 56.06 Z"/><circle class="r r1" cx="57" cy="57" r="16.5"/><circle class="r r2" cx="71" cy="57" r="16.5"/><circle class="r r3" cx="71" cy="71" r="16.5"/><circle class="r r4" cx="57" cy="71" r="16.5"/></svg><span class="eyebrow">Freya &middot; your AI chief of staff</span></div>
                   <p class="fd-ans">The will is on file, last read 10 years ago.</p>
-                  <p class="fd-sub">Mirror wills for Michael and Lauren, signed May 12, 2016.</p>
                   <div class="fd-wl">
                     <ol class="fd-wl-l" aria-label="The will, from signing to the next reading">
-                      <li class="done" style="--i:0"><b>May 12, 2016</b><span>Signed</span></li>
-                      <li class="done" style="--i:1"><b>2019</b><span>Lauren named on Michael&rsquo;s life cover</span></li>
-                      <li class="done" style="--i:2"><b>2024</b><span>Emma turned 18</span></li>
-                      <li class="today" style="--i:3"><b>Today</b><span>10 years on</span></li>
-                      <li class="ahead" style="--i:4"><b>Dec 31, 2026</b><span>Read it again, by your date</span></li>
+                      <li class="done" style="--i:0"><b>2016</b><span>Signed</span></li>
+                      <li class="done" style="--i:1"><b>2024</b><span>Emma turned 18</span></li>
+                      <li class="today" style="--i:2"><b>Today</b><span>10 years on</span></li>
+                      <li class="ahead" style="--i:3"><b>Dec 31</b><span>Read it again</span></li>
                     </ol>
-                    <dl class="fd-pairs">
-                      <div><dt>Where the original is</dt><dd>Holm &amp; Reed LLP, Minneapolis</dd></div>
-                      <div><dt>Executors</dt><dd>The surviving spouse, then Andrew Holm</dd></div>
-                      <div><dt>The family</dt><dd>Three generations, five people</dd></div>
-                    </dl>
                   </div>
-                  <p class="fd-src">From the will on file and Records &middot; Family</p>
-                  <ul class="fd-tiles">
-                    <li><span class="fd-lab">Coming up</span><b class="fd-n">Dec 31</b><span>Read the will again, by the date you set.</span></li>
-                    <li><span class="fd-lab">Noticed</span><b class="fd-n">Andrew Holm</b><span>Your estate attorney has this open: read the wills again now Oscar is 15.</span></li>
-                  </ul>
                 </div>
               </div>
             </figure>
@@ -441,14 +395,14 @@ r.dataset.hero=i;})();</script>
           <div class="fd-stage"><div class="fd-deck"></div></div>
         </div>
 
-        <p class="fd-cap">Each desk as the app shows it, with sample households. The figures are examples, not advice.</p>
+        <p class="fd-cap">Sample households. The figures are examples, not advice.</p>
       </div>
 
-      <!-- what holds for every desk: three plain facts, and the one key -->
+      <!-- what holds for every desk, in three words each, and the one key -->
       <ul class="hw-facts fd-facts">
-        <li><b>One record.</b><p>Entered once. Every desk reads from it, so nothing is typed twice.</p></li>
-        <li><b>Checked every day.</b><p>Against your own rules and your own dates, and told in plain words.</p></li>
-        <li><b>Yours to decide.</b><p>Nothing is traded, moved or signed on its own.</p></li>
+        <li><b>One record.</b></li>
+        <li><b>Checked every day.</b></li>
+        <li><b>Yours to decide.</b></li>
       </ul>
       <div class="center-cta"><a class="key" href="waitlist.html">See all five inside your own office</a></div>
     </div>
@@ -724,7 +678,7 @@ r.dataset.hero=i;})();</script>
 <script src="vendor/lenis.min.js?v=daec1872"></script>
 <script src="vendor/smooth-scroll.js?v=cb7b0132" defer></script>
 <script src="hero-parallax.js?v=d172b74e" defer></script>
-<script src="desks-home.js?v=69000ca9" defer></script>
+<script src="desks-home.js?v=11b3d681" defer></script>
 <script src="nav-site.js?v=4483fad9"></script>
 </body>
 </html>

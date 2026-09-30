@@ -204,7 +204,9 @@
       sum.textContent = money(V.shown) + (path.length ? ' · ' + pct(V.shown / data.total) : '');
       var leaf = V.nodes.length && !V.nodes[0].kids;
       if (hint) hint.textContent = leaf ? leafHint : 'Select a block to open it';
-      moreEl.innerHTML = small.length ? '<span class="h">Also here</span>' + small.map(function (it) {
+      root.classList.toggle('is-deep', path.length > 0);
+      if (!moreEl) return;
+      moreEl.innerHTML = small.length ? small.map(function (it) {
         return '<span><i style="--c:' + it.c + '"></i>' + esc(it.label) + ' <b>' + money(it.v) + '</b></span>';
       }).join('') : '';
       moreEl.hidden = !small.length;
@@ -249,16 +251,6 @@
     function clearance() { return bar ? Math.round(bar.getBoundingClientRect().bottom + 16) : 96; }
     function mark(f, s) { f.querySelectorAll('.fd-mk').forEach(function (m) { m.setAttribute('data-state', s); }); }
 
-    /* numbers count up to what they say: the first number in the text, its prefix and suffix kept */
-    function count(el) {
-      var t = el.getAttribute('data-t') || el.textContent; el.setAttribute('data-t', t);
-      var m = t.match(/^([^0-9]*)([0-9][0-9,]*(?:\.[0-9]+)?)(.*)$/); if (!m) return;
-      var to = parseFloat(m[2].replace(/,/g, '')), dec = (m[2].split('.')[1] || '').length, comma = m[2].indexOf(',') > -1, t0 = 0;
-      function fmt(v) { var s = v.toFixed(dec); if (comma) { var p = s.split('.'); p[0] = p[0].replace(/\B(?=(\d{3})+(?!\d))/g, ','); s = p.join('.'); } return m[1] + s + m[3]; }
-      function step(ts) { if (!t0) t0 = ts; var k = Math.min(1, (ts - t0) / 900), e = 1 - Math.pow(1 - k, 3); el.textContent = fmt(to * e); if (k < 1) requestAnimationFrame(step); else el.textContent = t; }
-      requestAnimationFrame(step);
-    }
-
     /* a desk arrives: Freya thinks, answers, and the picture plays */
     function stop(f) { (f._fd || []).forEach(clearTimeout); f._fd = []; }
     function rest(f) { stop(f); f.classList.remove('is-live'); f.classList.add('is-wait'); mark(f, 'ready'); f._maps.forEach(function (m) { m.reset(); }); }
@@ -270,7 +262,6 @@
       mark(f, 'thinking');
       f._fd.push(setTimeout(function () {
         mark(f, 'answering'); f.classList.remove('is-wait'); f.classList.add('is-live');
-        f.querySelectorAll('.fd-n').forEach(count);
         /* the map rises block by block, the largest first */
         f._maps.forEach(function (m) { m.box.classList.remove('is-rise'); void m.box.offsetWidth; m.box.classList.add('is-rise'); });
         f._fd.push(setTimeout(function () { f._maps.forEach(function (m) { m.box.classList.remove('is-rise'); }); }, 1500));
@@ -313,7 +304,6 @@
       } else {
         [rail, deck].forEach(function (e) { e.style.zoom = ''; });
         deck.style.height = '';
-        x.classList.remove('is-short');
         x.insertBefore(rail, flow);
         figs.forEach(function (f, k) { f.classList.remove('is-on', 'is-before', 'is-after'); chs[k].appendChild(f); rest(f); });
         played = [];
@@ -329,13 +319,17 @@
         setMode('stage');
         var parts = [rail, deck], room = innerHeight - top - 16;
         parts.forEach(function (e) { e.style.zoom = ''; });
-        deck.style.transition = 'none'; deck.style.height = '';
-        x.classList.remove('is-short');
+        deck.style.transition = 'none'; deck.style.height = ''; x.style.removeProperty('--fd-tvh');
         /* what the stage needs: the rail over the window at the height of its tallest desk */
         var need = function () { hs = figs.map(function (f) { return f.offsetHeight; }); return stage.offsetHeight - deck.offsetHeight + Math.max.apply(null, hs) + frame(); };
         var h = need();
-        /* short: the line under Freya's answer goes, first */
-        if (room / h < 0.92) { x.classList.add('is-short'); h = need(); }
+        /* too tall: the maps give up height first, down to a wide strip (drawn smaller, a map keeps its
+           shape, so it is its height that has to give) */
+        var tv = figs[hs.indexOf(Math.max.apply(null, hs))].querySelector('.fd-tv');
+        if (h > room && tv) {
+          x.style.setProperty('--fd-tvh', Math.round(Math.max(tv.offsetWidth * 0.4, tv.offsetHeight - (h - room))) + 'px');
+          h = need();
+        }
         var z = Math.min(1, room / h);
         /* a little too tall: drawn a touch smaller; much too tall: the flow instead */
         if (z < 0.82) { deck.style.transition = ''; setMode('flow'); }
@@ -346,6 +340,9 @@
           x.style.setProperty('--fd-st', st + 'px');
           /* the last question stays long enough for the window to be held while it is read */
           x.style.setProperty('--fd-last', Math.ceil(2 * (st + h * z - innerHeight / 2) + 24) + 'px');
+          /* and the first is long enough that, read in the middle of the screen, the window above it is
+             already held in place, whole */
+          x.style.setProperty('--fd-first', Math.ceil(innerHeight - 2 * st + 8) + 'px');
         }
       } else setMode('flow');
       figs.forEach(function (f) { f._maps.forEach(function (m) { m.refresh(); }); });
@@ -399,7 +396,7 @@
       });
     });
 
-    /* the window follows its desk's height as it settles (fonts, figures counting up) */
+    /* the window follows its desk's height as it settles (fonts, the map drawn) */
     if (window.ResizeObserver) { var ro = new ResizeObserver(function () { fit(); }); figs.forEach(function (f) { ro.observe(f); }); }
     layout();
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(layout);
