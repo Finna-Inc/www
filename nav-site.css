@@ -98,11 +98,16 @@
    the bar's own 28px gap between the last item and the key. The sheet (1099px down) sets
    its own margin:0, so it is unchanged. */
 .nav-links{display:flex;gap:30px;align-items:center;margin-left:auto;margin-right:0}
+/* About's chevron (30 Sep 2026) is 16px more row: from 1100 to 1199px the gaps give 4px each,
+   so the five items and the key still sit on one line where the sheet ends */
+@media (min-width:1100px) and (max-width:1199px){.nav-links{gap:26px}}
 .nav-links a{font-size:var(--text-reading);text-decoration:none;color:rgba(255,255,255,.90)}
 .nav-links a:hover{color:var(--white)}
 /* the bar marks the page you are on (27 Sep 2026): the link to the page you are reading
    carries aria-current, and the bar underlines it in the green's light step */
-.nav-links > a[aria-current="page"]{color:var(--white);text-decoration:underline;
+/* About is a menu too (30 Sep 2026): on About and on News its name keeps the underline */
+.nav-links > a[aria-current="page"],
+.nav-links .nav-dd-t[aria-current]{color:var(--white);text-decoration:underline;
   text-decoration-thickness:var(--line-figure);text-underline-offset:var(--space-2);text-decoration-color:var(--primary-48)}
 /* ---------- the desks menu (from the Claude Design nav file, Rose 3 Sep) ---------- */
 .nav-has-dd{position:relative;display:inline-flex;align-items:center}
@@ -154,6 +159,9 @@
    hero's own --gold-light and the same size as its neighbours; gold is what the estate
    already uses for the earned thing, and it separates this row without demoting it. */
 .nav-links .nav-ddl.is-sub{color:var(--gold-light)}
+/* THE ABOUT MENU (Christian, 30 Sep 2026): two rows, About Finna and News, in the same panel
+   as the desks, narrower because its names are short */
+.nav-dd.nav-dd-s{width:232px}
 .nav-ddi{flex:none;display:block;transition:transform 460ms cubic-bezier(.22,1,.36,1)}
 .nav-ddl:hover .nav-ddi{transform:translateY(-2px) scale(1.07)}
 .nav-dd-rule{display:block;height:1px;background:rgba(255,255,255,.14);margin:6px 4px}
@@ -226,6 +234,7 @@
    left edges inside one menu. The icons already say these rows belong to the item
    above them; the indent was saying it a second time and costing the alignment. */
 .nav-dd{width:auto;background:transparent;border:0;box-shadow:none;padding:0}
+.nav-dd.nav-dd-s{width:auto}
 /* THE SHEET IS NOT THE DESKTOP DROPDOWN (Rose, 14 Sep 2026: "make the icons and menu
    items larger — they're so small"). On a wide screen these rows are a panel hanging off
    a menu item, and --text-label is right for that. In the sheet they ARE the navigation:

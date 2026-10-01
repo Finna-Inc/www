@@ -1,4 +1,4 @@
-/* Finna design tokens · rev 53 · 29 SEP 2026
+/* Finna design tokens · rev 59 · 30 SEP 2026
    GENERATED — do not edit. Built from source.py by generate.py.
    Every value carries its job. Ratios are measured, not estimated. */
 :root{
@@ -48,7 +48,7 @@
   --d-real:#7E85AA;           /* Real assets — Slate. */
   --d-cash:#D5DAD8;           /* Cash — Stone. Direct labels mandatory — under 3:1. */
   /* ---- Wealth-map colours — the wealth map only ---- */
-  --l-property:#745E3D;       /* Property — Earth. The wealth map only. */
+  --l-property:#745E3D;       /* Property — Earth. The wealth map, and the one desk colour: the desk openers (REV 57) and Home’s desk cards (REV 59), mixed into the raised background. */
   --l-owed:#485955;           /* What is owed — Text-secondary, drawn as a band under everything. */
   --l-owed-2:#687672;         /* What is owed, second band — Text-tertiary. */
   --chart-bg:#FAF8F5;         /* Chart background — The chart card sits on this; the page stays white. */
@@ -99,6 +99,10 @@
   --line-icon-s:1.5px;        /* Icons below 24px — interface glyphs, inline arrows. */
   --line-icon:1.75px;         /* Icons 24 to 40px. The ratified stroke, unchanged. */
   --line-icon-l:2px;          /* Icons above 40px — the plates, the section marks. */
+  /* ---- component sizes ---- */
+  --card-icon:24px;           /* A card’s own icon, top right: a tile, a summary box. The line icon at the size it is drawn at. */
+  --list-mark:32px;           /* A list’s mark and a desk card’s plate: Learn’s path marks, the week’s leaves. */
+  --sheet-w:560px;            /* The detail sheet: a record’s detail and its forms, over the work. */
   /* ---- motion ---- */
   --t-state:140ms;            /* Hover, press, focus. A state change. */
   --ease:cubic-bezier(.2,.8,.2,1);/* The one easing curve — the site and the product already used it; now it has a home. */

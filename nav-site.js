@@ -1,6 +1,6 @@
 /* ══ THE SITE'S NAVIGATION ══════════════════════════════════════════════════════════
-   Lifted 1:1 from the 2026-09 build. Two behaviours: the burger sheet, and the desks
-   menu — hover opens it where there is a pointer; click, Enter and Space open it
+   Lifted 1:1 from the 2026-09 build. Two behaviours: the burger sheet, and the two
+   menus (the desks, and About since 30 Sep 2026) — hover opens it where there is a pointer; click, Enter and Space open it
    everywhere else, which is what a finger and a keyboard need. Escape closes it and puts
    focus back on the parent; a click outside or a tab out of the group closes it too. On
    the narrow layout the rows are laid out inside the sheet, so the script leaves them be.
@@ -46,41 +46,47 @@
   });
 })();
 
+/* TWO MENUS NOW (Christian, 30 Sep 2026): About rolls down too, with About Finna and News.
+   Each [data-dd] group runs the same rules, and opening one puts the other away. */
 (function () {
-  var group = document.querySelector('[data-dd]');
-  if (!group) return;
-  var trigger = group.querySelector('.nav-dd-t');
+  var groups = [].slice.call(document.querySelectorAll('[data-dd]'));
+  if (!groups.length) return;
   var hoverable = matchMedia('(hover:hover)').matches;
   var inSheet = function () { return matchMedia('(max-width:1099px)').matches; };
-  var t;
-  function open(v) {
-    if (inSheet()) return;
-    clearTimeout(t);
-    group.classList.toggle('open', v);
-    trigger.setAttribute('aria-expanded', v ? 'true' : 'false');
-  }
-  if (hoverable) {
-    group.addEventListener('pointerenter', function (e) { if (e.pointerType !== 'touch') open(true); });
-    /* a small grace period so a diagonal move to the panel does not close it */
-    group.addEventListener('pointerleave', function (e) {
-      if (e.pointerType === 'touch') return;
-      clearTimeout(t); t = setTimeout(function () { open(false); }, 120);
+  groups.forEach(function (group) {
+    var trigger = group.querySelector('.nav-dd-t');
+    var t;
+    function open(v) {
+      if (inSheet()) return;
+      clearTimeout(t);
+      if (v) groups.forEach(function (g) { if (g !== group && g._open) g._open(false); });
+      group.classList.toggle('open', v);
+      trigger.setAttribute('aria-expanded', v ? 'true' : 'false');
+    }
+    group._open = open;
+    if (hoverable) {
+      group.addEventListener('pointerenter', function (e) { if (e.pointerType !== 'touch') open(true); });
+      /* a small grace period so a diagonal move to the panel does not close it */
+      group.addEventListener('pointerleave', function (e) {
+        if (e.pointerType === 'touch') return;
+        clearTimeout(t); t = setTimeout(function () { open(false); }, 120);
+      });
+    }
+    trigger.addEventListener('click', function (e) {
+      if (inSheet()) return;
+      if (hoverable && group.classList.contains('open')) return;   /* let the link through */
+      e.preventDefault(); open(true);
     });
-  }
-  trigger.addEventListener('click', function (e) {
-    if (inSheet()) return;
-    if (hoverable && group.classList.contains('open')) return;   /* let the link through */
-    e.preventDefault(); open(true);
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape' || !group.classList.contains('open')) return;
+      open(false);
+      if (group.contains(document.activeElement)) trigger.focus();
+    });
+    group.addEventListener('focusout', function (e) {
+      if (!group.contains(e.relatedTarget)) open(false);
+    });
+    document.addEventListener('click', function (e) { if (!group.contains(e.target)) open(false); });
   });
-  document.addEventListener('keydown', function (e) {
-    if (e.key !== 'Escape' || !group.classList.contains('open')) return;
-    open(false);
-    if (group.contains(document.activeElement)) trigger.focus();
-  });
-  group.addEventListener('focusout', function (e) {
-    if (!group.contains(e.relatedTarget)) open(false);
-  });
-  document.addEventListener('click', function (e) { if (!group.contains(e.target)) open(false); });
 })();
 
 /* ══ THE MARK'S MOTION ══════════════════════════════════════════════════════════════

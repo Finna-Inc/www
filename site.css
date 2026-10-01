@@ -1709,9 +1709,14 @@ body:has(.nav-links.open) .to-top{opacity:0;pointer-events:none}
 .cmp .cmp-grp th{padding:var(--space-5) var(--space-4);background:color-mix(in srgb,var(--bg-sunken) 75%,var(--bg));
   border-bottom:var(--line-hairline) solid var(--border);
   font:var(--weight-heading) var(--text-reading)/1.3 var(--font-sans);color:var(--heading)}
-.cmp-y{display:inline-flex;color:var(--primary)}
-.cmp-y .ic{width:22px;height:22px}
-.cmp-n{display:inline-block;width:var(--space-4);height:var(--line-figure);vertical-align:middle;background:var(--border-strong)}
+/* INCLUDED AND NOT (Christian, 29 Sep 2026: the thin green tick and the pale dash were "too weak
+   for people to read"). Included is the app's own done mark (Learn's map, .lmk.is-done): a filled
+   Primary disc with the tick in white on it. Not included is a dash in the secondary text colour,
+   drawn in a box the disc's size so the two line up down every column. */
+.cmp-y,.cmp-n{--cmp-mk:24px;display:inline-grid;place-items:center;width:var(--cmp-mk);height:var(--cmp-mk);flex:none;vertical-align:top}
+.cmp-y{border-radius:50%;background:var(--primary);color:var(--white)}
+.cmp-y .ic{width:calc(var(--cmp-mk) * .6);height:calc(var(--cmp-mk) * .6);stroke-width:3}
+.cmp-n::before{content:"";width:calc(var(--cmp-mk) * .6);height:2px;border-radius:1px;background:var(--text-secondary)}
 
 /* a phone: each row becomes a block, the feature on top and the three plans side by side
    underneath, each labelled, so nothing scrolls sideways */
@@ -1729,7 +1734,7 @@ body:has(.nav-links.open) .to-top{opacity:0;pointer-events:none}
   /* on a phone the band runs to the screen's edges and its title keeps the page's measure */
   .cmp tbody tr.cmp-grp{display:block;margin:var(--space-5) calc(var(--gutter) * -1) 0;padding:0;border-bottom:0}
   .cmp tbody tr.cmp-grp th{padding:var(--space-4) var(--gutter)}
-  .cmp-y .ic{width:18px;height:18px}
+  .cmp-y,.cmp-n{--cmp-mk:22px}
 }
 
 /* ══ THE HUB · Your family office (Christian, 27 Sep 2026) ══════════════════════════
@@ -2082,4 +2087,57 @@ body:has(.nav-links.open) .to-top{opacity:0;pointer-events:none}
   .learn-branches .card .plate{grid-row:1 / span 3;inline-size:32px;block-size:32px;margin:0}
   .learn-branches .card > :not(.plate){grid-column:2}
   .learn-branches .is-later > *{grid-column:1 / -1}
+}
+
+/* ══ NEWS (Christian, 30 Sep 2026) ═══════════════════════════════════════════════════
+   news.html, under About. Each release is an <article> with its own address: beside it,
+   held while it is read, what it is, its date, the PDF and a key that copies its link;
+   then the release itself on the reading measure, with its notes to editors under a
+   hairline. Tokens only: black headings, the text colours, the green for links and keys,
+   the faintest tint for the two contacts. A tablet and a phone stack it, the label block
+   first. It stays ranged left on a phone too: a release is a document under its own heavy
+   rule, as the privacy notice is, not loose text (a long run keeps its return edge). */
+.nw{padding-top:var(--space-8)}
+.nw-rel{display:grid;grid-template-columns:minmax(13rem,15rem) minmax(0,var(--measure));
+  column-gap:clamp(var(--space-6),5vw,var(--space-8));align-items:start}
+.nw-side{position:sticky;top:120px;padding-top:var(--space-4);border-top:var(--line-heavy) solid var(--black)}
+.nw-side .eyebrow{color:var(--text-link)}
+.nw-date{margin:var(--space-3) 0 0;font:var(--weight-heading) var(--text-subhead)/1.3 var(--font);color:var(--black)}
+.nw-acts{display:grid;justify-items:start;gap:var(--space-3);margin-top:var(--space-5)}
+.nw-acts .key{margin-bottom:var(--space-1)}
+.nw-meta{margin:0;font-size:var(--text-label);line-height:1.4;color:var(--text-secondary)}
+.nw-copy{font-size:var(--text-label)}
+.nw-done{min-height:1.4em;font-size:var(--text-label);line-height:1.4;color:var(--text-selected);font-weight:var(--weight-label)}
+.nw-text h2{font-size:var(--text-title);line-height:1.18;margin:0 0 var(--space-5)}
+.nw-sf{margin:0 0 var(--space-7)}
+.nw-dl{letter-spacing:.01em;color:var(--black)}
+.nw-text h4{margin:var(--space-7) 0 var(--space-3);font-size:var(--text-subhead);line-height:1.3}
+.nw-list{list-style:none;margin:0 0 var(--space-5);padding:0;max-width:var(--measure)}
+.nw-list li{position:relative;margin:0 0 var(--space-3);padding-left:var(--space-5)}
+.nw-list li::before{content:"";position:absolute;left:4px;top:.68em;width:6px;height:6px;border-radius:50%;background:var(--heading)}
+.nw-list b{color:var(--black)}
+/* the notes: a hairline, the eyebrow, and the house's own small headings */
+.nw-notes{margin-top:var(--space-8);padding-top:var(--space-6);border-top:var(--line-hairline) solid var(--border)}
+.nw-notes .eyebrow{color:var(--text-link);margin-bottom:var(--space-2)}
+.nw-notes h4{margin:var(--space-6) 0 var(--space-3);font-size:var(--text-reading)}
+.nw-notes a{color:var(--text-link)}
+.nw-contacts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-3);max-width:var(--measure);margin:0 0 var(--space-6)}
+.nw-contacts > div{padding:var(--space-4) var(--space-5);border-radius:var(--r-tile);background:var(--primary-6)}
+.nw-contacts p{margin:0;font-size:var(--text-label);line-height:1.6;overflow-wrap:anywhere}
+.nw-contacts .nw-org{margin-bottom:var(--space-1);font-size:var(--text-reading);font-weight:var(--weight-heading);color:var(--black)}
+.nw-imp{margin:0;max-width:none;padding-top:var(--space-4);border-top:var(--line-hairline) solid var(--border);
+  font-size:var(--text-label);line-height:1.6;color:var(--text-secondary)}
+.nw-imp b{color:var(--text)}
+@media (max-width:899px){
+  .nw-rel{grid-template-columns:minmax(0,1fr)}
+  .nw-side{position:static;margin-bottom:var(--space-7)}
+  .nw-acts{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-3) var(--space-5)}
+  .nw-acts .key{margin:0}
+}
+@media (max-width:700px){
+  .nw{padding-top:var(--space-7)}
+  /* the key takes the row, as every key on a phone does; the size and the copy key share the next */
+  .nw-acts .nw-copy{margin:0 0 0 auto}
+  .nw-sf{margin-bottom:var(--space-6)}
+  .nw-contacts{grid-template-columns:minmax(0,1fr)}
 }
