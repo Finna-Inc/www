@@ -252,7 +252,32 @@
     function mark(f, s) { f.querySelectorAll('.fd-mk').forEach(function (m) { m.setAttribute('data-state', s); }); }
 
     /* a desk arrives: Freya thinks, answers, and the picture plays */
-    function stop(f) { (f._fd || []).forEach(clearTimeout); f._fd = []; }
+    /* THE FIGURES COUNT UP, AS IN THE APP (Rose, 1 Oct 2026): when Freya answers, the first number in
+       her answer and the map's total run from 0 to their figure in 1.3s, easing out (the app's
+       scCount). The finished digits hold their place unseen while the count is drawn over them, so
+       the sentence never reflows; a desk that is left, or a map that redraws, ends the count. */
+    function countUp(el) {
+      var fin = el.textContent, m = fin.match(/^(\D*?)(\d[\d,]*(?:\.\d+)?)([\s\S]*)$/);
+      if (!m) return function () {};
+      var dec = (m[2].split('.')[1] || '').length, end = parseFloat(m[2].replace(/,/g, '')), raf = 0, start = null,
+          nf = new Intl.NumberFormat('en-US', { minimumFractionDigits: dec, maximumFractionDigits: dec, useGrouping: m[2].indexOf(',') > -1 }),
+          slot = document.createElement('span'), ghost = document.createElement('span'), roll = document.createElement('span');
+      slot.style.cssText = 'position:relative;color:inherit'; ghost.style.visibility = 'hidden'; ghost.textContent = m[2];
+      roll.style.cssText = 'position:absolute;top:0;bottom:0;left:0;white-space:nowrap;color:inherit';
+      slot.append(ghost, roll); el.textContent = ''; el.append(m[1], slot, m[3]);
+      function done() { cancelAnimationFrame(raf); if (slot.parentNode === el) el.textContent = fin; }
+      function step(now) {
+        if (slot.parentNode !== el) return;
+        if (start == null) start = now;
+        var q = (now - start) / 1300;
+        if (q >= 1) { done(); return; }
+        roll.textContent = nf.format(end * (1 - Math.pow(1 - q, 3)));
+        raf = requestAnimationFrame(step);
+      }
+      roll.textContent = nf.format(0); raf = requestAnimationFrame(step);
+      return done;
+    }
+    function stop(f) { (f._fd || []).forEach(clearTimeout); f._fd = []; (f._cn || []).forEach(function (c) { c(); }); f._cn = []; }
     function rest(f) { stop(f); f.classList.remove('is-live'); f.classList.add('is-wait'); mark(f, 'ready'); f._maps.forEach(function (m) { m.reset(); }); }
     function play(f) {
       stop(f);
@@ -262,6 +287,7 @@
       mark(f, 'thinking');
       f._fd.push(setTimeout(function () {
         mark(f, 'answering'); f.classList.remove('is-wait'); f.classList.add('is-live');
+        f.querySelectorAll('.fd-ans, .fd-map-sum').forEach(function (el) { f._cn.push(countUp(el)); });
         /* the map rises block by block, the largest first */
         f._maps.forEach(function (m) { m.box.classList.remove('is-rise'); void m.box.offsetWidth; m.box.classList.add('is-rise'); });
         f._fd.push(setTimeout(function () { f._maps.forEach(function (m) { m.box.classList.remove('is-rise'); }); }, 1500));

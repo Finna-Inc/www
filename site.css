@@ -211,7 +211,10 @@ section{padding:var(--space-8) 0}
    The measure is the page's, as everywhere else. */
 .hero h1{font-size:var(--text-display);font-weight:var(--weight-reading);
   letter-spacing:var(--track-display)}
-.hero .lede{color:rgba(255,255,255,.82);max-width:52ch;margin-top:var(--space-6)}
+/* SHORTER, EVEN LINES (Rose, 1 Oct 2026: "do not make these lines so long on desktop, they break in
+   a weird way"): 52ch down to 46ch, the narrowest that keeps every hero lede on the lines it had,
+   and balanced so the last line is never one word alone. */
+.hero .lede{color:rgba(255,255,255,.82);max-width:46ch;text-wrap:balance;margin-top:var(--space-6)}
 
 /* ── THE DESK COVERS (Christian, 27 Sep 2026) ─────────────────────────────────
    Each of the five desk pages (and How it works and About) opens on its own photograph,
@@ -1590,6 +1593,26 @@ body:has(.nav-links.open) .to-top{opacity:0;pointer-events:none}
 .hw-week.is-wait .hw-day{opacity:0;transform:translateY(var(--space-2))}
 .hw-week.is-live::before{transition:transform 1100ms var(--ease)}
 .hw-week.is-live .hw-day{transition:opacity 420ms var(--ease),transform 420ms var(--ease);transition-delay:calc(160ms + var(--i, 0) * 150ms)}
+/* LEAVES ON THE STEM (Rose, 1 Oct 2026: "have some of our small leaves grow from the line, so the
+   green timeline is sort of the tree stem"; then "a very slow ambient thing ... randomly on the line,
+   in different sizes and different colours, from green to Bullion and Champagne"). Learn's own leaf,
+   the app's leaf(): an almond 0.36 as wide as it is long, its base on the line. The page's script
+   places them and sets each one's size, side, colour (--c) and timing (--wait, --grow, --sway). */
+.hw-leaves{position:absolute;inset:0;margin:0;padding:0;list-style:none;pointer-events:none}
+.hw-leaf{position:absolute;background:var(--c, var(--primary-72));transform-origin:0 50%;transform:rotate(var(--rot));
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 12'%3E%3Cpath d='M0 6Q8 .24 16 6Q8 11.76 0 6Z'/%3E%3C/svg%3E") center/100% 100% no-repeat;
+          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 12'%3E%3Cpath d='M0 6Q8 .24 16 6Q8 11.76 0 6Z'/%3E%3C/svg%3E") center/100% 100% no-repeat}
+.hw-week.is-wait .hw-leaf{transform:rotate(var(--rot)) scale(0)}
+.hw-week.is-live .hw-leaf{animation:hw-sprout var(--grow) cubic-bezier(.22,.61,.36,1) var(--wait) both,
+  hw-sway var(--sway) ease-in-out calc(var(--wait) + var(--grow)) infinite alternate}
+@keyframes hw-sprout{from{transform:rotate(var(--rot)) scale(0);opacity:0}35%{opacity:1}to{transform:rotate(var(--rot)) scale(1);opacity:1}}
+@keyframes hw-sway{from{rotate:-2deg}to{rotate:2deg}}
+/* the autumn leaf (any leaf that is not green, pointed at or tapped): lets go and falls straight
+   down, fading away before the words (Rose, 1 Oct 2026: "fall straight down and fade away").
+   Its target is invisible and 32px round, centred on it. */
+.hw-hit{position:absolute;width:32px;height:32px;margin:-16px 0 0 -16px;border-radius:50%;pointer-events:auto;-webkit-tap-highlight-color:transparent}
+.hw-week.is-live .hw-leaf.is-falling{animation:hw-fall 3.2s cubic-bezier(.45,.05,.55,.95) both}
+@keyframes hw-fall{from{translate:0 0;opacity:1}to{translate:0 46px;opacity:0}}
 .hw-soon{display:inline-block;vertical-align:middle;margin-left:var(--space-1);padding:var(--space-1) var(--space-2);border-radius:var(--r-pill);
   background:var(--bg-sunken);color:var(--text-secondary);font:var(--weight-heading) var(--text-label)/1 var(--font-sans);letter-spacing:.04em}
 
@@ -1636,6 +1659,7 @@ body:has(.nav-links.open) .to-top{opacity:0;pointer-events:none}
 @media (max-width:1100px){
   .hw-week{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:var(--space-7)}
   .hw-week::before{display:none}
+  .hw-leaves{display:none}
   .hw-facts{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:900px){
@@ -1657,6 +1681,7 @@ body:has(.nav-links.open) .to-top{opacity:0;pointer-events:none}
   .hw-week::before{display:block;left:calc(var(--space-7) / 2);right:auto;top:0;bottom:0;border-top:0;margin:0 0 0 -1px;
     border-left:2px solid var(--primary-24);transform-origin:top center}
   .hw-week.is-wait::before{transform:scaleY(0)}
+  .hw-leaves{display:block}
   .hw-cap{text-align:center}
   .hw-rule{margin-inline:auto;padding:var(--space-3) 0 0;border-left:0;border-top:var(--line-heavy) solid var(--primary)}
   .hw-day{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:var(--space-4);row-gap:var(--space-1);text-align:left}
