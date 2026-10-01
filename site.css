@@ -1096,9 +1096,12 @@ figcaption{margin-top:var(--space-4);color:var(--text-tertiary);font-size:var(--
    arguing and asks, so it leaves the dark surface. It was --purple-bg for an hour.
    NOTE 1: .final is the site's ONE closing — all 17 pages take this, which is the point
    of there being one.
-   NOTE 2: it is --bg-closing, a ground of its own in brand/source.py. It ran as a bare
-   hex for an hour; a colour on all 17 pages is a named ground, not a number. */
-.final{padding:150px 0 160px;background:var(--bg-closing);text-align:center}
+   NOTE 2: it was --bg-closing (#485955), a ground of its own in brand/source.py, until 1 Oct 2026;
+   it is --purple-bg now (below), so --bg-closing's description in the brand is out of date. */
+/* DARK PURPLE ON EVERY PAGE (Rose, 1 Oct 2026: "#1E1830 use this color in both light and dark mode",
+   "do it on all those sections"). --purple-bg, the brand's Dark Purple, the same in both modes.
+   Back where it was for an hour on 13 Sep. */
+.final{padding:150px 0 160px;background:var(--purple-bg);text-align:center}
 /* the closing carries a heading, not a second display — the hero already used that rung */
 .final h2{font-size:var(--text-heading)}
 .final p{margin-top:26px;font-size:var(--text-subhead);line-height:1.6;
