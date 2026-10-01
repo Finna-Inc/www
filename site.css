@@ -498,9 +498,10 @@ a.soon.is-here{cursor:default}
 /* the row has its own divider above it, the legal block's hairline, with the same space round it
    (Rose, 1 Oct 2026: "insert a divider above the clocks too") */
 .footer .world-clocks{grid-column:1 / -1;display:flex;justify-content:space-between;gap:var(--space-5);
-  margin-top:var(--space-5);padding-top:var(--space-7);border-top:1px solid rgba(255,255,255,.14)}
-/* centred between its two dividers (Rose, 1 Oct 2026): the space above equals the legal block's
-   --space-7 below */
+  margin-top:calc(var(--space-5) + 44px);padding-top:var(--space-3);border-top:1px solid rgba(255,255,255,.14)}
+/* centred between its two dividers, which sit close (Rose, 1 Oct 2026: "pull dividers 30px close to
+   clocks", then "closer"): --space-3, 12px, above the faces and under the names */
+.footer .cols:has(.world-clocks) + .legal{margin-top:var(--space-3)}
 .world-clocks[hidden]{display:none}
 .world-clock{display:flex;flex-direction:column;align-items:center;gap:var(--space-3)}
 /* the faces and their names are Champagne (Rose, 1 Oct 2026: "make the clocks champagne", then
@@ -1097,11 +1098,12 @@ figcaption{margin-top:var(--space-4);color:var(--text-tertiary);font-size:var(--
    NOTE 1: .final is the site's ONE closing — all 17 pages take this, which is the point
    of there being one.
    NOTE 2: it was --bg-closing (#485955), a ground of its own in brand/source.py, until 1 Oct 2026;
-   it is --purple-bg now (below), so --bg-closing's description in the brand is out of date. */
-/* DARK PURPLE ON EVERY PAGE (Rose, 1 Oct 2026: "#1E1830 use this color in both light and dark mode",
-   "do it on all those sections"). --purple-bg, the brand's Dark Purple, the same in both modes.
-   Back where it was for an hour on 13 Sep. */
-.final{padding:150px 0 160px;background:var(--purple-bg);text-align:center}
+   it is --primary-pressed now (below), so --bg-closing's description in the brand is out of date. */
+/* DEEP FJORD ON EVERY PAGE (Rose, 1 Oct 2026: "#184537 deep fjord instead of purple", on all the
+   closings; it was Dark Purple, --purple-bg, for the afternoon). #184537 is the brand's
+   --primary-pressed, the deepest step of the green; neither mode changes it, so the closing is the
+   same in light and dark. */
+.final{padding:150px 0 160px;background:var(--primary-pressed);text-align:center}
 /* the closing carries a heading, not a second display — the hero already used that rung */
 .final h2{font-size:var(--text-heading)}
 .final p{margin-top:26px;font-size:var(--text-subhead);line-height:1.6;
