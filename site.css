@@ -498,17 +498,21 @@ a.soon.is-here{cursor:default}
 /* the row has its own divider above it, the legal block's hairline, with the same space round it
    (Rose, 1 Oct 2026: "insert a divider above the clocks too") */
 .footer .world-clocks{grid-column:1 / -1;display:flex;justify-content:space-between;gap:var(--space-5);
-  margin-top:var(--space-5);padding-top:var(--space-5);border-top:1px solid rgba(255,255,255,.14)}
+  margin-top:var(--space-5);padding-top:var(--space-7);border-top:1px solid rgba(255,255,255,.14)}
+/* centred between its two dividers (Rose, 1 Oct 2026): the space above equals the legal block's
+   --space-7 below */
 .world-clocks[hidden]{display:none}
 .world-clock{display:flex;flex-direction:column;align-items:center;gap:var(--space-3)}
-.world-clock svg{display:block;inline-size:44px;block-size:44px;overflow:visible;fill:none;stroke:var(--white);stroke-linecap:round}
+/* the faces and their names are Champagne (Rose, 1 Oct 2026: "make the clocks champagne", then
+   "make the titles champagne too"), --gold-light, as the first week's Champagne leaves */
+.world-clock svg{display:block;inline-size:44px;block-size:44px;overflow:visible;fill:none;stroke:var(--gold-light);stroke-linecap:round}
 .world-clock svg *{vector-effect:non-scaling-stroke;stroke-width:var(--line-icon)}
-.world-clock .c{fill:var(--white);stroke:none}
+.world-clock .c{fill:var(--gold-light);stroke:none}
 /* the names read smaller than the footer's headings ("make the titles under the clocks smaller"):
    the label rung is the floor (tokens.css: nothing goes below it), so they step down in weight and
-   tracking instead, and sit a little quieter */
+   tracking instead */
 .world-clock b{font:var(--weight-label) var(--text-label)/1 var(--font-sans);letter-spacing:.08em;text-transform:uppercase;
-  color:rgba(255,255,255,.66);white-space:nowrap}
+  color:var(--gold-light);white-space:nowrap}
 /* on a phone the five names do not fit one row: three and two, from the left */
 @media (max-width:600px){.footer .world-clocks{flex-wrap:wrap;justify-content:flex-start;gap:var(--space-6) var(--space-6)}}
 .legal{margin-top:var(--space-7);padding-top:var(--space-5);
