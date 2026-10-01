@@ -226,8 +226,7 @@ label{display:block;margin-bottom:var(--space-2);font:var(--weight-label) var(--
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .v-title::before{content:"";display:inline-block;width:1px;height:16px;margin:0 var(--space-4) -3px 0;background:color-mix(in srgb,var(--white) 28%,transparent)}
 .v-acts{display:flex;align-items:center;gap:var(--space-4)}
-.v-lock{border:0;background:none;padding:var(--space-2) 0;font:var(--weight-heading) var(--text-label)/1 var(--font);color:var(--white);cursor:pointer}
-.v-lock:focus-visible{outline:2px solid var(--white);outline-offset:3px}
+/* Lock is a key with the padlock, beside Download the PDF (Rose, 1 Oct 2026) */
 .v-msg{font-size:var(--text-label);color:var(--gold-light)}
 iframe{flex:1;width:100%;border:0;background:var(--bg)}
 @media (max-width:767px){
@@ -268,7 +267,7 @@ iframe{flex:1;width:100%;border:0;background:var(--bg)}
     <div class="v-acts">
       <span class="v-msg" id="vMsg" role="status" aria-live="polite"></span>
       <a class="key key-s" id="vPdf" href="update-aug-2026.pdf.enc" download="Finna-Investor-Update-August-2026.pdf"><svg width="16" height="16" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg><span class="lbl-l">Download the PDF</span></a>
-      <button class="v-lock" id="vLock" type="button">Lock</button>
+      <button class="key key-s" id="vLock" type="button"><svg width="16" height="16" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 11V7a5 5 0 0 1 10 0v4"/><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/></svg><span class="lbl-l">Lock</span></button>
     </div>
   </header>
   <iframe id="vFrame" title="Investor update, August 2026" allow="fullscreen" allowfullscreen></iframe>
@@ -327,6 +326,32 @@ iframe{flex:1;width:100%;border:0;background:var(--bg)}
       a.href = pdfUrl; msg.textContent = ''; a.click();
     } catch (err) { msg.textContent = 'The PDF downloads from finnafamilyoffice.com.'; }
   });
+  /* PRESENT, IN THE BAR (Rose, 1 Oct 2026: "move the Present button to the topbar after the
+     download pdf button"). The deck carries its own Present key, and this page cannot change the deck:
+     it is locked, and built from a copy kept off the repo. So while the deck is open its own key is
+     hidden, for as long as it reads "Present", and the bar's key presses it. If the deck has no such
+     key, the bar's key shows the deck full screen instead. When the deck is next rebuilt, its own key
+     can go and this can become the full-screen key alone. */
+  const pres = $('vPresent');
+  if (pres) {
+    let deckKey = null, watch = null;
+    const find = () => {
+      const doc = $('vFrame').contentDocument;
+      if (!doc || !doc.body) return null;
+      return [...doc.querySelectorAll('button, a, [role="button"]')].find(el => el.textContent.trim() === 'Present') || null;
+    };
+    const tuck = () => { if (deckKey) deckKey.style.display = deckKey.textContent.trim() === 'Present' ? 'none' : ''; };
+    $('vFrame').addEventListener('load', () => {
+      if (watch) watch.disconnect();
+      deckKey = find(); if (!deckKey) return;
+      tuck(); watch = new MutationObserver(tuck); watch.observe(deckKey, {childList: true, characterData: true, subtree: true});
+    });
+    pres.addEventListener('click', () => {
+      if (!deckKey || !deckKey.isConnected) deckKey = find();
+      if (deckKey) deckKey.click();
+      else if ($('vFrame').requestFullscreen) $('vFrame').requestFullscreen().catch(() => {});
+    });
+  }
   let kept = null; try { kept = sessionStorage.getItem(KEEP); } catch (e) {}
   if (kept) open(kept, true); else $('gCode').focus();
 })();
