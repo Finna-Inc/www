@@ -3,25 +3,31 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Security and your data · Finna</title>
-<meta name="description" content="How Finna keeps your household&rsquo;s record safe: read-only connections, two-factor sign-in, an access log that cannot be edited, who sees what, and an export on every plan.">
-<!-- A PAGE THAT SAYS IT IS NOT WRITTEN YET (Rose, 13 Sep 2026: "time to make these
-     'coming soon' pages"). Five footer items were dead <span>s with a soon chip; a chip
-     that cannot be clicked tells a visitor nothing about WHEN or WHAT. Each is a real
-     page now, and the footer chip is the link to it.
+<title>Investors · Finna</title>
+<meta name="description" content="Finna’s monthly investor reports and the investor pitch deck, each opened with an access code.">
+<link rel="canonical" href="https://finnafamilyoffice.com/investors.html">
 
-     NOTHING IS DRAFTED HERE. Privacy, Terms, Disclosures and Form ADV are legal
-     instruments, not copy to fill in — these pages say plainly that they are coming and
-     nothing more. The chrome is 404.html's, so a visitor who lands here can still get
-     anywhere.
-     PRIVACY IS WRITTEN NOW (Christian, 27 Sep 2026). The notice describes what the site
-     actually does, checked against the code that day: no cookies, no analytics, no browser
-     storage, fonts self-hosted, and one form, the waitlist, which posts to Mailchimp
-     (waitlist.html). If any of that changes, this page changes with it. It has not been
-     reviewed by counsel; do that before the site reaches the company domain. The rows use
-     the FAQ's .facts component from Service levels. -->
-<!-- source · the words are the ones the site shipped with (source/copy.md);
-     every value is taken from brand/tokens.css through site.css. -->
+<!-- HOW THE SITE LOOKS WHEN SOMEONE PASTES THE LINK (13 Sep 2026). Every value here is the
+     page's own title and description, so there is one place to change the words. The card is
+     source/media/finna-share.jpg, 1200x630, built from the mark and the hero wash by
+     build/share-card.py. The absolute URLs only resolve once the site is on the domain.
+     The robots tag above keeps this SOURCE copy out of search — the design repo is itself
+     published at finna-inc.github.io/design/ — and build/site.py strips it from the copy
+     that goes on the domain, which is fully indexable. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Finna">
+<meta property="og:locale" content="en">
+<meta property="og:url" content="https://finnafamilyoffice.com/investors.html">
+<meta property="og:title" content="Investors · Finna">
+<meta property="og:description" content="Finna’s monthly investor reports and the investor pitch deck, each opened with an access code.">
+<meta property="og:image" content="https://finnafamilyoffice.com/media/finna-share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Finna, your own family office">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Investors · Finna">
+<meta name="twitter:description" content="Finna’s monthly investor reports and the investor pitch deck, each opened with an access code.">
+<meta name="twitter:image" content="https://finnafamilyoffice.com/media/finna-share.jpg">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -62,12 +68,12 @@
       <a href="learn.html">Learn</a>
       <a href="pricing.html">Pricing</a>
       <div class="nav-has-dd" data-dd>
-        <a href="about.html" class="nav-dd-t" aria-expanded="false" aria-haspopup="true">About<svg width="9" height="6" viewBox="0 0 9 6" fill="none" aria-hidden="true" class="nav-chev"><path d="M1 1.2 4.5 4.8 8 1.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="about.html" class="nav-dd-t" aria-expanded="false" aria-haspopup="true" aria-current="true">About<svg width="9" height="6" viewBox="0 0 9 6" fill="none" aria-hidden="true" class="nav-chev"><path d="M1 1.2 4.5 4.8 8 1.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         <div class="nav-ddw">
           <div class="nav-dd nav-dd-s">
             <a class="nav-ddl" href="about.html"><svg class="nav-ddi" aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7.6" width="18" height="12.4" rx="3.6"/> <path d="M8.9 7.6V6.2A2.2 2.2 0 0 1 11.1 4h1.8a2.2 2.2 0 0 1 2.2 2.2v1.4"/> <path d="M3 12.6h6.2"/> <path d="M14.8 12.6H21"/> <rect x="9.2" y="11.1" width="5.6" height="3" rx="1.5"/></svg>About Finna</a>
             <a class="nav-ddl" href="news.html"><svg class="nav-ddi" aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13.9 3.6H8.2A2.6 2.6 0 0 0 5.6 6.2v11.6a2.6 2.6 0 0 0 2.6 2.6h7.6a2.6 2.6 0 0 0 2.6-2.6V8.1z"/> <path d="M13.9 3.6v4.5h4.5"/> <path d="M9 12.8h6"/> <path d="M9 16.2h3.6"/></svg>News</a>
-            <a class="nav-ddl" href="investors.html"><svg class="nav-ddi" aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 17.6 9 11.9l3.4 3.2 8.1-8.5"/> <path d="M15.6 6.6h5v5"/></svg>Investors</a>
+            <a class="nav-ddl" href="investors.html" aria-current="page"><svg class="nav-ddi" aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 17.6 9 11.9l3.4 3.2 8.1-8.5"/> <path d="M15.6 6.6h5v5"/></svg>Investors</a>
           </div>
         </div>
       </div>
@@ -80,90 +86,75 @@
 
 <div class="hero" id="top">
   <div class="wrap inner">
-    <p class="eyebrow">Security</p>
-    <h1>Security and your data.</h1>
-    <p class="lede">Your household&rsquo;s record is the most private thing Finna holds. This is how it is protected, who can see it, and how you take it with you.</p>
+    <h1>Investors.</h1>
+    <p class="lede">Our monthly reports and the investor pitch deck, for Finna&rsquo;s investors and for those thinking of joining them.</p>
   </div>
 </div>
 
-<!-- SECURITY AND YOUR DATA (Christian, 27 Sep 2026, from the website review). Every statement
-     here is something the app does today (Profile › Security, Household members, Export, the
-     plans) or a promise the site already makes (read-only, Finna never holds your assets). Name
-     no hosting region, encryption standard or certification here until one is confirmed. -->
 <main id="main">
 
-  <section aria-labelledby="short-h">
+  <!-- INVESTORS, UNDER ABOUT (Christian, 30 Sep 2026: "an investor link sub page under About ...
+       Reports and Investor Pitch Deck"). Two doors and a way to ask for a key. The reports and
+       the deck are LOCKED: investors/<slug>.html carries each one only as ciphertext, opened in
+       the browser by its access code (build/investors.py, which says why). The request goes to
+       Shelley Torres, who sends the code if it is approved. Styles: the INVESTORS block of
+       site.css. -->
+  <section class="iv">
     <div class="wrap">
-      <div class="section-head">
-        <p class="eyebrow">The short version</p>
-        <h2 id="short-h">Four things that are always true.</h2>
+      <div class="iv-grid">
+        <article class="iv-card" aria-labelledby="iv-h-reports">
+          <svg class="iv-plate" aria-hidden="true" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10.4 7.4H6A2.6 2.6 0 0 0 3.4 10v7.9A2.6 2.6 0 0 0 6 20.5h6a2.6 2.6 0 0 0 2.6-2.6v-6.9z"/> <path d="M10.4 7.4 14.6 11.6h-4.2z"/> <path d="M8 7.4V6.1A2.6 2.6 0 0 1 10.6 3.5h4.9L20.6 8.6v7.3a2.6 2.6 0 0 1-2.6 2.6h-3.4"/> <path d="M15.5 3.5v5.1h5.1"/></svg>
+          <p class="eyebrow">Monthly updates</p>
+          <h2 id="iv-h-reports">Reports</h2>
+          <p class="iv-text">The monthly investor update, newest first. The latest covers August 2026.</p>
+          <p class="iv-lock"><svg class="ic" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11V7a5 5 0 0 1 10 0v4"/><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/></svg>Each report opens with the access code in its email</p>
+          <div class="iv-acts">
+            <a class="key key-l" href="reports.html">See the reports<svg class="ic" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+          </div>
+        </article>
+        <article class="iv-card" aria-labelledby="iv-h-deck">
+          <svg class="iv-plate" aria-hidden="true" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3.6" y="3.6" width="7.4" height="7.4" rx="2.4"/> <rect x="13" y="3.6" width="7.4" height="7.4" rx="2.4"/> <rect x="3.6" y="13" width="7.4" height="7.4" rx="2.4"/> <rect x="13" y="13" width="7.4" height="7.4" rx="2.4"/></svg>
+          <p class="eyebrow">Strategic angel round &middot; September 2026</p>
+          <h2 id="iv-h-deck">Investor pitch deck</h2>
+          <p class="iv-text">Thirteen slides and an appendix: the problem, the office, the market, the model, the team and the round.</p>
+          <p class="iv-lock"><svg class="ic" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11V7a5 5 0 0 1 10 0v4"/><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/></svg>Opens with an access code</p>
+          <div class="iv-acts">
+            <a class="key key-l" href="investors/pitch-deck.html">Open the deck<svg class="ic" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+            <a class="link" href="#request" data-for="deck">Request access</a>
+          </div>
+        </article>
       </div>
-      <ul class="hw-facts">
-        <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><b>Read-only connections.</b><p>Anything you connect can be read, never moved. Finna cannot move money, and never holds your assets.</p></li>
-        <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg><b>Two-factor sign-in.</b><p>A second step when you sign in, a recovery contact, and a list of every device signed in to your office.</p></li>
-        <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13"/><path d="M8 12h13"/><path d="M8 18h13"/><path d="M3 6h.01"/><path d="M3 12h.01"/><path d="M3 18h.01"/></svg><b>A log you cannot edit.</b><p>Who looked at or changed what, and when. Entries are added, never edited.</p></li>
-        <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg><b>Everything exports.</b><p>Every line your household entered, in one file, on every plan, including after a downgrade.</p></li>
-      </ul>
     </div>
   </section>
 
-  <section class="band-tint" aria-labelledby="log-h">
-    <div class="wrap sec-row">
-      <div>
-        <p class="eyebrow hw-eyebrow">Inside the app</p>
-        <h2 id="log-h">You can see who has seen what.</h2>
-        <p class="lede">Profile › Security shows how you sign in, every device signed in to your office, and the access log.</p>
-        <p>The log names every look and every change: the person, what they did and when. Freya&rsquo;s work is in it too, so when she prepares your weekly briefing or reads a document, the entry says so.</p>
-      </div>
-      <figure class="app-shot has-m"><span class="frame"><picture><source media="(max-width:700px)" srcset="media/app/app-security-m.webp" width="600" height="1298"><img src="media/app/app-security.webp" width="1600" height="1000" loading="lazy" decoding="async" alt="Security in the Finna app: two-factor sign-in on, two signed-in devices and the access log"></picture></span><figcaption><b>Profile › Security, in the app.</b> Shown with a sample household.</figcaption></figure>
-    </div>
-  </section>
-
-  <section aria-labelledby="who-h">
+  <!-- THE REQUEST. The site's closing ground, because this is where the page asks; the
+       waitlist's field and key. It posts to FormSubmit, which emails Shelley; if that cannot be
+       reached it offers the same request as an email instead. The first request after the page
+       goes live sends Shelley a one-off "activate this form" email; nothing arrives until she
+       confirms it. -->
+  <section class="band final iv-req" id="request" aria-labelledby="iv-h-req">
     <div class="wrap">
-      <div class="section-head">
-        <p class="eyebrow">Who sees what</p>
-        <h2 id="who-h">Your household decides.</h2>
+      <div id="ivAsk">
+        <h2 id="iv-h-req">Request access.</h2>
+        <p>Leave your name and email. We review every request, and if it is approved we send you the access code.</p>
+        <form class="wl-form iv-form" id="ivForm" novalidate>
+          <fieldset class="iv-for">
+            <legend>Access to</legend>
+            <label class="iv-chip"><input type="radio" name="for" value="deck" checked><span>The pitch deck</span></label>
+            <label class="iv-chip"><input type="radio" name="for" value="reports"><span>The monthly reports</span></label>
+          </fieldset>
+          <input class="wl-input" id="ivName" type="text" name="name" required autocomplete="name" aria-label="Your name" placeholder="Your name">
+          <input class="wl-input" id="ivEmail" type="email" name="email" required autocomplete="email" spellcheck="false" aria-label="Email address" placeholder="Email address">
+          <div class="wl-bot" aria-hidden="true"><input type="text" id="ivBot" tabindex="-1" value="" autocomplete="off"></div>
+          <button class="key key-l key-white wl-wide" id="ivGo" type="submit">Request access</button>
+        </form>
+        <p class="wl-msg" id="ivMsg" role="status" aria-live="polite"></p>
+        <p class="wl-note iv-note">We use your name and email only to answer this request. <a class="link" href="privacy.html">How we handle it</a></p>
       </div>
-      <div class="facts">
-        <div>
-          <h3>Your household</h3>
-          <p>On the free office two adults share the record, and both see and edit everything in it. Children, parents and siblings are recorded as people, without a login.</p>
-        </div>
-        <div>
-          <h3>The wider family</h3>
-          <p>On Plus every generation can have its own login, and the Family Charter records who decides what. <a class="link" href="succession.html#family">Bringing your parents in</a></p>
-        </div>
-        <div>
-          <h3>Your advisers</h3>
-          <p>Invite your attorney, CPA or banker, with access limited to what they cover. Until you invite them, advisers are listed in the record, not let into it.</p>
-        </div>
-        <div>
-          <h3>Freya</h3>
-          <p>Freya is Finna&rsquo;s AI assistant. She works from your record to prepare your briefing and answer your questions, and every piece of her work appears in the access log.</p>
-        </div>
+      <div class="iv-done" id="ivDone" role="status" aria-live="polite" hidden>
+        <h2 id="ivDoneH" tabindex="-1">Thank you, <span id="ivDoneName"></span>.</h2>
+        <p>Your request is with us. If it is approved, the access code comes to <b id="ivDoneEmail"></b>.</p>
       </div>
-    </div>
-  </section>
-
-  <section class="band-mint" aria-labelledby="yours-h">
-    <div class="wrap split">
-      <div>
-        <p class="eyebrow hw-eyebrow">Your data stays yours</p>
-        <h2 id="yours-h">Take it with you, any time.</h2>
-      </div>
-      <div>
-        <p class="lede">Export everything in one file: the people, every valuation with its history, the details of your documents, your policy versions, your cover, the will record and the access log.</p>
-        <p>Changing plan deletes nothing. Anything a paid plan created becomes read-only and still exports. How this website handles the little it collects is on the <a class="link" href="privacy.html">Privacy</a> page.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="band final">
-    <div class="wrap">
-      <h2>Start with your own household.</h2>
-      <p>Free for your household, and read-only from the first connection.</p>
-      <a class="key key-l key-white" href="https://app.finnafamilyoffice.com/">Start for free</a>
     </div>
   </section>
 </main>
@@ -229,7 +220,7 @@
           <li><a href="about.html">About</a></li>
           <li><a href="news.html">News</a></li>
           <li><a href="investors.html">Investors</a></li>
-          <li><a aria-current="page" href="#top">Privacy</a></li>
+          <li><a href="privacy.html">Privacy</a></li>
         </ul>
       </div>
     </div>
@@ -260,5 +251,49 @@
 <script src="vendor/lenis.min.js?v=daec1872"></script>
 <script src="vendor/smooth-scroll.js?v=cb7b0132" defer></script>
 <script src="nav-site.js?v=7f7c1d92"></script>
+<script>
+/* REQUEST ACCESS. Name, email and what for, to Shelley Torres through FormSubmit; the same
+   request as an email if that cannot be reached. ?for=reports picks the reports. */
+(function () {
+  var TO = 'shelley.torres@finnaam.com', END = 'https://formsubmit.co/ajax/' + TO;
+  var WHAT = {deck: 'Investor pitch deck', reports: 'Monthly investor reports'};
+  var f = document.getElementById('ivForm'), msg = document.getElementById('ivMsg'), go = document.getElementById('ivGo');
+  var name = document.getElementById('ivName'), email = document.getElementById('ivEmail');
+  function pick(v) { var r = f.querySelector('input[name="for"][value="' + v + '"]'); if (r) r.checked = true; }
+  var want = new URLSearchParams(location.search).get('for'); if (WHAT[want]) pick(want);
+  document.querySelectorAll('[data-for]').forEach(function (a) { a.addEventListener('click', function () { pick(a.getAttribute('data-for')); }); });
+  function what() { var r = f.querySelector('input[name="for"]:checked'); return WHAT[r ? r.value : 'deck']; }
+  function mailto(n, e, w) {
+    return 'mailto:' + TO + '?subject=' + encodeURIComponent('Investor access request: ' + w) +
+      '&body=' + encodeURIComponent('Name: ' + n + '\nEmail: ' + e + '\nAccess to: ' + w + '\n');
+  }
+  function done(n, e) {
+    document.getElementById('ivDoneName').textContent = n.split(' ')[0];
+    document.getElementById('ivDoneEmail').textContent = e;
+    document.getElementById('ivAsk').hidden = true;
+    var d = document.getElementById('ivDone'); d.hidden = false; document.getElementById('ivDoneH').focus();
+  }
+  f.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var n = name.value.trim(), e = email.value.trim(), w = what();
+    msg.classList.remove('is-bad');
+    if (!n) { msg.textContent = 'Add your name.'; name.focus(); return; }
+    if (!e || !email.checkValidity() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)) { msg.textContent = 'Add an email address we can reply to.'; email.focus(); return; }
+    if (document.getElementById('ivBot').value) { done(n, e); return; }      /* a bot: say thank you, send nothing */
+    go.disabled = true; msg.textContent = 'Sending…';
+    fetch(END, {method: 'POST', headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+      body: JSON.stringify({name: n, email: e, 'access to': w, _subject: 'Investor access request: ' + w + ' (' + n + ')', _template: 'table'})})
+      .then(function (r) { return r.json(); })
+      .then(function (j) { if (String(j.success) !== 'true') throw 0; msg.textContent = ''; done(n, e); })
+      .catch(function () {
+        msg.classList.add('is-bad');
+        msg.textContent = 'It could not be sent from here. ';
+        var a = document.createElement('a'); a.className = 'link'; a.href = mailto(n, e, w);
+        a.textContent = 'Email the request instead'; msg.appendChild(a);
+      })
+      .then(function () { go.disabled = false; });
+  });
+})();
+</script>
 </body>
 </html>

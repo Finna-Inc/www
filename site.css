@@ -2141,3 +2141,68 @@ body:has(.nav-links.open) .to-top{opacity:0;pointer-events:none}
   .nw-sf{margin-bottom:var(--space-6)}
   .nw-contacts{grid-template-columns:minmax(0,1fr)}
 }
+
+/* ══ INVESTORS (Christian, 30 Sep 2026) ═══════════════════════════════════════════════
+   investors.html and reports.html, under About. Two cards on the page's white — the reports
+   and the pitch deck, each with its plate in the top-right corner as every card carries it
+   (REV 51) — then the request on the site's closing ground, drawn with the waitlist's field
+   and key. Reports is a list on the reading measure, newest first, each row opening its
+   locked page in investors/. Tokens only. */
+.iv{padding-block:var(--space-8)}
+.iv-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-5)}
+.iv-card{position:relative;display:flex;flex-direction:column;padding:var(--space-6);
+  border:var(--line-object) solid var(--border-strong);border-radius:var(--r-card);background:var(--bg)}
+.iv-plate{position:absolute;top:var(--space-6);right:var(--space-6);color:var(--heading)}
+.iv-card .eyebrow{color:var(--text-link);padding-right:var(--space-7);line-height:1.4}
+.iv-card h2{margin:var(--space-3) 0 0;font-size:var(--text-title);line-height:1.15}
+.iv-text{margin:var(--space-4) 0 0;max-width:46ch;font-size:var(--text-reading);color:var(--text-secondary)}
+.iv-lock{display:flex;align-items:center;gap:var(--space-2);margin:var(--space-5) 0 0;
+  font-size:var(--text-label);font-weight:var(--weight-label);color:var(--text-secondary)}
+.iv-lock .ic{flex:none;color:var(--heading)}
+.iv-acts{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-4) var(--space-5);margin-top:auto;padding-top:var(--space-6)}
+.iv-acts .link{color:var(--text-link)}
+
+/* the request: the form sits on the measure under the centred words, ranged left */
+.iv-req .wl-form{margin-inline:auto;text-align:left}
+.iv-req .wl-msg,.iv-req .wl-note{margin-inline:auto;max-width:34rem;text-align:left}
+/* the closing's own paragraph and key sizes are for its words, not for a form's small print */
+.iv-req .wl-form .key{margin-top:var(--space-2)}
+.iv-req .wl-msg{margin-top:var(--space-4);font-size:var(--text-reading);line-height:1.5}
+.iv-req .wl-note{margin-top:var(--space-3);font-size:var(--text-label);line-height:1.5;color:color-mix(in srgb,var(--white) 60%,transparent)}
+.iv-req .wl-note .link{font-size:inherit}
+.iv-req .wl-msg .link{display:inline;font-size:inherit;text-decoration:underline}
+.iv-for{grid-column:1 / -1;display:flex;flex-wrap:wrap;gap:var(--space-2);margin:0 0 var(--space-2);padding:0;border:0;min-width:0}
+.iv-for legend{width:100%;margin-bottom:var(--space-2);padding:0;font:var(--weight-label) var(--text-label)/1 var(--font);
+  color:color-mix(in srgb,var(--white) 72%,transparent)}
+.iv-chip{position:relative;cursor:pointer}
+.iv-chip input{position:absolute;inset:0;margin:0;opacity:0;cursor:pointer}
+.iv-chip span{display:inline-flex;align-items:center;height:var(--key-height-s);padding:0 var(--space-4);border-radius:var(--r-pill);
+  border:var(--line-object) solid color-mix(in srgb,var(--white) 28%,transparent);color:var(--white);
+  font:var(--weight-label) var(--text-label)/1 var(--font);transition:background-color var(--t-state) var(--ease),color var(--t-state) var(--ease)}
+.iv-chip:hover span{border-color:color-mix(in srgb,var(--white) 44%,transparent)}
+.iv-chip input:checked + span{background:var(--white);border-color:var(--white);color:var(--text)}
+.iv-chip input:focus-visible + span{outline:2px solid var(--white);outline-offset:3px}
+.iv-done h2{font-size:var(--text-heading)}
+.iv-done h2:focus{outline:0}
+.iv-done b{color:var(--white);overflow-wrap:anywhere}
+
+/* reports: one row a report, its number, its month and what it covers, and the key */
+.rp{padding-block:var(--space-8)}
+.rp-list{list-style:none;margin:0;padding:0;max-width:62rem;border-top:var(--line-heavy) solid var(--black)}
+.rp-row{display:grid;grid-template-columns:7rem minmax(0,1fr) auto;column-gap:var(--space-6);align-items:center;
+  padding:var(--space-6) 0;border-bottom:var(--line-hairline) solid var(--border)}
+.rp-no{margin:0;font:var(--weight-heading) var(--text-label)/1.3 var(--font);letter-spacing:.12em;text-transform:uppercase;color:var(--text-link)}
+.rp-main h2{margin:0;font-size:var(--text-title);line-height:1.15}
+.rp-main h2 a{color:inherit;text-decoration:none}
+.rp-main h2 a:hover{text-decoration:underline;text-underline-offset:.12em}
+.rp-meta{margin:var(--space-2) 0 0;font-size:var(--text-reading);color:var(--text-secondary)}
+.rp-row.is-next .rp-no,.rp-row.is-next h2{color:var(--text-tertiary)}
+@media (max-width:899px){.iv-grid{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:700px){
+  .iv,.rp{padding-block:var(--space-7)}
+  .iv-card{padding:var(--space-5)}
+  .iv-plate{top:var(--space-5);right:var(--space-5)}
+  .iv-acts .key{width:100%}
+  .rp-row{grid-template-columns:minmax(0,1fr);row-gap:var(--space-3);padding:var(--space-5) 0}
+  .rp-acts .key{width:100%}
+}
