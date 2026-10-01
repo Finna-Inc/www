@@ -41,7 +41,7 @@
 .fd-rail b{font-weight:inherit;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .fd-bar{grid-column:1 / -1;display:block;height:3px;border-radius:2px;background:var(--border);overflow:hidden}
 .fd-bar i{display:block;height:100%;border-radius:inherit;background:var(--primary);transform-origin:left center;transform:scaleX(var(--f,0))}
-.fd-rail a.is-on{color:var(--black)}
+.fd-rail a.is-on{color:var(--heading)}
 .fd-rail a.is-on .plate{color:var(--heading)}
 @media (hover:hover){.fd-rail a:hover{color:var(--text)}}
 .fd-rail a:focus-visible{outline:2px solid var(--primary);outline-offset:3px;border-radius:var(--r-chip)}
@@ -146,7 +146,7 @@
 .fd-app{container:fdapp / inline-size;border:var(--line-object) solid var(--border-strong);border-radius:var(--r-card);background:var(--bg);
   padding:clamp(var(--space-4),2.2vw,var(--space-6))}
 .fd-app-h{display:flex;align-items:center;flex-wrap:wrap;gap:var(--space-2) var(--space-3);margin:0 0 var(--space-4)}
-.fd-app-h b{font:var(--weight-heading) var(--text-title)/1.1 var(--font);letter-spacing:var(--track-heading);color:var(--black);margin-right:var(--space-1)}
+.fd-app-h b{font:var(--weight-heading) var(--text-title)/1.1 var(--font);letter-spacing:var(--track-heading);color:var(--heading);margin-right:var(--space-1)}
 /* its state, in a few words, as on the app's Home cards: what needs you in Champagne, all well in
    the green, a date to keep in grey */
 .fd-st{display:inline-flex;align-items:center;white-space:nowrap;font:var(--weight-heading) var(--text-label)/1 var(--font);
@@ -166,6 +166,13 @@
 .is-investment .fd-scene{--scene:var(--primary-12)}
 .is-protection .fd-scene{--scene:color-mix(in srgb,var(--d-real) 17%,var(--bg))}
 .is-succession .fd-scene{--scene:color-mix(in srgb,var(--l-property) 13%,var(--bg))}
+/* in dark, each desk keeps its own hue on the raised background, at one quiet level (the brand's
+   dark scene and desk colour, components.css; Records' blue at the same depth) */
+:root[data-mode="dark"] .fd-scene{--scene:color-mix(in srgb,var(--primary-48) 12%,var(--bg-raised))}
+:root[data-mode="dark"] .is-records .fd-scene{--scene:oklch(0.29 0.03 245)}
+:root[data-mode="dark"] .is-policy .fd-scene{--scene:color-mix(in srgb,var(--gold-light) 14%,var(--bg-raised))}
+:root[data-mode="dark"] .is-protection .fd-scene{--scene:color-mix(in srgb,var(--d-real) 17%,var(--bg-raised))}
+:root[data-mode="dark"] .is-succession .fd-scene{--scene:color-mix(in srgb,var(--l-property) 18%,var(--bg-raised))}
 
 /* Freya's line: her mark, stateful as in the app (ready, thinking, answering), and who is speaking */
 .fd-fy{display:flex;align-items:center;gap:var(--space-3);margin:0 0 var(--space-4)}
@@ -179,7 +186,7 @@
 .fd-mk[data-state="answering"] circle.r{stroke-width:3.1}
 @keyframes fd-turn{to{transform:rotate(360deg)}}
 
-.fd-ans{font:var(--weight-heading) min(var(--text-title),8.2cqi)/1.18 var(--font);letter-spacing:var(--track-heading);color:var(--black);
+.fd-ans{font:var(--weight-heading) min(var(--text-title),8.2cqi)/1.18 var(--font);letter-spacing:var(--track-heading);color:var(--heading);
   margin:0 0 var(--space-5);max-width:24ch;text-wrap:balance}
 .fd-scene .eyebrow{color:var(--text-link)}
 
@@ -254,13 +261,13 @@
 .fd-rg .rn{grid-area:n}.fd-rg .rt{grid-area:t}.fd-rg .rv{grid-area:v}
 .fd-rg .rn{font:var(--weight-label) var(--text-label)/1.3 var(--font);color:var(--text)}
 .fd-rg .rv{text-align:right;white-space:nowrap}
-.fd-rg .rv b{font:var(--weight-heading) var(--text-reading)/1.1 var(--font);color:var(--black)}
+.fd-rg .rv b{font:var(--weight-heading) var(--text-reading)/1.1 var(--font);color:var(--heading)}
 .fd-rg .rt{position:relative;height:20px;border-radius:var(--r-chip);background:var(--bg-sunken)}
 .fd-rg .band{position:absolute;top:0;bottom:0;left:calc(var(--lo) * 1%);width:calc((var(--hi) - var(--lo)) * 1%);border-radius:var(--r-chip);background:var(--primary-24)}
 .fd-rg .tgt{position:absolute;top:3px;bottom:3px;left:calc(var(--t) * 1%);width:2px;margin-left:-1px;background:var(--primary-72)}
 .fd-rg .now{position:absolute;top:-3px;bottom:-3px;width:4px;margin-left:-2px;border-radius:2px;background:var(--heading);left:calc(var(--v) * 1%)}
 .fd-rg .is-out .now{background:var(--gold)}
-.fd-rg .is-out .rv b{color:var(--black)}
+.fd-rg .is-out .rv b{color:var(--heading)}
 .fd-rg .is-out .rv b::after{content:"Over";margin-left:var(--space-2);padding:3px 8px;border-radius:var(--r-pill);background:var(--gold-light);
   font:var(--weight-heading) var(--text-label)/1 var(--font);vertical-align:1px}
 @container fdapp (max-width:470px){
@@ -278,7 +285,7 @@
 .fd-ln li::before{content:"";position:absolute;left:0;top:5px;width:var(--dot);height:var(--dot);border-radius:50%;background:var(--primary-72);box-shadow:0 0 0 3px var(--scene)}
 .fd-ln li.is-today::before{background:var(--heading)}
 .fd-ln li.is-att::before{background:var(--gold)}
-.fd-ln b{font:var(--weight-heading) var(--text-reading)/1.3 var(--font);color:var(--black);white-space:nowrap}
+.fd-ln b{font:var(--weight-heading) var(--text-reading)/1.3 var(--font);color:var(--heading);white-space:nowrap}
 .fd-ln span{font-size:var(--text-label);line-height:1.45;color:var(--text-secondary)}
 .fd-ln em{font-style:normal;font-size:var(--text-label);font-weight:var(--weight-heading);color:var(--text)}
 .fd-ln-ax{display:none}
@@ -307,7 +314,7 @@
 .fd-wl-l li::before{content:"";position:absolute;left:0;top:4px;width:var(--dot);height:var(--dot);border-radius:50%;background:var(--primary);box-shadow:0 0 0 3px color-mix(in srgb,var(--bg) 80%,var(--scene))}
 .fd-wl-l li.today::before{background:var(--heading)}
 .fd-wl-l li.ahead::before{background:var(--bg);box-shadow:inset 0 0 0 2px var(--primary-48),0 0 0 3px color-mix(in srgb,var(--bg) 80%,var(--scene))}
-.fd-wl-l b{font:var(--weight-heading) var(--text-reading)/1.3 var(--font);color:var(--black)}
+.fd-wl-l b{font:var(--weight-heading) var(--text-reading)/1.3 var(--font);color:var(--heading)}
 .fd-wl-l span{font-size:var(--text-label);line-height:1.4;color:var(--text-secondary)}
 @container fdapp (min-width:560px){
   .fd-wl-l{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:var(--space-4)}

@@ -100,6 +100,11 @@
   box-shadow:0 4px 0 var(--primary-pressed)}
 .btn-paper:hover{background-color:var(--bg-sunken);box-shadow:0 6px 0 var(--primary-pressed)}
 .btn-paper:active{background-color:var(--border);box-shadow:0 0 0 var(--primary-pressed)}
+/* in dark mode the paper key keeps its white face, so its label and its pressed faces stay the
+   white key's own (the brand's .key-white), not the page's text and grounds, which turn dark */
+:root[data-mode="dark"] .btn-paper{color:var(--button-white-text)}
+:root[data-mode="dark"] .btn-paper:hover{background-color:color-mix(in srgb,var(--white) 92%,var(--black))}
+:root[data-mode="dark"] .btn-paper:active{background-color:color-mix(in srgb,var(--white) 88%,var(--black))}
 /* the outlined one has no face to light, so it gets the offset alone. ON A COLOURED OR DARK
    SURFACE THE SECONDARY IS DRAWN IN FULL WHITE — words, outline and shelf (the brand's rule,
    REV 47, 29 Sep 2026); it was a 55% outline on a 22% shelf, too weak over the photograph. */

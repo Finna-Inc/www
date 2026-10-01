@@ -36,14 +36,20 @@
 <link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#0D231B">
+<!-- LIGHT AND DARK, as in the app (Rose, 1 Oct 2026: "site is light by default no matter what. user can
+     switch to dark if they want"). Light unless the visitor picked dark with the mode key; the choice is
+     kept under the app's own name. Runs before the page paints, so it never shows the wrong mode. -->
+<script>(function(){var r=document.documentElement,s=null;try{s=localStorage.getItem('finna-mode-choice')}catch(e){}
+if(s==='dark')r.setAttribute('data-mode','dark');
+window.FinnaMode={set:function(m){r.setAttribute('data-mode',m);try{localStorage.setItem('finna-mode-choice',m)}catch(e){}}}})();</script>
 <link rel="stylesheet" href="chrome/fonts.css?v=0c6cbb49">
 <link rel="stylesheet" href="brand/tokens.css?v=4c740b6e">
-<link rel="stylesheet" href="site.css?v=af9cfa95">
-<link rel="stylesheet" href="nav-site.css?v=ec48e499">
+<link rel="stylesheet" href="site.css?v=cff5ead7">
+<link rel="stylesheet" href="nav-site.css?v=a22a0bfd">
 <link rel="stylesheet" href="vendor/lenis.css?v=599bcc02">
-<link rel="stylesheet" href="hero-home.css?v=62a9cc27">
+<link rel="stylesheet" href="hero-home.css?v=13c51497">
 <link rel="stylesheet" href="hero-tones.css?v=3e8ff81a">
-<link rel="stylesheet" href="desks-home.css?v=33e6a11f">
+<link rel="stylesheet" href="desks-home.css?v=efb86893">
 <!-- A DIFFERENT HERO EACH VISIT (Rose, 13 Sep 2026). In the <head> on purpose: it sets
      the custom property before the hero has painted, so there is no flash of one picture
      being replaced by another, and only the chosen file is ever fetched. N is the count
@@ -100,6 +106,7 @@ r.dataset.hero=i;})();</script>
       </div>
       <a class="key key-s nav-cta-m" href="https://app.finnafamilyoffice.com/">Explore your family office<svg width="18" height="18" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
     </div>
+    <button class="nav-mode" id="navMode" type="button" aria-label="Dark mode" title="Dark mode"><svg width="20" height="20" class="ic to-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg><svg width="20" height="20" class="ic to-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg></button>
     <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false"><svg width="22" height="22" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg></button>
     <a class="key key-s" href="https://app.finnafamilyoffice.com/">Explore your family office<svg width="18" height="18" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
   </nav>
@@ -657,6 +664,16 @@ r.dataset.hero=i;})();</script>
           <li><a href="privacy.html">Privacy</a></li>
         </ul>
       </div>
+      <!-- THE WORLD CLOCKS (Rose, 1 Oct 2026, in the footer: "small world clocks ... San Francisco, Miami, New York,
+           Zurich, Copenhagen"). The time now in each city, drawn as a small face in the line icons'
+           stroke; the page's script sets the hands and shows the row, so without it there is none. -->
+      <div class="world-clocks" id="worldClocks" hidden>
+        <span class="world-clock" role="img" data-tz="America/Los_Angeles"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5"/><path class="h" d="M12 12V7.4"/><path class="m" d="M12 12V4.6"/><circle class="c" cx="12" cy="12" r=".9"/></svg><b>San Francisco</b></span>
+        <span class="world-clock" role="img" data-tz="America/New_York"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5"/><path class="h" d="M12 12V7.4"/><path class="m" d="M12 12V4.6"/><circle class="c" cx="12" cy="12" r=".9"/></svg><b>Miami</b></span>
+        <span class="world-clock" role="img" data-tz="America/New_York"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5"/><path class="h" d="M12 12V7.4"/><path class="m" d="M12 12V4.6"/><circle class="c" cx="12" cy="12" r=".9"/></svg><b>New York</b></span>
+        <span class="world-clock" role="img" data-tz="Europe/Zurich"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5"/><path class="h" d="M12 12V7.4"/><path class="m" d="M12 12V4.6"/><circle class="c" cx="12" cy="12" r=".9"/></svg><b>Zurich</b></span>
+        <span class="world-clock" role="img" data-tz="Europe/Copenhagen"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5"/><path class="h" d="M12 12V7.4"/><path class="m" d="M12 12V4.6"/><circle class="c" cx="12" cy="12" r=".9"/></svg><b>Copenhagen</b></span>
+      </div>
     </div>
 
     <!-- THE FOOTER DISCLAIMER IS ONE SHORT PARAGRAPH (Christian, 27 Sep 2026). Finna is not
@@ -690,6 +707,6 @@ r.dataset.hero=i;})();</script>
 <script src="vendor/smooth-scroll.js?v=cb7b0132" defer></script>
 <script src="hero-parallax.js?v=d172b74e" defer></script>
 <script src="desks-home.js?v=be7aee4d" defer></script>
-<script src="nav-site.js?v=7f7c1d92"></script>
+<script src="nav-site.js?v=75ddbe57"></script>
 </body>
 </html>

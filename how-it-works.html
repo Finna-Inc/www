@@ -38,8 +38,8 @@
 <link rel="preload" as="image" href="media/covers/how-it-works.webp" type="image/webp">
 <link rel="stylesheet" href="chrome/fonts.css?v=0c6cbb49">
 <link rel="stylesheet" href="brand/tokens.css?v=4c740b6e">
-<link rel="stylesheet" href="site.css?v=af9cfa95">
-<link rel="stylesheet" href="nav-site.css?v=ec48e499">
+<link rel="stylesheet" href="site.css?v=cff5ead7">
+<link rel="stylesheet" href="nav-site.css?v=a22a0bfd">
 <!-- the page's cover: data-cover above picks its picture and the pull band's colour -->
 <link rel="stylesheet" href="hero-tones.css?v=3e8ff81a">
 <link rel="stylesheet" href="vendor/lenis.css?v=599bcc02">
@@ -383,6 +383,16 @@
           <li><a href="privacy.html">Privacy</a></li>
         </ul>
       </div>
+      <!-- THE WORLD CLOCKS (Rose, 1 Oct 2026, in the footer: "small world clocks ... San Francisco, Miami, New York,
+           Zurich, Copenhagen"). The time now in each city, drawn as a small face in the line icons'
+           stroke; the page's script sets the hands and shows the row, so without it there is none. -->
+      <div class="world-clocks" id="worldClocks" hidden>
+        <span class="world-clock" role="img" data-tz="America/Los_Angeles"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5"/><path class="h" d="M12 12V7.4"/><path class="m" d="M12 12V4.6"/><circle class="c" cx="12" cy="12" r=".9"/></svg><b>San Francisco</b></span>
+        <span class="world-clock" role="img" data-tz="America/New_York"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5"/><path class="h" d="M12 12V7.4"/><path class="m" d="M12 12V4.6"/><circle class="c" cx="12" cy="12" r=".9"/></svg><b>Miami</b></span>
+        <span class="world-clock" role="img" data-tz="America/New_York"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5"/><path class="h" d="M12 12V7.4"/><path class="m" d="M12 12V4.6"/><circle class="c" cx="12" cy="12" r=".9"/></svg><b>New York</b></span>
+        <span class="world-clock" role="img" data-tz="Europe/Zurich"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5"/><path class="h" d="M12 12V7.4"/><path class="m" d="M12 12V4.6"/><circle class="c" cx="12" cy="12" r=".9"/></svg><b>Zurich</b></span>
+        <span class="world-clock" role="img" data-tz="Europe/Copenhagen"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5"/><path class="h" d="M12 12V7.4"/><path class="m" d="M12 12V4.6"/><circle class="c" cx="12" cy="12" r=".9"/></svg><b>Copenhagen</b></span>
+      </div>
     </div>
 
     <!-- THE FOOTER DISCLAIMER IS ONE SHORT PARAGRAPH (Christian, 27 Sep 2026). Finna is not
@@ -410,7 +420,7 @@
 
 <script src="vendor/lenis.min.js?v=daec1872"></script>
 <script src="vendor/smooth-scroll.js?v=cb7b0132" defer></script>
-<script src="nav-site.js?v=7f7c1d92"></script>
+<script src="nav-site.js?v=75ddbe57"></script>
 <script>
 /* THE FIRST WEEK DRAWS ONCE (29 Sep 2026): when it comes on screen the line draws and the days
    arrive along it, as the platform's line does. Without the script, or with reduced motion, it

@@ -181,6 +181,16 @@
    button on the page with a different language. The bar is dark, so the key's own offset in
    the pressed green reads against it without any extra help. */
 .nav-toggle{display:none}
+/* THE MODE KEY (Rose, 1 Oct 2026). Light or dark, the visitor's choice: the moon goes dark, the
+   sun comes back. The burger's glass key, at the key's height, 12px before the key. */
+.nav-mode{display:grid;place-items:center;flex:none;width:40px;height:40px;margin-right:-16px;border-radius:10px;
+  background:transparent;border:1px solid rgba(255,255,255,.28);cursor:pointer;color:var(--white);
+  transition:background-color var(--t-state) var(--ease)}
+.nav-mode:hover{background:rgba(255,255,255,.10)}
+.nav-mode:focus-visible{outline:2px solid var(--white);outline-offset:2px}
+.nav-mode .ic{display:block}
+.nav-mode .to-light,:root[data-mode="dark"] .nav-mode .to-dark{display:none}
+:root[data-mode="dark"] .nav-mode .to-light{display:block}
 .nav-cta-m{display:none}
 /* THE SHEET FROM 1099px DOWN, NOT 900 (27 Sep 2026). With How it works, Your family office,
    Service levels and About in the bar, the row needs about 1100px: below that the labels
@@ -268,6 +278,9 @@
    width, and it was the thing holding `margin-right:auto`, so both controls fell in
    beside the name. */
 .nav-toggle{margin-left:auto}
+/* the mode key goes first at the end, beside the burger, at the burger's size */
+.nav-mode{margin-left:auto;width:44px;height:44px}
+.nav-mode ~ .nav-toggle{margin-left:0}
 }
 /* UNDER 640 THE BAR DROPS ITS KEY (12 Sep 2026). It wrapped to three lines on a phone;
    the same action is offered full size in the burger sheet and in the hero. The old rule

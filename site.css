@@ -84,7 +84,7 @@ body.pull-snap{transition:transform 520ms cubic-bezier(.22,1,.36,1)}
    only where the window actually forces it. text-wrap:balance is for that moment: when a
    line has to go, the browser evens the lines instead of leaving one word stranded. */
 h1,h2,h3,h4{margin:0;font-weight:var(--weight-heading);letter-spacing:var(--track-heading);
-  line-height:1.08;text-wrap:balance;color:var(--black)}
+  line-height:1.08;text-wrap:balance;color:var(--heading)}
 /* ...and black is for the WHITE ground only. Every dark surface sets its own white on the
    element, and headings inherited it until the line above gave them a colour of their own.
    This hands it back. .band covers the violet and the closing, which both carry it; the
@@ -489,6 +489,28 @@ a.soon.is-here{cursor:default}
    the column looks exactly as it did. */
 .footer ul{list-style:none;margin:0;padding:0;display:grid;gap:2px;font-size:var(--text-reading)}
 .footer li > a,.footer li > span{display:block;padding-block:6px;min-height:24px}
+/* THE WORLD CLOCKS (Rose, 1 Oct 2026: first the hero, then "Footer", then "distribute across the
+   page evenly ... a little larger ... city names capital letters"). The time now in five cities,
+   in a row under the columns that runs the footer's full width, the first face at its left edge
+   and the last at its right, each city's name under its face in the footer headings' capitals.
+   The faces take the line icons' stroke again ("make stroke as before"). nav-site.js sets the
+   hands and shows the row, so without the script there is none. */
+/* the row has its own divider above it, the legal block's hairline, with the same space round it
+   (Rose, 1 Oct 2026: "insert a divider above the clocks too") */
+.footer .world-clocks{grid-column:1 / -1;display:flex;justify-content:space-between;gap:var(--space-5);
+  margin-top:var(--space-5);padding-top:var(--space-5);border-top:1px solid rgba(255,255,255,.14)}
+.world-clocks[hidden]{display:none}
+.world-clock{display:flex;flex-direction:column;align-items:center;gap:var(--space-3)}
+.world-clock svg{display:block;inline-size:44px;block-size:44px;overflow:visible;fill:none;stroke:var(--white);stroke-linecap:round}
+.world-clock svg *{vector-effect:non-scaling-stroke;stroke-width:var(--line-icon)}
+.world-clock .c{fill:var(--white);stroke:none}
+/* the names read smaller than the footer's headings ("make the titles under the clocks smaller"):
+   the label rung is the floor (tokens.css: nothing goes below it), so they step down in weight and
+   tracking instead, and sit a little quieter */
+.world-clock b{font:var(--weight-label) var(--text-label)/1 var(--font-sans);letter-spacing:.08em;text-transform:uppercase;
+  color:rgba(255,255,255,.66);white-space:nowrap}
+/* on a phone the five names do not fit one row: three and two, from the left */
+@media (max-width:600px){.footer .world-clocks{flex-wrap:wrap;justify-content:flex-start;gap:var(--space-6) var(--space-6)}}
 .legal{margin-top:var(--space-7);padding-top:var(--space-5);
        border-top:1px solid rgba(255,255,255,.14);
        color:rgba(255,255,255,.55);font-size:var(--text-label);line-height:1.65}
@@ -711,7 +733,7 @@ figcaption{margin-top:var(--space-4);color:var(--text-tertiary);font-size:var(--
    what primary is for: "Primary means action: buttons, links, the active state." A drawing
    beside a heading is not an action, so the green was decoration doing no work and pulling
    the eye off the words it sits next to. --black, the same as the heading it belongs to. */
-.plate{width:48px;height:48px;display:block;margin-bottom:var(--space-4);color:var(--black)}
+.plate{width:48px;height:48px;display:block;margin-bottom:var(--space-4);color:var(--heading)}
 /* THE ICON STROKE LADDER (brand system, 13 Sep 2026). The drawings carry 1.4 on a 24 box,
    which scales — 2.8px at 48 and 3.7 at 64. non-scaling-stroke takes the value as a device
    width instead, so the token is what lands on screen at any size. */
@@ -1379,7 +1401,7 @@ body:has(.nav-links.open) .to-top{opacity:0;pointer-events:none}
 .dfig-tabs{display:flex;align-items:center;gap:var(--space-1);padding:var(--space-3) var(--space-4);overflow:hidden;
   border-bottom:var(--line-hairline) solid var(--border);mask-image:linear-gradient(90deg,var(--black) 85%,transparent)}
 .dfig-tabs b{padding-right:var(--space-3);margin-right:var(--space-1);border-right:var(--line-hairline) solid var(--border);
-  color:var(--black);white-space:nowrap}
+  color:var(--heading);white-space:nowrap}
 .dfig-tabs span{padding:var(--space-1) var(--space-2);border-radius:var(--r-chip);color:var(--text-secondary);white-space:nowrap}
 .dfig-tabs .on{background:var(--bg-selected);color:var(--text-selected);font-weight:var(--weight-label)}
 /* --pad is the page's side margin; the pins read it to sit centred on the screen's edge */
@@ -1387,18 +1409,18 @@ body:has(.nav-links.open) .to-top{opacity:0;pointer-events:none}
   padding:var(--space-4) var(--pad) var(--space-5)}
 .dfig-crumb{color:var(--text-secondary)}
 .dfig-t{position:relative}
-.dfig-title strong{display:block;font:var(--weight-heading) var(--text-subhead)/1.2 var(--font-sans);color:var(--black)}
+.dfig-title strong{display:block;font:var(--weight-heading) var(--text-subhead)/1.2 var(--font-sans);color:var(--heading)}
 .dfig-title span{color:var(--text-secondary)}
 .dfig-figs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-2)}
 .dfig-figs div{min-width:0;border:var(--line-hairline) solid var(--border);border-radius:var(--r-chip);padding:var(--space-2) var(--space-3)}
 .dfig-figs div:last-child{background:var(--primary-glow);border-color:var(--primary)}
 .dfig-figs span{display:block;color:var(--text-secondary)}
-.dfig-figs b{display:block;font-size:var(--text-reading);color:var(--black);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dfig-figs b{display:block;font-size:var(--text-reading);color:var(--heading);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .dfig-rows{display:flex;flex-direction:column}
 .dfig-row{position:relative;display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);
   padding:var(--space-2) 0;border-bottom:var(--line-hairline) solid var(--border)}
 .dfig-row:last-child{border-bottom:0}
-.dfig-row .nm{min-width:0;color:var(--black)}
+.dfig-row .nm{min-width:0;color:var(--heading)}
 .dfig-row .nm small{display:block;color:var(--text-secondary);font-size:inherit}
 .dfig-row .v{flex:none;text-align:right;white-space:nowrap}
 .dfig-chip{flex:none;padding:var(--space-1) var(--space-2);border-radius:var(--r-pill);font-weight:var(--weight-heading);white-space:nowrap}
@@ -1468,7 +1490,7 @@ body:has(.nav-links.open) .to-top{opacity:0;pointer-events:none}
   box-shadow:0 var(--space-3) var(--space-5) calc(var(--space-3) * -1) color-mix(in srgb,var(--primary-pressed) 30%,transparent)}
 .dnav a:focus-visible{outline:2px solid var(--primary);outline-offset:3px}
 .dnav .plate{width:40px;height:40px;margin:0 0 var(--space-2)}
-.dnav b{font-size:var(--text-subhead);line-height:1.2;color:var(--black)}
+.dnav b{font-size:var(--text-subhead);line-height:1.2;color:var(--heading)}
 .dnav .eyebrow{color:var(--text-link)}
 .dnav .d{color:var(--text-secondary);font-size:var(--text-label);line-height:1.5}
 .dnav a[aria-current="page"]{background:var(--bg-selected);border-color:var(--primary);transform:none;cursor:default;
@@ -1530,19 +1552,19 @@ body:has(.nav-links.open) .to-top{opacity:0;pointer-events:none}
   box-shadow:0 var(--space-5) var(--space-7) calc(var(--space-5) * -1) color-mix(in srgb,var(--primary-pressed) 30%,transparent);
   font-size:var(--text-label);line-height:1.4}
 .hw-mini-k{color:var(--text-secondary)}
-.hw-mini-q{font:var(--weight-heading) var(--text-subhead)/1.25 var(--font-sans);color:var(--black)}
+.hw-mini-q{font:var(--weight-heading) var(--text-subhead)/1.25 var(--font-sans);color:var(--heading)}
 /* step 1: the answer as the app keeps it, a figure typed into a field with its unit, the help under it */
 .hw-field{display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-3);min-height:var(--key-touch-target);
   padding:var(--space-3) var(--space-4);border-radius:var(--r-chip);border:var(--line-object) solid var(--primary);
   box-shadow:0 0 0 3px var(--primary-12);background:var(--bg)}
-.hw-field span{font:var(--weight-heading) var(--text-title)/1 var(--font-sans);letter-spacing:var(--track-heading);color:var(--black)}
+.hw-field span{font:var(--weight-heading) var(--text-title)/1 var(--font-sans);letter-spacing:var(--track-heading);color:var(--heading)}
 .hw-field small{font-size:var(--text-reading);color:var(--text-secondary)}
 .hw-help{margin-top:calc(var(--space-2) * -1);color:var(--text-secondary)}
 .hw-mini-foot{margin-top:auto;color:var(--text-link);font-weight:var(--weight-label)}
 /* step 2: Home's one figure, over the map in one line: one green in steps, the darkest the largest */
 .hw-net{display:flex;flex-direction:column;gap:var(--space-1)}
 .hw-net span{color:var(--text-secondary)}
-.hw-net b{font:var(--weight-heading) var(--text-title)/1.1 var(--font-sans);letter-spacing:var(--track-heading);color:var(--black)}
+.hw-net b{font:var(--weight-heading) var(--text-title)/1.1 var(--font-sans);letter-spacing:var(--track-heading);color:var(--heading)}
 .hw-map{display:flex;gap:2px;height:var(--space-6)}
 .hw-map i{flex:var(--w) 1 0;min-width:4px;border-radius:3px;background:var(--primary-24)}
 .hw-map i:first-child{border-radius:var(--r-chip) 3px 3px var(--r-chip);background:var(--primary-pressed)}
@@ -1563,7 +1585,7 @@ body:has(.nav-links.open) .to-top{opacity:0;pointer-events:none}
 .hw-tile em{font:var(--weight-heading) var(--text-label)/1 var(--font-sans);font-style:normal;padding:5px 10px;border-radius:var(--r-pill);
   background:var(--bg);color:var(--text-secondary)}
 .hw-tile.att em{background:var(--gold-light);color:var(--black)}
-.hw-tile b{margin-top:var(--space-1);color:var(--black);line-height:1.3}
+.hw-tile b{margin-top:var(--space-1);color:var(--heading);line-height:1.3}
 .hw-tile small{color:var(--text-secondary);font-size:inherit}
 /* the line under the three steps: the pictures are the app's, with a sample household */
 .hw-cap{margin:var(--space-6) 0 0;font-size:var(--text-label);color:var(--text-secondary)}
@@ -1589,7 +1611,7 @@ body:has(.nav-links.open) .to-top{opacity:0;pointer-events:none}
 .hw-day-mark svg *{vector-effect:non-scaling-stroke;stroke-width:var(--line-icon)}
 .hw-day-mark .hw-mk circle{stroke-width:1.2px}
 .hw-day-n{margin-top:var(--space-2);font:var(--weight-heading) var(--text-label)/1 var(--font-sans);letter-spacing:.12em;text-transform:uppercase;color:var(--text-link)}
-.hw-day b{font-size:var(--text-subhead);color:var(--black);line-height:1.2}
+.hw-day b{font-size:var(--text-subhead);color:var(--heading);line-height:1.2}
 .hw-day p{margin:0;color:var(--text-secondary);font-size:var(--text-reading);line-height:1.5}
 /* the week draws once it is on screen (.is-wait, then .is-live, set by the page's script) */
 .hw-week.is-wait::before{transform:scaleX(0)}
@@ -1646,7 +1668,7 @@ body:has(.nav-links.open) .to-top{opacity:0;pointer-events:none}
 .hw-facts li{display:flex;flex-direction:column;gap:var(--space-2);padding-top:var(--space-5);border-top:var(--line-heavy) solid var(--primary)}
 /* icons are black or white, never green (brand REV 51, 29 Sep 2026) */
 .hw-facts .ic{inline-size:28px;block-size:28px;color:var(--heading);margin-bottom:var(--space-2)}
-.hw-facts b{font-size:var(--text-subhead);color:var(--black);line-height:1.25}
+.hw-facts b{font-size:var(--text-subhead);color:var(--heading);line-height:1.25}
 .hw-facts p{margin:0;color:var(--text-secondary)}
 
 /* ── 07 · the rule, set apart ── */
@@ -1658,7 +1680,7 @@ body:has(.nav-links.open) .to-top{opacity:0;pointer-events:none}
 .hw-faq{border-top:var(--line-hairline) solid var(--border-strong)}
 .hw-q{border-bottom:var(--line-hairline) solid var(--border-strong)}
 .hw-q summary{display:flex;justify-content:space-between;align-items:center;gap:var(--space-4);min-height:var(--key-touch-target);
-  padding:var(--space-4) 0;cursor:pointer;list-style:none;font:var(--weight-label) var(--text-subhead)/1.3 var(--font-sans);color:var(--black)}
+  padding:var(--space-4) 0;cursor:pointer;list-style:none;font:var(--weight-label) var(--text-subhead)/1.3 var(--font-sans);color:var(--heading)}
 .hw-q summary::-webkit-details-marker{display:none}
 .hw-q summary .ic{flex:none;inline-size:22px;block-size:22px;color:var(--heading);transition:rotate var(--t-state) var(--ease)}
 .hw-q[open] summary .ic{rotate:45deg}
@@ -1728,8 +1750,8 @@ body:has(.nav-links.open) .to-top{opacity:0;pointer-events:none}
 /* the comparison: a real table on a wide screen, the Plus column on the faintest tint */
 .cmp{width:100%;border-collapse:collapse;font-size:var(--text-reading)}
 .cmp th,.cmp td{padding:var(--space-3) var(--space-4);border-bottom:var(--line-hairline) solid var(--border);text-align:left;vertical-align:top}
-.cmp thead th{vertical-align:bottom;padding-bottom:var(--space-4);border-bottom:var(--line-heavy) solid var(--black);
-  font:var(--weight-heading) var(--text-subhead)/1.2 var(--font-sans);color:var(--black)}
+.cmp thead th{vertical-align:bottom;padding-bottom:var(--space-4);border-bottom:var(--line-heavy) solid var(--heading);
+  font:var(--weight-heading) var(--text-subhead)/1.2 var(--font-sans);color:var(--heading)}
 .cmp th small{display:block;margin-top:var(--space-1);font:var(--weight-reading) var(--text-label)/1.45 var(--font-sans);color:var(--text-secondary)}
 .cmp tbody th{width:40%;font-weight:var(--weight-label);color:var(--text)}
 .cmp td{width:20%;color:var(--text-secondary)}
@@ -1813,7 +1835,7 @@ body:has(.nav-links.open) .to-top{opacity:0;pointer-events:none}
   background:var(--chart-bg);border:var(--line-object) solid var(--border);border-radius:var(--r-card)}
 .wf-chart-head{display:flex;flex-direction:column;gap:var(--space-1);margin-bottom:var(--space-6)}
 .wf-chart-k{font:var(--weight-heading) var(--text-label)/1 var(--font-sans);letter-spacing:.12em;text-transform:uppercase;color:var(--text-link)}
-.wf-chart-head b{margin-top:var(--space-2);font-size:var(--text-subhead);line-height:1.25;color:var(--black)}
+.wf-chart-head b{margin-top:var(--space-2);font-size:var(--text-subhead);line-height:1.25;color:var(--heading)}
 .wf-chart-sub{font-size:var(--text-label);line-height:1.5;color:var(--text-secondary)}
 .wf-note{margin:var(--space-5) 0 0;max-width:62ch;color:var(--text)}
 .wf-src{margin:var(--space-3) 0 0;max-width:none;font-size:var(--text-label);line-height:1.5;color:var(--text-secondary)}
@@ -1850,7 +1872,7 @@ body:has(.nav-links.open) .to-top{opacity:0;pointer-events:none}
 /* ── the headline figures ── a number, what it counts, and its source */
 .wf-stats{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-6) var(--space-5)}
 .wf-stats li{display:flex;flex-direction:column;gap:var(--space-2);padding-top:var(--space-4);border-top:var(--line-heavy) solid var(--primary)}
-.wf-stats b{font:var(--weight-heading) var(--text-title)/1.1 var(--font-sans);letter-spacing:var(--track-heading);color:var(--black)}
+.wf-stats b{font:var(--weight-heading) var(--text-title)/1.1 var(--font-sans);letter-spacing:var(--track-heading);color:var(--heading)}
 .wf-stats span{color:var(--text-secondary)}
 .wf-stats-3{grid-template-columns:repeat(3,minmax(0,1fr))}
 .wf-stats-dark{grid-template-columns:repeat(3,minmax(0,1fr))}
@@ -1868,7 +1890,7 @@ body:has(.nav-links.open) .to-top{opacity:0;pointer-events:none}
 .wf-probs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-5)}
 .wf-prob{display:flex;flex-direction:column;gap:var(--space-2);padding:var(--space-5);min-width:0;
   background:var(--bg);border:var(--line-object) solid var(--border-strong);border-radius:var(--r-card)}
-.wf-prob-n{font:var(--weight-heading) var(--text-heading)/1 var(--font-sans);letter-spacing:var(--track-heading);color:var(--black)}
+.wf-prob-n{font:var(--weight-heading) var(--text-heading)/1 var(--font-sans);letter-spacing:var(--track-heading);color:var(--heading)}
 .wf-meter{display:block;block-size:var(--space-2);margin:var(--space-2) 0;border-radius:4px;background:var(--primary-12);overflow:hidden}
 .wf-meter i{display:block;block-size:100%;inline-size:calc(var(--v) * 1%);background:var(--primary);border-radius:0 4px 4px 0;transform-origin:left center}
 .wf-prob h3{font-size:var(--text-subhead);line-height:1.3}
@@ -1923,18 +1945,28 @@ body:has(.nav-links.open) .to-top{opacity:0;pointer-events:none}
   border-radius:var(--r-pill);background:var(--primary);box-shadow:0 0 0 var(--space-1) var(--primary-6)}
 .wf-time li:last-child::before{background:var(--primary-glow);box-shadow:inset 0 0 0 var(--line-figure) var(--primary),0 0 0 var(--space-1) var(--primary-6)}
 .wf-year{font:var(--weight-heading) var(--text-label)/1 var(--font-sans);letter-spacing:.12em;text-transform:uppercase;color:var(--text-link)}
-.wf-time b{font-size:var(--text-subhead);line-height:1.2;color:var(--black)}
+.wf-time b{font-size:var(--text-subhead);line-height:1.2;color:var(--heading)}
 .wf-time p{margin:0;color:var(--text-secondary)}
 
-/* ── the marks grow in as they arrive ── */
-@keyframes wf-grow-x{from{transform:scaleX(0)}to{transform:scaleX(1)}}
-@keyframes wf-grow-y{from{transform:scaleY(0)}to{transform:scaleY(1)}}
-@media (prefers-reduced-motion:no-preference){
-  @supports (animation-timeline:view()){
-    .wf-track i,.wf-meter i,.wf-seg span{animation:wf-grow-x linear both;animation-timeline:view();animation-range:entry 10% contain 15%}
-    .wf-col i{animation:wf-grow-y linear both;animation-timeline:view();animation-range:entry 10% contain 15%}
-  }
-}
+/* ── the marks grow in, and their figures count up with them ──
+   (Rose, 1 Oct 2026: "all the numbers should also count up here as the other places - the bars is a
+   little fast also"). The bars used to follow the scroll and were full almost as soon as they showed.
+   Now each figure, card or list starts once it is on screen: its bars grow over 1.6s, easing out, one
+   after another (--wf-d, set by the page's script), and each figure counts up beside its bar in the
+   same time. .wf-grow is set by the script, so without it, or with reduced motion, the bars simply show.
+   The bars with a figure at their tip grow in size, not by scaling, so the figure rides the tip as
+   it counts; the split bar has no figure on it and keeps the scale. */
+.wf-grow .wf-track i{inline-size:0}
+.wf-grow .wf-meter i{inline-size:0}
+.wf-grow .wf-col i{block-size:0}
+.wf-grow .wf-seg span{transform:scaleX(0)}
+.wf-grow.is-in .wf-track i{inline-size:calc((100% - 5ch) * var(--v) / var(--max))}
+.wf-grow.is-in .wf-meter i{inline-size:calc(var(--v) * 1%)}
+.wf-grow.is-in .wf-col i{block-size:calc((100% - var(--space-6)) * var(--v) / var(--max))}
+.wf-grow.is-in .wf-seg span{transform:none}
+.wf-grow.is-in :is(.wf-track i,.wf-meter i,.wf-col i,.wf-seg span){
+  transition:inline-size 1.6s cubic-bezier(.33,1,.68,1) var(--wf-d, 220ms),block-size 1.6s cubic-bezier(.33,1,.68,1) var(--wf-d, 220ms),
+             transform 1.6s cubic-bezier(.33,1,.68,1) var(--wf-d, 220ms)}
 
 /* ── a tablet ── */
 @media (max-width:1100px){
@@ -1975,13 +2007,13 @@ body:has(.nav-links.open) .to-top{opacity:0;pointer-events:none}
    route on every desk page, the note that Pro opens in the next few months, and the
    Security page. Tokens only. */
 
-/* the proof line under the home hero: three facts, quiet, one line on a desktop */
-.hero-home p.hero-proof{display:flex;flex-wrap:wrap;gap:var(--space-2) var(--space-5);margin-top:var(--space-6);max-width:none;
+/* the proof line under the home hero: two facts, quiet, one under the other at every width
+   (Rose, 1 Oct 2026: "Free for your household" goes under the first, to the left) */
+.hero-home p.hero-proof{display:flex;flex-direction:column;gap:var(--space-2);margin-top:var(--space-6);max-width:none;
   font-size:var(--text-label);line-height:1.5;font-weight:var(--weight-label);color:color-mix(in srgb,var(--white) 82%,transparent)}
 .hero-proof span{display:inline-flex;align-items:center;gap:var(--space-2)}
 .hero-proof span::before{content:"";flex:none;inline-size:var(--space-2);block-size:var(--space-2);border-radius:var(--r-pill);
   background:var(--primary-48)}
-@media (max-width:700px){.hero-home p.hero-proof{flex-direction:column;gap:var(--space-2)}}
 
 /* a real screen from the app, in a quiet frame: the desktop screen on a wide page, the
    phone screen on a phone, each with a caption that says it is a sample household */
@@ -2041,7 +2073,7 @@ body:has(.nav-links.open) .to-top{opacity:0;pointer-events:none}
 .steps3{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-6);counter-reset:s}
 .steps3 li{display:flex;flex-direction:column;gap:var(--space-2);padding-top:var(--space-4);border-top:var(--line-heavy) solid var(--primary);counter-increment:s}
 .steps3 li::before{content:counter(s,decimal-leading-zero);font:var(--weight-heading) var(--text-label)/1 var(--font-sans);letter-spacing:.12em;color:var(--text-link)}
-.steps3 b{font-size:var(--text-subhead);line-height:1.25;color:var(--black)}
+.steps3 b{font-size:var(--text-subhead);line-height:1.25;color:var(--heading)}
 .steps3 p{margin:0;color:var(--text-secondary)}
 .steps3 .plan{align-self:flex-start;padding:var(--space-1) var(--space-2);border-radius:var(--r-pill);background:var(--primary-12);
   color:var(--primary-pressed);font:var(--weight-heading) var(--text-label)/1 var(--font-sans);letter-spacing:.04em}
@@ -2135,9 +2167,9 @@ body:has(.nav-links.open) .to-top{opacity:0;pointer-events:none}
 .nw{padding-top:var(--space-8)}
 .nw-rel{display:grid;grid-template-columns:minmax(13rem,15rem) minmax(0,var(--measure));
   column-gap:clamp(var(--space-6),5vw,var(--space-8));align-items:start}
-.nw-side{position:sticky;top:120px;padding-top:var(--space-4);border-top:var(--line-heavy) solid var(--black)}
+.nw-side{position:sticky;top:120px;padding-top:var(--space-4);border-top:var(--line-heavy) solid var(--heading)}
 .nw-side .eyebrow{color:var(--text-link)}
-.nw-date{margin:var(--space-3) 0 0;font:var(--weight-heading) var(--text-subhead)/1.3 var(--font);color:var(--black)}
+.nw-date{margin:var(--space-3) 0 0;font:var(--weight-heading) var(--text-subhead)/1.3 var(--font);color:var(--heading)}
 .nw-acts{display:grid;justify-items:start;gap:var(--space-3);margin-top:var(--space-5)}
 .nw-acts .key{margin-bottom:var(--space-1)}
 .nw-meta{margin:0;font-size:var(--text-label);line-height:1.4;color:var(--text-secondary)}
@@ -2145,12 +2177,12 @@ body:has(.nav-links.open) .to-top{opacity:0;pointer-events:none}
 .nw-done{min-height:1.4em;font-size:var(--text-label);line-height:1.4;color:var(--text-selected);font-weight:var(--weight-label)}
 .nw-text h2{font-size:var(--text-title);line-height:1.18;margin:0 0 var(--space-5)}
 .nw-sf{margin:0 0 var(--space-7)}
-.nw-dl{letter-spacing:.01em;color:var(--black)}
+.nw-dl{letter-spacing:.01em;color:var(--heading)}
 .nw-text h4{margin:var(--space-7) 0 var(--space-3);font-size:var(--text-subhead);line-height:1.3}
 .nw-list{list-style:none;margin:0 0 var(--space-5);padding:0;max-width:var(--measure)}
 .nw-list li{position:relative;margin:0 0 var(--space-3);padding-left:var(--space-5)}
 .nw-list li::before{content:"";position:absolute;left:4px;top:.68em;width:6px;height:6px;border-radius:50%;background:var(--heading)}
-.nw-list b{color:var(--black)}
+.nw-list b{color:var(--heading)}
 /* the notes: a hairline, the eyebrow, and the house's own small headings */
 .nw-notes{margin-top:var(--space-8);padding-top:var(--space-6);border-top:var(--line-hairline) solid var(--border)}
 .nw-notes .eyebrow{color:var(--text-link);margin-bottom:var(--space-2)}
@@ -2159,7 +2191,7 @@ body:has(.nav-links.open) .to-top{opacity:0;pointer-events:none}
 .nw-contacts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-3);max-width:var(--measure);margin:0 0 var(--space-6)}
 .nw-contacts > div{padding:var(--space-4) var(--space-5);border-radius:var(--r-tile);background:var(--primary-6)}
 .nw-contacts p{margin:0;font-size:var(--text-label);line-height:1.6;overflow-wrap:anywhere}
-.nw-contacts .nw-org{margin-bottom:var(--space-1);font-size:var(--text-reading);font-weight:var(--weight-heading);color:var(--black)}
+.nw-contacts .nw-org{margin-bottom:var(--space-1);font-size:var(--text-reading);font-weight:var(--weight-heading);color:var(--heading)}
 .nw-imp{margin:0;max-width:none;padding-top:var(--space-4);border-top:var(--line-hairline) solid var(--border);
   font-size:var(--text-label);line-height:1.6;color:var(--text-secondary)}
 .nw-imp b{color:var(--text)}
@@ -2223,7 +2255,7 @@ body:has(.nav-links.open) .to-top{opacity:0;pointer-events:none}
 
 /* reports: one row a report, its number, its month and what it covers, and the key */
 .rp{padding-block:var(--space-8)}
-.rp-list{list-style:none;margin:0;padding:0;max-width:62rem;border-top:var(--line-heavy) solid var(--black)}
+.rp-list{list-style:none;margin:0;padding:0;max-width:62rem;border-top:var(--line-heavy) solid var(--heading)}
 .rp-row{display:grid;grid-template-columns:7rem minmax(0,1fr) auto;column-gap:var(--space-6);align-items:center;
   padding:var(--space-6) 0;border-bottom:var(--line-hairline) solid var(--border)}
 .rp-no{margin:0;font:var(--weight-heading) var(--text-label)/1.3 var(--font);letter-spacing:.12em;text-transform:uppercase;color:var(--text-link)}
@@ -2241,3 +2273,21 @@ body:has(.nav-links.open) .to-top{opacity:0;pointer-events:none}
   .rp-row{grid-template-columns:minmax(0,1fr);row-gap:var(--space-3);padding:var(--space-5) 0}
   .rp-acts .key{width:100%}
 }
+
+/* ══ DARK MODE ═══════════════════════════════════════════════════════════════════════
+   (Rose, 1 Oct 2026: "lets also implement a dark mode the site"; "site is light by default no
+   matter what. user can switch to dark if they want".) Light always, unless the visitor picks
+   dark with the mode key in the bar; the choice is kept, under the app's own name. Dark is the
+   brand's own: data-mode="dark" on <html> turns tokens.css to its dark values, and headings and
+   figures take --heading (black on white, white in dark). Below is only what the tokens cannot
+   turn by themselves: surfaces drawn in white, the white key's label, and the mint ground, which
+   darkens the way the brand darkens the boundary (components.css). */
+:root[data-mode="dark"] :is(.tier,.panel,.card-white){background:var(--bg-raised)}
+:root[data-mode="dark"] :is(.key-white,.skip:focus,.badge-fo){color:var(--button-white-text)}
+:root[data-mode="dark"] .key-white:hover{background-color:color-mix(in srgb,var(--white) 92%,var(--black))}
+:root[data-mode="dark"] .key-white:active{background-color:color-mix(in srgb,var(--white) 88%,var(--black))}
+:root[data-mode="dark"] .band-mint{background:color-mix(in srgb,var(--gold-dark) 10%,var(--bg-raised))}
+/* Freya's clip draws its ground and its answer cards in --white; in dark that is the raised
+   background, the way the app's own cards sit in dark */
+:root[data-mode="dark"] .freya-clip{--white:var(--bg-raised)}
+

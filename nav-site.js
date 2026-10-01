@@ -464,3 +464,43 @@
   /* a watchdog behind both, because the cost of a lost touchend is a page left pulled */
   function watch() { clearTimeout(idle); idle = setTimeout(release, 1200); }
 })();
+
+/* THE MODE KEY (Rose, 1 Oct 2026: "site is light by default no matter what. user can switch to dark
+   if they want"). The head of the page reads the kept choice before it paints; the key flips it,
+   keeps it and says what it will do next. */
+(function () {
+  var k = document.getElementById('navMode'), r = document.documentElement;
+  if (!k) return;
+  function dark() { return r.getAttribute('data-mode') === 'dark'; }
+  function say() { var t = dark() ? 'Light mode' : 'Dark mode'; k.setAttribute('aria-label', t); k.title = t; }
+  say();
+  k.addEventListener('click', function () {
+    var m = dark() ? 'light' : 'dark';
+    if (window.FinnaMode) window.FinnaMode.set(m); else r.setAttribute('data-mode', m);
+    say();
+  });
+})();
+
+/* THE WORLD CLOCKS, in the footer (Rose, 1 Oct 2026): each face shows its city's time now (the browser's own time-zone data), checked
+   every 15 seconds; hour and minute hands only. The label read aloud is the city and its time. */
+(function () {
+  var row = document.getElementById('worldClocks');
+  if (!row || !window.Intl) return;
+  var faces = [].map.call(row.querySelectorAll('.world-clock'), function (c) {
+    return { el: c, name: c.querySelector('b').textContent,
+             h: c.querySelector('.h'), m: c.querySelector('.m'),
+             f: new Intl.DateTimeFormat('en-US', { timeZone: c.getAttribute('data-tz'), hour: 'numeric', minute: '2-digit', hourCycle: 'h23' }),
+             say: new Intl.DateTimeFormat('en-US', { timeZone: c.getAttribute('data-tz'), hour: 'numeric', minute: '2-digit' }) };
+  });
+  function tick() {
+    var now = new Date();
+    faces.forEach(function (c) {
+      var p = {}; c.f.formatToParts(now).forEach(function (x) { p[x.type] = +x.value; });
+      var hr = p.hour % 24, mn = p.minute, t = c.name + ', ' + c.say.format(now);
+      c.m.setAttribute('transform', 'rotate(' + (mn * 6) + ' 12 12)');
+      c.h.setAttribute('transform', 'rotate(' + ((hr % 12) * 30 + mn * .5) + ' 12 12)');
+      c.el.setAttribute('aria-label', t); c.el.title = t;
+    });
+  }
+  tick(); row.hidden = false; setInterval(tick, 15000);
+})();
