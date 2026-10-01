@@ -38,7 +38,7 @@
 <link rel="preload" as="image" href="media/covers/how-it-works.webp" type="image/webp">
 <link rel="stylesheet" href="chrome/fonts.css?v=0c6cbb49">
 <link rel="stylesheet" href="brand/tokens.css?v=4c740b6e">
-<link rel="stylesheet" href="site.css?v=e4e937d3">
+<link rel="stylesheet" href="site.css?v=76415b2a">
 <link rel="stylesheet" href="nav-site.css?v=ec48e499">
 <!-- the page's cover: data-cover above picks its picture and the pull band's colour -->
 <link rel="stylesheet" href="hero-tones.css?v=3e8ff81a">
@@ -432,6 +432,7 @@
    forward along the line (on the phone, down it), each base on the stem; each a size and a colour
    of its own (green mostly, some Bullion and Champagne), chosen once a visit. They come up in order
    along the line, left to right, just behind it as it draws, and then barely sway.
+   Each day turns green as the leaves reach it, its ring and its icon (--green, read by site.css).
    EVERY LEAF THAT IS NOT GREEN (Bullion or Champagne) IS AN AUTUMN ONE: it falls only when a visitor
    points at it or taps it, and a new Finna-green leaf starts growing in its place while it falls. Each has a 32px target round it, so a finger
    can find it. The tablet has no line, so no leaves. Positions are read from the layout
@@ -440,7 +441,7 @@
   var w = document.querySelector('[data-week]');
   if (!w) return;
   var COL = ['--primary', '--primary-72', '--primary-72', '--primary-48', '--primary-48', '--gold', '--gold-light', '--gold-light'];
-  var holder = document.createElement('li'), segs = [], across = true, line = 0;
+  var holder = document.createElement('li'), segs = [], days = [], across = true, line = 0;
   holder.className = 'hw-leaves'; holder.setAttribute('aria-hidden', 'true');
   w.appendChild(holder);
   function rnd(a, b) { return a + Math.random() * (b - a); }
@@ -481,17 +482,18 @@
   }
   /* the stretches of the line, read from the layout; false while there is no line (the tablet) */
   function measure() {
-    segs = [];
+    segs = []; days = [];
     if (getComputedStyle(w, '::before').display === 'none') return false;
     var W = w.clientWidth, H = w.clientHeight,
         marks = [].map.call(w.querySelectorAll('.hw-day'), function (d) {
           var m = d.querySelector('.hw-day-mark'), x = d.offsetLeft + m.offsetLeft, y = d.offsetTop + m.offsetTop;
-          return { left: x, top: y, right: x + m.offsetWidth, bottom: y + m.offsetHeight, width: m.offsetWidth, height: m.offsetHeight };
+          return { el: m, left: x, top: y, right: x + m.offsetWidth, bottom: y + m.offsetHeight, width: m.offsetWidth, height: m.offsetHeight };
         });
     if (marks.length < 2) return false;
     across = Math.abs(marks[0].top - marks[1].top) < 2;
     line = across ? marks[0].top + marks[0].height / 2 : marks[0].left + marks[0].width / 2;
     marks.forEach(function (m, i) {
+      days.push({ el: m.el, at: across ? m.left + m.width / 2 : m.top + m.height / 2 });
       segs.push({ a: (across ? m.right : m.bottom) + 16,
                   b: (i + 1 < marks.length ? (across ? marks[i + 1].left : marks[i + 1].top) - 16 : (across ? W : H) - 4) });
     });
@@ -499,12 +501,13 @@
   }
   /* the leaves are chosen once a visit; after that a change of layout only moves them with the line */
   function draw(grown) {
-    if (!measure()) return;
+    if (!measure()) { w.classList.remove('has-leaves'); return; }
     var ls = holder.querySelectorAll('.hw-leaf');
-    if (ls.length) { [].forEach.call(ls, place); return; }
+    if (ls.length) { [].forEach.call(ls, place); greenDays(0); return; }
     /* they come up in order along the line, left to right (on the phone, top to bottom), just behind
        the line as it draws: the whole stem is in leaf about eight seconds after it appears */
     var from = segs[0].a, to = segs[segs.length - 1].b;
+    greenDays(grown ? 0 : 1, from, to);
     segs.forEach(function (g, i) {
       var k = Math.max(2, Math.min(4, Math.round((g.b - g.a) / 44 + rnd(-.5, .9)))), first = Math.random() < .5 ? -1 : 1;
       for (var j = 0; j < k; j++) {   /* the sides take turns, so every stretch has leaves on both */
@@ -517,6 +520,15 @@
       var g = green.splice(Math.floor(Math.random() * green.length), 1)[0];
       g.dataset.c = '--gold'; g.style.setProperty('--c', 'var(--gold)'); autumnal(g); place(g);
     }
+  }
+  /* each day turns green just as the leaves round it come out: the same timing as theirs, measured to
+     the middle of its ring (the first day, before the line's first leaf, as the very first come up) */
+  function greenDays(slow, from, to) {
+    days.forEach(function (d) {
+      var along = slow ? Math.max(0, (d.at - from) / (to - from)) : 0;
+      d.el.style.setProperty('--green', (slow ? .8 + along * 5.6 + .6 : 0).toFixed(2) + 's');
+    });
+    w.classList.add('has-leaves');
   }
   /* placed once the type has settled. Placed again only when the week itself changes size, not on
      every window resize: a phone resizes the window whenever its address bar shows or hides as you

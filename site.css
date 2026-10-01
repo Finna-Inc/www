@@ -1580,11 +1580,13 @@ body:has(.nav-links.open) .to-top{opacity:0;pointer-events:none}
 .hw-day{position:relative;display:flex;flex-direction:column;gap:var(--space-2)}
 .hw-day-mark{display:grid;place-items:center;inline-size:var(--space-7);block-size:var(--space-7);border-radius:var(--r-pill);
   background:var(--bg);color:var(--heading);box-shadow:inset 0 0 0 var(--line-object) var(--border-strong),0 0 0 var(--space-2) var(--bg)}
-/* Day 7 is Freya's: her mark, not an icon */
+/* Day 7 is Freya's: her mark, not an icon. Her four rings are drawn lighter than an icon's one line
+   (Rose, 1 Oct 2026: "too thick stroked, use a lighter version"); the rule sits on the rings
+   themselves, since the icons' stroke below is set on every part and outweighed it on the group */
 .hw-day-mark .hw-mk{inline-size:26px;block-size:26px}
-.hw-day-mark .hw-mk g{stroke-width:1.2px}
 .hw-day-mark svg{inline-size:28px;block-size:28px;margin:0}
 .hw-day-mark svg *{vector-effect:non-scaling-stroke;stroke-width:var(--line-icon)}
+.hw-day-mark .hw-mk circle{stroke-width:1.2px}
 .hw-day-n{margin-top:var(--space-2);font:var(--weight-heading) var(--text-label)/1 var(--font-sans);letter-spacing:.12em;text-transform:uppercase;color:var(--text-link)}
 .hw-day b{font-size:var(--text-subhead);color:var(--black);line-height:1.2}
 .hw-day p{margin:0;color:var(--text-secondary);font-size:var(--text-reading);line-height:1.5}
@@ -1593,6 +1595,13 @@ body:has(.nav-links.open) .to-top{opacity:0;pointer-events:none}
 .hw-week.is-wait .hw-day{opacity:0;transform:translateY(var(--space-2))}
 .hw-week.is-live::before{transition:transform 1100ms var(--ease)}
 .hw-week.is-live .hw-day{transition:opacity 420ms var(--ease),transform 420ms var(--ease);transition-delay:calc(160ms + var(--i, 0) * 150ms)}
+/* the days turn green as the leaves reach them (Rose, 1 Oct 2026: "make both the circle around the
+   icons and the icon turn green as the leaves grow the stem"). The leaves' script sets .has-leaves and
+   each day's --green, the moment the growth along the line comes to it; where there are no leaves
+   (the tablet) the days keep their black icons */
+.hw-week.has-leaves.is-live .hw-day-mark{box-shadow:inset 0 0 0 var(--line-object) var(--primary),0 0 0 var(--space-2) var(--bg);
+  transition:box-shadow 1.4s var(--ease) var(--green, 0s)}
+.hw-week.has-leaves.is-live .hw-day-mark svg{color:var(--primary);transition:color 1.4s var(--ease) var(--green, 0s)}
 /* LEAVES ON THE STEM (Rose, 1 Oct 2026: "have some of our small leaves grow from the line, so the
    green timeline is sort of the tree stem"; then "a very slow ambient thing ... randomly on the line,
    in different sizes and different colours, from green to Bullion and Champagne"). Learn's own leaf,
@@ -1696,7 +1705,7 @@ body:has(.nav-links.open) .to-top{opacity:0;pointer-events:none}
   .hw-q p{margin-inline:0}
   .hero .cta-row{flex-direction:column;align-items:flex-start;gap:var(--space-4)}
 }
-@media (prefers-reduced-motion:reduce){.hw-q summary .ic{transition:none}.hw-week::before,.hw-week .hw-day{transition:none!important;transform:none!important;opacity:1!important}}
+@media (prefers-reduced-motion:reduce){.hw-q summary .ic{transition:none}.hw-week::before,.hw-week .hw-day,.hw-week .hw-day-mark,.hw-week .hw-day-mark svg{transition:none!important;transform:none!important;opacity:1!important}}
 
 /* ══ PRICING (27 Sep 2026) ═══════════════════════════════════════════════════════════
    Three plans (Christian): Family Office, free · Family Office Plus, $15 a month · Family
