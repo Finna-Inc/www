@@ -76,8 +76,9 @@
 /* NUDGED 4px RIGHT AND 3px UP (Rose, 13 Sep 2026). The key was sitting low and shy of
    the bar's right edge. translate, not margin: the key's pressed state already moves it
    down by --ko, and a margin would have changed the bar's own metrics instead of just
-   where the key sits in it. */
-.nav > .key{margin-right:5px;translate:4px -3px}
+   where the key sits in it. Settled 1 Oct 2026 (Rose: 4px down, then 2px up and 2px
+   left): 2px right of and 1px above where the bar puts it. */
+.nav > .key{margin-right:5px;translate:2px -1px}
 .nav .mark{width:40px;height:40px}
 /* the wordmark is NOT on the type ladder: its size is a proportion of the mark
    (word 0.636 x mark), not a rung. */
