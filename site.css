@@ -495,12 +495,12 @@ a.soon.is-here{cursor:default}
    and the last at its right, each city's name under its face in the footer headings' capitals.
    The faces take the line icons' stroke again ("make stroke as before"). nav-site.js sets the
    hands and shows the row, so without the script there is none. */
-/* the row has its own divider above it, the legal block's hairline, with the same space round it
-   (Rose, 1 Oct 2026: "insert a divider above the clocks too") */
+/* no divider above the row (Rose, 1 Oct 2026: "remove top divider and move clocks up"); it sits a
+   block's space under the columns, the grid's own gap plus --space-5 */
 .footer .world-clocks{grid-column:1 / -1;display:flex;justify-content:space-between;gap:var(--space-5);
-  margin-top:calc(var(--space-5) + 44px);padding-top:var(--space-3);border-top:1px solid rgba(255,255,255,.14)}
-/* centred between its two dividers, which sit close (Rose, 1 Oct 2026: "pull dividers 30px close to
-   clocks", then "closer"): --space-3, 12px, above the faces and under the names */
+  margin-top:var(--space-5)}
+/* the legal block's divider sits close under the names (Rose, 1 Oct 2026: "pull dividers 30px close
+   to clocks", then "closer"): --space-3, 12px */
 .footer .cols:has(.world-clocks) + .legal{margin-top:var(--space-3)}
 .world-clocks[hidden]{display:none}
 .world-clock{display:flex;flex-direction:column;align-items:center;gap:var(--space-3)}
