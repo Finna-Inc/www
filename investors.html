@@ -34,7 +34,7 @@
 <meta name="theme-color" content="#0D231B">
 <link rel="stylesheet" href="chrome/fonts.css?v=0c6cbb49">
 <link rel="stylesheet" href="brand/tokens.css?v=4076f932">
-<link rel="stylesheet" href="site.css?v=08164e84">
+<link rel="stylesheet" href="site.css?v=a92d643b">
 <link rel="stylesheet" href="nav-site.css?v=a22a0bfd">
 <link rel="stylesheet" href="vendor/lenis.css?v=599bcc02">
 </head>
@@ -99,11 +99,12 @@
        the browser by its access code (build/investors.py, which says why). The request goes to
        Shelley Torres, who sends the code if it is approved. Styles: the INVESTORS block of
        site.css.
-       THE DATA ROOM (Christian, 11 Oct 2026: "an additional cta for the data room ... and then
-       include a few sub CTA links to the selected data room documents"). The third card, the
-       width of the two above it: its key opens data-room.html, and beside it one row per
-       document, straight to its locked page. One code opens the whole room. A new document is
-       a row here, a row in data-room.html and an entry in build/investors.py's DOCS. -->
+       THE DATA ROOM (Christian, 11 Oct 2026), the third card. Its key opens data-room.html,
+       where the documents are listed; one code opens the whole room. THIS PAGE DOES NOT SAY
+       WHAT IS IN THE ROOM (Christian, 12 Oct 2026: "we should not show on the main investor page
+       what is in the data room"), so the card names no document and no topic: the 11 Oct rows
+       linking each document are gone. A new document is a row in data-room.html and an entry
+       in build/investors.py's DOCS, and nothing here. -->
   <section class="iv">
     <div class="wrap">
       <div class="iv-grid">
@@ -128,24 +129,15 @@
             <a class="link" href="#request" data-for="deck">Request access</a>
           </div>
         </article>
-        <article class="iv-card iv-room" aria-labelledby="iv-h-room">
+        <article class="iv-card" aria-labelledby="iv-h-room">
           <svg class="iv-plate" aria-hidden="true" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M11.4 20.4H8.2A2.6 2.6 0 0 1 5.6 17.8V6.2A2.6 2.6 0 0 1 8.2 3.6h5.7L18.5 8.1v2.5"/> <path d="M13.9 3.6v4.5h4.5"/> <circle cx="15.6" cy="15.9" r="3.5"/> <path d="M18.1 18.4 20.8 21"/> <path d="M9 11.6h5"/></svg>
-          <div class="iv-room-main">
-            <p class="eyebrow">Due diligence &middot; October 2026</p>
-            <h2 id="iv-h-room">Data room</h2>
-            <p class="iv-text">The work behind the deck, in depth: who we serve first, and who else is building for them. More documents are added as the round goes on.</p>
-            <p class="iv-lock"><svg class="ic" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11V7a5 5 0 0 1 10 0v4"/><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/></svg>One access code opens every document</p>
-            <div class="iv-acts">
-              <a class="key key-l" href="data-room.html">Open the data room<svg class="ic" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
-              <a class="link" href="#request" data-for="dataroom">Request access</a>
-            </div>
-          </div>
-          <div class="iv-docs">
-            <p class="iv-docs-h" id="iv-h-docs">In the data room</p>
-            <ul class="iv-doclist" aria-labelledby="iv-h-docs">
-              <li><a class="iv-doc" href="investors/target-audience-gtm.html"><svg class="iv-doc-i" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.7" cy="8.8" r="2.7"/> <path d="M2.9 19.4a4.8 4.8 0 0 1 9.6 0"/> <circle cx="16.3" cy="8.8" r="2.7"/> <path d="M11.5 19.4a4.8 4.8 0 0 1 9.6 0"/></svg><span class="iv-doc-t"><b>Who Finna serves first</b><span>Target audience and phased go-to-market</span></span><svg class="ic iv-doc-go" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></li>
-              <li><a class="iv-doc" href="investors/competitive-map.html"><svg class="iv-doc-i" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4.4 3.6 6.7v12.9L9 17.3l6 2.3 5.4-2.3V4.4L15 6.7 9 4.4Z"/> <path d="M9 4.4v12.9"/> <path d="M15 6.7v12.9"/> <path d="M12 10.7A5.131 5.131 0 0 1 13.7 12.4A5.131 5.131 0 0 1 12 14.1A5.131 5.131 0 0 1 10.3 12.4A5.131 5.131 0 0 1 12 10.7Z" fill="currentColor" stroke="none"/></svg><span class="iv-doc-t"><b>US competitive map</b><span>Nineteen US offers against the five desks</span></span><svg class="ic iv-doc-go" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></li>
-            </ul>
+          <p class="eyebrow">Due diligence &middot; October 2026</p>
+          <h2 id="iv-h-room">Data room</h2>
+          <p class="iv-text">The work behind the deck, in depth, for investors in due diligence. More documents are added as the round goes on.</p>
+          <p class="iv-lock"><svg class="ic" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11V7a5 5 0 0 1 10 0v4"/><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/></svg>One access code opens every document</p>
+          <div class="iv-acts">
+            <a class="key key-l" href="data-room.html">Open the data room<svg class="ic" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+            <a class="link" href="#request" data-for="dataroom">Request access</a>
           </div>
         </article>
       </div>

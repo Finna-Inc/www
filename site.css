@@ -2274,51 +2274,28 @@ body:has(.nav-links.open) .to-top{opacity:0;pointer-events:none}
 .rp-meta{margin:var(--space-2) 0 0;font-size:var(--text-reading);color:var(--text-secondary)}
 .rp-row.is-next .rp-no,.rp-row.is-next h2{color:var(--text-tertiary)}
 
-/* THE DATA ROOM (Christian, 11 Oct 2026). On Investors, the third card, the width of the two
-   above it: the room's own words and key on the left, and on the right one row a document,
-   each straight to its locked page — the "sub CTA links". The rows sit on the key's line and
-   keep clear of the plate in the corner. data-room.html is the reports list, with a column
-   wide enough for a section's name. Tokens only.
-   THE SMALL GREEN LABELS are the link green taken a fifth of the way to the heading colour:
-   --text-link alone is 6.6:1 on white at 13px, under the legibility standard's 7:1; this is
-   8.9:1, and in dark mode it goes the other way, towards white. The row's hover ground is
-   kept light enough that the grey line under each title still clears 7:1 on it. */
+/* THE DATA ROOM (Christian, 11 Oct 2026). On Investors it is the third card, drawn like the
+   other two; it names nothing that is in the room (12 Oct 2026), so the three cards sit in one
+   row where they fit, and the room's card takes the full width when only two do.
+   data-room.html is the reports list, with a column wide enough for a section's name.
+   THE SMALL GREEN LABELS there are the link green taken a fifth of the way to the heading
+   colour: --text-link alone is 6.6:1 on white at 13px, under the legibility standard's 7:1;
+   this is 8.9:1, and in dark mode it goes the other way, towards white. Tokens only. */
 :root{--dr-label:color-mix(in srgb,var(--text-link) 80%,var(--heading))}
-.iv-room{grid-column:1 / -1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:var(--space-7)}
-.iv-room-main{display:flex;flex-direction:column;min-width:0}
-.iv-docs{align-self:end;min-width:0;padding-top:var(--space-7)}
-.iv-docs-h{margin:0 0 var(--space-3);font:var(--weight-heading) var(--text-label)/1.3 var(--font);letter-spacing:.12em;
-  text-transform:uppercase;color:var(--dr-label)}
-.iv-doclist{list-style:none;margin:0;padding:0;border-top:var(--line-hairline) solid var(--border-strong)}
-.iv-doc{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;column-gap:var(--space-4);
-  min-height:var(--key-touch-target);padding:var(--space-4) var(--space-3);border-bottom:var(--line-hairline) solid var(--border);
-  color:var(--text);text-decoration:none;transition:background-color var(--t-state) var(--ease)}
-.iv-doc-i{flex:none;color:var(--heading)}
-.iv-doc-t{display:flex;flex-direction:column;gap:var(--space-1);min-width:0}
-.iv-doc-t b{font-weight:var(--weight-heading);font-size:var(--text-reading);line-height:1.3;color:var(--heading)}
-.iv-doc-t span{font-size:var(--text-label);line-height:1.45;color:var(--text-secondary)}
-.iv-doc-go{color:var(--text-link);transition:transform var(--t-move) var(--ease)}
-.iv-doc:hover{background:color-mix(in srgb,var(--bg-sunken) 35%,var(--bg))}
-.iv-doc:hover b{text-decoration:underline;text-underline-offset:.14em}
-.iv-doc:hover .iv-doc-go{transform:translateX(var(--space-1))}
-.iv-doc:focus-visible{outline:2px solid var(--primary);outline-offset:2px;border-radius:2px}
+@media (min-width:1200px){.iv-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (min-width:900px) and (max-width:1199px){.iv-grid > .iv-card:last-child:nth-child(odd){grid-column:1 / -1}}
 .dr .rp-row{grid-template-columns:9rem minmax(0,1fr) auto}
 .dr .rp-no{color:var(--dr-label)}
 .dr-note{display:flex;align-items:center;gap:var(--space-2);max-width:62rem;margin:0 0 var(--space-6);
   font-size:var(--text-label);font-weight:var(--weight-label);color:var(--text-secondary)}
 .dr-note .ic{flex:none;color:var(--heading)}
 @media (max-width:899px){.iv-grid{grid-template-columns:minmax(0,1fr)}}
-@media (max-width:899px){
-  .iv-room{grid-template-columns:minmax(0,1fr)}
-  .iv-docs{align-self:auto;padding-top:var(--space-6)}
-}
 @media (max-width:700px){
   .iv,.rp{padding-block:var(--space-7)}
   .iv-card{padding:var(--space-5)}
   .iv-plate{top:var(--space-5);right:var(--space-5)}
   .iv-acts .key{width:100%}
   .rp-row,.dr .rp-row{grid-template-columns:minmax(0,1fr);row-gap:var(--space-3);padding:var(--space-5) 0}
-  .iv-doc{padding-inline:0}
   .rp-acts .key{width:100%}
 }
 
