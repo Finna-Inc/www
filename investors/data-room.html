@@ -330,6 +330,9 @@ iframe{flex:1;width:100%;border:0;background:var(--bg)}
     `t=id&&document.getElementById(id);if(t)t.scrollIntoView({behavior:'smooth',block:'start'});` +
     `else if(!id)window.scrollTo({top:0,behavior:'smooth'});});`;
   let key = null, room = null, url = null, opening = 0, last = '', current = '';
+  /* the frame is moved with location.replace, never by setting src: a new src adds an entry to the
+     browser's history, and Back would then step through the frame instead of the room */
+  function frameTo(u) { const f = $('vFrame'); try { f.contentWindow.location.replace(u); } catch (e) { f.src = u; } }
 
   async function derive(code) {
     const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(norm(code)), 'PBKDF2', false, ['deriveKey']);
@@ -362,7 +365,7 @@ iframe{flex:1;width:100%;border:0;background:var(--bg)}
   function showList(focusSlug) {
     opening++;
     if (url) { URL.revokeObjectURL(url); url = null; }
-    $('vFrame').src = 'about:blank'; $('vFrame').hidden = true; $('rList').hidden = false; $('vBack').hidden = true; $('vMsg').textContent = '';
+    frameTo('about:blank'); $('vFrame').hidden = true; $('rList').hidden = false; $('vBack').hidden = true; $('vMsg').textContent = '';
     $('vTitle').textContent = P.title; document.title = P.title + ' · Finna';
     const a = focusSlug && $('rRows').querySelector('h2 a[href="#' + focusSlug + '"]');
     (a || $('rH')).focus({preventScroll: !a});
@@ -378,7 +381,7 @@ iframe{flex:1;width:100%;border:0;background:var(--bg)}
       html = html.replace(/<head([^>]*)>/i, '<head$1><base target="_blank"><script>' + INPAGE + '<\/script>');
       if (url) URL.revokeObjectURL(url);
       url = URL.createObjectURL(new Blob([html], {type: 'text/html'}));
-      const f = $('vFrame'); f.src = url; f.title = d.title; f.hidden = false;
+      const f = $('vFrame'); frameTo(url); f.title = d.title; f.hidden = false;
       $('rList').hidden = true; $('vBack').hidden = false; $('vMsg').textContent = '';
       $('vTitle').textContent = d.title; document.title = d.title + ' · ' + P.title + ' · Finna';
       $('vBack').focus();
@@ -405,7 +408,7 @@ iframe{flex:1;width:100%;border:0;background:var(--bg)}
   $('vLock').addEventListener('click', () => {
     try { sessionStorage.removeItem(KEEP); } catch (e) {}
     opening++; if (url) URL.revokeObjectURL(url); url = null; key = null; room = null; current = '';
-    $('vFrame').src = 'about:blank'; $('vFrame').hidden = true; $('rRows').innerHTML = '';
+    frameTo('about:blank'); $('vFrame').hidden = true; $('rRows').innerHTML = '';
     $('room').hidden = true; $('gate').hidden = false; $('gCode').value = ''; $('gCode').focus();
     history.replaceState(null, '', location.pathname + location.search); document.title = P.title + ' · Finna';
   });
