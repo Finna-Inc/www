@@ -2276,26 +2276,17 @@ body:has(.nav-links.open) .to-top{opacity:0;pointer-events:none}
 
 /* THE DATA ROOM (Christian, 11 Oct 2026). On Investors it is the third card, drawn like the
    other two; it names nothing that is in the room (12 Oct 2026), so the three cards sit in one
-   row where they fit, and the room's card takes the full width when only two do.
-   data-room.html is the reports list, with a column wide enough for a section's name.
-   THE SMALL GREEN LABELS there are the link green taken a fifth of the way to the heading
-   colour: --text-link alone is 6.6:1 on white at 13px, under the legibility standard's 7:1;
-   this is 8.9:1, and in dark mode it goes the other way, towards white. Tokens only. */
-:root{--dr-label:color-mix(in srgb,var(--text-link) 80%,var(--heading))}
+   row where they fit, and the room's card takes the full width when only two do. The room itself
+   is a locked page of build/investors.py, with its own styles. */
 @media (min-width:1200px){.iv-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (min-width:900px) and (max-width:1199px){.iv-grid > .iv-card:last-child:nth-child(odd){grid-column:1 / -1}}
-.dr .rp-row{grid-template-columns:9rem minmax(0,1fr) auto}
-.dr .rp-no{color:var(--dr-label)}
-.dr-note{display:flex;align-items:center;gap:var(--space-2);max-width:62rem;margin:0 0 var(--space-6);
-  font-size:var(--text-label);font-weight:var(--weight-label);color:var(--text-secondary)}
-.dr-note .ic{flex:none;color:var(--heading)}
 @media (max-width:899px){.iv-grid{grid-template-columns:minmax(0,1fr)}}
 @media (max-width:700px){
   .iv,.rp{padding-block:var(--space-7)}
   .iv-card{padding:var(--space-5)}
   .iv-plate{top:var(--space-5);right:var(--space-5)}
   .iv-acts .key{width:100%}
-  .rp-row,.dr .rp-row{grid-template-columns:minmax(0,1fr);row-gap:var(--space-3);padding:var(--space-5) 0}
+  .rp-row{grid-template-columns:minmax(0,1fr);row-gap:var(--space-3);padding:var(--space-5) 0}
   .rp-acts .key{width:100%}
 }
 

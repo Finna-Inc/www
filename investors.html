@@ -34,7 +34,7 @@
 <meta name="theme-color" content="#0D231B">
 <link rel="stylesheet" href="chrome/fonts.css?v=0c6cbb49">
 <link rel="stylesheet" href="brand/tokens.css?v=4076f932">
-<link rel="stylesheet" href="site.css?v=a92d643b">
+<link rel="stylesheet" href="site.css?v=0aa10712">
 <link rel="stylesheet" href="nav-site.css?v=a22a0bfd">
 <link rel="stylesheet" href="vendor/lenis.css?v=599bcc02">
 </head>
@@ -99,12 +99,14 @@
        the browser by its access code (build/investors.py, which says why). The request goes to
        Shelley Torres, who sends the code if it is approved. Styles: the INVESTORS block of
        site.css.
-       THE DATA ROOM (Christian, 11 Oct 2026), the third card. Its key opens data-room.html,
-       where the documents are listed; one code opens the whole room. THIS PAGE DOES NOT SAY
+       THE DATA ROOM (Christian, 11 Oct 2026), the third card. ITS KEY IS THE ONLY WAY IN
+       (Christian, 12 Oct 2026): it opens investors/data-room.html, the room's locked door, and the
+       code opens the room; the documents are listed and opened only inside it (build/investors.py,
+       ROOM). THIS PAGE DOES NOT SAY
        WHAT IS IN THE ROOM (Christian, 12 Oct 2026: "we should not show on the main investor page
        what is in the data room"), so the card names no document and no topic: the 11 Oct rows
-       linking each document are gone. A new document is a row in data-room.html and an entry
-       in build/investors.py's DOCS, and nothing here. -->
+       linking each document are gone. A new document is a row in build/investors.py's ROOM, and
+       nothing here. -->
   <section class="iv">
     <div class="wrap">
       <div class="iv-grid">
@@ -134,9 +136,9 @@
           <p class="eyebrow">Due diligence &middot; October 2026</p>
           <h2 id="iv-h-room">Data room</h2>
           <p class="iv-text">The work behind the deck, in depth, for investors in due diligence. More documents are added as the round goes on.</p>
-          <p class="iv-lock"><svg class="ic" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11V7a5 5 0 0 1 10 0v4"/><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/></svg>One access code opens every document</p>
+          <p class="iv-lock"><svg class="ic" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11V7a5 5 0 0 1 10 0v4"/><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/></svg>Opens with an access code</p>
           <div class="iv-acts">
-            <a class="key key-l" href="data-room.html">Open the data room<svg class="ic" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+            <a class="key key-l" href="investors/data-room.html">Open the data room<svg class="ic" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
             <a class="link" href="#request" data-for="dataroom">Request access</a>
           </div>
         </article>
