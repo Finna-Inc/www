@@ -245,7 +245,7 @@ iframe{flex:1;width:100%;border:0;background:var(--bg)}
    is a token, or a mix of tokens. The small green labels are the link green a fifth of the way to
    the heading colour (7:1 at 13px, where the link green alone is 6.6:1). */
 .room{position:fixed;inset:0;display:flex;flex-direction:column;background:var(--bg)}
-.room[hidden],.room .key[hidden],.room iframe[hidden],.r-list[hidden]{display:none}
+.room[hidden],.room .key[hidden],.room iframe[hidden],.r-list[hidden],.r-film[hidden],.f-load[hidden],.f-script[hidden]{display:none}
 .r-list{flex:1;overflow:auto;background:var(--bg);color:var(--text)}
 .r-inner{max-width:62rem;margin:0 auto;padding:var(--space-7) var(--gutter) var(--space-8)}
 .r-eyebrow,.r-sec{margin:0;font:var(--weight-heading) var(--text-label)/1.3 var(--font);letter-spacing:.12em;text-transform:uppercase;
@@ -270,6 +270,68 @@ iframe{flex:1;width:100%;border:0;background:var(--bg)}
 @media (max-width:767px){
   .r-row{grid-template-columns:minmax(0,1fr);row-gap:var(--space-3)}
   .r-acts .key{width:100%;height:var(--key-height-l)}
+}
+/* A FILM IN THE ROOM (13 Oct 2026). It plays on the bar's dark ground, as a player is dark. The
+   screen keeps ONE shape for the visit, landscape on a landscape screen and portrait on a portrait
+   one, and either cut sits inside it at its own shape, so the switch under it never moves. --f-h is
+   the height the screen may take: the window less the bar, the space above and, where there is room
+   for it, the caption row under the screen. The column is as wide as the screen, at most the list's. */
+.r-film{--f-h:calc(100svh - 60px - var(--space-6) - var(--space-5) - 80px);
+  flex:1;overflow:auto;padding:var(--space-6) var(--gutter) var(--space-7);background:var(--bg-dark);color:var(--white)}
+.f-inner{width:min(100%, 62rem, calc(max(12rem, var(--f-h)) * 16 / 9));margin-inline:auto}
+.f-screen{container-type:size;display:grid;place-items:center;width:100%;aspect-ratio:16 / 9}
+.f-screen video{grid-area:1 / 1;display:block;width:min(100cqw, calc(100cqh * 16 / 9));height:auto;aspect-ratio:16 / 9;
+  border-radius:var(--r-card);background:var(--black)}
+.f-screen[data-cut="mobile"] video{width:min(100cqw, calc(100cqh * 9 / 16));aspect-ratio:9 / 16}
+.f-screen video:focus-visible{outline:2px solid var(--white);outline-offset:3px}
+.f-load{grid-area:1 / 1;align-self:end;margin:0 0 var(--space-5);display:flex;align-items:center;gap:var(--space-3);
+  padding:var(--space-2) var(--space-4);border-radius:var(--r-pill);background:color-mix(in srgb,var(--bg-dark) 84%,transparent);
+  font:var(--weight-label) var(--text-label)/1.3 var(--font);color:var(--white)}
+.f-bar{width:5rem;height:var(--line-figure);overflow:hidden;border-radius:var(--r-pill);background:color-mix(in srgb,var(--white) 24%,transparent)}
+.f-bar i{display:block;height:100%;background:var(--white);transform:scaleX(0);transform-origin:left;transition:transform var(--t-state) linear}
+.f-cap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--space-4) var(--space-5);margin-top:var(--space-5)}
+.f-sec{margin:0;font:var(--weight-heading) var(--text-label)/1.3 var(--font);letter-spacing:.12em;text-transform:uppercase;
+  color:color-mix(in srgb,var(--white) 72%,transparent)}
+.f-h{margin:var(--space-1) 0 0;font:var(--weight-heading) var(--text-subhead)/var(--lh-subhead) var(--font);letter-spacing:var(--track-heading);color:var(--white)}
+.f-h:focus{outline:0}
+.f-line{margin:var(--space-1) 0 0;font-size:var(--text-label);line-height:1.3;color:color-mix(in srgb,var(--white) 72%,transparent)}
+/* the switch between the cuts is the site's billing switch (Pricing): one white pill that slides,
+   read off aria-pressed, so the two options read as one control */
+.f-cuts{position:relative;display:inline-flex;flex:none;padding:3px;border-radius:var(--r-pill);
+  background:color-mix(in srgb,var(--black) 40%,var(--bg-dark));
+  box-shadow:inset 0 1px 2px color-mix(in srgb,var(--black) 35%,transparent),0 0 0 1px color-mix(in srgb,var(--white) 10%,transparent)}
+.f-cuts::before{content:"";position:absolute;top:3px;bottom:3px;left:3px;width:calc(50% - 3px);border-radius:var(--r-pill);
+  background:var(--white);box-shadow:0 1px 2px color-mix(in srgb,var(--black) 25%,transparent);transition:transform var(--t-move) var(--ease)}
+.f-cuts:has(button:last-child[aria-pressed="true"])::before{transform:translateX(100%)}
+.f-cuts button{position:relative;z-index:1;flex:1 1 50%;min-width:6.5rem;height:var(--key-height-s);padding:0 var(--space-4);border:0;
+  border-radius:var(--r-pill);background:transparent;cursor:pointer;font:var(--weight-heading) var(--text-label)/1 var(--font);
+  letter-spacing:.08em;text-transform:uppercase;color:color-mix(in srgb,var(--white) 72%,transparent);transition:color var(--t-state) var(--ease)}
+.f-cuts button:hover{color:var(--white)}
+.f-cuts button[aria-pressed="true"],.f-cuts button[aria-pressed="true"]:hover{color:var(--text)}
+.f-cuts button:focus-visible{outline:0}
+.f-cuts:has(button:focus-visible){box-shadow:inset 0 1px 2px color-mix(in srgb,var(--black) 35%,transparent),0 0 0 2px var(--white)}
+.f-script{margin-top:var(--space-5);padding-top:var(--space-4);border-top:var(--line-hairline) solid color-mix(in srgb,var(--white) 16%,transparent)}
+.f-script summary{width:max-content;cursor:pointer;font:var(--weight-heading) var(--text-label)/1.3 var(--font);color:var(--white)}
+.f-script summary:focus-visible{outline:2px solid var(--white);outline-offset:3px;border-radius:2px}
+.f-script p{margin:var(--space-3) 0 0;max-width:62ch;color:color-mix(in srgb,var(--white) 82%,transparent)}
+@media (orientation:portrait){
+  .r-film{--f-h:calc(100svh - 60px - var(--space-4) * 2);padding-top:var(--space-4)}
+  .f-inner{width:min(100%, 40rem, calc(max(12rem, var(--f-h)) * 9 / 16))}
+  .f-screen{aspect-ratio:9 / 16}
+}
+@media (orientation:portrait) and (min-height:900px){
+  .r-film{--f-h:calc(100svh - 60px - var(--space-6) - var(--space-5) - 80px);padding-top:var(--space-6)}
+}
+@media (orientation:landscape) and (max-height:540px){
+  .r-film{--f-h:calc(100svh - 60px - var(--space-4) * 2);padding-top:var(--space-4)}
+}
+@media (max-width:520px){
+  .f-cap{flex-direction:column;align-items:stretch}
+  .f-cuts button{height:var(--key-height-m)}
+}
+@media (pointer:coarse){
+  .f-cuts button::after{content:"";position:absolute;inset:-6px 0}
+  .f-script summary{padding:var(--space-3) 0}
 }
 
 </style>
@@ -313,9 +375,22 @@ iframe{flex:1;width:100%;border:0;background:var(--bg)}
       <p class="r-legal">Not an offer or solicitation to buy or sell any security, and not investment, tax or legal advice. Forward-looking statements in these documents are illustrative and may change.</p>
     </div>
   </section>
+  <section class="r-film" id="rFilm" aria-labelledby="fH" hidden>
+    <div class="f-inner">
+      <div class="f-screen" id="fScreen" data-cut="desktop">
+        <video id="fVideo" playsinline preload="auto"></video>
+        <p class="f-load" id="fLoad" role="status" hidden><span>Opening…</span><span class="f-bar" aria-hidden="true"><i id="fPct"></i></span></p>
+      </div>
+      <div class="f-cap">
+        <div class="f-words"><p class="f-sec" id="fSec"></p><h2 class="f-h" id="fH" tabindex="-1"></h2><p class="f-line" id="fLine"></p></div>
+        <div class="f-cuts" id="fCuts" role="group"></div>
+      </div>
+      <details class="f-script" id="fScriptBox"><summary>Read it instead</summary><p id="fScript"></p></details>
+    </div>
+  </section>
   <iframe id="vFrame" title="Data room document" allow="fullscreen" allowfullscreen hidden></iframe>
 </div>
-<script type="application/json" id="payload">{"v": 2, "slug": "data-room", "title": "Data room", "rounds": 600000, "salt": "0tmj7FFaYw99658qolxNMg==", "iv": "iSJEYUl7lVsqyXOy", "ct": "0eaC7r3fhyj1QUftI99HaNMSdazfiwC40gGdJ8rhyDxyW7yXkDHSdelLXpj51rnOY09SUBMH/tMhm1QkdRf0v9s8syWS5a3ksn7+vYYp1zX2nXgU8I3qfk84p9tNuCnIso1ZNVJjG19a4s6LByljVLHLCor61SXbl4vj9h9nXiPTHNBjObiwInHedjv4JajoFFpHOPuhsUhflvENRYP/Hi+BfJYe7KLB8jlVnY8BM6Qovnblbkh3IQ3VsTjf4dGP0TUk4i5vVZAWOVk1OfTT+Y0Pl6moNPulZpFF/LC6EpLLhuC5SL6k3ST8IU5Venk/pvLuCnT8ZeqAQuFuq923Oij9fBfq4jiBWjyuvslbRyF8YAF234DHdvVPRSLWZYK7NQtlOSo+zeYUaCfiHE9Kw7xDlnGBH/a31MnGRHlZo2m+snWbzzphpj0hn4tAEJRhOuUjiYy19IOSZ7SjcP10JjqKQt47stxwFd7aD9fOvXc8L1E1bJobSp9kziRSnUuh0y5vfA15KXvVPPbe0P71J0HjcOuWLOGjpCKYgkzSFoU1cWT0BeMArX7FOmgAEMkc9HYdTd6911qk+Q4AiYfm8cYBWobKXRmxE8P5H0gWZd4FaVd7KQbRB1becS0DP/e837EaamnObNH6YiIw3uGCtY9iZq4CnHhbf8/Af+r47gDYRtX1bMR+CkGf6hGEng7QDX1tJESlFbN0X5wEJ4+Drg3t3k7BlQc90HqxMDMCNdAy+cHfFx9AUuVYVRkMe8ln/ci6k21LpycgMw6rQ4WJOGYB9pOtgEjsA7wxsPDcapYiXXxyUAHCbo93780G3WMrV18xh1LuttGEbG/iT21dtyTvn9ehTxRlDrgMJS/k9BWeQfCF/19MG+Sz8KbejL+PGIaUvr1XCaQpi5n3MquBS0wqIPUuMnrYtP3rBZQgbZL/PGXvQlXh7i7VgYkJC3SwSXwVWe+CJsjxW1xXpAEPj0/ffOpJrsgasowhRyZQWBQYOGHYslPFnWc6PybRP6h3UW2hYSrBCDpu8huyr+g4JpnIBX79f1k6bwqHu38S0xR6ziHBAFo/byaPL5gdAFWz0naTOWaSZJ0nuYB812Wo33Gv7/T0TuJ5Q7/eYKHvEECgb0exSN4RkygEC4arr0qBwTIsxrSDC83FkeJqmKDm2PhyH190P4lARaV0C5wkRkOPaukYssZfCkDJpHslGQiWlC+MKOjxhanzu5X7sAtKtDY6jFRha4NZ9KIuVa+Rtve82QWqMY9p8Wz/+8kfZREd/nKgFDHRbjs+eEzHnofpvRYy5F0k8SdwW9mYbEF34502kmtYG0S5164HEkFyEKVcZJA61srp4ktV9CY1a432mRyv9kAm/FKwutCRlbyHFXswBZBDSq7PN7F8O2TtWuCgL3RFqTEB5JuMtawr8QGoTLa04MWKYgl6E43uqg7U4vAZYPANq8pPZB+tBRwFP/j/wSYcBzPKuc5Oi1vGs+VisOD+RmauXtyNJrIBJL3ZVRgUxEVQGUP+h0aGr3//4YYvK9KL8Y0qbchnzuI+v2x4yHacx6A0Ty526TrPGigtnSlAlg==", "icon": "<svg width=\"16\" height=\"16\" class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14\"/><path d=\"m12 5 7 7-7 7\"/></svg>"}</script>
+<script type="application/json" id="payload">{"v": 2, "slug": "data-room", "title": "Data room", "rounds": 600000, "salt": "0tmj7FFaYw99658qolxNMg==", "iv": "L00IP2e97YFNjvXt", "ct": "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", "icon": "<svg width=\"16\" height=\"16\" class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14\"/><path d=\"m12 5 7 7-7 7\"/></svg>"}</script>
 <script>
 (() => {
   const P = JSON.parse(document.getElementById('payload').textContent);
@@ -330,6 +405,7 @@ iframe{flex:1;width:100%;border:0;background:var(--bg)}
     `t=id&&document.getElementById(id);if(t)t.scrollIntoView({behavior:'smooth',block:'start'});` +
     `else if(!id)window.scrollTo({top:0,behavior:'smooth'});});`;
   let key = null, room = null, url = null, opening = 0, last = '', current = '';
+  const verb = d => d.kind === 'film' ? 'Watch' : 'Open';
   /* the frame is moved with location.replace, never by setting src: a new src adds an entry to the
      browser's history, and Back would then step through the frame instead of the room */
   function frameTo(u) { const f = $('vFrame'); try { f.contentWindow.location.replace(u); } catch (e) { f.src = u; } }
@@ -359,11 +435,11 @@ iframe{flex:1;width:100%;border:0;background:var(--bg)}
   function drawList() {
     $('rRows').innerHTML = room.docs.map(d =>
       '<li class="r-row"><p class="r-sec">' + esc(d.section) + '</p><div class="r-main"><h2><a href="#' + esc(d.slug) + '">' + esc(d.title) + '</a></h2>' +
-      '<p class="r-meta">' + esc(d.meta) + '</p></div><div class="r-acts"><a class="key key-s" href="#' + esc(d.slug) + '" aria-label="Open ' + esc(d.title) + '">Open' + P.icon + '</a></div></li>').join('') +
+      '<p class="r-meta">' + esc(d.meta) + '</p></div><div class="r-acts"><a class="key key-s" href="#' + esc(d.slug) + '" aria-label="' + verb(d) + ' ' + esc(d.title) + '">' + verb(d) + P.icon + '</a></div></li>').join('') +
       (room.next ? '<li class="r-row is-next"><p class="r-sec">' + esc(room.next[0]) + '</p><div class="r-main"><h2>' + esc(room.next[1]) + '</h2><p class="r-meta">' + esc(room.next[2]) + '</p></div></li>' : '');
   }
   function showList(focusSlug) {
-    opening++;
+    opening++; filmOff();
     if (url) { URL.revokeObjectURL(url); url = null; }
     frameTo('about:blank'); $('vFrame').hidden = true; $('rList').hidden = false; $('vBack').hidden = true; $('vMsg').textContent = '';
     $('vTitle').textContent = P.title; document.title = P.title + ' · Finna';
@@ -381,7 +457,7 @@ iframe{flex:1;width:100%;border:0;background:var(--bg)}
       html = html.replace(/<head([^>]*)>/i, '<head$1><base target="_blank"><script>' + INPAGE + '<\/script>');
       if (url) URL.revokeObjectURL(url);
       url = URL.createObjectURL(new Blob([html], {type: 'text/html'}));
-      const f = $('vFrame'); frameTo(url); f.title = d.title; f.hidden = false;
+      filmOff(); const f = $('vFrame'); frameTo(url); f.title = d.title; f.hidden = false;
       $('rList').hidden = true; $('vBack').hidden = false; $('vMsg').textContent = '';
       $('vTitle').textContent = d.title; document.title = d.title + ' · ' + P.title + ' · Finna';
       $('vBack').focus();
@@ -390,12 +466,91 @@ iframe{flex:1;width:100%;border:0;background:var(--bg)}
       current = ''; showList(d.slug); $('vMsg').textContent = 'That document did not open. Try again.';
     }
   }
+  /* A FILM IN THE ROOM (13 Oct 2026). Each cut and its poster is ciphertext beside the documents,
+     opened with the room's key and played from memory (a Blob), so it has no address of its own
+     either. It opens in the cut that fits the screen and follows a turn of the screen until a cut is
+     picked; changing the cut keeps the place in the film, and the cut on screen plays on while the
+     other one opens. What is opened is kept until Lock, so going back to the list and returning, or
+     changing the cut again, is instant. */
+  const film = {d: null, cut: '', picked: false, urls: {}};
+  const portrait = matchMedia('(orientation: portrait)');
+  async function sealed(path, progress) {
+    const r = await fetch(path); if (!r.ok) throw 0;
+    const total = +r.headers.get('content-length') || 0;
+    let b;
+    if (progress && total && r.body && r.body.getReader) {
+      const rd = r.body.getReader(), parts = []; let got = 0;
+      for (;;) { const {done, value} = await rd.read(); if (done) break; parts.push(value); got += value.length; progress(Math.min(1, got / total)); }
+      b = new Uint8Array(got); let o = 0; for (const p of parts) { b.set(p, o); o += p.length; }
+    } else b = new Uint8Array(await r.arrayBuffer());
+    return crypto.subtle.decrypt({name: 'AES-GCM', iv: b.slice(0, 12)}, key, b.slice(12));
+  }
+  async function blobOf(path, type, progress) {
+    if (film.urls[path]) return film.urls[path];
+    const plain = await sealed(path, progress);
+    if (!key) throw 0;                                  /* locked while it opened */
+    return film.urls[path] || (film.urls[path] = URL.createObjectURL(new Blob([plain], {type})));
+  }
+  function loading(p) {
+    $('fLoad').hidden = p < 0;
+    if (p >= 0) $('fPct').style.transform = 'scaleX(' + p + ')';
+  }
+  async function playCut(cut, keep) {
+    const n = opening, d = film.d, c = d.cuts.find(x => x.cut === cut) || d.cuts[0], v = $('fVideo');
+    const at = keep ? v.currentTime : 0, going = keep && !v.paused && !v.ended;
+    film.cut = c.cut;
+    $('fCuts').querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.cut === c.cut)));
+    const stale = () => n !== opening || film.cut !== c.cut;
+    try {
+      const poster = await blobOf(c.poster, 'image/jpeg');
+      if (stale()) return;
+      if (!keep) { $('fScreen').dataset.cut = c.cut; v.poster = poster; }
+      loading(film.urls[c.file] ? -1 : 0);
+      const src = await blobOf(c.file, 'video/mp4', p => { if (!stale()) loading(p); });
+      if (stale()) return;
+      loading(-1);
+      $('fScreen').dataset.cut = c.cut; v.poster = poster; v.src = src; v.controls = true;
+      if (at) v.addEventListener('loadedmetadata', () => { v.currentTime = Math.min(at, v.duration || at); }, {once: true});
+      if (going || !keep) v.play().catch(() => {});   /* a browser that holds back sound waits for Play */
+    } catch (e) {
+      if (stale()) return;
+      loading(-1); $('vMsg').textContent = 'The film did not open. Try again.';
+    }
+  }
+  function openFilm(d) {
+    opening++;
+    if (url) { URL.revokeObjectURL(url); url = null; }
+    frameTo('about:blank'); $('vFrame').hidden = true; $('rList').hidden = true;
+    film.d = d; film.picked = false;
+    $('fSec').textContent = d.section; $('fH').textContent = d.title; $('fLine').textContent = d.line || '';
+    $('fVideo').setAttribute('aria-label', d.title);
+    $('fCuts').setAttribute('aria-label', 'Cut of the film');
+    $('fCuts').innerHTML = d.cuts.map(c => '<button type="button" data-cut="' + esc(c.cut) + '" aria-pressed="false">' + esc(c.label) + '</button>').join('');
+    $('fScript').textContent = d.script || ''; $('fScriptBox').hidden = !d.script; $('fScriptBox').open = false;
+    $('rFilm').hidden = false; $('rFilm').scrollTop = 0; $('vBack').hidden = false; $('vMsg').textContent = '';
+    $('vTitle').textContent = d.title; document.title = d.title + ' · ' + P.title + ' · Finna';
+    $('vBack').focus();
+    playCut(portrait.matches ? 'mobile' : 'desktop', false);
+  }
+  function filmOff(forget) {
+    if (film.d || forget) {
+      const v = $('fVideo'); v.pause(); v.removeAttribute('src'); v.removeAttribute('poster'); v.controls = false; v.load();
+      film.d = null; film.cut = ''; loading(-1); $('rFilm').hidden = true;
+    }
+    if (forget) { Object.values(film.urls).forEach(u => URL.revokeObjectURL(u)); film.urls = {}; }
+  }
+  $('fCuts').addEventListener('click', e => {
+    const b = e.target.closest('button[data-cut]');
+    if (!b || !film.d || b.dataset.cut === film.cut) return;
+    film.picked = true; playCut(b.dataset.cut, true);
+  });
+  portrait.addEventListener('change', () => { if (film.d && !film.picked) playCut(portrait.matches ? 'mobile' : 'desktop', true); });
   function route(first) {
     if (!key) return;
     const s = decodeURIComponent(location.hash.slice(1)), d = room.docs.find(x => x.slug === s);
     /* the browser's own back and forward move between the list and the documents too; a move can
        arrive as both popstate and hashchange, so a route already showing is left as it is */
-    if (d) { if (current === s && !$('vFrame').hidden) return; last = current = s; openDoc(d); }
+    if (d) { if (current === s && (!$('vFrame').hidden || !$('rFilm').hidden)) return; last = current = s; (d.kind === 'film' ? openFilm : openDoc)(d); }
     else { if (!first && !current && !$('rList').hidden) return; current = ''; showList(first ? '' : last); }
   }
   window.addEventListener('hashchange', () => route(false));
@@ -407,7 +562,7 @@ iframe{flex:1;width:100%;border:0;background:var(--bg)}
   });
   $('vLock').addEventListener('click', () => {
     try { sessionStorage.removeItem(KEEP); } catch (e) {}
-    opening++; if (url) URL.revokeObjectURL(url); url = null; key = null; room = null; current = '';
+    opening++; if (url) URL.revokeObjectURL(url); url = null; key = null; room = null; current = ''; filmOff(true);
     frameTo('about:blank'); $('vFrame').hidden = true; $('rRows').innerHTML = '';
     $('room').hidden = true; $('gate').hidden = false; $('gCode').value = ''; $('gCode').focus();
     history.replaceState(null, '', location.pathname + location.search); document.title = P.title + ' · Finna';
