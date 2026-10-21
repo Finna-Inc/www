@@ -5,7 +5,10 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Finna · Your own family office. More than investing.</title>
 <meta name="description" content="Wealthy families have two things you don’t: a team running everything they own, and someone to explain it all. Finna gives you both.">
-<!-- THE PUBLIC SITE, rebuilt 12 Sep 2026 on the ratified brand system (REV 31). The words
+<!-- THE WHOLE SITE IS ON BRAND SYSTEM 2.0 since 21 Oct 2026 (site-v2.css, after Christian's
+     review of the colour proposal). HOMEPAGE COLOURS first migrated to brand-v2 on 20 Oct 2026. Previous homepage and assets:
+     ../_archive/landing-2026-10-20-pre-v2/source/index.html.
+     THE PUBLIC SITE, rebuilt 12 Sep 2026 on the ratified brand system (REV 31). The words
      are the ones the 2026-09 site shipped with, kept in source/copy.md; everything
      visual is taken from brand/tokens.css. The previous build is in
      _archive/landing-2026-09-11/ and is not referenced from here. -->
@@ -35,7 +38,7 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta name="theme-color" content="#0D231B">
+<meta name="theme-color" content="#161616">
 <!-- LIGHT AND DARK, as in the app (Rose, 1 Oct 2026: "site is light by default no matter what. user can
      switch to dark if they want"). Light unless the visitor picked dark with the mode key; the choice is
      kept under the app's own name. Runs before the page paints, so it never shows the wrong mode. -->
@@ -43,13 +46,15 @@
 if(s==='dark')r.setAttribute('data-mode','dark');
 window.FinnaMode={set:function(m){r.setAttribute('data-mode',m);try{localStorage.setItem('finna-mode-choice',m)}catch(e){}}}})();</script>
 <link rel="stylesheet" href="chrome/fonts.css?v=0c6cbb49">
-<link rel="stylesheet" href="brand/tokens.css?v=4076f932">
+<link rel="stylesheet" href="brand-v2/tokens.css?v=8b49a0c4">
 <link rel="stylesheet" href="site.css?v=0aa10712">
 <link rel="stylesheet" href="nav-site.css?v=a22a0bfd">
 <link rel="stylesheet" href="vendor/lenis.css?v=599bcc02">
 <link rel="stylesheet" href="hero-home.css?v=13c51497">
-<link rel="stylesheet" href="hero-tones.css?v=3e8ff81a">
+<link rel="stylesheet" href="hero-tones.css?v=b4cfb91a">
 <link rel="stylesheet" href="desks-home.css?v=efb86893">
+<link rel="stylesheet" href="home-v2.css?v=c9b01317">
+<link rel="stylesheet" href="site-v2.css?v=f7e876d4">
 <!-- A DIFFERENT HERO EACH VISIT (Rose, 13 Sep 2026). In the <head> on purpose: it sets
      the custom property before the hero has painted, so there is no flash of one picture
      being replaced by another, and only the chosen file is ever fetched. N is the count
@@ -121,7 +126,7 @@ r.dataset.hero=i;})();</script>
        and it stops moving for anyone who asks for less motion. -->
   <div class="hero-wave" aria-hidden="true">
     <finna-threads amplitude="0.62" distance="0.46" count="40" linewidth="6.0"
-                   lineblur="11.0" speed="0.26" color="#CADBD6"
+                   lineblur="11.0" speed="0.26" color="#FFFFFF"
                    max-dim="1500" fps="30"></finna-threads>
   </div>
   <div class="wrap">
@@ -194,10 +199,10 @@ r.dataset.hero=i;})();</script>
         <svg viewBox="39 39 50 50" fill="none">
           <defs>
             <filter id="fm-blur-core" x="-100%" y="-100%" width="300%" height="300%">
-              <feGaussianBlur stdDeviation=".7"/>
+              <feGaussianBlur stdDeviation="0.5"/>
             </filter>
             <filter id="fm-blur-halo" x="-100%" y="-100%" width="300%" height="300%">
-              <feGaussianBlur stdDeviation="2"/>
+              <feGaussianBlur stdDeviation="4"/>
             </filter>
           </defs>
           <g class="fm-base"><circle cx="57" cy="57" r="16.5"/><circle cx="71" cy="57" r="16.5"/><circle cx="71" cy="71" r="16.5"/><circle cx="57" cy="71" r="16.5"/></g>
@@ -249,7 +254,7 @@ r.dataset.hero=i;})();</script>
        rail held under the bar. The rail is also a way to jump. Reduced motion: the same order, no
        movement. Without the script: every desk in turn, as written below.
        Styles desks-home.css, script desks-home.js. -->
-  <section class="fd" id="desks" aria-labelledby="fd-h">
+  <section class="fd on-desk" id="desks" aria-labelledby="fd-h">
     <div class="wrap">
       <div class="section-head fd-head">
         <p class="eyebrow">The platform</p>
@@ -466,7 +471,7 @@ r.dataset.hero=i;})();</script>
        against 7.61× the investment, every figure labelled illustrative in the frame. Built
        frame by frame from mockups/clip-invest-like-a-family-office.html — the storyboard is
        the spec. 4:3, 19.6 s, silent, loops. ════════════════════════════════════════════ -->
-  <section class="band-mint">
+  <section class="band-mint on-desk">
     <div class="wrap two top invest">
       <div>
         <h2>Invest like a<br>family office.</h2>
@@ -477,25 +482,36 @@ r.dataset.hero=i;})();</script>
         <p class="pull" style="margin-top:34px">Most families are never shown how that works. Finna starts by explaining it.</p>
       </div>
 
-      <!-- THE CLIP IS AN SVG (19 Sep 2026): the same 19.6 s timeline as the MP4, declarative, so it
-           plays and loops as an image — no autoplay policy, no low-power-mode pause, crisp at any
-           width, 76 KB with Lexend embedded. finna-invest-clip.{mp4,webm,-poster.jpg} in media/
-           are the same clip as video, kept for sharing outside the site.
-           THE 19 SEP CUT IS BACK (Christian, 27 Sep 2026). The copy review re-cut the SVG to 8.8 s
-           (the two mixes and the end card, 600 x 338) and it did not play as it should on the site,
-           so the original 19.6 s, 600 x 450 file is restored as committed on 19 Sep (ee0a03f),
-           returns and all. The re-cut is in git history (7258c75) if it is wanted again. -->
-      <div class="invest-clip">
-        <img src="media/finna-invest-clip.svg" width="600" height="450"
-             alt="Two portfolios over thirty years, illustrative: a typical stocks-and-bonds portfolio grows to 4.32 times the investment, a family-office portfolio with private equity, real estate and infrastructure to 7.61 times">
-      </div>
+      <!-- THE BACK-TEST FROM THE LEARN FILMS (Christian, 21 Oct 2026: "include the graph from the video
+           and the film production file attached, see the backtest Thirty years, two mixes"). It
+           replaces the 19 Sep clip (media/finna-invest-clip.svg, kept in media/ for sharing). This is
+           FIG.backtest from learn-films-production_6.html at the end of its four beats: the film's
+           own thirty yearly values for each mix and its geometry, the family office mix in --you
+           (Harbour) and listed shares and bonds in --ref-1 (copper), drawn without numbers. The two
+           series end at 7.615x and 4.322x, the 7.61x and 4.32x the clip printed. Drawn inline so it
+           takes the tokens in both modes; backtest.js plays the beats once when it comes into view. -->
+      <figure class="invest-fig">
+        <!-- the key and the footnote are HTML, so they wrap and hold their size on a phone, where
+             the drawing scales to about two thirds -->
+        <ul class="bt-key"><li class="you">Like a family office, private markets included</li><li class="ref1">Listed shares and bonds only</li></ul>
+        <svg class="fg" viewBox="0 46 440 222" role="img" aria-labelledby="bt-t bt-d">
+          <title id="bt-t">Thirty years, two mixes</title>
+          <desc id="bt-d">Back-tested over thirty years and shown without numbers: a family office's mix, private markets included, ends higher and falls less than listed shares and bonds only.</desc>
+          <g class="b0"><path class="axis" d="M20 236H330"/><path class="grid" d="M20 170.2H330"/><path class="grid" d="M20 104.4H330"/><text x="20" y="258">30 years ago</text><text x="330" y="258" text-anchor="end">Today</text></g>
+          <path class="ln ref1 b1" pathLength="1" d="M20.0 233.4L30.3 232.0L40.7 230.6L51.0 235.3L61.3 230.2L71.7 226.0L82.0 224.3L92.3 222.5L102.7 230.7L113.0 223.6L123.3 216.7L133.7 214.6L144.0 212.3L154.3 209.8L164.7 207.4L175.0 211.3L185.3 204.9L195.7 199.1L206.0 196.1L216.3 192.9L226.7 189.6L237.0 186.0L247.3 182.4L257.7 178.5L268.0 174.4L278.3 170.1L288.7 188.2L299.0 170.8L309.3 156.0L319.7 150.8L330.0 145.4"/>
+          <path class="ln you b2" pathLength="1" d="M20.0 233.4L30.3 231.5L40.7 229.5L51.0 229.7L61.3 226.1L71.7 222.7L82.0 220.1L92.3 217.3L102.7 223.4L113.0 215.0L123.3 207.7L133.7 204.0L144.0 200.2L154.3 196.0L164.7 191.5L175.0 191.1L185.3 183.2L195.7 176.2L206.0 170.3L216.3 164.0L226.7 157.4L237.0 150.2L247.3 142.5L257.7 134.2L268.0 125.5L278.3 116.1L288.7 127.5L299.0 103.5L309.3 83.7L319.7 71.4L330.0 58.2"/>
+          <g class="ends"><circle class="dot ring" cx="330.0" cy="58.2" r="5"/><circle class="dot" cx="330.0" cy="145.4" r="5"/></g>
+          <g class="b3"><path class="brk" d="M346.0 64.2V139.4"/><text class="tv" x="356.0" y="97.8">More, and<tspan x="356.0" dy="1.3em">steadier</tspan></text></g>
+        </svg>
+        <figcaption>Back-tested over thirty years, shown without numbers. Past returns are no promise of future ones.</figcaption>
+      </figure>
     </div>
   </section>
 
   <!-- ══ 07 · WHITE ═══ learn your way in. ITS OWN SECTION AGAIN (Christian, 27 Sep 2026): Learn is
        a core part of Finna, so it does not share the invest band. White, between the mint above and
        the plans' tint below. The heading no longer starts with "So". ═══════════════════════════════ -->
-  <section class="learn-sec">
+  <section class="learn-sec on-learn">
     <div class="wrap two top clip">
       <div>
         <h2>Learn your way in.</h2>
@@ -707,7 +723,8 @@ r.dataset.hero=i;})();</script>
 <script src="vendor/lenis.min.js?v=daec1872"></script>
 <script src="vendor/smooth-scroll.js?v=cb7b0132" defer></script>
 <script src="hero-parallax.js?v=d172b74e" defer></script>
-<script src="desks-home.js?v=be7aee4d" defer></script>
+<script src="desks-home.js?v=370c18c6" defer></script>
+<script src="backtest.js?v=d48bf5b9" defer></script>
 <script src="nav-site.js?v=75ddbe57"></script>
 </body>
 </html>

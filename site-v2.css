@@ -1,0 +1,220 @@
+/* ══ FINNA · THE SITE IN BRAND SYSTEM 2.0 ═══════════════════════════════════════════════════
+   The colour layer for every page of the public site (21 Oct 2026). Every page loads
+   ../brand-v2/tokens.css, then site.css and nav-site.css, then this file LAST, so the rules
+   here are the 2.0 decisions and nothing else. Geometry, copy and behaviour are untouched.
+   Every value is a token or a stated mix of two tokens.
+
+   WHERE IT COMES FROM. The proposal "finnafamilyoffice.com in the new colours"
+   (Claude outputs/finna-website-colour-proposal-oct2026.html), revised with Christian's
+   direction on 21 Oct 2026:
+     · the cover: Harbour on the keys and the proof dots, a lighter blue on the second line
+     · the map: blue, white words straight on the blocks
+     · Investment's band: ice blue, not Mint Cream — "this is investment not learn"
+     · pricing: Plus in Finna blue with the white key, Family Office in blue, Pro in Champagne
+     · the closing: Finna dark blue
+     · the nature photographs stay on every page that has one
+   No token is named ice blue, Finna blue or Finna dark blue. They are read as --desk-12,
+   --desk and --desk-pressed. Change them here, in one place, if another step was meant.
+
+   AHEAD OF THE BRAND. 2.0 still says Harbour speaks only inside a desk and gold only for
+   earned and needs-you. This file lets Harbour carry the site's actions and its plans, and
+   Champagne name the Pro plan. Until brand-v2/source.py says the same, this file is where
+   that ruling lives. ═══════════════════════════════════════════════════════════════════ */
+
+/* ── 1 · WHO IS SPEAKING — the role scopes, as brand-v2/components.css has them ────────────
+   The base is ink. A desk's page wears .on-desk on <main> (Harbour), Learn's .on-learn
+   (Boreal Green). The nav and the footer are the skeleton and stay outside any scope. */
+.on-desk{
+  --primary:var(--desk); --primary-hover:var(--desk-hover); --primary-pressed:var(--desk-pressed);
+  --primary-72:var(--desk-72); --primary-48:var(--desk-48); --primary-24:var(--desk-24);
+  --primary-12:var(--desk-12); --primary-6:var(--desk-6); --primary-ink:var(--white);
+  --primary-glow:var(--desk-6);
+  --text-link:var(--desk-text); --bg-selected:var(--desk-12); --text-selected:var(--desk-text);
+  --focus:var(--desk-text) }
+.on-learn{
+  --primary:var(--learn); --primary-hover:var(--learn-hover); --primary-pressed:var(--learn-pressed);
+  --primary-72:var(--learn-72); --primary-48:var(--learn-48); --primary-24:var(--learn-24);
+  --primary-12:var(--learn-12); --primary-6:var(--learn-6); --primary-ink:var(--white);
+  --primary-glow:var(--learn-6);
+  --text-link:var(--learn-text); --bg-selected:var(--learn-12); --text-selected:var(--learn-text);
+  --focus:var(--learn-text) }
+/* the glow is "parked" in 2.0 (#F1FFE0, a lime); outside a scope it is the faintest grey */
+:root{--primary-glow:var(--primary-6)}
+/* Learn's words go one step darker on light grounds: Boreal Green is 6.6:1 on white, its
+   pressed step 10.8:1 (the 7:1 floor, claude/legibility-standard-sep2026.md) */
+:root:not([data-mode="dark"]) .on-learn{--text-link:var(--learn-pressed);--text-selected:var(--learn-pressed)}
+:root:not([data-mode="dark"]) .on-learn .link{--primary:var(--learn-pressed)}   /* site.css draws .link in --primary */
+/* Freya has no colour of her own: her rings stay in the base, even inside a role */
+:is(.on-desk,.on-learn) .freya .ring{color:var(--heading)}
+:is(.on-desk,.on-learn) :is(.band,.footer) .freya .ring{color:var(--white)}
+
+/* ── 2 · THE ACTION COLOUR — every filled key is Harbour, white words (7.0:1) ─────────────
+   Set on the key itself, so links, eyebrows and text keep the base. On Learn the same key is
+   Boreal Green. The white key (on dark grounds and photographs) keeps its own face. */
+.key{
+  --primary:var(--desk); --primary-hover:var(--desk-hover); --primary-pressed:var(--desk-pressed);
+  --primary-24:var(--desk-24); --primary-12:var(--desk-12); --primary-6:var(--desk-6);
+  --primary-ink:var(--white); --focus:var(--desk-text) }
+.on-learn .key{
+  --primary:var(--learn); --primary-hover:var(--learn-hover); --primary-pressed:var(--learn-pressed);
+  --primary-24:var(--learn-24); --primary-12:var(--learn-12); --primary-6:var(--learn-6);
+  --focus:var(--learn-text) }
+/* a role colour keeps its face in dark mode, so its words stay white */
+:root[data-mode="dark"] .key:not(.key-white):not(.key-gold):not(.btn-paper):not(.btn-ghost-light){color:var(--white)}
+/* on a dark ground the focus ring is white, never a blue that disappears into it */
+:is(.hero,.hero-home,.band,.final,.footer,.nav,.tier.feature) .key:focus-visible::before{border-color:var(--white)}
+
+/* ── 3 · THE COVER — the photograph stays; Harbour takes the key and the dots ─────────────
+   The main key on every cover (and on the dark heads of the text pages) is the Harbour key.
+   The second key, outlined in white, stays as it is. Learn's cover speaks in Boreal Green. */
+:is(.hero,.hero-home){--cta:var(--desk);--cta-hover:var(--desk-hover);--cta-pressed:var(--desk-pressed)}
+.hero.on-learn{--cta:var(--learn);--cta-hover:var(--learn-hover);--cta-pressed:var(--learn-pressed)}
+:is(.hero,.hero-home) .key.key-white,.hero-home .key.btn-paper,
+:root[data-mode="dark"] :is(.hero,.hero-home) .key.key-white{
+  background-color:var(--cta);color:var(--white);
+  background-image:var(--key-sheen,linear-gradient(180deg,rgba(255,255,255,.16) 0%,rgba(255,255,255,0) 56%,rgba(0,0,0,.12) 100%));
+  box-shadow:0 var(--ko) 0 var(--cta-pressed), inset 0 1px 0 rgba(255,255,255,.14)}
+:is(.hero,.hero-home) .key.key-white:hover,.hero-home .key.btn-paper:hover,
+:root[data-mode="dark"] :is(.hero,.hero-home) .key.key-white:hover{
+  background-color:var(--cta-hover);
+  box-shadow:0 calc(var(--ko) / 2) 0 var(--cta-pressed), inset 0 1px 0 rgba(255,255,255,.18)}
+:is(.hero,.hero-home) .key.key-white:active,.hero-home .key.btn-paper:active,
+:root[data-mode="dark"] :is(.hero,.hero-home) .key.key-white:active{
+  background-color:var(--cta-pressed);box-shadow:0 0 0 var(--cta-pressed)}
+/* the bar's key on every page: Harbour, as on the cover */
+.nav .key:not(.key-white){
+  --primary:var(--desk); --primary-hover:var(--desk-hover); --primary-pressed:var(--desk-pressed); color:var(--white)}
+/* the proof dots under the homepage keys */
+.hero-proof span::before{background:var(--desk)}
+/* the menu's second kind of row was "the hero's own gold" (Rose, 14 Sep): it follows the
+   hero's second line, now Harbour's light step */
+.nav-links .nav-ddl.is-sub{color:var(--desk-48)}
+/* the band the mobile pull reveals falls back to the dark surface, never Champagne */
+body::before{background:var(--bg-dark)}
+.pull-mark .pm-e1 svg{color:color-mix(in srgb,currentColor 70%,var(--pull-bg,var(--bg-dark)))}
+.pull-mark .pm-e2 svg{color:color-mix(in srgb,currentColor 52%,var(--pull-bg,var(--bg-dark)))}
+.pull-mark .pm-e3 svg{color:color-mix(in srgb,currentColor 37%,var(--pull-bg,var(--bg-dark)))}
+.pull-mark .pm-e4 svg{color:color-mix(in srgb,currentColor 25%,var(--pull-bg,var(--bg-dark)))}
+
+/* ── 4 · THE QUIET GROUNDS — ice blue, not Mint Cream ──────────────────────────────────────
+   The mint band read as Learn's green. It is ice blue (--desk-12) everywhere but on Learn,
+   which keeps Mint Cream. The fainter tint is the faintest ice (--desk-6), and the plans sit
+   on the full ice blue, as the invest band does. */
+.band-mint,:root[data-mode="dark"] .band-mint{background:var(--desk-12)}
+.band-tint{background:var(--desk-6)}
+.band-tint#plans{background:var(--desk-12)}
+.on-learn .band-mint{background:var(--gold-dark)}
+:root[data-mode="dark"] .on-learn .band-mint{background:color-mix(in srgb,var(--gold-dark) 10%,var(--bg-raised))}
+.on-learn .band-tint{background:var(--learn-6)}
+/* words on a tinted ground take the text colour: grey is 6.2:1 on the ice blue (7:1 floor) */
+:is(.band-mint,.band-tint){--text-secondary:var(--text)}
+/* the smallest labels: tertiary grey is 4.7:1 on white; the eyebrow takes the secondary step */
+.eyebrow{color:var(--text-secondary)}
+/* inside a desk the eyebrows are Harbour pressed (11.2:1); Harbour itself is 6.999:1, too
+   close to the floor for 13px capitals. On the dark grounds they keep their own colour. */
+:root:not([data-mode="dark"]) .on-desk :is(.section-head .eyebrow,.dnav .eyebrow,.hw-eyebrow,.pol-eg > .eyebrow,.dfig-k){color:var(--desk-pressed)}
+:root:not([data-mode="dark"]) .on-desk .band :is(.section-head .eyebrow,.hw-eyebrow){color:var(--desk-48)}
+
+/* ── 5 · THE DARK GROUNDS ───────────────────────────────────────────────────────────────────
+   The heads, the bands and the footer are Midwinter by the token alone. The closing on every
+   page is Finna dark blue: Harbour pressed, white words at 11.2:1. site.css painted it with
+   --primary-pressed, which 2.0 turns black. */
+.final{background:var(--desk-pressed)}
+.final .key-white:focus-visible::before{border-color:var(--white)}
+/* the idea band's last line was the hero's gold; it is white, weight 600 */
+.band-violet .idea-key{color:var(--white)}
+/* the footer's clocks were Champagne (Rose, 1 Oct 2026); gold is earned, so they are white */
+.world-clock svg{stroke:var(--white)}
+.world-clock .c{fill:var(--white)}
+.world-clock b{color:var(--white)}
+/* the waitlist's answer: light blue when it worked, white when it did not */
+.wl-msg{color:var(--desk-48)}
+.cards3 article.card-dark h3{color:var(--white)}
+
+/* ── 6 · PRICING — Family Office and Plus in Harbour, Pro in Champagne ─────────────────────── */
+.tier.feature{background-color:var(--desk);background-image:none}
+:root[data-mode="dark"] .tier.feature{background-color:var(--desk);background-image:none}   /* beats the dark rule that lays every plan on the raised ground */
+.badge-found{background:var(--desk);color:var(--white)}
+.badge-fo{background:var(--white);color:var(--black)}
+:root[data-mode="dark"] .badge-fo{color:var(--black)}
+.badge-pro{background:var(--gold-light);color:var(--black)}
+.tier-soon{color:var(--text)}
+/* the Pro key is the brand's attention key: a Champagne face on a Bullion shelf, black words
+   (brand-v2/components.css .key-bullion). It keeps the .key-gold name the pages already use. */
+.key-gold{--kbs:color-mix(in srgb,var(--gold) 75%,var(--black));
+  background-color:var(--gold-light);color:var(--black);
+  box-shadow:0 var(--ko) 0 var(--kbs), inset 0 1px 0 rgba(255,255,255,.28)}
+.key-gold:hover{background-color:color-mix(in srgb,var(--gold-light) 80%,var(--gold));
+  transform:translateY(calc(var(--ko) / 2)); box-shadow:0 calc(var(--ko) / 2) 0 var(--kbs), inset 0 1px 0 rgba(255,255,255,.30)}
+.key-gold:active{background-color:var(--gold);box-shadow:0 0 0 var(--kbs)}
+:root[data-mode="dark"] .key-gold{color:var(--black)}
+/* the comparison follows the plans: Plus's column in the ice blues, the ticks in Harbour */
+.cmp{--primary:var(--desk);--primary-6:var(--desk-6);--primary-12:var(--desk-12)}
+
+/* ── 7 · DATA — money and evidence are drawn in the blues ──────────────────────────────────
+   A chart on a page that is not a desk still speaks in one colour: Harbour and its steps,
+   as a single series is in the brand's report template. How it works' little map is the
+   wealth map, one blue in six steps. */
+:is(.wf-chart,.wf-stats,.wf-meter,.wf-time,.wf-seg,.wf-seg-key,.wf-legend,.wf-hbars,.wf-cols,.wf-split-bar,.wf-sources){
+  --primary:var(--desk); --primary-hover:var(--desk-hover); --primary-pressed:var(--desk-pressed);
+  --primary-72:var(--desk-72); --primary-48:var(--desk-48); --primary-24:var(--desk-24);
+  --primary-12:var(--desk-12); --primary-6:var(--desk-6); --primary-glow:var(--desk-6)}
+.hw-map i{background:var(--map-6)}
+.hw-map i:first-child{background:var(--map-1)}
+.hw-map i:nth-child(2){background:var(--map-2)}
+.hw-map i:nth-child(3){background:var(--map-3)}
+.hw-map i:nth-child(4){background:var(--map-4)}
+.hw-map i:nth-child(5){background:var(--map-5)}
+
+/* ── 8 · THE HEAVY RULE — openings, closings, totals — is the text colour (--line-heavy) ────
+   The three-word facts, the steps, the evidence stats and the pull rule drew it in the brand
+   green; in a desk that would turn Harbour. It is the text colour everywhere, white in dark. */
+:is(.hw-facts li,.steps3 li,.wf-stats:not(.wf-stats-dark) li){border-top-color:var(--text)}
+.hw-rule{border-left-color:var(--text);border-top-color:var(--text)}
+
+/* ── 9 · THE 7:1 FLOOR (claude/legibility-standard-sep2026.md overrides the design system) ──
+   Measured on every page in light and dark after the move. The tertiary grey is 4.7:1 on
+   white, so the site's smallest labels take the secondary step (7.5:1); on a tinted ground
+   both greys take the text colour. A desk's words on the ice blue take Harbour pressed (9.4:1),
+   where Harbour itself is 5.8:1. White on the Harbour card is full white (7.0:1), not 90%. */
+:root,:root[data-mode="dark"]{--text-tertiary:var(--text-secondary)}
+:is(.band-mint,.band-tint){--text-tertiary:var(--text)}
+:root:not([data-mode="dark"]) .on-desk :is(.band-mint,.band-tint) .link{--primary:var(--desk-pressed)}
+:root:not([data-mode="dark"]) .on-desk .dnav .here{color:var(--desk-pressed)}
+.tier.feature :is(.spec .k,.price small,.billed){color:var(--white)}
+.cmp td{color:var(--text)}
+.fd .fd-fy .eyebrow{color:var(--text)}
+.fd-map-hint,.fd-crumbs .sep{color:var(--text)}
+/* the footer's small print was white at 55% (6.1:1); it is white 72% into Midwinter (9.7:1) */
+.footer :is(.legal,.legal p,.legal-c,.legal-c p){color:color-mix(in srgb,var(--white) 72%,var(--bg-dark))}
+/* the fine print on the dark blue closing (the investors' request form): 82% white, 9.0:1 */
+.final :is(.wl-note,legend,.wl-form label){color:color-mix(in srgb,var(--white) 82%,var(--desk-pressed))}
+.fd .fd-scene{--text-secondary:var(--text);--text-tertiary:var(--text)}
+.cmp th small{color:var(--text)}
+
+/* ── 10 · DARK MODE ─────────────────────────────────────────────────────────────────────────
+   2.0 turns the ramps over in dark mode: the 24% and 48% steps that were light on a dark band
+   become dark, and a role keeps its face but writes in its 48% step. Measured on every page,
+   these are the places that needed telling. */
+/* inside a role, words drawn in --primary-pressed (a chip, a held line) are the text colour; the
+   keys set their own shelf, so this never reaches a key */
+:root[data-mode="dark"] .on-desk{--primary-pressed:var(--text);--bg-selected:var(--desk-6)}
+:root[data-mode="dark"] .on-learn{--primary-pressed:var(--text);--bg-selected:var(--learn-6)}
+:root[data-mode="dark"] :is(.on-desk,.on-learn) .link{--primary:var(--text-link)}
+/* the quiet grounds take the role's faintest step, so its words clear 7:1 on them */
+:root[data-mode="dark"] .band-mint,:root[data-mode="dark"] .band-tint#plans{background:var(--desk-6)}
+:root[data-mode="dark"] .band-tint{background:color-mix(in srgb,var(--desk-6) 50%,var(--bg))}
+:root[data-mode="dark"] .on-learn .band-mint{background:var(--learn-6)}
+:root[data-mode="dark"] .on-learn .band-tint{background:color-mix(in srgb,var(--learn-6) 50%,var(--bg))}
+/* 2.0's dark secondary grey is 6.9:1 on a raised card; it is white 72% into Midwinter (8.9:1) */
+:root[data-mode="dark"]{--text-secondary:color-mix(in srgb,var(--white) 72%,var(--bg-dark))}
+/* light words on a dark band are stated, not borrowed from a ramp that turns over */
+.band :is(.hw-eyebrow,.fig .t-lead),.band .wf-src-dark{color:color-mix(in srgb,var(--white) 72%,var(--bg-dark))}
+.band .fig .lead{stroke:color-mix(in srgb,var(--white) 72%,var(--bg-dark));fill:color-mix(in srgb,var(--white) 72%,var(--bg-dark))}
+.band .cite a{color:var(--white)}
+/* the investors' chosen chip wrote in --text on a white face, white on white in dark mode */
+.iv-chip input:checked + span{color:var(--black)}
+/* the desk showcase's status chips: Harbour pressed on its tint (9.4:1), the text colour in dark */
+.fd-st{color:var(--text)}
+.fd-st.ok{color:var(--desk-pressed)}
+:root[data-mode="dark"] .fd-st.ok{color:var(--text)}

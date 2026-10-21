@@ -1,0 +1,98 @@
+/* ══ THE HOMEPAGE IN BRAND SYSTEM 2.0 ═════════════════════════════════════════════════════════
+   Only what is the homepage's own. Everything the site shares (the role scopes, Harbour on the
+   keys, the ice blue grounds, the dark blue closing, pricing, the clocks) is in site-v2.css,
+   which loads after this file.
+   Rewritten 21 Oct 2026 from the 20 Oct first pass (c48163c), with Christian's direction:
+   the Harbour gradient over the photograph, the Harbour wash behind Freya, the black idea band,
+   the hardcoded golds and mints on the rings, the white invest band and the role-coloured
+   headings are gone. Every value is a token. */
+
+/* ── THE HERO — the photograph as it is; the second line in Harbour's light step ─────────────
+   --desk-48 is the token for desk words on a dark ground: 7.5:1 on the photograph at desktop
+   widths. On a phone the crop puts the mist behind the line and it holds about 3.4:1. */
+.hero-home h1 .quiet{color:var(--desk-48)}
+
+/* ── THE RINGS — white hairlines, the arcs still riding, and no glow (figure rule F1: lines
+   only, no effects; "glow implies a machine deciding"). The halo's blur stays in the markup,
+   unused, so it can come back by deleting two lines. ────────────────────────────────────── */
+.band-violet .idea-mark{color:var(--white)}
+.idea-mark .fm-base circle{stroke:var(--white);opacity:.38}
+.idea-mark .fm-l{mix-blend-mode:normal}
+.idea-mark .fm-core .fm-f{filter:none}
+.idea-mark .fm-core circle{stroke:var(--white);stroke-width:.3px}
+.idea-mark .fm-halo{display:none}
+
+/* ── FIVE DESKS, ONE OFFICE — the showcase is a desk (.fd.on-desk) ────────────────────────────
+   Every scene is the desk opener's ground, Harbour 7% into the raised background, where the
+   five each had a tint of their own (one an off-token oklch). */
+.fd .fd-scene,.fd :is(.is-records,.is-policy,.is-investment,.is-protection,.is-succession) .fd-scene,
+:root[data-mode="dark"] .fd .fd-scene,
+:root[data-mode="dark"] .fd :is(.is-records,.is-policy,.is-investment,.is-protection,.is-succession) .fd-scene{
+  --scene:color-mix(in srgb,var(--desk) 7%,var(--bg-raised))}
+/* both maps are the blue map family at every drill-down level, the investments map too, where
+   desks-home.js would give the asset classes their own colours (kept from the 20 Oct pass,
+   c48163c; Christian, 21 Oct 2026: "Fine with the blue in the treemap") */
+.fd .fd-b{background:var(--map-6);color:var(--map-ink-6)}
+.fd .fd-b:nth-child(1){background:var(--map-1);color:var(--map-ink-1)}
+.fd .fd-b:nth-child(2){background:var(--map-2);color:var(--map-ink-2)}
+.fd .fd-b:nth-child(3){background:var(--map-3);color:var(--map-ink-3)}
+.fd .fd-b:nth-child(4){background:var(--map-4);color:var(--map-ink-4)}
+.fd .fd-b:nth-child(5){background:var(--map-5);color:var(--map-ink-5)}
+.fd .fd-b:nth-child(6){background:var(--map-6);color:var(--map-ink-6)}
+/* the map is one blue in six steps (desks-home.js RAMP) and its words are white on every block
+   (Christian, 21 Oct 2026: "dont create white boxes inside, instead write the text with white
+   text"). White reads 9.2:1 on the largest block and falls to 2.1:1 on the smallest. In dark
+   mode the blues turn light, so the words keep the brand's measured ink. */
+:root:not([data-mode="dark"]) .fd{
+  --map-ink-1:var(--white);--map-ink-2:var(--white);--map-ink-3:var(--white);
+  --map-ink-4:var(--white);--map-ink-5:var(--white);--map-ink-6:var(--white)}
+
+/* ── INVEST LIKE A FAMILY OFFICE — ice blue, and the back-test from the Learn films ───────────
+   The band is .band-mint (ice blue in site-v2.css) and a desk, so the figure's family-office
+   line is --you, Harbour. The figure is FIG.backtest, "Thirty years, two mixes", from
+   learn-films-production_6.html: its series, its geometry, its four beats. Its small labels
+   take --text-secondary where the film has --text-tertiary (4.7:1), for the 7:1 floor. */
+.invest-fig{width:100%;border:var(--line-object) solid var(--border-strong);border-radius:var(--r-card);
+  background:var(--bg-raised);padding:var(--space-5);margin:0}
+.invest-fig svg{display:block;width:100%;height:auto;overflow:visible;font-family:var(--font);margin:var(--space-4) 0}
+.invest-fig text{font-size:13px;fill:var(--text-secondary);font-variant-numeric:tabular-nums}
+/* the drawing scales with its card, so its words are set in steps against the card's width and
+   render at 12–17px at every width from 320 to 1440 (the legibility standard: nothing under
+   10.5px, body 12px). Without the steps they fell to 8.9px on a phone. */
+.invest-fig{container-type:inline-size}
+@container (max-width:700px){.invest-fig text{font-size:11px}}
+@container (min-width:701px){.invest-fig text{font-size:9.5px}}
+@container (max-width:560px){.invest-fig text{font-size:13px}}
+@container (max-width:460px){.invest-fig text{font-size:15px}}
+@container (max-width:380px){.invest-fig text{font-size:17px}}
+@container (max-width:320px){.invest-fig text{font-size:20px}}
+@container (max-width:260px){.invest-fig text{font-size:22px}}
+@media (max-width:420px){.invest-fig{padding:var(--space-4)}}
+/* the key: a short stroke of each line's colour before its name, as the film's legend */
+.bt-key{list-style:none;margin:0;padding:0;display:grid;gap:var(--space-1);font-size:13px;line-height:1.4;color:var(--text-secondary)}
+.bt-key li{display:flex;align-items:center;gap:var(--space-2)}
+.bt-key li::before{content:"";flex:none;width:22px;height:3px;border-radius:2px;background:var(--you)}
+.bt-key li.ref1::before{background:var(--ref-1)}
+.invest-fig figcaption{font-size:13px;line-height:1.45;color:var(--text-secondary)}
+.invest-fig .tv{fill:var(--text);font-weight:var(--weight-label)}
+.invest-fig .grid{stroke:var(--border);stroke-width:1;fill:none}
+.invest-fig .axis{stroke:var(--border-strong);stroke-width:1;fill:none}
+.invest-fig .ln{fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.invest-fig .you{stroke:var(--you)}
+.invest-fig .ref1{stroke:var(--ref-1)}
+.invest-fig .brk{fill:none;stroke:var(--heading);stroke-width:1.5;stroke-dasharray:3 4}
+.invest-fig .dot{fill:var(--heading);stroke:var(--bg-raised);stroke-width:2}
+.invest-fig .dot.ring{fill:var(--you)}
+/* the four beats, once, when the figure comes into view (backtest.js adds .play): the frame ·
+   listed shares and bonds, with its falls · the family office mix · more, and steadier */
+.invest-fig .fg.anim .b1,.invest-fig .fg.anim .b2{stroke-dasharray:1 1;stroke-dashoffset:1;opacity:0}
+.invest-fig .fg.anim .ends,.invest-fig .fg.anim .b3{opacity:0}
+.invest-fig .fg.anim.play .b1{animation:bt-draw 2.6s var(--ease) .5s forwards}
+.invest-fig .fg.anim.play .b2{animation:bt-draw 2.6s var(--ease) 3.3s forwards}
+.invest-fig .fg.anim.play .ends{animation:bt-fade .4s var(--ease) 5.9s forwards}
+.invest-fig .fg.anim.play .b3{animation:bt-fade .9s var(--ease) 6.3s forwards}
+@keyframes bt-draw{0%{opacity:1;stroke-dashoffset:1}100%{opacity:1;stroke-dashoffset:0}}
+@keyframes bt-fade{to{opacity:1}}
+@media (prefers-reduced-motion:reduce){
+  .invest-fig .fg.anim .b1,.invest-fig .fg.anim .b2{stroke-dasharray:none;stroke-dashoffset:0;opacity:1;animation:none}
+  .invest-fig .fg.anim .ends,.invest-fig .fg.anim .b3{opacity:1;animation:none}}

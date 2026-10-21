@@ -19,11 +19,11 @@
 
   /* ══ THE MAP ══ the app's treemap (the platform's app.js, THE TREEMAPS): flat blocks, squarified,
      a block opens into what it is made of, and blocks travel between the two views rather than
-     redraw. What you own: one green in six steps, the darkest the largest. Investments: the asset-
+     redraw. What you own: the v2 map ramp in six steps, the darkest the largest. Investments: the asset-
      class colours (Shares, Bonds, Private markets, Real estate, Infrastructure, Cash), and inside a
      class its accounts and funds in shades of that class's colour, the largest the fullest ═════ */
-  var RAMP = ['--primary-pressed', '--primary', '--primary-hover', '--primary-72', '--primary-48', '--primary-24'],
-      INK = ['--white', '--white', '--white', '--white', '--black', '--black'],
+  var RAMP = ['--map-1', '--map-2', '--map-3', '--map-4', '--map-5', '--map-6'],
+      INK = ['--map-ink-1', '--map-ink-2', '--map-ink-3', '--map-ink-4', '--map-ink-5', '--map-ink-6'],
       FIT = ['fs', 'f1', 'f2', 'f3', 'f4', 'f5'],
       /* the class colours, as the app's Mix lab has them (SIMC): the key of a map's first level */
       CLASS = { eq: '--d-equities', fx: '--d-fixed', pr: '--d-private', re: '--d-real', inf: '--l-property', ca: '--d-cash' };

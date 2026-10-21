@@ -14,12 +14,12 @@ text{font-family:'Lexend Variable',Arial,sans-serif}
 .f-grid{stroke:#E0E0E0;stroke-width:1;fill:none;vector-effect:non-scaling-stroke}
 .f-base{stroke:#CCCCCC;stroke-width:1;fill:none}
 .f-pub{fill:none;stroke:#737373;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
-.f-fo{fill:none;stroke:#246853;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
-.f-dp{fill:#737373} .f-df{fill:#246853}
-.f-el{font-size:13px;font-weight:600;fill:#246853} .f-ep{font-size:13px;font-weight:500;fill:#555555}
+.f-fo{fill:none;stroke:#2B5C8A;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.f-dp{fill:#737373} .f-df{fill:#2B5C8A}
+.f-el{font-size:13px;font-weight:600;fill:#2B5C8A} .f-ep{font-size:13px;font-weight:500;fill:#555555}
 .f-ev{font-size:17px;font-weight:500;fill:#2C2C2C} .f-eu{font-size:13px;font-weight:400;fill:#555555}
 .f-br{fill:none;stroke:#CCCCCC;stroke-width:1} .f-more{font-size:13px;font-weight:600;fill:#2C2C2C}
-.seg-eq{fill:#246853} .seg-fx{fill:#619283} .seg-pe{fill:#4D4B6E} .seg-re{fill:#7E85AA} .seg-in{fill:#B2B6CC}
+.seg-eq{fill:#2B5C8A} .seg-fx{fill:#668AAB} .seg-pe{fill:#6A98C6} .seg-re{fill:#80B0DF} .seg-in{fill:#99C9F9}
 .mk{fill:none;stroke:#000000;stroke-width:1.5} .mkc{fill:#000000}
 </style>
 <defs>

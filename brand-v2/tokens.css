@@ -1,0 +1,291 @@
+/* Finna design tokens · rev 62 · 15 OCT 2026
+   GENERATED — do not edit. Built from source.py by generate.py.
+   Every value carries its job. Ratios are measured, not estimated. */
+:root{
+  /* ---- Backgrounds & borders ---- */
+  --bg:#FFFFFF;               /* Background — White. Every page starts here. */
+  --bg-sunken:#F0F0F0;        /* Background, sunken — 6% text tint · input fields, loading blocks. */
+  --border:#E0E0E0;           /* Border — 12% text tint · dividers between rows. */
+  --border-strong:#CCCCCC;    /* Border, strong — 20% text tint · the edge of a card or object. */
+  --bg-raised:#FFFFFF;        /* Background, raised — A card or panel's face. White on white; in dark mode it lifts lighter than the page. */
+  --bg-selected:#E6E6E6;      /* Background, selected — A selected item's ground: a chosen filter, a chip, a picked row. Primary 12% — the foreground's tint, so a grey (2.0; it was the green's). */
+  --bg-current:#000000;       /* Background, current — The current place: a menu's chosen row, the chosen lens, the page you are on. Black with white words; white with black words in dark mode. */
+  --text-current:#FFFFFF;     /* Text, current — The words on --bg-current. White on the black place; black in dark mode. */
+  --bg-dark:#161616;          /* Background, dark — Midwinter. The one dark surface: headers, footers, moments of ceremony. Near-black with nothing in it (2.0; it was a very dark green). */
+  --bg-closing:#2C2C2C;       /* Background, closing — The ground under the closing on every page — Polar Night, the foreground itself (2.0; it was the green-grey #485955). */
+  /* ---- Text ---- */
+  --black:#000000;            /* Black — Headings and section icons on white, the current place, the key's shelf, the mark's dark version. 21:1. */
+  --white:#FFFFFF;            /* White — Text, icons and objects on a dark ground — the inverse of --black. */
+  --text:#2C2C2C;             /* Text — All body text. 14:1 on white. Also the foreground key's face. */
+  --text-secondary:#555555;   /* Text, secondary — Meta: timestamps, units, captions. */
+  --text-tertiary:#737373;    /* Text, tertiary — The smallest labels — the floor for anything carrying information. */
+  --text-disabled:#9A9A9A;    /* Text, disabled — Disabled states only. Never carries information. */
+  --heading:#000000;          /* Heading — Headings and section icons. Black on white, white in dark mode. */
+  --text-link:#000000;        /* Text, link — Links and a secondary key's label. Black and underlined in the base; Harbour inside a desk and Boreal Green on Learn (the role scopes). White in dark mode. */
+  --text-selected:#000000;    /* Text, selected — Text on --bg-selected: a chip's words, a picked row. Black on the grey; white in dark mode. */
+  --text-error:#661C28;       /* Text, error — An error's words. Night Bordeaux on white. */
+  /* ---- Primary — ink, the monochrome base ---- */
+  --primary:#2C2C2C;          /* Primary — Ink — the monochrome base. Primary means action: the key, the chosen control, a slider's fill. Polar Night, so the key's black shelf still shows under it. White in dark mode. */
+  --primary-hover:#3D3D3D;    /* Primary, hover — A key under the pointer: the foreground a step lighter, 92% toward white — the step every role colour takes. */
+  --primary-pressed:#000000;  /* Primary, pressed — Pressed keys and every foreground key's shelf. Black. */
+  --primary-72:#676767;       /* Primary 72% — Icon mid-tones; a bar that is not data. */
+  --primary-48:#9A9A9A;       /* Primary 48% — Bands and icon tints. The same grey as Sea Rime — the foreground's tints are the system's greys. */
+  --primary-24:#CCCCCC;       /* Primary 24% — The line a secondary key stands on. The strong border's grey. */
+  --primary-12:#E6E6E6;       /* Primary 12% — Chips, a selected item's ground, the covered state. */
+  --primary-6:#F2F2F2;        /* Primary 6% — The faintest tint. */
+  --primary-ink:#FFFFFF;      /* Primary, foreground — The words and marks on a primary face: white on the foreground, black on the white key of dark mode. New in 2.0, because the primary now turns with the mode. */
+  --primary-glow:#F1FFE0;     /* Primary, glow — On trial since 8 Sep 2026 and still without a job. Parked in Considering: the monochrome base has no glow. */
+  /* ---- Desk blue — the desks ---- */
+  --desk:#2B5C8A;             /* Desk blue — Harbour — the desks' colour. Inside a desk it is the primary: keys, links, eyebrows, the chosen state, the opener's ground, your line in a chart. 7.0:1 on white. Never on Learn, never in Freya's voice. */
+  --desk-hover:#3C6993;       /* Desk blue, hover — A desk key under the pointer. */
+  --desk-pressed:#1C3D5B;     /* Desk blue, pressed — Pressed desk keys and their shelf: Harbour with a third black. */
+  --desk-72:#668AAB;          /* Desk blue 72% — Icon mid-tones inside a desk. */
+  --desk-48:#99B1C7;          /* Desk blue 48% — The desk's words on the dark ground: 8.2:1 on the page. */
+  --desk-24:#CCD8E3;          /* Desk blue 24% — The edge of a desk's opener and of Home's desk cards. */
+  --desk-12:#E6EBF1;          /* Desk blue 12% — A desk's chips and its selection. */
+  --desk-6:#F2F5F8;           /* Desk blue 6% — The faintest desk tint. A desk opener's ground is Harbour 7% into the raised background. */
+  --desk-text:#2B5C8A;        /* Desk blue, text — Words in the desk's colour: links, eyebrows, a chip's words. Harbour on white (5.8:1 on its 12% tint); the 48% step in dark mode. */
+  /* ---- Learn green — Learn alone ---- */
+  --learn:#246853;            /* Learn green — Boreal Green — Learn's, and only Learn's: its pages, its card on Home, the tags, Opens next, the XP, the film's leaves and marks. 6.6:1 on white. */
+  --learn-hover:#33735F;      /* Learn green, hover — A Learn key under the pointer. */
+  --learn-pressed:#184537;    /* Learn green, pressed — Pressed Learn keys and their shelf. */
+  --learn-72:#619283;         /* Learn green 72% — A path's open steps; icon mid-tones on Learn. */
+  --learn-48:#96B7AC;         /* Learn green 48% — Learn's words on the dark ground: 8.3:1 on the page. */
+  --learn-24:#CADBD6;         /* Learn green 24% — The edge of Learn's card on Home. */
+  --learn-12:#E5EDEA;         /* Learn green 12% — A Learn tag, a leaf's fill. */
+  --learn-6:#F2F6F5;          /* Learn green 6% — The faintest Learn tint; the cover's disc. */
+  --learn-text:#246853;       /* Learn green, text — Learn's words: eyebrows, links, a tag's words. Boreal Green on white; the 48% step in dark mode. */
+  /* ---- Accents — bullion, fiery and the purples ---- */
+  --gold:#BC9635;             /* Bullion — Earned: certificates. And attention — the edge of a card that needs you and the shelf of the attention key. About 2% of any surface. */
+  --gold-light:#E3C98C;       /* Gold, light — Champagne. The certificate medal, top of the gradient; the attention label and the attention key’s face. */
+  --gold-dark:#E1EAE4;        /* Mint Cream — A pale, cool ground — quieter than white. The public site's quiet band; never inside the app, where a tinted ground belongs to a role. */
+  --warning:#E54B28;          /* Fiery — Errors and nothing else: a field that is wrong, Freya’s needs-you ring, her has-something dot. Never a loss (that is bordeaux) and never a series in a chart. */
+  --warning-dark:#661C28;     /* Night Bordeaux — Error text on white, and the pressed face of a destructive key. The deep end of the losses. */
+  --midnight-violet:#2B0515;  /* Midnight Violet — The tip in dark mode — the box that names a folded icon, with white words. */
+  --purple-dark:#5B3E9E;      /* Purple Crystal — A thing being tried: the Lab, Beta, the Claude files. On white. */
+  --purple-bg:#1E1830;        /* Dark Purple — The surface behind a purple thing on the dark ground. */
+  /* ---- Chart colours · your wealth ---- */
+  --map-1:#1D4A73;            /* Your wealth 1 — The largest block of what you own: Records, Home's map, the statement. One blue in six steps, darker is larger on white; lighter is larger in dark mode. */
+  --map-2:#34618B;            /* Your wealth 2 — The second step. */
+  --map-3:#4B78A4;            /* Your wealth 3 — The third step. */
+  --map-4:#618FBC;            /* Your wealth 4 — The fourth step. Black words from here on. */
+  --map-5:#76A5D3;            /* Your wealth 5 — The fifth step. */
+  --map-6:#8AB9E9;            /* Your wealth 6 — The smallest block, and the +n block that folds the rest. */
+  /* ---- Chart colours · the asset classes ---- */
+  --c-cash:#A2BF51;           /* Cash — Liquid, lime. Money you can have in days — always first. */
+  --c-bonds:#2D9C75;          /* Bonds — Liquid, jade. */
+  --c-eq:#0D6338;             /* Listed equities — Liquid, deep green. White words. */
+  --c-hf:#26C5E5;             /* Hedge funds — Illiquid, sky. Money that takes a quarter to a decade. */
+  --c-re:#9889E3;             /* Real estate — Illiquid, lavender. */
+  --c-pc:#167FA6;             /* Private credit — Illiquid, cerulean. */
+  --c-pe:#2746A7;             /* Private equity — Illiquid, royal blue. White words. */
+  --fam-liquid:#298954;       /* Liquid — The liquid family as one colour, when a chart shows only the two. */
+  --fam-illiquid:#2B58B1;     /* Illiquid — The illiquid family as one colour. */
+  --other:#A6A6A6;            /* Other — Valuables, vehicles, anything without a class. Never a colour of its own. */
+  /* ---- Chart colours · inside a class ---- */
+  --h-cash-1:#404F0A;         /* Cash 1 — The largest holding inside the class. */
+  --h-cash-2:#566A0D;         /* Cash 2 — Holding 2 inside cash, by size. */
+  --h-cash-3:#6D860F;         /* Cash 3 — Holding 3 inside cash, by size. */
+  --h-cash-4:#86A324;         /* Cash 4 — Holding 4 inside cash, by size. */
+  --h-cash-5:#A2BF51;         /* Cash 5 — Holding 5 inside cash, by size. */
+  --h-bonds-1:#094631;        /* Bonds 1 — The largest holding inside the class. */
+  --h-bonds-2:#0B6246;        /* Bonds 2 — Holding 2 inside bonds, by size. */
+  --h-bonds-3:#147F5C;        /* Bonds 3 — Holding 3 inside bonds, by size. */
+  --h-bonds-4:#2D9C75;        /* Bonds 4 — Holding 4 inside bonds, by size. */
+  --h-bonds-5:#43BA8E;        /* Bonds 5 — Holding 5 inside bonds, by size. */
+  --h-eq-1:#094627;           /* Listed equities 1 — The largest holding inside the class. */
+  --h-eq-2:#0D6338;           /* Listed equities 2 — Holding 2 inside listed equities, by size. */
+  --h-eq-3:#1C7F4C;           /* Listed equities 3 — Holding 3 inside listed equities, by size. */
+  --h-eq-4:#3F9B65;           /* Listed equities 4 — Holding 4 inside listed equities, by size. */
+  --h-eq-5:#5DB780;           /* Listed equities 5 — Holding 5 inside listed equities, by size. */
+  --h-hf-1:#0D505E;           /* Hedge funds 1 — The largest holding inside the class. */
+  --h-hf-2:#156C7E;           /* Hedge funds 2 — Holding 2 inside hedge funds, by size. */
+  --h-hf-3:#16889F;           /* Hedge funds 3 — Holding 3 inside hedge funds, by size. */
+  --h-hf-4:#1EA6C2;           /* Hedge funds 4 — Holding 4 inside hedge funds, by size. */
+  --h-hf-5:#26C5E5;           /* Hedge funds 5 — Holding 5 inside hedge funds, by size. */
+  --h-re-1:#361B73;           /* Real estate 1 — The largest holding inside the class. */
+  --h-re-2:#4C378F;           /* Real estate 2 — Holding 2 inside real estate, by size. */
+  --h-re-3:#6451AC;           /* Real estate 3 — Holding 3 inside real estate, by size. */
+  --h-re-4:#7D6CCA;           /* Real estate 4 — Holding 4 inside real estate, by size. */
+  --h-re-5:#9889E3;           /* Real estate 5 — Holding 5 inside real estate, by size. */
+  --h-pc-1:#0A4961;           /* Private credit 1 — The largest holding inside the class. */
+  --h-pc-2:#106383;           /* Private credit 2 — Holding 2 inside private credit, by size. */
+  --h-pc-3:#167FA6;           /* Private credit 3 — Holding 3 inside private credit, by size. */
+  --h-pc-4:#1C9CCC;           /* Private credit 4 — Holding 4 inside private credit, by size. */
+  --h-pc-5:#3BB9ED;           /* Private credit 5 — Holding 5 inside private credit, by size. */
+  --h-pe-1:#10288F;           /* Private equity 1 — The largest holding inside the class. */
+  --h-pe-2:#2746A7;           /* Private equity 2 — Holding 2 inside private equity, by size. */
+  --h-pe-3:#3B60CA;           /* Private equity 3 — Holding 3 inside private equity, by size. */
+  --h-pe-4:#537CE9;           /* Private equity 4 — Holding 4 inside private equity, by size. */
+  --h-pe-5:#749BFB;           /* Private equity 5 — Holding 5 inside private equity, by size. */
+  /* ---- Chart colours · lines, gains and losses, what you owe ---- */
+  --you:#2B5C8A;              /* You — Your line: the desk blue, solid. The household is always the blue line. */
+  --ref-1:#A95F23;            /* Reference — Copper: an index, the indicator in focus, a second scenario. Solid. */
+  --ref-2:#9A9A9A;            /* Second reference — Grey, dashed. A third line becomes small multiples, never a fourth colour. */
+  --gain-1:#1F507C;           /* Gain, strong — Gains and losses: three equal steps each way around a grey, blue for gains. */
+  --gain-2:#547EA8;           /* Gain — The middle gain step. */
+  --gain-3:#94B5D6;           /* Gain, slight — The slightest gain. */
+  --mid:#ECECEC;              /* Neither — No change: the grey the two sides meet at. */
+  --loss-3:#DA9FA3;           /* Loss, slight — The slightest loss. Money called into a fund sits on the loss side. */
+  --loss-2:#B25D65;           /* Loss — The middle loss step. */
+  --loss-1:#812A37;           /* Loss, strong — Bordeaux, never Fiery: a loss is not an error. */
+  --owe-1:#485955;            /* What you owe — Under what you own, to the same scale. The brand's grey, never red. */
+  --owe-2:#687672;            /* What you owe, second — The second band of what you owe; the smaller debts. */
+  /* ---- Chart colours · the ink on every fill (measured) ---- */
+  --map-ink-1:var(--white);   /* Words on Your wealth 1 — Measured: black or white, whichever reads. */
+  --map-ink-2:var(--white);   /* Words on Your wealth 2 — Measured: black or white, whichever reads. */
+  --map-ink-3:var(--white);   /* Words on Your wealth 3 — Measured: black or white, whichever reads. */
+  --map-ink-4:var(--black);   /* Words on Your wealth 4 — Measured: black or white, whichever reads. */
+  --map-ink-5:var(--black);   /* Words on Your wealth 5 — Measured: black or white, whichever reads. */
+  --map-ink-6:var(--black);   /* Words on Your wealth 6 — Measured: black or white, whichever reads. */
+  --c-cash-ink:var(--black);  /* Words on Cash — Measured: black or white, whichever reads. */
+  --c-bonds-ink:var(--black); /* Words on Bonds — Measured: black or white, whichever reads. */
+  --c-eq-ink:var(--white);    /* Words on Listed equities — Measured: black or white, whichever reads. */
+  --c-hf-ink:var(--black);    /* Words on Hedge funds — Measured: black or white, whichever reads. */
+  --c-re-ink:var(--black);    /* Words on Real estate — Measured: black or white, whichever reads. */
+  --c-pc-ink:var(--black);    /* Words on Private credit — Measured: black or white, whichever reads. */
+  --c-pe-ink:var(--white);    /* Words on Private equity — Measured: black or white, whichever reads. */
+  --h-cash-1-ink:var(--white);/* Words on Cash 1 — Measured: black or white, whichever reads. */
+  --h-cash-2-ink:var(--white);/* Words on Cash 2 — Measured: black or white, whichever reads. */
+  --h-cash-3-ink:var(--black);/* Words on Cash 3 — Measured: black or white, whichever reads. */
+  --h-cash-4-ink:var(--black);/* Words on Cash 4 — Measured: black or white, whichever reads. */
+  --h-cash-5-ink:var(--black);/* Words on Cash 5 — Measured: black or white, whichever reads. */
+  --h-bonds-1-ink:var(--white);/* Words on Bonds 1 — Measured: black or white, whichever reads. */
+  --h-bonds-2-ink:var(--white);/* Words on Bonds 2 — Measured: black or white, whichever reads. */
+  --h-bonds-3-ink:var(--white);/* Words on Bonds 3 — Measured: black or white, whichever reads. */
+  --h-bonds-4-ink:var(--black);/* Words on Bonds 4 — Measured: black or white, whichever reads. */
+  --h-bonds-5-ink:var(--black);/* Words on Bonds 5 — Measured: black or white, whichever reads. */
+  --h-eq-1-ink:var(--white);  /* Words on Listed equities 1 — Measured: black or white, whichever reads. */
+  --h-eq-2-ink:var(--white);  /* Words on Listed equities 2 — Measured: black or white, whichever reads. */
+  --h-eq-3-ink:var(--white);  /* Words on Listed equities 3 — Measured: black or white, whichever reads. */
+  --h-eq-4-ink:var(--black);  /* Words on Listed equities 4 — Measured: black or white, whichever reads. */
+  --h-eq-5-ink:var(--black);  /* Words on Listed equities 5 — Measured: black or white, whichever reads. */
+  --h-hf-1-ink:var(--white);  /* Words on Hedge funds 1 — Measured: black or white, whichever reads. */
+  --h-hf-2-ink:var(--white);  /* Words on Hedge funds 2 — Measured: black or white, whichever reads. */
+  --h-hf-3-ink:var(--black);  /* Words on Hedge funds 3 — Measured: black or white, whichever reads. */
+  --h-hf-4-ink:var(--black);  /* Words on Hedge funds 4 — Measured: black or white, whichever reads. */
+  --h-hf-5-ink:var(--black);  /* Words on Hedge funds 5 — Measured: black or white, whichever reads. */
+  --h-re-1-ink:var(--white);  /* Words on Real estate 1 — Measured: black or white, whichever reads. */
+  --h-re-2-ink:var(--white);  /* Words on Real estate 2 — Measured: black or white, whichever reads. */
+  --h-re-3-ink:var(--white);  /* Words on Real estate 3 — Measured: black or white, whichever reads. */
+  --h-re-4-ink:var(--black);  /* Words on Real estate 4 — Measured: black or white, whichever reads. */
+  --h-re-5-ink:var(--black);  /* Words on Real estate 5 — Measured: black or white, whichever reads. */
+  --h-pc-1-ink:var(--white);  /* Words on Private credit 1 — Measured: black or white, whichever reads. */
+  --h-pc-2-ink:var(--white);  /* Words on Private credit 2 — Measured: black or white, whichever reads. */
+  --h-pc-3-ink:var(--black);  /* Words on Private credit 3 — Measured: black or white, whichever reads. */
+  --h-pc-4-ink:var(--black);  /* Words on Private credit 4 — Measured: black or white, whichever reads. */
+  --h-pc-5-ink:var(--black);  /* Words on Private credit 5 — Measured: black or white, whichever reads. */
+  --h-pe-1-ink:var(--white);  /* Words on Private equity 1 — Measured: black or white, whichever reads. */
+  --h-pe-2-ink:var(--white);  /* Words on Private equity 2 — Measured: black or white, whichever reads. */
+  --h-pe-3-ink:var(--white);  /* Words on Private equity 3 — Measured: black or white, whichever reads. */
+  --h-pe-4-ink:var(--black);  /* Words on Private equity 4 — Measured: black or white, whichever reads. */
+  --h-pe-5-ink:var(--black);  /* Words on Private equity 5 — Measured: black or white, whichever reads. */
+  /* ---- Old names, new colours — the 1.x data names ---- */
+  --d-equities:var(--c-eq);   /* Equities (1.x name) — Now Listed equities, deep green. */
+  --d-fixed:var(--c-bonds);   /* Fixed income (1.x name) — Now Bonds, jade. */
+  --d-private:var(--c-pe);    /* Private markets (1.x name) — Now Private equity, royal blue. */
+  --d-real:var(--c-re);       /* Real assets (1.x name) — Now Real estate, lavender. */
+  --d-cash:var(--c-cash);     /* Cash (1.x name) — Now Cash, lime. */
+  --l-property:var(--map-1);  /* Property (1.x name) — Earth is retired: property is your wealth's blue, like everything you own. */
+  --l-owed:var(--owe-1);      /* What is owed (1.x name) — Now --owe-1. */
+  --l-owed-2:var(--owe-2);    /* What is owed, second (1.x name) — Now --owe-2. */
+  --chart-bg:var(--bg-raised);/* Chart background — A chart sits on the raised card. The warm Birch White is retired. */
+  /* ---- faces ---- */
+  /* ONE FACE, INCLUDING THE DIGITS (Rose, 13 Sep 2026: "delete all Inter fonts").
+     A ten-glyph Inter subset drew the numerals from 12 Sep so columns of money would
+     line up; Lexend draws them again. Lexend has no tabular figures, so figures set
+     in a column will not align on the decimal. That is the trade, and it is taken. */
+  --font:'Lexend Variable',Arial,sans-serif;
+  --font-serif:var(--font);   /* kept as a name so nothing has to be renamed; all three */
+  --font-sans:var(--font);    /* now point at the one face. Weight and size do the work */
+  --font-mono:var(--font);    /* the serif, the grotesk and the mono are withdrawn */
+  /* ---- the type ladder ---- */
+  --text-label:13px;                    /* The smallest text there is: table headers, chips, figure captions, data, the small print. Weight 500 for a label, 400 for a number. Nothing on any surface goes below it. */
+  --text-reading:17px;                  /* All reading text, and the interface with it — menu items, rows, the inside of a card. Fixed: body copy does not shrink on a phone. */
+  --text-subhead:clamp(19px,1.6vw,21px);/* The paragraph that opens a section, and the third-level heading. Weight 500. */
+  --text-title:clamp(24px,2.6vw,32px);  /* A pull quote, a card's heading, a figure's title — bigger than the text around it, but not the thing the section is called. Weight 600. */
+  --text-heading:clamp(28px,3.6vw,42px);/* A section's heading. Weight 600. */
+  --text-display:clamp(34px,4.6vw,58px);/* The one headline a page is built around. Once on a page, and never twice. Weight 400 — at this size 600 reads as heavy. */
+  --lh-display:1.08;                    /* Display and Heading. Tight — the words are the shape. */
+  --lh-subhead:1.3;                     /* Subhead, and anything set over two or three lines. */
+  --lh-reading:1.6;                     /* Reading text and labels. The comfortable measure. */
+  --weight-reading:400;                 /* Reading text, and the display headline — at 58px, 600 reads as heavy. */
+  --weight-label:500;                   /* Labels, the interface, subheads — anything small that must hold its own. */
+  --weight-heading:600;                 /* Headings and titles. The estate's bold; there is no heavier one. */
+  --track-display:-.03em;               /* The display rung. The face has no optical size axis; this is the compensation. */
+  --track-heading:-.02em;               /* Heading and title. Half as much, because they are half the size. */
+  /* ---- space ---- */
+  --space-1:4px;              /* Inside a chip. */
+  --space-2:8px;              /* Between a label and its value. */
+  --space-3:12px;             /* Between cards in a grid. */
+  --space-4:16px;             /* Inside a small card. */
+  --space-5:24px;             /* Inside a card. */
+  --space-6:32px;             /* Between a heading and its body. */
+  --space-7:56px;             /* Between blocks. */
+  --space-8:88px;             /* Between sections. */
+  /* ---- shape ---- */
+  --r-none:0px;               /* Tables, dividers, figures. */
+  --r-chip:8px;               /* Version tags and chips. */
+  --r-card:14px;              /* Cards, fields, panes. */
+  --r-key:12px;               /* Keys. */
+  --r-tile:14px;              /* Icon tiles. */
+  --r-pill:999px;             /* The switch, and the pill labels promoted from the site’s chip — the status label and the filter tag. Nothing else. */
+  --line-hairline:1px;        /* Row dividers, table lines. Uses the border colour. */
+  --line-object:1px;          /* Cards and figures. Uses the strong border. */
+  --line-heavy:3px;           /* Openings, closings, totals. Uses the text colour. */
+  --line-figure:1.5px;        /* Figure strokes, round caps. */
+  --line-icon-s:1.5px;        /* Icons below 24px — interface glyphs, inline arrows. */
+  --line-icon:1.75px;         /* Icons 24 to 40px. The ratified stroke, unchanged. */
+  --line-icon-l:2px;          /* Icons above 40px — the plates, the section marks. */
+  /* ---- component sizes ---- */
+  --card-icon:24px;           /* A card’s own icon, top right: a tile, a summary box. The line icon at the size it is drawn at. */
+  --list-mark:32px;           /* A list’s mark and a desk card’s plate: Learn’s path marks, the week’s leaves. */
+  --sheet-w:560px;            /* The detail sheet: a record’s detail and its forms, over the work. */
+  /* ---- motion ---- */
+  --t-state:140ms;            /* Hover, press, focus. A state change. */
+  --ease:cubic-bezier(.2,.8,.2,1);/* The one easing curve — the site and the product already used it; now it has a home. */
+  --t-move:240ms;             /* Something entering or leaving. */
+  /* ---- the hero wash ---- */
+  --wash-hero:radial-gradient(95% 75% at 6% 4%,color-mix(in srgb,var(--white) 13%,var(--bg-dark)) 0%,transparent 60%),radial-gradient(105% 95% at 97% 104%,color-mix(in srgb,var(--white) 21%,var(--bg-dark)) 0%,transparent 72%),radial-gradient(70% 62% at 82% 6%,color-mix(in srgb,var(--white) 2%,var(--bg-dark)) 0%,transparent 70%),color-mix(in srgb,var(--white) 6%,var(--bg-dark)); /* The header wash: Midwinter, lit. The top of a page, and nothing else. */
+  /* ---- the button: the hard key ---- */
+  --key-touch-target:48px;    /* Minimum mobile hit area, not visible face height. */
+  --input-height:48px;        /* Input desktop height, independent of compact buttons. */
+  --button-white-text:#000000;/* White button label; aliases the black role. */
+  --key-height:40px;          /* Default button face. Mobile touch area is separately at least 48px. */
+  --key-radius:12px;          /* The key's corner. */
+  --key-offset:2px;           /* The solid offset under a key at rest — thrown straight down. */
+  --key-offset-hover:1px;     /* The offset on hover: half the rest offset — the key sinks halfway (27 Sep 2026, it used to lift). The face lightens one step. */
+  --key-offset-press:0px;     /* Pressed: the key sits down onto its offset and moves --key-offset. */
+  --key-sheen:linear-gradient(180deg,rgba(255,255,255,.16) 0%,rgba(255,255,255,0) 56%,rgba(0,0,0,.12) 100%);/* The face's light and shade. Fixed — it never changes between states, so hover animates. */
+  --key-edge:inset 0 1px 0 rgba(255,255,255,.14);/* The lit top edge. */
+  --key-height-s:32px;        /* Size S — Dense rows: a toolbar, a table row, the second action inside a card. */
+  --key-height-m:40px;        /* Size M — The default. Every ordinary action, on every surface. */
+  --key-height-l:48px;        /* Size L — The one action a page is built around. */
+  --key-height-xl:56px;       /* Size XL — A landing hero. Once on a page, and never twice. */
+  --key-radius-s:10px;        /* Size S's corner. */
+  --key-radius-m:12px;        /* Size M's corner. */
+  --key-radius-l:14px;        /* Size L's corner. */
+  --key-radius-xl:16px;       /* Size XL's corner. */
+  --key-offset-s:2px;         /* Size S's offset at rest. Hover halves it and the key sinks the same; pressed is 0. */
+  --key-offset-m:2px;         /* Size M's offset at rest. Hover halves it and the key sinks the same; pressed is 0. */
+  --key-offset-l:3px;         /* Size L's offset at rest. Hover halves it and the key sinks the same; pressed is 0. */
+  --key-offset-xl:4px;        /* Size XL's offset at rest. Hover halves it and the key sinks the same; pressed is 0. */
+  --key-label-s:14px;         /* Size S's label. */
+  --key-label-m:15px;         /* Size M's label. */
+  --key-label-l:16px;         /* Size L's label. */
+  --key-label-xl:18px;        /* Size XL's label. */
+  --key-icon-s:16px;          /* Size S's icon. Never below the 16px floor. */
+  --key-icon-m:18px;          /* Size M's icon. Never below the 16px floor. */
+  --key-icon-l:20px;          /* Size L's icon. Never below the 16px floor. */
+  --key-icon-xl:22px;         /* Size XL's icon. Never below the 16px floor. */
+}
+/* ---- the mobile scale ---- */
+/* Face heights stay compact below 768px; the separate hit area is at least 48px.
+   One set of names, two scales — the browser picks by width. */
+@media (max-width:768px){:root{--key-height-s:32px;--key-height-m:40px;--key-height-l:48px;--key-height-xl:56px;--key-label-s:15px;--key-label-m:16px;--key-label-l:17px;--key-label-xl:19px;--key-height:40px;--input-height:56px}}
+@media (prefers-reduced-motion:reduce){:root{--t-state:0ms;--t-move:0ms}}
+/* ---- dark mode — OPT-IN: a product sets data-mode on <html>. "auto" follows the
+   device, "dark" and "light" override it. A page without data-mode never changes. */
+:root[data-mode]{color-scheme:light}
+@media (prefers-color-scheme:dark){:root[data-mode="auto"]{color-scheme:dark;--bg:#161616;--bg-raised:#202020;--bg-sunken:#292929;--border:#333333;--border-strong:#424242;--text:#FFFFFF;--text-secondary:#A8A8A8;--text-tertiary:#8C8C8C;--text-disabled:color-mix(in srgb,#A8A8A8 50%,#161616);--heading:#FFFFFF;--text-link:#FFFFFF;--text-selected:#FFFFFF;--text-error:#D4A894;--bg-selected:#3B3B3B;--bg-current:#FFFFFF;--text-current:#000000;--primary:#FFFFFF;--primary-hover:#ECECEC;--primary-pressed:#A8A8A8;--primary-72:#BEBEBE;--primary-48:#868686;--primary-24:#4E4E4E;--primary-12:#323232;--primary-6:#242424;--primary-ink:#000000;--desk-text:#99B1C7;--desk-24:#1E3244;--desk-12:#1B2732;--desk-6:#191E24;--learn-text:#96B7AC;--learn-24:#1C372E;--learn-12:#192A25;--learn-6:#18201D;--map-1:#99C9F9;--map-2:#80B0DF;--map-3:#6A98C6;--map-4:#5481AE;--map-5:#406C98;--map-6:#2D5A84;--c-cash:#C2DF72;--c-bonds:#46B68C;--c-eq:#187C49;--c-hf:#61E2FD;--c-re:#B0A2FD;--c-pc:#1696C4;--c-pe:#3559C3;--fam-liquid:#46A16B;--fam-illiquid:#4777D2;--other:#6E6E6E;--you:#6A98C6;--ref-1:#CB7B48;--ref-2:#6E6E6E;--gain-1:#96C3F0;--gain-2:#6697C7;--gain-3:#3D6D9A;--mid:#3A3A3A;--loss-3:#A24852;--loss-2:#CC757C;--loss-1:#EDA9AD;--owe-1:#485955;--owe-2:#687672;--h-cash-1:#C2DF72;--h-cash-2:#A4C34B;--h-cash-3:#89A628;--h-cash-4:#70890F;--h-cash-5:#586D0D;--h-bonds-1:#7AF3C2;--h-bonds-2:#5AD5A6;--h-bonds-3:#46B68C;--h-bonds-4:#169A70;--h-bonds-5:#147B5A;--h-eq-1:#8DF1B2;--h-eq-2:#6FD395;--h-eq-3:#51B67A;--h-eq-4:#309960;--h-eq-5:#187C49;--h-hf-1:#61E2FD;--h-hf-2:#21C5E3;--h-hf-3:#1AA7C0;--h-hf-4:#1A889D;--h-hf-5:#136C7C;--h-re-1:#CCC6FD;--h-re-2:#B0A2FD;--h-re-3:#9584E5;--h-re-4:#7B69C6;--h-re-5:#614EA9;--h-pc-1:#6ACFFC;--h-pc-2:#1CB3EA;--h-pc-3:#1696C4;--h-pc-4:#10799F;--h-pc-5:#115D7B;--h-pe-1:#BED1FC;--h-pe-2:#93B2FC;--h-pe-3:#6892FC;--h-pe-4:#4A74E7;--h-pe-5:#3559C3;--map-ink-1:var(--black);--map-ink-2:var(--black);--map-ink-3:var(--black);--map-ink-4:var(--black);--map-ink-5:var(--white);--map-ink-6:var(--white);--c-cash-ink:var(--black);--c-bonds-ink:var(--black);--c-eq-ink:var(--white);--c-hf-ink:var(--black);--c-re-ink:var(--black);--c-pc-ink:var(--black);--c-pe-ink:var(--white);--h-cash-1-ink:var(--black);--h-cash-2-ink:var(--black);--h-cash-3-ink:var(--black);--h-cash-4-ink:var(--black);--h-cash-5-ink:var(--white);--h-bonds-1-ink:var(--black);--h-bonds-2-ink:var(--black);--h-bonds-3-ink:var(--black);--h-bonds-4-ink:var(--black);--h-bonds-5-ink:var(--white);--h-eq-1-ink:var(--black);--h-eq-2-ink:var(--black);--h-eq-3-ink:var(--black);--h-eq-4-ink:var(--black);--h-eq-5-ink:var(--white);--h-hf-1-ink:var(--black);--h-hf-2-ink:var(--black);--h-hf-3-ink:var(--black);--h-hf-4-ink:var(--black);--h-hf-5-ink:var(--white);--h-re-1-ink:var(--black);--h-re-2-ink:var(--black);--h-re-3-ink:var(--black);--h-re-4-ink:var(--black);--h-re-5-ink:var(--white);--h-pc-1-ink:var(--black);--h-pc-2-ink:var(--black);--h-pc-3-ink:var(--black);--h-pc-4-ink:var(--white);--h-pc-5-ink:var(--white);--h-pe-1-ink:var(--black);--h-pe-2-ink:var(--black);--h-pe-3-ink:var(--black);--h-pe-4-ink:var(--black);--h-pe-5-ink:var(--white)}}
+:root[data-mode="dark"]{color-scheme:dark;--bg:#161616;--bg-raised:#202020;--bg-sunken:#292929;--border:#333333;--border-strong:#424242;--text:#FFFFFF;--text-secondary:#A8A8A8;--text-tertiary:#8C8C8C;--text-disabled:color-mix(in srgb,#A8A8A8 50%,#161616);--heading:#FFFFFF;--text-link:#FFFFFF;--text-selected:#FFFFFF;--text-error:#D4A894;--bg-selected:#3B3B3B;--bg-current:#FFFFFF;--text-current:#000000;--primary:#FFFFFF;--primary-hover:#ECECEC;--primary-pressed:#A8A8A8;--primary-72:#BEBEBE;--primary-48:#868686;--primary-24:#4E4E4E;--primary-12:#323232;--primary-6:#242424;--primary-ink:#000000;--desk-text:#99B1C7;--desk-24:#1E3244;--desk-12:#1B2732;--desk-6:#191E24;--learn-text:#96B7AC;--learn-24:#1C372E;--learn-12:#192A25;--learn-6:#18201D;--map-1:#99C9F9;--map-2:#80B0DF;--map-3:#6A98C6;--map-4:#5481AE;--map-5:#406C98;--map-6:#2D5A84;--c-cash:#C2DF72;--c-bonds:#46B68C;--c-eq:#187C49;--c-hf:#61E2FD;--c-re:#B0A2FD;--c-pc:#1696C4;--c-pe:#3559C3;--fam-liquid:#46A16B;--fam-illiquid:#4777D2;--other:#6E6E6E;--you:#6A98C6;--ref-1:#CB7B48;--ref-2:#6E6E6E;--gain-1:#96C3F0;--gain-2:#6697C7;--gain-3:#3D6D9A;--mid:#3A3A3A;--loss-3:#A24852;--loss-2:#CC757C;--loss-1:#EDA9AD;--owe-1:#485955;--owe-2:#687672;--h-cash-1:#C2DF72;--h-cash-2:#A4C34B;--h-cash-3:#89A628;--h-cash-4:#70890F;--h-cash-5:#586D0D;--h-bonds-1:#7AF3C2;--h-bonds-2:#5AD5A6;--h-bonds-3:#46B68C;--h-bonds-4:#169A70;--h-bonds-5:#147B5A;--h-eq-1:#8DF1B2;--h-eq-2:#6FD395;--h-eq-3:#51B67A;--h-eq-4:#309960;--h-eq-5:#187C49;--h-hf-1:#61E2FD;--h-hf-2:#21C5E3;--h-hf-3:#1AA7C0;--h-hf-4:#1A889D;--h-hf-5:#136C7C;--h-re-1:#CCC6FD;--h-re-2:#B0A2FD;--h-re-3:#9584E5;--h-re-4:#7B69C6;--h-re-5:#614EA9;--h-pc-1:#6ACFFC;--h-pc-2:#1CB3EA;--h-pc-3:#1696C4;--h-pc-4:#10799F;--h-pc-5:#115D7B;--h-pe-1:#BED1FC;--h-pe-2:#93B2FC;--h-pe-3:#6892FC;--h-pe-4:#4A74E7;--h-pe-5:#3559C3;--map-ink-1:var(--black);--map-ink-2:var(--black);--map-ink-3:var(--black);--map-ink-4:var(--black);--map-ink-5:var(--white);--map-ink-6:var(--white);--c-cash-ink:var(--black);--c-bonds-ink:var(--black);--c-eq-ink:var(--white);--c-hf-ink:var(--black);--c-re-ink:var(--black);--c-pc-ink:var(--black);--c-pe-ink:var(--white);--h-cash-1-ink:var(--black);--h-cash-2-ink:var(--black);--h-cash-3-ink:var(--black);--h-cash-4-ink:var(--black);--h-cash-5-ink:var(--white);--h-bonds-1-ink:var(--black);--h-bonds-2-ink:var(--black);--h-bonds-3-ink:var(--black);--h-bonds-4-ink:var(--black);--h-bonds-5-ink:var(--white);--h-eq-1-ink:var(--black);--h-eq-2-ink:var(--black);--h-eq-3-ink:var(--black);--h-eq-4-ink:var(--black);--h-eq-5-ink:var(--white);--h-hf-1-ink:var(--black);--h-hf-2-ink:var(--black);--h-hf-3-ink:var(--black);--h-hf-4-ink:var(--black);--h-hf-5-ink:var(--white);--h-re-1-ink:var(--black);--h-re-2-ink:var(--black);--h-re-3-ink:var(--black);--h-re-4-ink:var(--black);--h-re-5-ink:var(--white);--h-pc-1-ink:var(--black);--h-pc-2-ink:var(--black);--h-pc-3-ink:var(--black);--h-pc-4-ink:var(--white);--h-pc-5-ink:var(--white);--h-pe-1-ink:var(--black);--h-pe-2-ink:var(--black);--h-pe-3-ink:var(--black);--h-pe-4-ink:var(--black);--h-pe-5-ink:var(--white)}
