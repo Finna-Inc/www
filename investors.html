@@ -38,6 +38,7 @@
 <link rel="stylesheet" href="nav-site.css?v=a22a0bfd">
 <link rel="stylesheet" href="vendor/lenis.css?v=599bcc02">
 <link rel="stylesheet" href="site-v2.css?v=f7e876d4">
+<script src="analytics.js?v=4fa5ab4d" async></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -297,6 +298,11 @@
   var want = new URLSearchParams(location.search).get('for'); if (WHAT[want]) pick(want);
   document.querySelectorAll('[data-for]').forEach(function (a) { a.addEventListener('click', function () { pick(a.getAttribute('data-for')); }); });
   function what() { var r = f.querySelector('input[name="for"]:checked'); return WHAT[r ? r.value : 'deck']; }
+  /* counted in Google Analytics (analytics.js) as what was asked for, never who asked */
+  function counted() {
+    var r = f.querySelector('input[name="for"]:checked'), a = ['investor_access_request', {request_for: r ? r.value : 'deck'}];
+    if (window.finnaTrack) window.finnaTrack(a[0], a[1]); else (window.finnaQ = window.finnaQ || []).push(a);
+  }
   function mailto(n, e, w) {
     return 'mailto:' + TO + '?subject=' + encodeURIComponent('Investor access request: ' + w) +
       '&body=' + encodeURIComponent('Name: ' + n + '\nEmail: ' + e + '\nAccess to: ' + w + '\n');
@@ -318,7 +324,7 @@
     fetch(END, {method: 'POST', headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
       body: JSON.stringify({name: n, email: e, 'access to': w, _subject: 'Investor access request: ' + w + ' (' + n + ')', _template: 'table'})})
       .then(function (r) { return r.json(); })
-      .then(function (j) { if (String(j.success) !== 'true') throw 0; msg.textContent = ''; done(n, e); })
+      .then(function (j) { if (String(j.success) !== 'true') throw 0; msg.textContent = ''; counted(); done(n, e); })
       .catch(function () {
         msg.classList.add('is-bad');
         msg.textContent = 'It could not be sent from here. ';

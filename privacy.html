@@ -19,7 +19,12 @@
      storage, fonts self-hosted, and one form, the waitlist, which posts to Mailchimp
      (waitlist.html). If any of that changes, this page changes with it. It has not been
      reviewed by counsel; do that before the site reaches the company domain. The rows use
-     the FAQ's .facts component from Service levels. -->
+     the FAQ's .facts component from Service levels.
+     GOOGLE ANALYTICS (21 Oct 2026): the site now counts visits (analytics.js, G-45MV5WLMW6), so
+     "What the website collects" and "How long we keep it" say so, with the opt-out. Google
+     signals and ad personalisation are off; no name, email, code or typed text is sent. Still
+     not reviewed by counsel, and there is no consent banner: counsel's call for EU and UK
+     visitors, as for the app. -->
 <!-- source · the words are the ones the site shipped with (source/copy.md);
      every value is taken from brand/tokens.css through site.css. -->
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -32,6 +37,7 @@
 <link rel="stylesheet" href="nav-site.css?v=a22a0bfd">
 <link rel="stylesheet" href="vendor/lenis.css?v=599bcc02">
 <link rel="stylesheet" href="site-v2.css?v=f7e876d4">
+<script src="analytics.js?v=4fa5ab4d" async></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -82,8 +88,8 @@
 <div class="hero" id="top">
   <div class="wrap inner">
     <h1>What we hold, and why.</h1>
-    <p class="lede">The short version: this site keeps almost nothing about you. The waitlist keeps your name and email so we can invite you in when your place opens.</p>
-    <p class="small" style="color:rgba(255,255,255,.72);margin-top:var(--space-5)">Last updated 27 September 2026</p>
+    <p class="lede">The short version: this site counts visits, but never learns your name. The waitlist keeps your name and email so we can invite you in when your place opens.</p>
+    <p class="small" style="color:rgba(255,255,255,.72);margin-top:var(--space-5)">Last updated 21 October 2026</p>
   </div>
 </div>
 
@@ -99,7 +105,8 @@
         <div>
           <h3>What the website collects</h3>
           <div>
-            <p>Nothing that identifies you. The site sets no cookies, runs no analytics or advertising tools, and stores nothing in your browser. Its fonts load from our own files, not from a third party.</p>
+            <p>Nothing that names you. We use Google Analytics to count visits: the pages opened, the site that sent you, your device and browser, and roughly where you are (country and city). On the investor pages it also counts whether a document was opened with its access code, never the code itself.</p>
+            <p>Google Analytics sets cookies so that one visit can be told from the next. Google runs it in the United States and handles this for us. We have turned off Google signals and ad personalisation, so it is not used for advertising, and it is never given your name, your email or anything you type. You can block it with <a href="https://tools.google.com/dlpage/gaoptout" rel="noopener" target="_blank">Google’s opt-out add-on</a> or your browser’s privacy settings. The site uses no advertising tools, and its fonts load from our own files, not from a third party.</p>
             <p>The service that hosts the site keeps standard server logs, such as your IP address, your browser and the pages requested, to keep the site secure and running.</p>
           </div>
         </div>
@@ -123,7 +130,10 @@
         </div>
         <div>
           <h3>How long we keep it</h3>
-          <p>Until you leave the list or ask us to delete it. If the waitlist closes, we delete it.</p>
+          <div>
+            <p>Your waitlist details: until you leave the list or ask us to delete it. If the waitlist closes, we delete it.</p>
+            <p>Visit counts in Google Analytics: at most 14 months, then Google deletes them.</p>
+          </div>
         </div>
         <div>
           <h3>Your choices</h3>
