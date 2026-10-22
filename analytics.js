@@ -1,8 +1,13 @@
 /* GOOGLE ANALYTICS FOR THE WEBSITE (21 Oct 2026, Christian: "we would like to see how many enters
-   the Reports, Pitch Deck and Data Room"). Our notes had named G-45MV5WLMW6 the website's tag since
-   2 Oct, but it had never been put on the site; the app has its own (G-1VQ8FJ5VLB, in the app's
-   analytics.js). This file is the website's, loaded by every page that is not a forward, and by the
-   investor doors and rooms (build/investors.py). build/site.py checks that no page goes without it.
+   the Reports, Pitch Deck and Data Room"). The site had never been tagged; the app has its own
+   (G-1VQ8FJ5VLB, in the app's analytics.js). This file is the website's, loaded by every page that is
+   not a forward, and by the investor doors and rooms (build/investors.py). build/site.py checks that
+   no page goes without it.
+
+   THE PROPERTY (22 Oct 2026, Christian, with a screenshot of it: "it seems that the website is not
+   tagged"). G-5W63H1KSEB, the web stream https://finnafamilyoffice.com of the GA4 property "Finna
+   Family Office" (536954460). The first push sent to G-45MV5WLMW6, which our notes had called the
+   website's but is the old finnaam.com stream (property finnaam.com, 468344350).
 
    WHERE IT SENDS. Only from finnafamilyoffice.com and www. The design repo is itself published at
    finna-inc.github.io/design/, and a page opened there, from a disk or in a preview must not count
@@ -22,7 +27,7 @@
    A PAGE MAY CALL BEFORE THIS FILE HAS RUN. It loads async, so a page queues its events in
    window.finnaQ until window.finnaTrack exists, and they are sent from here. */
 (function () {
-  var ID = 'G-45MV5WLMW6';
+  var ID = 'G-5W63H1KSEB';
   var HOSTS = ['finnafamilyoffice.com', 'www.finnafamilyoffice.com'];
   var q = new URLSearchParams(location.search);
   var live = HOSTS.indexOf(location.hostname) !== -1;
