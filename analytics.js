@@ -16,7 +16,8 @@
 
    WHAT IT SENDS. A page view for every page, and the events a page names through window.finnaTrack:
    investor_unlock, investor_code_wrong, investor_doc_open and investor_pdf_download (the doors and
-   rooms), investor_access_request (the form on Investors). Every value comes from a fixed list: the
+   rooms), investor_access_request (the form on Investors). Since 5 Nov 2026 the films (watch.js): film_play,
+   film_chapter, film_youtube, film_subscribe and film_to_app, each with the film's id and the page. Every value comes from a fixed list: the
    room, a document's slug, what access was asked for. Never a name, an email, an access code or
    anything typed. Google signals and ad personalisation are off.
 

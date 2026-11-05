@@ -101,7 +101,12 @@
 .nav-links{display:flex;gap:30px;align-items:center;margin-left:auto;margin-right:0}
 /* About's chevron (30 Sep 2026) is 16px more row: from 1100 to 1199px the gaps give 4px each,
    so the five items and the key still sit on one line where the sheet ends */
-@media (min-width:1100px) and (max-width:1199px){.nav-links{gap:26px}}
+@media (min-width:1160px) and (max-width:1199px){.nav-links{gap:18px}}
+/* WATCH JOINED THE BAR (5 Nov 2026): one more item, about 76px of row. With six items the bar no longer
+   holds one line at 1100 (How it works and Your family office broke onto two), so the sheet now runs to
+   1159px (below, and nav-site.js), and the gaps give again: 18px from 1160 to 1199, 24px from 1200 to
+   1279, 30px from 1280. Measured: every label on one line and the key inside the bar from 1160 up. */
+@media (min-width:1200px) and (max-width:1279px){.nav-links{gap:24px}}
 .nav-links a{font-size:var(--text-reading);text-decoration:none;color:rgba(255,255,255,.90)}
 .nav-links a:hover{color:var(--white)}
 /* the bar marks the page you are on (27 Sep 2026): the link to the page you are reading
@@ -196,7 +201,7 @@
    Service levels and About in the bar, the row needs about 1100px: below that the labels
    and the key broke onto two lines. The burger takes over where the row runs out. The
    same number is in nav-site.js (inSheet), so the two cannot disagree. */
-@media (max-width:1099px){
+@media (max-width:1159px){   /* 1099 until Watch joined the bar, 5 Nov 2026 */
 .nav-links{display:none}
 .nav-links.open{display:flex;position:absolute;top:76px;left:0;right:0;transform:none;z-index:70;
     flex-direction:column;gap:0;border-radius:20px;padding:8px 0;

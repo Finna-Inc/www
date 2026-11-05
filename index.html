@@ -47,8 +47,8 @@ if(s==='dark')r.setAttribute('data-mode','dark');
 window.FinnaMode={set:function(m){r.setAttribute('data-mode',m);try{localStorage.setItem('finna-mode-choice',m)}catch(e){}}}})();</script>
 <link rel="stylesheet" href="chrome/fonts.css?v=0c6cbb49">
 <link rel="stylesheet" href="brand-v2/tokens.css?v=8b49a0c4">
-<link rel="stylesheet" href="site.css?v=0aa10712">
-<link rel="stylesheet" href="nav-site.css?v=a22a0bfd">
+<link rel="stylesheet" href="site.css?v=e5f8368b">
+<link rel="stylesheet" href="nav-site.css?v=d8d24f03">
 <link rel="stylesheet" href="vendor/lenis.css?v=599bcc02">
 <link rel="stylesheet" href="hero-home.css?v=13c51497">
 <link rel="stylesheet" href="hero-tones.css?v=b4cfb91a">
@@ -69,7 +69,7 @@ r.style.setProperty('--hero-img',"url('media/hero/hero-"+(i<10?"0":"")+i+".webp'
    is what selects the pair. Set here, in the same breath as the picture, so the two can
    never disagree. */
 r.dataset.hero=i;})();</script>
-<script src="analytics.js?v=f8722f8b" async></script>
+<script src="analytics.js?v=ad150779" async></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -99,6 +99,7 @@ r.dataset.hero=i;})();</script>
         </div>
       </div>
       <a href="learn.html">Learn</a>
+      <a href="watch.html">Watch</a>
       <a href="pricing.html">Pricing</a>
       <div class="nav-has-dd" data-dd>
         <a href="about.html" class="nav-dd-t" aria-expanded="false" aria-haspopup="true">About<svg width="9" height="6" viewBox="0 0 9 6" fill="none" aria-hidden="true" class="nav-chev"><path d="M1 1.2 4.5 4.8 8 1.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
@@ -463,6 +464,17 @@ r.dataset.hero=i;})();</script>
     </div>
   </section>
 
+  <!-- FINNA EXPLAINED (Christian, 5 Nov 2026): the newest films for this page, written by
+       build/watch.py from source/watch/_films.json. Nothing shows until there is a film for it. -->
+  <!-- WATCH:home -->
+  <section class="wt-sec" id="films" aria-labelledby="films-h">
+    <div class="wrap">
+      <div class="section-head wt-head"><div><p class="eyebrow">Finna Explained</p><h2 id="films-h">Watch it explained.</h2><p class="lede">Films of about ten minutes on how families look after their money: where an idea began, what the research says, and how it works in a family’s own office. Narrated by Freya.</p></div><a class="link" href="watch.html">All films<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></div>
+      <div class="wt-row" data-n="3"><a class="wt-card" href="watch/what-a-will-does-and-what-it-does-not.html"><span class="wt-thumb"><img src="watch/img/what-a-will-does-and-what-it-does-not-640.jpg" srcset="watch/img/what-a-will-does-and-what-it-does-not-640.jpg 640w, watch/img/what-a-will-does-and-what-it-does-not.jpg 1280w" sizes="(max-width:700px) 78vw, (max-width:1100px) 31vw, 400px" width="640" height="360" alt="" loading="lazy" decoding="async"><span class="wt-len">11:53</span></span><span class="wt-cb"><span class="wt-tags"><span class="eyebrow">Succession</span><span class="wt-new" data-new="2026-10-25T15:45:44Z" hidden>New</span></span><span class="wt-title">What a will does, and what it does not</span><span class="wt-meta">12 min · 25 Oct 2026</span></span></a><a class="wt-card" href="watch/black-monday-and-the-long-view.html"><span class="wt-thumb"><img src="watch/img/black-monday-and-the-long-view-640.jpg" srcset="watch/img/black-monday-and-the-long-view-640.jpg 640w, watch/img/black-monday-and-the-long-view.jpg 1280w" sizes="(max-width:700px) 78vw, (max-width:1100px) 31vw, 400px" width="640" height="360" alt="" loading="lazy" decoding="async"><span class="wt-len">11:11</span></span><span class="wt-cb"><span class="wt-tags"><span class="eyebrow">Investment</span><span class="wt-new" data-new="2026-10-25T11:24:07Z" hidden>New</span></span><span class="wt-title">Black Monday, and the long view</span><span class="wt-meta">11 min · 25 Oct 2026</span></span></a><a class="wt-card" href="watch/the-one-page-every-family-needs.html"><span class="wt-thumb"><img src="watch/img/the-one-page-every-family-needs-640.jpg" srcset="watch/img/the-one-page-every-family-needs-640.jpg 640w, watch/img/the-one-page-every-family-needs.jpg 1280w" sizes="(max-width:700px) 78vw, (max-width:1100px) 31vw, 400px" width="640" height="360" alt="" loading="lazy" decoding="async"><span class="wt-len">8:25</span></span><span class="wt-cb"><span class="wt-tags"><span class="eyebrow">Records</span><span class="wt-new" data-new="2026-10-25T11:09:58Z" hidden>New</span></span><span class="wt-title">The one page every family needs</span><span class="wt-meta">8 min · 25 Oct 2026</span></span></a></div>
+    </div>
+  </section>
+<!-- /WATCH:home -->
+
   <!-- THE HOUSEHOLD FIGURE ("Wealth becomes family before it becomes legacy") moved to
        succession.html (Christian, 27 Sep 2026, from the website review), to shorten this page. -->
 
@@ -673,6 +685,15 @@ r.dataset.hero=i;})();</script>
       </div>
 
       <div>
+        <h3>Watch</h3>
+        <ul>
+          <li><a href="watch.html">All films</a></li>
+          <li><a href="watch.html#start">Start here</a></li>
+          <li><a href="https://www.youtube.com/channel/UCQ2nL_yV_QnJFkhCeGC7rDQ" rel="noopener">YouTube</a></li>
+        </ul>
+      </div>
+
+      <div>
         <h3>Finna</h3>
         <ul>
           <li><a href="about.html">About</a></li>
@@ -726,6 +747,7 @@ r.dataset.hero=i;})();</script>
 <script src="hero-parallax.js?v=d172b74e" defer></script>
 <script src="desks-home.js?v=370c18c6" defer></script>
 <script src="backtest.js?v=d48bf5b9" defer></script>
-<script src="nav-site.js?v=75ddbe57"></script>
+<script src="watch.js?v=5384d790" defer></script>
+<script src="nav-site.js?v=45eb0407"></script>
 </body>
 </html>

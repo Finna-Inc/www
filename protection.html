@@ -38,13 +38,13 @@
 <link rel="preload" as="image" href="media/covers/protection.webp" type="image/webp">
 <link rel="stylesheet" href="chrome/fonts.css?v=0c6cbb49">
 <link rel="stylesheet" href="brand-v2/tokens.css?v=8b49a0c4">
-<link rel="stylesheet" href="site.css?v=0aa10712">
-<link rel="stylesheet" href="nav-site.css?v=a22a0bfd">
+<link rel="stylesheet" href="site.css?v=e5f8368b">
+<link rel="stylesheet" href="nav-site.css?v=d8d24f03">
 <!-- the desk's cover: data-cover above picks its picture and the pull band's colour -->
 <link rel="stylesheet" href="hero-tones.css?v=b4cfb91a">
 <link rel="stylesheet" href="vendor/lenis.css?v=599bcc02">
 <link rel="stylesheet" href="site-v2.css?v=f7e876d4">
-<script src="analytics.js?v=f8722f8b" async></script>
+<script src="analytics.js?v=ad150779" async></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -74,6 +74,7 @@
         </div>
       </div>
       <a href="learn.html">Learn</a>
+      <a href="watch.html">Watch</a>
       <a href="pricing.html">Pricing</a>
       <div class="nav-has-dd" data-dd>
         <a href="about.html" class="nav-dd-t" aria-expanded="false" aria-haspopup="true">About<svg width="9" height="6" viewBox="0 0 9 6" fill="none" aria-hidden="true" class="nav-chev"><path d="M1 1.2 4.5 4.8 8 1.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
@@ -184,6 +185,10 @@
     </div>
   </section>
 
+  <!-- FINNA EXPLAINED (Christian, 5 Nov 2026): the newest films for this page, written by
+       build/watch.py from source/watch/_films.json. Nothing shows until there is a film for it. -->
+  <!-- WATCH:desk protection --><!-- /WATCH:desk -->
+
   <!-- THE FIVE DESKS (27 Sep 2026): the way on from any desk, with this one marked -->
   <section class="band-tint dnav-sec" aria-labelledby="desks-h">
     <div class="wrap">
@@ -268,6 +273,15 @@
       </div>
 
       <div>
+        <h3>Watch</h3>
+        <ul>
+          <li><a href="watch.html">All films</a></li>
+          <li><a href="watch.html#start">Start here</a></li>
+          <li><a href="https://www.youtube.com/channel/UCQ2nL_yV_QnJFkhCeGC7rDQ" rel="noopener">YouTube</a></li>
+        </ul>
+      </div>
+
+      <div>
         <h3>Finna</h3>
         <ul>
           <li><a href="about.html">About</a></li>
@@ -314,7 +328,8 @@
 
 <script src="vendor/lenis.min.js?v=daec1872"></script>
 <script src="vendor/smooth-scroll.js?v=cb7b0132" defer></script>
-<script src="nav-site.js?v=75ddbe57"></script>
+<script src="watch.js?v=5384d790" defer></script>
+<script src="nav-site.js?v=45eb0407"></script>
 <script src="desk-figure.js?v=3b1e17e3" defer></script>
 </body>
 </html>

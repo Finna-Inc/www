@@ -52,7 +52,7 @@
   var groups = [].slice.call(document.querySelectorAll('[data-dd]'));
   if (!groups.length) return;
   var hoverable = matchMedia('(hover:hover)').matches;
-  var inSheet = function () { return matchMedia('(max-width:1099px)').matches; };
+  var inSheet = function () { return matchMedia('(max-width:1159px)').matches; };
   groups.forEach(function (group) {
     var trigger = group.querySelector('.nav-dd-t');
     var t;

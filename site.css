@@ -477,7 +477,7 @@ a.soon.is-here{cursor:default}
 .footer a{color:rgba(255,255,255,.78);text-decoration:none;
           transition:color var(--t-state) var(--ease)}
 .footer a:hover{color:var(--white)}
-.footer .cols{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:var(--space-6)}
+.footer .cols{display:grid;grid-template-columns:1.4fr repeat(4,1fr);gap:var(--space-6)}
 @media (max-width:900px){.footer .cols{grid-template-columns:1fr 1fr}}
 @media (max-width:600px){.footer .cols{grid-template-columns:1fr}}
 .footer h3{font-size:var(--text-label);letter-spacing:.14em;text-transform:uppercase;
@@ -2307,3 +2307,230 @@ body:has(.nav-links.open) .to-top{opacity:0;pointer-events:none}
    background, the way the app's own cards sit in dark */
 :root[data-mode="dark"] .freya-clip{--white:var(--bg-raised)}
 
+/* ══ WATCH · Finna Explained on the site (Christian, 5 Nov 2026) ═══════════════════════════════
+   "we need to create a place on the website for all our full youtube videos ... we will issue two
+   to three a week going forward". The plan is "Where the Films Live" (Claude outputs/
+   finna-watch-films-on-site.html): Watch in the bar, a page per film, and each film's seat on Home,
+   its desk's page and What is a family office?. The markup is written by build/watch.py from
+   source/watch/_films.json; the player is watch.js. Every class here starts wt-, and every value is
+   a token or a stated mix of two. Desk grounds and the Harbour keys come from site-v2.css as on
+   every other page. */
+
+/* the picture: Finna's own thumbnail at 16:9, its length bottom right */
+.wt-thumb{position:relative;display:block;aspect-ratio:16/9;border-radius:var(--r-card);overflow:hidden;
+  background:var(--bg-dark)}
+.wt-thumb img{display:block;width:100%;height:100%;object-fit:cover}
+.wt-len{position:absolute;right:var(--space-2);bottom:var(--space-2);padding:3px var(--space-2);
+  border-radius:var(--r-chip);background:color-mix(in srgb,var(--black) 78%,transparent);color:var(--white);
+  font:var(--weight-label) var(--text-label)/1.3 var(--font);font-variant-numeric:tabular-nums}
+
+/* a film: picture, desk, title, length and date. The whole card is the link. */
+.wt-card,.wt-one{display:grid;gap:var(--space-3);align-content:start;color:var(--text);text-decoration:none}
+.wt-cb{display:grid;gap:var(--space-1);align-content:start;min-width:0}
+.wt-tags{display:flex;align-items:center;gap:var(--space-2);min-height:24px}
+.wt-tags .eyebrow{margin:0}
+.wt-title{display:block;font:var(--weight-heading) var(--text-reading)/1.35 var(--font);color:var(--heading);
+  letter-spacing:-.005em;text-wrap:pretty}
+.wt-meta{display:block;margin:0;font-size:var(--text-label);line-height:1.5;color:var(--text-secondary)}
+.wt-teaser{display:block;margin:0;font-size:var(--text-reading);line-height:var(--lh-reading);color:var(--text-secondary)}
+.wt-card:hover .wt-title,.wt-one:hover .wt-title,.wt-li a:hover .wt-title{text-decoration:underline;
+  text-underline-offset:3px;text-decoration-thickness:var(--line-figure)}
+:is(.wt-card,.wt-one,.wt-li a,.wt-mini a,.wt-desk):focus-visible{outline:2px solid var(--focus,var(--text-link));
+  outline-offset:4px;border-radius:var(--r-card)}
+/* New: the brand's status label, for seven days after a film goes up (watch.js shows it) */
+.wt-new{display:inline-flex;align-items:center;padding:5px 10px;border-radius:var(--r-pill);
+  font:var(--weight-heading) var(--text-label)/1 var(--font);background:var(--primary-12);color:var(--text)}
+.wt-new[hidden]{display:none}
+.hero .wt-new{background:color-mix(in srgb,var(--white) 16%,transparent);color:var(--white)}
+
+/* a row of films: three across, two halves, or one film wide with its teaser */
+.wt-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-7) var(--space-5)}
+.wt-row[data-n="2"]{grid-template-columns:repeat(2,minmax(0,1fr))}
+.wt-row[data-n="4"]{grid-template-columns:repeat(4,minmax(0,1fr))}
+.wt-one{grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:var(--space-7);align-items:center}
+.wt-one .wt-title{font-size:var(--text-title);line-height:1.15;letter-spacing:var(--track-heading)}
+.wt-one .wt-cb{gap:var(--space-3)}
+@media (max-width:1100px){.wt-row[data-n="4"]{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:900px){.wt-one{grid-template-columns:1fr;gap:var(--space-4)}}
+/* ON A PHONE A ROW SLIDES. Three cards stacked would push the page on by two screens; a row you
+   swipe keeps the section one screen tall, and the next card shows at the edge so it reads as
+   more. Start here stays a list: it is an order, not a choice. */
+@media (max-width:700px){
+  .wt-row:not(.wt-start){grid-auto-flow:column;grid-template-columns:none!important;grid-auto-columns:80%;
+    gap:var(--space-4);overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;
+    scroll-padding-inline:var(--gutter);margin-inline:calc(-1 * var(--gutter));padding:0 var(--gutter) var(--space-3)}
+  .wt-row:not(.wt-start) > *{scroll-snap-align:start}
+}
+
+/* the section head: words on the left, the way to every film on the right */
+.wt-head{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--space-5) var(--space-7);flex-wrap:wrap}
+.wt-head > div{max-width:var(--measure)}
+.wt-head .lede{margin:var(--space-4) 0 0}
+.wt-head h2{margin:0}
+.wt-head > .link{flex:none}
+
+/* ── the player: Finna's picture and one key; YouTube loads only on the press (watch.js) ── */
+.wt-player{position:relative;aspect-ratio:16/9;border-radius:var(--r-card);overflow:hidden;background:var(--black);
+  max-width:100%}
+.wt-play-btn{position:absolute;inset:0;display:block;width:100%;height:100%;padding:0;border:0;margin:0;
+  background:none;cursor:pointer;color:inherit;font:inherit}
+.wt-play-btn img{display:block;width:100%;height:100%;object-fit:cover}
+/* the key sits bottom left, where every thumbnail leaves the grass clear; its words are never over
+   the picture's own title. It is the site's hard key, Harbour as every key is. */
+.wt-player .wt-play-key{position:absolute;left:var(--space-5);bottom:calc(var(--space-5) + var(--ko));
+  width:auto;pointer-events:none}
+.wt-play-btn:hover .wt-play-key{background-color:var(--primary-hover);transform:translateY(calc(var(--ko) / 2));
+  box-shadow:0 calc(var(--ko) / 2) 0 var(--primary-pressed), inset 0 1px 0 rgba(255,255,255,.18)}
+.wt-play-btn:active .wt-play-key{transform:translateY(var(--ko));background-color:var(--primary-pressed);
+  box-shadow:0 0 0 var(--primary-pressed)}
+.wt-play-btn:focus-visible{outline:none}
+.wt-play-btn:focus-visible::after{content:"";position:absolute;inset:0;border-radius:inherit;
+  box-shadow:inset 0 0 0 3px var(--white),inset 0 0 0 5px var(--black)}
+.wt-player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.wt-at{position:absolute;left:var(--space-3);top:var(--space-3);padding:4px var(--space-2);border-radius:var(--r-chip);
+  background:color-mix(in srgb,var(--black) 78%,transparent);color:var(--white);font:var(--weight-label) var(--text-label)/1.3 var(--font);
+  pointer-events:none}
+.wt-at[hidden]{display:none}
+@media (max-width:767px){
+  .wt-player .wt-play-key{--kh:var(--key-height-s);--kr:var(--key-radius-s);--ko:var(--key-offset-s);
+    --klabel:var(--key-label-s);--kicon:var(--key-icon-s);left:var(--space-3);bottom:calc(var(--space-3) + var(--ko))}
+}
+
+/* ── WATCH · the head: the words, and the newest film beside them ── */
+.wt-hero .inner{padding-bottom:clamp(64px,7vw,104px)}
+.wt-hero-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--space-7);align-items:end}
+.wt-hero .lede{max-width:40ch}
+.wt-feat{display:grid;gap:var(--space-4)}
+.wt-feat-t{display:grid;gap:var(--space-2)}
+.wt-feat-t .wt-tags .eyebrow{margin:0}
+.wt-feat-h{font-size:var(--text-title);line-height:1.15}
+.wt-feat-h a{color:inherit;text-decoration:none}
+.wt-feat-h a:hover{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:var(--line-figure)}
+.wt-feat .wt-meta{color:color-mix(in srgb,var(--white) 76%,var(--bg-dark))}
+.wt-feat .link{justify-self:start;margin-top:var(--space-2)}
+@media (max-width:1100px){.wt-hero-grid{grid-template-columns:1fr;gap:var(--space-7)}}
+
+/* Start here: three, in order, each with its number */
+.wt-num{display:grid;place-items:center;width:32px;height:32px;border-radius:var(--r-pill);
+  background:var(--heading);color:var(--bg);font:var(--weight-heading) var(--text-label)/1 var(--font)}
+.wt-start .wt-card{grid-template-columns:auto minmax(0,1fr);column-gap:var(--space-3)}
+.wt-start .wt-thumb{grid-column:1 / -1;grid-row:1}
+.wt-start .wt-num{grid-column:1;grid-row:2;margin-top:var(--space-1)}
+.wt-start .wt-cb{grid-column:2;grid-row:2}
+@media (max-width:700px){
+  .wt-start{grid-template-columns:1fr!important;gap:var(--space-5)}
+  .wt-start .wt-card{grid-template-columns:auto 132px minmax(0,1fr);align-items:start}
+  .wt-start .wt-num{grid-column:1;grid-row:1;margin-top:0}
+  .wt-start .wt-thumb{grid-column:2;grid-row:1;border-radius:var(--r-chip)}
+  .wt-start .wt-cb{grid-column:3;grid-row:1}
+}
+
+/* a desk's shelf on Watch, from SHELVES_FROM films */
+.wt-shelf + .wt-shelf{padding-top:0}
+
+/* Every film: one list, newest first, with a key per desk */
+.wt-filter{display:flex;flex-wrap:wrap;gap:var(--space-2);margin:0 0 var(--space-6)}
+.wt-filter .key{width:auto;min-width:0}
+.wt-filter .key .n{font-weight:var(--weight-reading);opacity:.78}
+/* SELECTED LOOKS PRESSED (the brand's rule): the key sits down on its shelf, in its pressed colour */
+.wt-filter .key[aria-pressed="true"],.wt-filter .key[aria-pressed="true"]:hover{transform:translateY(var(--ko));
+  background:var(--primary-pressed);color:var(--white);box-shadow:inset 0 0 0 var(--line-object) var(--primary-pressed)}
+.wt-list{list-style:none;margin:0;padding:0;border-top:var(--line-hairline) solid var(--border)}
+.wt-li[hidden]{display:none}
+.wt-li a{display:grid;grid-template-columns:200px minmax(0,1fr) auto;gap:var(--space-6);align-items:center;
+  padding-block:var(--space-5);border-bottom:var(--line-hairline) solid var(--border);color:var(--text);text-decoration:none}
+.wt-li .wt-thumb{border-radius:var(--r-chip)}
+.wt-li .wt-cb{gap:var(--space-1)}
+.wt-li .wt-teaser{font-size:var(--text-label);line-height:1.55;max-width:70ch;display:-webkit-box;-webkit-line-clamp:2;
+  -webkit-box-orient:vertical;overflow:hidden}
+.wt-side{text-align:right;font-size:var(--text-label);line-height:1.6;color:var(--text-secondary);white-space:nowrap}
+.wt-mob{display:none}
+@media (max-width:700px){
+  .wt-li a{grid-template-columns:128px minmax(0,1fr);gap:var(--space-4);align-items:start;padding-block:var(--space-4)}
+  .wt-li .wt-teaser,.wt-side{display:none}
+  .wt-mob{display:block}
+  .wt-filter .key{flex:none}
+}
+
+/* ── A FILM'S PAGE ── the film on the dark head, then what it says, what it rests on, and where next */
+.wt-fhero .inner{padding-bottom:clamp(56px,6vw,88px)}
+.wt-crumbs{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-2);margin-bottom:var(--space-5);
+  font:var(--weight-label) var(--text-label)/1.4 var(--font);color:color-mix(in srgb,var(--white) 72%,var(--bg-dark))}
+.wt-crumbs a{color:var(--white);text-decoration:none;font-weight:var(--weight-heading)}
+.wt-crumbs a:hover{text-decoration:underline;text-underline-offset:3px}
+.wt-fhero h1{max-width:22ch}
+.wt-fmeta{margin:var(--space-5) 0 0;font-size:var(--text-reading);color:color-mix(in srgb,var(--white) 80%,var(--bg-dark))}
+.wt-fhero .wt-player{margin-top:var(--space-7);max-width:1080px}
+.wt-under{display:flex;flex-wrap:wrap;gap:var(--space-3) var(--space-6);align-items:center;margin-top:var(--space-5)}
+.wt-fine{margin-top:var(--space-4);max-width:84ch}
+.wt-fine p{margin:0 0 var(--space-1);font-size:var(--text-label);line-height:1.6;
+  color:color-mix(in srgb,var(--white) 72%,var(--bg-dark))}
+.wt-fgrid{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:var(--space-8);align-items:start}
+.wt-fmain{display:grid;gap:var(--space-7);min-width:0}
+.wt-fmain > div > :last-child{margin-bottom:0}
+.wt-h{font-size:var(--text-subhead);line-height:1.3;letter-spacing:-.01em;margin:0 0 var(--space-4)}
+.wt-about{font-size:var(--text-reading);line-height:var(--lh-reading);margin:0}
+.wt-learnpath{margin:var(--space-4) 0 0}
+.wt-chap{list-style:none;margin:0;padding:0;border-top:var(--line-hairline) solid var(--border)}
+.wt-chap button{display:grid;grid-template-columns:72px minmax(0,1fr);gap:var(--space-3);width:100%;
+  padding:var(--space-3) var(--space-2);border:0;border-bottom:var(--line-hairline) solid var(--border);margin:0;
+  background:none;color:var(--text);font:var(--weight-reading) var(--text-reading)/1.5 var(--font);text-align:left;cursor:pointer;
+  transition:background-color var(--t-state) var(--ease)}
+.wt-chap button:hover{background:var(--primary-6)}
+.wt-chap button:focus-visible{outline:2px solid var(--focus,var(--text-link));outline-offset:-2px}
+.wt-chap button[aria-pressed="true"]{background:var(--bg-selected);color:var(--text-selected);font-weight:var(--weight-label)}
+.wt-chap time{color:var(--text-secondary);font-variant-numeric:tabular-nums}
+.wt-words{margin:0;display:grid;gap:var(--space-4)}
+.wt-words dt{font-weight:var(--weight-heading);color:var(--heading)}
+.wt-words dd{margin:var(--space-1) 0 0;color:var(--text-secondary);max-width:var(--measure)}
+.wt-fold{border-top:var(--line-hairline) solid var(--border);border-bottom:var(--line-hairline) solid var(--border)}
+.wt-fold + .wt-fold{border-top:0}
+.wt-fold summary{display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);
+  padding-block:var(--space-4);cursor:pointer;list-style:none;font:var(--weight-heading) var(--text-reading)/1.4 var(--font);color:var(--heading)}
+.wt-fold summary::-webkit-details-marker{display:none}
+.wt-fold summary small{font-weight:var(--weight-reading);font-size:var(--text-label);color:var(--text-secondary);margin-left:var(--space-2)}
+.wt-fold summary .ic{width:18px;height:18px;flex:none;transition:rotate var(--t-state) var(--ease)}
+.wt-fold[open] summary .ic{rotate:180deg}
+.wt-fold summary:focus-visible{outline:2px solid var(--focus,var(--text-link));outline-offset:2px}
+.wt-tx{padding-bottom:var(--space-6)}
+.wt-tx h3{font-size:var(--text-reading);margin:var(--space-6) 0 var(--space-3)}
+.wt-tx h3:first-child{margin-top:var(--space-2)}
+.wt-tx p{margin:0 0 var(--space-3);max-width:var(--measure);line-height:var(--lh-reading)}
+.wt-tx time{display:inline-block;min-width:3.6em;margin-right:var(--space-2);font-size:var(--text-label);color:var(--text-secondary);
+  font-variant-numeric:tabular-nums}
+.wt-who{margin-right:var(--space-2);font:var(--weight-heading) var(--text-label)/1 var(--font);letter-spacing:.06em;
+  text-transform:uppercase;color:var(--text-secondary)}
+.wt-src{margin:0;padding-bottom:var(--space-6);display:grid;gap:var(--space-3)}
+.wt-src dt{font-weight:var(--weight-heading);color:var(--heading);font-size:var(--text-label)}
+.wt-src dd{margin:var(--space-1) 0 0;font-size:var(--text-label);line-height:1.6;color:var(--text-secondary);max-width:var(--measure)}
+/* beside it: the desk the film belongs to, in its Harbour, then what to watch next */
+.wt-faside{display:grid;gap:var(--space-7);align-content:start}
+.wt-desk{display:grid;gap:var(--space-3);padding:var(--space-5);border-radius:var(--r-card);text-decoration:none;color:var(--text);
+  border:var(--line-object) solid var(--border-strong);background:var(--bg)}
+.wt-desk.on-desk{background:color-mix(in srgb,var(--desk) 7%,var(--bg-raised));border-color:var(--desk-24)}
+.wt-desk-t{display:flex;align-items:center;gap:var(--space-3)}
+.wt-plate{width:var(--list-mark);height:var(--list-mark);flex:none;color:var(--heading)}
+.wt-desk .eyebrow{margin:0;color:var(--text-link)}
+.wt-desk-q{font:var(--weight-heading) var(--text-subhead)/1.3 var(--font);color:var(--heading)}
+.wt-desk-l{font-size:var(--text-reading);line-height:var(--lh-reading);color:var(--text-secondary)}
+.wt-desk .link{justify-self:start;color:var(--text-link)}
+.wt-mini{display:grid;gap:var(--space-3)}
+.wt-mini .eyebrow{margin:0}
+.wt-mini a{display:grid;grid-template-columns:112px minmax(0,1fr);gap:var(--space-3);align-items:center;color:var(--text);text-decoration:none}
+.wt-mini .wt-thumb{border-radius:var(--r-chip)}
+.wt-mini b{display:block;font:var(--weight-label) var(--text-label)/1.45 var(--font);color:var(--heading)}
+.wt-mini a:hover b{text-decoration:underline;text-underline-offset:3px}
+@media (max-width:1100px){.wt-fgrid{grid-template-columns:minmax(0,1fr) 300px;gap:var(--space-7)}}
+@media (max-width:900px){.wt-fgrid{grid-template-columns:1fr}}
+
+/* ── WHAT IS A FAMILY OFFICE · the same question, as a film ── */
+.wt-aside-film{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--space-7);align-items:center;
+  margin-top:var(--space-8);padding-top:var(--space-7);border-top:var(--line-hairline) solid var(--border)}
+.wt-aside-film h3{font-size:var(--text-title);line-height:1.15;margin:var(--space-3) 0 var(--space-4)}
+.wt-aside-film p{color:var(--text-secondary)}
+.wt-aside-film .cta-row{margin-top:var(--space-5)}
+@media (max-width:900px){.wt-aside-film{grid-template-columns:1fr;gap:var(--space-5)}}
+
+/* ON A PHONE THE SITE CENTRES A LOOSE LINK (THE PHONE · 8, above). A film's own links belong to the
+   film, its card or its box, so they keep the film's left edge. */
+@media (max-width:700px){.wt-feat .link,.wt-under .link,.wt-desk .link{margin-inline:0}}
