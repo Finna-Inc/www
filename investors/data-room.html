@@ -418,6 +418,22 @@ iframe{flex:1;width:100%;border:0;background:var(--bg)}
   .r-row{grid-template-columns:minmax(0,1fr);row-gap:var(--space-3)}
   .r-acts .key{width:100%;height:var(--key-height-l)}
 }
+/* THE DECK'S PDF (22 Nov 2026): while a document with a PDF is open the bar holds three keys. Where
+   the title has gone, Download the PDF says PDF; where three labels no longer fit beside the lockup,
+   the keys keep their icons alone, as they all do from 420px down. Other documents keep their labels.
+   On the same narrow bar a word from the room (Opening…, Preparing…, a document that did not open)
+   hangs under the bar as a pill, as the film's Opening… does, so it never pushes a key off the screen. */
+@media (max-width:767px){
+  .v-acts .lbl-w{display:none}
+  .room .v-bar{position:relative}
+  .room .v-msg:empty{display:none}
+  .room .v-msg{position:absolute;z-index:1;top:calc(100% + var(--space-2));right:var(--space-4);max-width:calc(100% - var(--space-4) * 2);
+    padding:var(--space-2) var(--space-4);border-radius:var(--r-pill);background:var(--ground);line-height:1.3}
+}
+@media (max-width:619px){
+  .v-bar:has(#vPdf:not([hidden])) .v-acts .key .lbl-l{display:none}
+  .v-bar:has(#vPdf:not([hidden])) .v-acts .key{min-width:0;padding:0 var(--space-3)}
+}
 /* A FILM IN THE ROOM (13 Oct 2026). It plays on the bar's dark ground, as a player is dark. The
    screen keeps ONE shape for the visit, landscape on a landscape screen and portrait on a portrait
    one, and either cut sits inside it at its own shape, so the switch under it never moves. --f-h is
@@ -479,6 +495,8 @@ iframe{flex:1;width:100%;border:0;background:var(--bg)}
 @media (pointer:coarse){
   .f-cuts button::after{content:"";position:absolute;inset:-6px 0}
   .f-script summary{padding:var(--space-3) 0}
+  .room .v-acts .key{position:relative}       /* the bar's keys reach 44px under a finger, never visibly */
+  .room .v-acts .key::after{content:"";position:absolute;inset:-6px -4px}
 }
 
 </style>
@@ -510,6 +528,7 @@ iframe{flex:1;width:100%;border:0;background:var(--bg)}
     <div class="v-acts">
       <span class="v-msg" id="vMsg" role="status" aria-live="polite"></span>
       <a class="key key-s" id="vBack" href="#" hidden><svg width="16" height="16" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg><span class="lbl-l">All documents</span></a>
+      <a class="key key-s" id="vPdf" href="#" aria-label="Download the PDF" hidden><svg width="16" height="16" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg><span class="lbl-l"><span class="lbl-w">Download the </span>PDF</span></a>
       <button class="key key-s" id="vLock" type="button"><svg width="16" height="16" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 11V7a5 5 0 0 1 10 0v4"/><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/></svg><span class="lbl-l">Lock</span></button>
     </div>
   </header>
@@ -537,7 +556,7 @@ iframe{flex:1;width:100%;border:0;background:var(--bg)}
   </section>
   <iframe id="vFrame" title="Data room document" allow="fullscreen" allowfullscreen hidden></iframe>
 </div>
-<script type="application/json" id="payload">{"v": 2, "slug": "data-room", "title": "Data room", "rounds": 600000, "salt": "0tmj7FFaYw99658qolxNMg==", "iv": "oTPNiw2MAvB2mYdD", "ct": "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", "icon": "<svg width=\"16\" height=\"16\" class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14\"/><path d=\"m12 5 7 7-7 7\"/></svg>"}</script>
+<script type="application/json" id="payload">{"v": 2, "slug": "data-room", "title": "Data room", "rounds": 600000, "salt": "0tmj7FFaYw99658qolxNMg==", "iv": "8lcFHClajfz5BWF6", "ct": "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", "icon": "<svg width=\"16\" height=\"16\" class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14\"/><path d=\"m12 5 7 7-7 7\"/></svg>"}</script>
 <script>
 (() => {
   const P = JSON.parse(document.getElementById('payload').textContent);
@@ -556,7 +575,7 @@ iframe{flex:1;width:100%;border:0;background:var(--bg)}
     `bar=Math.max(bar,n.offsetHeight);});if(bar)window.scrollTo({top:t.getBoundingClientRect().top+scrollY-bar-12,behavior:'smooth'});` +
     `else t.scrollIntoView({behavior:'smooth',block:'start'});}` +
     `else if(!id)window.scrollTo({top:0,behavior:'smooth'});});`;
-  let key = null, room = null, url = null, opening = 0, last = '', current = '';
+  let key = null, room = null, url = null, opening = 0, last = '', current = '', pdfUrl = null, pdfDoc = null;
   /* COUNTED (21 Oct 2026): the room and a document's slug, through ../analytics.js; queued until it runs */
   const track = (n, doc) => { const a = [n, doc ? {room: P.slug, doc} : {room: P.slug}];
     if (window.finnaTrack) window.finnaTrack(a[0], a[1]); else (window.finnaQ = window.finnaQ || []).push(a); };
@@ -601,7 +620,7 @@ iframe{flex:1;width:100%;border:0;background:var(--bg)}
       (room.nextFirst ? '' : next);
   }
   function showList(focusSlug) {
-    opening++; filmOff();
+    opening++; filmOff(); pdfFor(null);
     if (url) { URL.revokeObjectURL(url); url = null; }
     frameTo('about:blank'); $('vFrame').hidden = true; $('rList').hidden = false; $('vBack').hidden = true; $('vMsg').textContent = '';
     $('vTitle').textContent = P.title; document.title = P.title + ' · Finna';
@@ -609,7 +628,7 @@ iframe{flex:1;width:100%;border:0;background:var(--bg)}
     (a || $('rH')).focus({preventScroll: !a});
   }
   async function openDoc(d) {
-    const n = ++opening; $('vMsg').textContent = 'Opening…';
+    const n = ++opening; $('vMsg').textContent = 'Opening…'; pdfFor(null);
     try {
       const r = await fetch(d.file, {cache: 'no-store'}); if (!r.ok) throw 0;
       const b = new Uint8Array(await r.arrayBuffer());
@@ -620,7 +639,7 @@ iframe{flex:1;width:100%;border:0;background:var(--bg)}
       if (url) URL.revokeObjectURL(url);
       url = URL.createObjectURL(new Blob([html], {type: 'text/html'}));
       filmOff(); const f = $('vFrame'); frameTo(url); f.title = d.title; f.hidden = false;
-      $('rList').hidden = true; $('vBack').hidden = false; $('vMsg').textContent = '';
+      $('rList').hidden = true; $('vBack').hidden = false; $('vMsg').textContent = ''; pdfFor(d);
       $('vTitle').textContent = d.title; document.title = d.title + ' · ' + P.title + ' · Finna';
       $('vBack').focus();
       track('investor_doc_open', d.slug);
@@ -629,6 +648,31 @@ iframe{flex:1;width:100%;border:0;background:var(--bg)}
       current = ''; showList(d.slug); $('vMsg').textContent = 'That document did not open. Try again.';
     }
   }
+  /* THE DECK'S PDF (22 Nov 2026). A document whose row names a PDF shows Download the PDF in the bar
+     while it is open. The PDF is ciphertext beside it: the first press opens it with the room's key and
+     downloads it from memory (a Blob), and it is kept, so a second press downloads at once, until the
+     document closes or the room is locked. */
+  function pdfFor(d) {
+    const a = $('vPdf');
+    if (pdfUrl) { URL.revokeObjectURL(pdfUrl); pdfUrl = null; }
+    pdfDoc = d && d.pdf ? d : null;
+    a.href = '#'; a.removeAttribute('download'); a.hidden = !pdfDoc;
+  }
+  $('vPdf').addEventListener('click', async e => {
+    if (pdfUrl) return;                                 /* already opened: the link downloads it */
+    e.preventDefault();
+    const d = pdfDoc, a = e.currentTarget; if (!d) return;
+    $('vMsg').textContent = 'Preparing…';
+    try {
+      const r = await fetch(d.pdf, {cache: 'no-store'}); if (!r.ok) throw 0;
+      const b = new Uint8Array(await r.arrayBuffer());
+      const pdf = await crypto.subtle.decrypt({name: 'AES-GCM', iv: b.slice(0, 12)}, key, b.slice(12));
+      if (pdfDoc !== d) return;                         /* closed or locked while it opened */
+      pdfUrl = URL.createObjectURL(new Blob([pdf], {type: 'application/pdf'}));
+      a.href = pdfUrl; a.download = d.pdfName; $('vMsg').textContent = '';
+      track('investor_pdf_download', d.slug); a.click();
+    } catch (err) { if (pdfDoc === d) $('vMsg').textContent = 'The PDF did not download. Try again.'; }
+  });
   /* A FILM IN THE ROOM (13 Oct 2026). Each cut and its poster is ciphertext beside the documents,
      opened with the room's key and played from memory (a Blob), so it has no address of its own
      either. It opens in the cut that fits the screen and follows a turn of the screen until a cut is
@@ -681,7 +725,7 @@ iframe{flex:1;width:100%;border:0;background:var(--bg)}
     }
   }
   function openFilm(d) {
-    opening++;
+    opening++; pdfFor(null);
     if (url) { URL.revokeObjectURL(url); url = null; }
     frameTo('about:blank'); $('vFrame').hidden = true; $('rList').hidden = true;
     film.d = d; film.picked = false;
@@ -727,7 +771,7 @@ iframe{flex:1;width:100%;border:0;background:var(--bg)}
   });
   $('vLock').addEventListener('click', () => {
     try { sessionStorage.removeItem(KEEP); } catch (e) {}
-    opening++; if (url) URL.revokeObjectURL(url); url = null; key = null; room = null; current = ''; filmOff(true);
+    opening++; if (url) URL.revokeObjectURL(url); url = null; key = null; room = null; current = ''; filmOff(true); pdfFor(null);
     frameTo('about:blank'); $('vFrame').hidden = true; $('rRows').innerHTML = '';
     $('room').hidden = true; $('gate').hidden = false; $('gCode').value = ''; $('gCode').focus();
     history.replaceState(null, '', location.pathname + location.search); document.title = P.title + ' · Finna';
