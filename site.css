@@ -443,6 +443,14 @@ html[data-cover] .hero-cover::before{background-color:var(--cover-tone);
   .people-long .card{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:var(--space-6);align-items:start}
   .people-long .portrait{grid-row:span 3;margin:0}   /* the role, the name and the bio */
 }
+/* THE NAMES LINE UP (23 Nov 2026). Three across, a long role ("Head of Engineering") wraps to two
+   lines at narrower desktop widths while its neighbours take one, and that card's name dropped below
+   theirs. Each card is a subgrid of its row's four tracks (portrait, role, name, bio), so the tallest
+   role sets the track and every name in the row sits on one line. */
+@media (min-width:901px){
+  .people-long .card{display:grid;grid-row:span 4;grid-template-rows:subgrid;row-gap:0}
+  .people-long .card > *{align-self:start}
+}
 
 /* the five opening questions on how-it-works. A real <ol>, so it is a list to a screen reader,
    with the marker drawn in the margin at the label rung rather than left to the browser. The
