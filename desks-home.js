@@ -21,27 +21,16 @@
      a block opens into what it is made of, and blocks travel between the two views rather than
      redraw. What you own: the v2 map ramp in six steps, the darkest the largest. Investments: the asset-
      class colours (Shares, Bonds, Private markets, Real estate, Infrastructure, Cash), and inside a
-     class its accounts and funds in shades of that class's colour, the largest the fullest ═════ */
+     class its accounts and funds in that class's five shades, the largest first. Every colour and
+     its words are brand tokens (Brand System 2.0's chart colours, as the app draws them), passed as
+     var() so a change of mode recolours a map as it stands (25 Nov 2026) ═════ */
   var RAMP = ['--map-1', '--map-2', '--map-3', '--map-4', '--map-5', '--map-6'],
       INK = ['--map-ink-1', '--map-ink-2', '--map-ink-3', '--map-ink-4', '--map-ink-5', '--map-ink-6'],
       FIT = ['fs', 'f1', 'f2', 'f3', 'f4', 'f5'],
-      /* the class colours, as the app's Mix lab has them (SIMC): the key of a map's first level */
-      CLASS = { eq: '--d-equities', fx: '--d-fixed', pr: '--d-private', re: '--d-real', inf: '--l-property', ca: '--d-cash' };
-  /* a token's colour, read from the page, and the ink that reads on a colour (white from 3:1, as the
-     app's ramp puts white words on Primary 72%) */
-  function rgbOf(token) {
-    var v = getComputedStyle(document.documentElement).getPropertyValue(token).trim();
-    if (v.charAt(0) === '#') { if (v.length === 4) v = '#' + v[1] + v[1] + v[2] + v[2] + v[3] + v[3]; return [1, 3, 5].map(function (i) { return parseInt(v.substr(i, 2), 16); }); }
-    var m = v.match(/[\d.]+/g); return m ? m.slice(0, 3).map(Number) : [36, 104, 83];
-  }
-  function lum(c) { return c.map(function (x) { x /= 255; return x <= 0.04045 ? x / 12.92 : Math.pow((x + 0.055) / 1.055, 2.4); }).reduce(function (t, x, i) { return t + x * [0.2126, 0.7152, 0.0722][i]; }, 0); }
-  function inkOn(c) { return 1.05 / (lum(c) + 0.05) >= 3 ? '--white' : '--black'; }
-  /* shade i of n: a dark colour steps towards white (down to 40% of itself), a pale one (cash)
-     towards black (up to a quarter) */
-  function shade(c, i, n) {
-    var t = n > 1 ? i / (n - 1) : 0, dark = lum(c) < 0.35, p = dark ? 1 - t * 0.6 : 1 - t * 0.26, to = dark ? 255 : 0;
-    return c.map(function (x) { return Math.round(x * p + to * (1 - p)); });
-  }
+      /* each class's token stem: its colour --c-<stem> with --c-<stem>-ink, its holdings' shades
+         --h-<stem>-1…5 with theirs. Private markets wear private equity's royal blue; infrastructure
+         private credit's cerulean, as in the app, until the brand gives it a class of its own */
+      CLASS = { eq: 'eq', fx: 'bonds', pr: 'pe', re: 're', inf: 'pc', ca: 'cash' };
   function money(v) { return '$' + Math.round(v).toLocaleString('en-US'); }
   function short(v) {
     if (v >= 1e6) return '$' + (v / 1e6).toFixed(2).replace(/\.?0+$/, '') + 'M';
@@ -91,11 +80,11 @@
       return { nodes: nodes, trail: trail, shown: nodes.reduce(function (t, n) { return t + n.v; }, 0) };
     }
     function items(V) {
-      var pre = path.length ? path.join('/') + '/' : '', base = byClass && path.length ? rgbOf(CLASS[path[0]] || '--d-equities') : null;
+      var pre = path.length ? path.join('/') + '/' : '', cls = byClass && path.length ? (CLASS[path[0]] || 'eq') : null;
       return V.nodes.map(function (n, i) {
         var st = Math.min(i, RAMP.length - 1), sh = pct(n.v / data.total), c, ink;
         if (!byClass) { c = 'var(' + RAMP[st] + ')'; ink = INK[st]; }
-        else { var rgb = base ? shade(base, i, V.nodes.length) : rgbOf(CLASS[n.k] || '--d-equities'); c = 'rgb(' + rgb.join(',') + ')'; ink = inkOn(rgb); }
+        else { var tok = cls ? '--h-' + cls + '-' + (Math.min(i, 4) + 1) : '--c-' + (CLASS[n.k] || 'eq'); c = 'var(' + tok + ')'; ink = tok + '-ink'; }
         return { k: pre + n.k, key: n.k, v: n.v, label: n.l, sub: n.s || '', share: sh, c: c, ink: ink, open: !!n.kids,
           aria: n.l + (n.s ? ', ' + n.s : '') + ', ' + money(n.v) + ', ' + sh + ' of ' + of };
       });

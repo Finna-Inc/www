@@ -1,15 +1,16 @@
 /* ══ THE HOMEPAGE IN BRAND SYSTEM 2.0 ═════════════════════════════════════════════════════════
-   Only what is the homepage's own. Everything the site shares (the role scopes, Harbour on the
-   keys, the ice blue grounds, the dark blue closing, pricing, the clocks) is in site-v2.css,
-   which loads after this file.
+   Only what is the homepage's own. Everything the site shares (the role scopes, the green on the
+   keys, the pale green grounds, the deep green closing, pricing, the clocks) is in site-v2.css,
+   which loads after this file. Back to green on 25 Nov 2026 (Brand System REV 63).
    Rewritten 21 Oct 2026 from the 20 Oct first pass (c48163c), with Christian's direction:
    the Harbour gradient over the photograph, the Harbour wash behind Freya, the black idea band,
    the hardcoded golds and mints on the rings, the white invest band and the role-coloured
    headings are gone. Every value is a token. */
 
-/* ── THE HERO — the photograph as it is; the second line in Harbour's light step ─────────────
-   --desk-48 is the token for desk words on a dark ground: 7.5:1 on the photograph at desktop
-   widths. On a phone the crop puts the mist behind the line and it holds about 3.4:1. */
+/* ── THE HERO — the photograph as it is; the second line in the desk's light step ──────────
+   --desk-48 is the token for desk words on a dark ground; since REV 63 it is the light green,
+   as light as the blue it replaced: about 7.5:1 on the photograph at desktop widths. On a phone
+   the crop puts the mist behind the line and it holds about 3.4:1. */
 .hero-home h1 .quiet{color:var(--desk-48)}
 
 /* ── THE RINGS — white hairlines, the arcs still riding, and no glow (figure rule F1: lines
@@ -23,33 +24,26 @@
 .idea-mark .fm-halo{display:none}
 
 /* ── FIVE DESKS, ONE OFFICE — the showcase is a desk (.fd.on-desk) ────────────────────────────
-   Every scene is the desk opener's ground, Harbour 7% into the raised background, where the
-   five each had a tint of their own (one an off-token oklch). */
+   Every scene is the desk opener's ground, the desk green 7% into the raised background, where
+   the five each had a tint of their own (one an off-token oklch). */
 .fd .fd-scene,.fd :is(.is-records,.is-policy,.is-investment,.is-protection,.is-succession) .fd-scene,
 :root[data-mode="dark"] .fd .fd-scene,
 :root[data-mode="dark"] .fd :is(.is-records,.is-policy,.is-investment,.is-protection,.is-succession) .fd-scene{
   --scene:color-mix(in srgb,var(--desk) 7%,var(--bg-raised))}
-/* both maps are the blue map family at every drill-down level, the investments map too, where
-   desks-home.js would give the asset classes their own colours (kept from the 20 Oct pass,
-   c48163c; Christian, 21 Oct 2026: "Fine with the blue in the treemap") */
-.fd .fd-b{background:var(--map-6);color:var(--map-ink-6)}
-.fd .fd-b:nth-child(1){background:var(--map-1);color:var(--map-ink-1)}
-.fd .fd-b:nth-child(2){background:var(--map-2);color:var(--map-ink-2)}
-.fd .fd-b:nth-child(3){background:var(--map-3);color:var(--map-ink-3)}
-.fd .fd-b:nth-child(4){background:var(--map-4);color:var(--map-ink-4)}
-.fd .fd-b:nth-child(5){background:var(--map-5);color:var(--map-ink-5)}
-.fd .fd-b:nth-child(6){background:var(--map-6);color:var(--map-ink-6)}
-/* the map is one blue in six steps (desks-home.js RAMP) and its words are white on every block
-   (Christian, 21 Oct 2026: "dont create white boxes inside, instead write the text with white
-   text"). White reads 9.2:1 on the largest block and falls to 2.1:1 on the smallest. In dark
-   mode the blues turn light, so the words keep the brand's measured ink. */
-:root:not([data-mode="dark"]) .fd{
-  --map-ink-1:var(--white);--map-ink-2:var(--white);--map-ink-3:var(--white);
-  --map-ink-4:var(--white);--map-ink-5:var(--white);--map-ink-6:var(--white)}
+/* THE TWO MAPS (25 Nov 2026, Christian, on the REV 63 preview). desks-home.js colours both, with
+   tokens, so a change of mode recolours them as they stand:
+     · Records, what you own: the wealth map, one green in six steps (--map-1…6), the largest the
+       darkest on white (lightest in dark mode), with the brand's measured words: white on the three darkest, black on the three
+       palest (--map-ink-*). The 21 Oct ruling holds: words straight on the blocks, no white boxes.
+       (Until REV 63 this file forced white words on every block; on the green's pale steps that
+       fell to 1.4:1.)
+     · Investment: the asset classes' own colours, as the app draws them, liquid green and illiquid
+       blue (--c-*), and inside a class its five shades (--h-<class>-1…5), each with its -ink.
+   So nothing is set here any more; the blue map family's overrides are gone. */
 
-/* ── INVEST LIKE A FAMILY OFFICE — ice blue, and the back-test from the Learn films ───────────
-   The band is .band-mint (ice blue in site-v2.css) and a desk, so the figure's family-office
-   line is --you, Harbour. The figure is FIG.backtest, "Thirty years, two mixes", from
+/* ── INVEST LIKE A FAMILY OFFICE — pale green, and the back-test from the Learn films ────────
+   The band is .band-mint (the pale green in site-v2.css) and a desk, so the figure's
+   family-office line is --you, the desk green. The figure is FIG.backtest, "Thirty years, two mixes", from
    learn-films-production_6.html: its series, its geometry, its four beats. Its small labels
    take --text-secondary where the film has --text-tertiary (4.7:1), for the 7:1 floor. */
 .invest-fig{width:100%;border:var(--line-object) solid var(--border-strong);border-radius:var(--r-card);
